@@ -1,0 +1,91 @@
+@import '../mixin';
+@import '../variable';
+
+$hide-line: ("1":1, "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9);
+
+.guide-card {
+    position: relative;
+    height: fit-content;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    background-color: $white;
+    overflow: hidden;
+
+    &.guide-border{
+        &:hover {
+            border: 2px solid $tb40;
+        }
+    }
+
+    &.shift {
+        transform: none;
+        transition: transform 0.5s ease;
+        &:hover {
+            transform: translateY(-10px);
+        }
+    }
+    >.card-media {
+        >img{
+            cursor: pointer;
+            width: 100%;
+        }
+    }
+
+    >.card-content {
+        &.extend {
+            @include tablet-to-desktop {
+                >div {
+                    padding-right: 40px;
+                }
+                >div:last-child {
+                    margin-bottom: 38px;
+                }
+            }
+            @include mobile {
+                >div:last-child {
+                    margin-bottom: 26px;
+                }
+            }
+        }
+
+        .check-line {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        @each $value1, $value2 in $hide-line{
+            &.hide#{$value1} {
+                .check-line {
+                    -webkit-line-clamp: $value2;
+                    display: block;
+                }
+            }
+        }
+
+        &.hide0 {
+            .check-line{
+                // visibility: hidden;
+                display: none;
+                height: 2em;
+                margin-bottom: 0 !important;
+            }
+        }
+
+        &.show {
+            height: auto !important;
+            .check-line {
+                -webkit-line-clamp: 100;
+            }
+        }
+    }
+
+    >.card-show-more {
+        position: absolute;
+        @include body-2();
+        cursor: pointer;
+    }
+}

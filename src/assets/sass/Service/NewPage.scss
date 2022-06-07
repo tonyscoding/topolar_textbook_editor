@@ -1,0 +1,30 @@
+@import '../variable';
+@import '../mixin';
+
+.newpage-title {
+    display: flex;
+    @include gap-sub(10px);
+    margin-bottom: 17px;
+
+    >div:first-child{
+        font-size: 24px;
+        font-weight: bold;
+        color: #ACACAC;
+    }
+
+    >div:nth-child(2){
+        position: relative;
+        >div{
+            position: absolute;
+            bottom: 0;
+            white-space: pre;
+            font-weight: 400;
+            font-size: 1rem;
+            color: #ACACAC;
+        }
+    }
+
+    &.MT{
+        margin-top: 2rem;
+    }
+}

@@ -1,0 +1,16 @@
+.footer {
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.footer_auth {
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    background-color: #2D3646;
+}  

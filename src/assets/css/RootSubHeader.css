@@ -1,0 +1,333 @@
+@media(min-width: 800px){
+    .ad-header-container {
+        position: relative;
+        height: 76px;
+        z-index: 999;
+    }
+
+    .ad-header-section {
+        width: 100%;
+        max-height: 6px;
+        height: 100%;
+        background-image: url('../root_img/Header/BG_toplayer_banner.png');
+        z-index: 999;
+        word-break: keep-all;
+    }
+
+    .root-sub-header {
+        height: 76px;
+        background-color: #FFFFFF;
+        box-shadow: 0px 0px 22px #00000012;
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+        opacity: 0.9;
+    }
+    
+    .root-sub-body {
+        max-width: 1280px;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .root-sub-body-content{
+        width: 60%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .w-27 {
+        width: 27px;
+        cursor: pointer;
+    }
+
+    .wi-20 {
+        width: 20%;
+    }
+
+    .wi-60 {
+        width: 60%;
+        text-align: center;
+    }
+
+    .wi-25 {
+        width: 25%;
+        display: flex;
+        justify-content: flex-end;
+        cursor: pointer
+    }
+
+    .ad-header-text {
+        max-width: 1280px;
+        margin: 0 auto;
+        z-index: 10;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-logo {
+        width: 112px;
+        height: 19px;
+        background-position: inherit;
+        background-image: url('../root_img/Header/Logo_topolar.svg');
+        cursor: pointer;
+        background-repeat: no-repeat;
+    }
+    
+    .header-logo:hover {
+        width: 112px;
+        height: 19px;
+        background-position: inherit;
+        background-image: url('../root_img/Header/Logo_grey.svg');
+        cursor: pointer;
+    }
+    
+}
+
+@media (max-width: 799px){
+    .ad-header-container {
+        position: relative;
+        height: 100px;
+        z-index: 999;
+    }
+
+    .ad-header-section {
+        max-height: 100px !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .root-sub-header-container {
+        position: relative;
+        height: 56px;
+    }
+
+    .root-sub-header {
+        height: 56px;
+        background-color: #FFFFFF;
+        border: #707070;
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+        opacity: 0.9;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 5%;
+        align-items: center;
+    }
+
+    .servicePage{
+        background-color: #000000 !important;
+        z-index: 99 !important;
+    }
+    
+    .root-sub-body {
+        max-width: 800px;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    .wi-20 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .wi-60 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .wi-25 {
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+    }
+
+    .ad-header-text {
+        max-width: 1280px;
+        margin: 0 auto;
+        z-index: 10;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 80%;
+        flex-direction: column;
+    }
+
+    .mobile-header-menu {
+        color: #A2A2A2;
+        cursor: pointer;
+    }
+
+    .mobile-header-menu:hover {
+        color: #1DB4B4;
+    }
+
+    .mobile-header-close-sidebar-icon {
+        color: #8E8E8E;
+        cursor: pointer;
+    }
+
+    .mobile-header-close-sidebar-icon:hover {
+        color: #1DB4B4;
+    }
+
+    .header-logo {
+        width: 92px;
+        height: 15px;
+        background-position: inherit;
+        background-image: url('../root_img/Header/Logo_topolar.svg');
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-size: 92px 15px;
+    }
+    
+    /* .header-logo:hover {
+        width: 80px;
+        height: 14px;
+        background-position: inherit;
+        background-image: url('../root_img/Header/Logo_grey.svg');
+        cursor: pointer;
+        background-size: 80px 14px;
+    } */
+
+    .header-kakao-logo {
+        opacity: 0;
+        width: 30px;
+        height: 30px;
+        background-position: inherit;
+        background-image: url('../root_img/Header/mobile_header_kakao_black.svg');
+        cursor: pointer;
+        background-size: 30px 30px;
+    }
+
+    .header-kakao-logo:hover {
+        width: 30px;
+        height: 30px;
+        background-position: inherit;
+        background-image: url('../root_img/Header/mobile_header_kakao_topolar.svg');
+        cursor: pointer;
+        background-size: 30px 30px;
+    }
+}
+
+.gnb-nav-1 {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.gnb-nav-1 > a {
+    color: #1F1F1F;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.gnb-nav-1 > a:hover {
+    display: inline;
+    /* padding: 24px; */
+    color: #00b4b4 !important;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #00b4b4;
+}
+
+.gnb-nav-1 > .active{
+    /* padding: 24px; */
+    color: #00b4b4 !important;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #00b4b4;
+}
+
+.sub-header-nav > .login-text {
+    display: inline;
+    color: #353535 !important;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 0 10px;
+    font-weight: 600;
+}
+
+.sub-header-nav > .login-distirbution{
+    display: inline;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 0 10px;
+    font-weight: 600;
+}
+
+.ad-header-section {
+    width: 100%;
+    max-height: 76px;
+    height: 100%;
+    background-image: url('../root_img/Header/BG_toplayer_banner.png');
+    z-index: 999;
+    position: fixed;
+    top: 0;
+}
+
+.top-0 {
+    top: 0 !important;
+}
+
+.close-today {
+    color: #FFFFFF;
+}
+
+.close-today:hover {
+    color: #1A1A1A !important;
+}
+
+.close-icon {
+    width: 22px;
+    height: 22px;
+    background-image: url('../root_img/Header/icon_close_white.svg');
+}
+
+.close-icon:hover {
+    width: 22px;
+    height: 22px;
+    background-image: url('../root_img/Header/icon_close_black.svg');
+}
+
+.mobile-close-icon {
+    width: 9px;
+    height: 9px;
+    background-image: url('../root_img/Header/mobile_close_icon_white.svg');
+}
+
+.mobile-close-icon:hover {
+    width: 9px;
+    height: 9px;
+    background-image: url('../root_img/Header/mobile_close_icon_black.svg');
+}

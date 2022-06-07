@@ -1,0 +1,46 @@
+@import '../../mixin';
+
+.main-curriculum-index{
+    >.banner{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        >.banner-title{
+            width: 1280px;
+            margin: 0 auto;
+            color: $white;
+            >.title{
+                font: normal normal bold 42px/53px Spoqa Han Sans Neo;
+            }
+            >.subtitle{
+                margin-top: 12px;
+                font: normal normal normal 16px/21px Spoqa Han Sans Neo;
+            }
+        }
+        @include tablet{
+            width: 1280px;
+        }
+    }
+
+    .expert-container{
+        @include tablet-to-desktop{
+            background-image: url('../../../root_img/Main/Curriculum/curriculumExpert.png');
+            width: 100%;
+            height: 570px;
+        }
+        @include mobile{
+            background-image: url('../../../root_img/Main/Curriculum/mCurriculumExpert.png');
+            width: 100%;
+            height: 292.5px;
+        }
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-top: 15px;
+    }
+
+    >.main-page-body>.main-curriculum-body-index{
+        @media(min-width: 361px) and (max-width:799px){
+            padding: 0 20px;
+        }
+    }
+}

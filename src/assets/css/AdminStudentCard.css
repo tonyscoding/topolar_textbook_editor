@@ -1,0 +1,80 @@
+
+.admin-card-lists{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    padding:10px;
+    max-height:500px;
+    overflow:scroll;
+}
+
+.admin-simple-card .card-header{
+    margin-bottom:unset;
+}
+
+.admin-simple-card .card-header>.card-title{
+    color:#555555;
+}
+
+.admin-simple-card{
+    width:45%;
+    padding-left:2%;
+    padding-right:2%;
+    padding-top:1%;
+    padding-bottom:1%;
+    background-color: #F0F0F0;
+}
+.admin-simple-card .card-title{
+    width: 100%;
+}
+.admin-simple-card .card-title>span{
+    width: unset;
+}
+.admin-simple-card .admin-simple-card-title1{
+    float:left;
+}
+.admin-simple-card .admin-simple-card-title2{
+    float:right;
+}
+.admin-simple-card div>span{
+    display: inline-block;
+    width:50%;
+}
+
+.admin-simple-card-content{
+    color:#7b7b7b;
+    margin-bottom:2px;
+}
+
+.admin-student-search-body, .admin-student-data-body{
+    color:#F0F0F0;
+}
+
+
+.admin-student-data-body>.card-title{
+    margin-bottom:0.8em;
+}
+.admin-student-data-body .row {
+    margin-bottom:3em;
+}
+.admin-student-data-body .row >.col{
+    height:auto;
+    font-size:1.2em;
+}
+
+.admin-student-data-body .row >.col .display-flex .grey-input{
+    width: auto;
+    min-width: 100px;
+    margin-left:auto;
+}
+
+.admin-student-payment-modal {
+    overflow:scroll;
+    max-height:800px; 
+    padding:1em;
+}
+
+.admin-student-payment-header{
+    font-size: 1.5em;
+    color:#BABABA;
+}

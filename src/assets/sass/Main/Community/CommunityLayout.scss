@@ -1,0 +1,51 @@
+@import '../../mixin';
+
+.#{$community-pre} {
+    &layout{
+        width: 100%;
+        @include tablet{
+            width: 1280px;
+        }
+        >header{
+            width: 100%;
+            background-color: #00C1D4;
+            @include tablet-to-desktop{
+                height: 60px;
+                >div:nth-child(1){
+                    width: 1280px;
+                    margin: 0 auto;
+                    height: 60px;
+                }
+            }
+            @include mobile{
+                height: 40px;
+                >div:nth-child(1){
+                    width: 100%;
+                    padding: 0 5.5%;
+                    height: 40px;
+                }
+            }
+        }
+
+        >.banner{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            >.banner-title{
+                width: 1280px;
+                margin: 0 auto;
+                color: $black;
+                >.title{
+                    font: normal normal bold 42px/53px Spoqa Han Sans Neo;
+                }
+                >.subtitle{
+                    margin-top: 12px;
+                    font: normal normal normal 16px/21px Spoqa Han Sans Neo;
+                }
+            }
+            @include tablet{
+                width: 1280px;
+            }
+        }
+    }
+}

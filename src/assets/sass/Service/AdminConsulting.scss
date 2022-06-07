@@ -1,0 +1,405 @@
+@import '../mixin';
+
+.service-ongoing-consulting {
+    width: 100%;
+    margin-top: 20px;
+    >.react-bootstrap-table{
+        >table{
+            box-shadow: none;
+        }
+    }
+}
+
+.service-stopped-consulting {
+    width: 100%;
+    margin-top: 20px;
+    >div:nth-child(2){
+        width: 100%;
+        background-color: #2C2C2C;
+        height: 50px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        >div:nth-child(1), >div:nth-child(3){
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            cursor: pointer;
+        }
+        >div:first-child{
+            border-right-color: white;
+            &:hover{
+                border-right-color: $topolar;
+            }
+        }
+        >div:nth-child(2){
+            font-size: 2rem;
+        }
+        >div:nth-child(3){
+            border-left-color: white;
+            &:hover{
+                border-left-color: $topolar;
+            }
+        }
+    }
+
+    >div:nth-child(1){
+        >input[type="month"] {
+            width: auto;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #91919199;
+            outline: none;
+            border: none; 
+        }
+    }
+
+    >.react-bootstrap-table{
+        >table{
+            box-shadow: none;
+        }
+    }
+}
+
+.service-filter-consulting{
+    position: absolute;
+    right: -320px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    height: fit-content;
+    @include animation(0s, 1s, fadein);
+    >div:first-child{
+        border: 10px solid transparent;
+        width: 0;
+        height: 0;
+        border-right-color: white;
+    }
+    >div:nth-child(2){
+        background-color: white;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 300px;
+        >div{
+            min-width: 90px;
+            >label{
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+@include keyframe(fadein) {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+.service-create-consulting-container{
+    width: 100%;
+    @include flex-column();
+    >div{
+        display: flex;
+        justify-content: space-between;
+        >div{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            >label{
+                color: #919191;
+                font-size: 0.875rem;
+            }
+            >input, >select{
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                background-color: #91919199;
+                outline: none;
+                border: none; 
+            }
+            >input[type="date"], >input[type="number"], >select {
+                width: fit-content;
+            }
+            
+            
+        }
+    }
+    >label{
+        color: #919191;
+        font-size: 0.875rem;
+    }
+    >select{
+        width: fit-content;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #91919199;
+        outline: none;
+        border: none;
+    }
+    >input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #91919199;
+        outline: none;
+        border: none;        
+    }
+    >input[type="text"]{
+        width: 100%;
+        font-size: 1rem;
+    }
+    >textarea{
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #91919199;
+        outline: none;
+        border: none;
+        font-size: 1rem;
+    }
+    >.type-select{
+        display: flex;
+        justify-content: unset;
+        >button{
+            width: 50px;
+            height: 50px;
+            background-color: #91919199;
+            border: none;
+            border-radius: 50%;
+            outline: none;
+        }
+        >button + button {
+            margin-left: 50px;
+        }
+        >.active{
+            background-color: $topolar;
+            color: white;
+        }
+    }
+    > * + label {
+        margin-top: 15px;  
+    }
+    > * + button{
+        margin-top: 15px;
+    }
+}
+
+.service-create-consulting-type-container{
+    width: 100%;
+    
+    >div:first-child{
+        font-size: 1rem;
+    }
+    >div:nth-child(2){
+        display: flex;
+        flex-wrap: wrap;
+        >div{
+            height: 60px;
+            background-color: #333333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 5px;
+            position:relative;
+            padding: 0 10px;
+            min-width: 90px;
+            border-radius: 5px;
+        }
+        >div:hover{
+            background-color: #B41D1D;
+            cursor: pointer;
+        }
+    }
+    >div:nth-child(3){
+        margin-top: 50px;
+        display: flex;
+        >input{
+            width: 80%;
+            border: none;
+            outline: none;
+            background-color: #e3e3e3;
+            font-size: 20px;
+            color: #333333;
+        }
+        >button{
+            margin-left: 10px;
+            max-width: 100px;
+        }
+    }
+    >div + div {
+        margin-top: 10px;
+    }
+}
+
+.search-select{
+    width: 100%;
+    >div{
+        width: 100%;
+        display: flex;
+        flex-direction: row !important;
+    }
+    >div:nth-child(3)>div{
+        width: 100%;
+    }
+}
+
+.service-consulting-status{
+    width: 67px;
+    height: 21px;
+    border-radius: 3px;
+    margin: 0 auto;
+    color: white;
+
+    &.RE, &.AB{
+        background-color: #B5B5B5;
+    }
+
+    &.PR{
+        background-color: #E4B237;
+    }
+
+    &.FI {
+        background-color: $topolar;
+    }
+
+}
+
+.service-consulting-detail-modal-container{
+    width:100%;
+    min-height: 500px;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+
+    >.service-consulting-payment-container {
+        width: 100%;
+    }
+
+    >.service-consulting-reservation-container {
+        width: 100%;
+        >.empty-data{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            >div>input {
+                width: fit-content;
+                padding: 10px;
+                border-radius: 5px;
+                background-color: #91919199;
+                outline: none;
+                border: none; 
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.service-consulting-detail-container{
+    width: 100%;
+    min-height: 500px;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+
+    >div:nth-child(1), >div:nth-child(3){
+        flex: 2;
+        >div{
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            font-size: 1rem;
+            label{
+                color: #919191;
+                font-size: 0.875rem;
+            }
+            input, select{
+                width: fit-content;
+                padding: 10px;
+                border-radius: 5px;
+                background-color: #91919199;
+                outline: none;
+                border: none; 
+            }
+
+            textarea{
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                background-color: #91919199;
+                outline: none;
+                border: none;
+                font-size: 1rem;
+            }
+        }
+
+        >.start-with-remaining{
+            display: flex;
+            flex-direction: row;
+            >div + div {
+                margin-left: 50px;
+            }
+            >div{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        >div + div {
+            margin-top: 15px;
+        }
+    }
+
+    >div:nth-child(3){
+        >div{
+            >div+div{
+                margin-top: 15px;
+            }
+        }
+    }
+
+    >div:nth-child(2){
+        flex: 0.1;
+        width: 20px;
+        border-left: 1px dashed #1DB4B4;
+    }    
+}
+
+.service-consulting-crt-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+    label{
+        color: #919191;
+        font-size: 0.875rem;
+    }
+    input{
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: #91919199;
+        outline: none;
+        border: none; 
+    }
+    
+    >div:nth-child(1){
+        font-size: 1.5rem;
+        margin-bottom: 50px;
+    }
+
+    >div:nth-child(2){
+        display: flex;
+        align-items: center;
+    }
+}

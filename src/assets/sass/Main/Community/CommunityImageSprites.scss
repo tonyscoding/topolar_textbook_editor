@@ -1,0 +1,49 @@
+@import '../../mixin';
+
+
+[class^=main-community-icons-]{
+    display: inline-block;
+    background: url('../../../root_img/Main/Community/communityIcons.png');
+    overflow: hidden;
+    @include tablet-to-desktop{
+        background-size: 248px 58px;
+        width: 36px;
+        height: 36px;
+        margin-left: 6px;
+    }
+    @include mobile{
+        background-size: 166px 39px;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+    }
+}
+
+.main-community-icons-{
+    &user-review{
+        @include tablet-to-desktop{
+            background-position: -9px -10px;
+        }
+        @include mobile{
+            background-position: -6px -6px;
+        }
+    }
+
+    &notice{
+        @include tablet-to-desktop{
+            background-position: -117px -10px;
+        }
+        @include mobile{
+            background-position: -78px -6px;
+        }
+    }
+
+    &events{
+        @include tablet-to-desktop{
+            background-position: -65px -10px;
+        }
+        @include mobile{
+            background-position: -43px -6px;
+        }
+    }
+}

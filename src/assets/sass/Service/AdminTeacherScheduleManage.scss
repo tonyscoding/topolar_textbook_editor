@@ -1,0 +1,21 @@
+@import '../mixin';
+
+.service-teacher-language-view{
+    display: flex;
+    align-items: center;
+    background-color: #414141;
+    color: white;
+    margin: 1rem 0;
+    >button{
+        font-size: 1rem !important;
+        &::after{
+            content: '\e5c9';
+            font-family: "Material Icons Outlined";
+            font-size: 15px;
+            color: red;
+        }
+    }
+    >div{
+        cursor: pointer;
+    }
+}

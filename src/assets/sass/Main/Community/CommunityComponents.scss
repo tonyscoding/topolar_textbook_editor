@@ -1,0 +1,88 @@
+@import '../../mixin';
+
+.#{$community-pre}components-{
+    &header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include tablet-to-desktop{
+            @include gap-sub(12px, column);
+        }
+        @include mobile{
+            @include gap-sub(8px, column);
+        }
+        >div:nth-child(1){
+            display: flex;
+            align-items: center;
+            color: $grey90;
+        }
+        >div:nth-child(2){
+            color: $grey60;
+        }
+    }
+
+    &text-review-content{
+        >.header{
+            color: $grey90;
+            font-weight: bold;
+        }
+
+        >.review-info{
+            display: flex;
+            @include gap-sub(8px);
+            padding-top: 12px;
+            >div{
+                border: 1px solid $tb40;
+                border-radius: 8px;
+                color: $tb40;
+                @include tablet-to-desktop{
+                    font-size: 14px;
+                    padding: 6px 10px;
+                }
+                @include mobile{
+                    font-size: 10px;
+                    padding: 4px 12px;
+                }
+            }
+        }
+
+        >.review-content{
+            margin-top: 24px;
+            color: $grey90;
+            line-height: 22px;
+        }
+    }
+
+    &video-review-content{
+        >.review-info{
+            display: flex;
+            >div{
+                border: 1px solid $tb40;
+                border-radius: 8px;
+                color: $tb40;
+                @include tablet-to-desktop{
+                    font-size: 14px;
+                    padding: 6px 10px;
+                }
+                @include mobile{
+                    font-size: 10px;
+                    padding: 4px 12px;
+                }
+            }
+        }
+        >.header{
+            color: $grey90;
+            font-weight: bold;
+            padding-top: 12px;
+        }
+        >.reviewer{
+            color: $grey90;
+            padding-top: 12px;
+        }
+        >.review-content{
+            @include tablet-to-desktop{ display: none !important;}
+            color: $grey60;
+            margin-top: 24px;
+        }
+    }
+}

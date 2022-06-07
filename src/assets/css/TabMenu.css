@@ -1,0 +1,45 @@
+.tab-menu, .tab-hook-menu {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tab-menu > li, .tab-hook-menu > li {
+    list-style: none;
+    flex: 1 1 0;
+}
+
+.tab-menu > li > button {
+    width: 100%;
+    background-color: rgb(33, 33, 33);
+    text-decoration: none;
+    border: none;
+    outline: none;
+    color: #ACACAC;
+    font-size: 20px;
+}
+
+.tab-hook-menu > li > button {
+    width: 100%;
+    background-color: rgb(33, 33, 33);
+    text-decoration: none;
+    border-top: 1px solid #FFFFFF33;
+    border-left: 1px solid #FFFFFF33;
+    border-right: 1px solid #FFFFFF33;
+    outline: none;
+    color: #ACACAC;
+    font-size: 20px;
+}
+
+.tab-hook-menu > li > .active{
+    border-bottom: none;
+    border-top: 1px solid #1DB4B4;
+    border-left: 1px solid #1Db4b4;
+    border-right: 1px solid #1DB4B4;
+    color: #1DB4B4;
+}
+
+.active-tab-item {
+    border-bottom: 4px solid #1DB4B4 !important;
+    color: #1DB4B4 !important;
+}

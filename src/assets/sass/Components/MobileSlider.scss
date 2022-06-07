@@ -1,0 +1,46 @@
+@import '../mixin';
+@import '../mainPageMixin';
+
+.components-mobile-slider{
+    width: 100%;
+    position: relative;
+    >.slide-items{
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        overflow-y: hidden;
+        width: 100%;
+        &::-webkit-scrollbar-thumb{
+            background-color: unset;
+        }
+        >*{
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            position: relative;
+            width: 100%;
+        }
+    }
+    >.slide-indicator{
+        display: flex;
+        justify-content: center;
+        @include gap-sub(12px);
+
+        .circle-selected{
+            width: 36px;
+            height: 12px;
+            background-color: $tb40;
+            border-radius: 8px;
+            transition: 0.6s ease;
+        }
+    
+        .circle-not-selected{
+            width: 12px;
+            height: 12px;
+            background-color: $black;
+            opacity: 0.2;
+            border-radius: 50%;
+            transition: 0.6s ease;
+            cursor: pointer;
+        }
+    }
+}

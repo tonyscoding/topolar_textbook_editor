@@ -1,0 +1,31 @@
+@import '../mixin';
+
+[class^=mypage-profile-bank-sprites-]{
+    display: inline-block;
+    background: url('../../root_img/Main/bankSprites.png');
+    overflow: hidden;
+    background-size: 208px 208px;
+    width: 36px;
+    height: 36px;
+}
+
+.mypage-profile-bank-sprites-{
+    // PAYPLE CARD 리스트: https://developer.payple.kr/7d2cbf93-60eb-4102-8300-b36070073f8d
+    // IBK, TOSS 지원 X
+    &BC카드{ background-position: -10px -10px; }
+    &씨티카드{ background-position: -62px -10px; }
+    &하나카드, &KEB하나은행{ background-position: -114px -10px; }
+    &현대카드{ background-position: -166px -10px;}
+    &IBK, &IBK기업은행{ background-position: -10px -62px;}
+    &카카오뱅크체크, &카카오뱅크{ background-position: -62px -62px;}
+    &KB국민은행{ background-position: -114px -62px;}
+    &케이뱅크{ background-position: -166px -62px;}
+    &우체국{ background-position: -10px -114px;}
+    &롯데카드, &롯데AMX{ background-position: -62px -114px;}
+    &새마을금고, &MG새마을금고{ background-position: -114px -114px;}
+    &NHBC, &NH채움, &NH농협은행{ background-position: -166px -114px;}
+    &삼성카드{ background-position: -10px -166px;}
+    &신한카드, &신한은행{ background-position: -62px -166px;}
+    &TOSS{ background-position: -114px -166px;}
+    &우리카드, &우리BC, &우리은행{ background-position: -166px -166px;}
+}

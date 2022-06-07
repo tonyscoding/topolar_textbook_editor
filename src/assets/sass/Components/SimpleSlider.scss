@@ -1,0 +1,35 @@
+@import '../mixin';
+
+.simple-slider-container {
+
+    @include gap-sub(10px, column);
+
+    .slide-item {
+        cursor: pointer;
+    }
+
+    .slide-indicator{
+        display: flex;
+        justify-content: center;
+        @include gap-sub(10px);
+    
+        .circle-selected{
+            width: 10px;
+            height: 10px;
+            background-color: $tb40;
+            border-radius: 5px;
+            transition: 0.6s ease;
+        }
+    
+        .circle-not-selected{
+            width: 10px;
+            height: 10px;
+            background-color: $black;
+            opacity: 0.2;
+            border-radius: 50%;
+            transition: 0.6s ease;
+            cursor: pointer;
+        }
+    }
+
+}

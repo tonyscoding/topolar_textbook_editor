@@ -1,0 +1,285 @@
+.root-download-body {
+    position: relative;
+    padding-top: 58px;
+    padding-bottom: 140px;
+}
+
+.root-download-body > * {
+    width: 100%;
+    word-break: keep-all;
+}
+
+/* section 1 */
+.down-s1-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* section 2 */
+.down-s2-container {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.s2-instruction-container {
+    width: 608px;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+}
+.s2-instruction-container > div {
+    margin-top: 40px;
+}
+.s2-instruction-container > div > div {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.s2-windows-container {
+    width: 608px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.s2-windows-container > div {
+    margin-top: 40px;
+}
+.s2-windows-container > div > div {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.s2-mac-container {
+    width: 608px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.s2-mac-container > div {
+    margin-top: 40px;
+}
+.s2-mac-container > div > div {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.s2-download-box {
+    position: relative;
+    /* width: 90%; */
+    width: 100%;
+    background-color: #1DB4B4;
+    box-shadow: 0px 0px 60px #C1C1C129;
+    display: flex;
+    justify-content: space-between;
+}
+
+.s2-dbox-text {
+    margin-top: 32px;
+    margin-bottom: 27px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.s2-dbox-text > * {
+    color: #FFFFFF;
+}
+
+.s2-dbox-google-drive {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+    line-height: 15px;
+}
+
+.s2-dbox-version {
+    margin-top: 14px;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -0.6px;
+    line-height: 30px;
+}
+
+.s2-dbox-download-btn {
+    margin-top: 19px;
+    height: 29px;
+    width: 114px;
+    border: none;
+    background-color: rgba(80, 80, 80, 0.264);
+    font-size: 10px;
+}
+.s2-dbox-download-btn:focus {
+    outline: none;
+}
+
+.s2-dbox-logo {
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 42px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.s2-dbox-logo-win {
+    position: absolute;
+    top: 0;
+    left: -19px;
+}
+
+.s2-dbox-logo-mac {
+    position: absolute;
+    top: 0;
+    left: -20px;
+}
+
+.s2-dbox-logo-text {
+    color: #FFFFFF;
+    font-size: 10px;
+    letter-spacing: -0.25px;
+    line-height: 13px;
+}
+
+.d-text1 {
+    margin-top: 37px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+    line-height: 15px;
+    color: #919191;
+}
+
+.d-text2 {
+    margin-top: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -0.6px;
+    line-height: 30px;
+    color: #505050;
+}
+
+.d-text3 {
+    margin-top: 20px;
+    font-size: 18px;
+    letter-spacing: -0.45px;
+    line-height: 21px;
+    color: #575757;
+}
+
+.d-img-container {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.window-img {
+    margin-bottom: 75px;
+}
+.mac-img-40 {
+    margin-bottom: 40px;
+}
+.mac-img-44 {
+    margin-bottom: 44px;
+}
+.mac-img-50 {
+    margin-bottom: 50px;
+}
+.mac-img-54 {
+    margin-bottom: 54px;
+}
+
+
+.d-img-container-mac {
+    margin-top: 36px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.d-img {
+    max-width: 100%;
+    box-shadow: 0px 0px 60px #C1C1C129;
+}
+
+.s2-windows{
+    width: 100%;
+    background-color: #FEFFFE;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+/* .window-last {
+    margin-bottom: 1026px;
+} */
+
+@media (min-width: 1280px) {
+    .root-download-body {
+        width: 1280px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 800px) {
+    .inquiry-button-download {
+        width: 25%;
+    }
+}
+
+@media (max-width: 799px) {
+
+    .down-s2-container {
+        justify-content: center;
+        flex-flow: row wrap;
+        padding: 0 10px;
+    }
+
+    .s2-instruction-container {
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+    }
+    .inquiry-button-download {
+        max-width: 608px;
+        width: 95%;
+    }
+}
+
+@media (max-width: 620px) {
+    .s2-instruction-container > div > div {
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+
+    .d-text1 {
+        margin-top: 6%;
+    }
+    .d-text3 {
+        margin-top: 5%;
+    }
+    .d-img-container {
+        margin-top: 6%;
+    }
+    .window-img {
+        margin-bottom: 10%;
+    }
+    .mac-img-40 {
+        margin-bottom: 6%;
+    }
+    .mac-img-44 {
+        margin-bottom: 7%;
+    }
+    .mac-img-50 {
+        margin-bottom: 8%;
+    }
+    .mac-img-54 {
+        margin-bottom: 9%;
+    }
+}

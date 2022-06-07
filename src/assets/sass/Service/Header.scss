@@ -1,0 +1,41 @@
+@import '../mixin';
+
+.root-relative-header{
+
+    &.servicePage {
+        position: fixed !important;
+        width: 100%;
+        background-color: #0D0D0D;
+
+        >.h-100>.root-sub-body>.root-sub-body-content>.gnb-nav-1{
+            >a {
+                color: #FFFFFF !important;
+                font-weight: 500;
+                &:hover{
+                    border-bottom: unset;
+                }
+            }
+        }
+
+        >.h-100>.root-sub-body>.service-right-text>.sub-header-nav>.login-text{
+            color: #BCBCBC !important;
+            font-weight: 500;
+        }
+
+        >.h-100>.root-sub-body>.service-right-text>.sub-header-nav>.with-bell {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            >li{
+                list-style: none;
+            }
+            >a{
+                padding: 0 10px;
+            }
+            >.login-text{
+                color: #BCBCBC !important;
+                font-weight: 500;
+            }
+        }
+    }
+}

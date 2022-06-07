@@ -1,0 +1,51 @@
+@import '../../mixin';
+
+[class^=main-login-icons-]{
+    display: inline-block;
+    background: url('../../../root_img/Main/loginIcons.png');
+    overflow: hidden;
+    cursor: pointer;
+    @include tablet-to-desktop{
+        background-size: 273px 69px;
+        width: 48px;
+        height: 48px;
+    }
+    @include mobile{
+        background-size: 228px 58px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.main-login-icons-{
+    @include tablet-to-desktop{
+        &facebook{
+            background-position: -10px -10px;
+        }
+        &google{
+            width: 49px;
+            height: 49px;
+            background-position: -78px -10px;
+        }
+        &kakao{
+            background-position: -147px -10px;
+        }
+        &naver{
+            background-position: -215px -10px;
+        }
+    }
+    @include mobile{
+        &facebook{
+            background-position: -8px -8px;
+        }
+        &google{
+            background-position: -65px -8px;
+        }
+        &kakao{
+            background-position: -123px -8px;
+        }
+        &naver{
+            background-position: -179px -8px;
+        }
+    }
+}

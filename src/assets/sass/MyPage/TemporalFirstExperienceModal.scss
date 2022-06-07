@@ -1,0 +1,63 @@
+@import '../mixin';
+
+.temporal-first-experience-modal{
+    >.modal-content{
+        background-color: #FFF !important;
+        border: 1px solid #E0E0E0 !important;
+        border-radius: 8px !important;
+        
+        .s1-eng{
+            color: $grey60 !important;
+        }
+        .s1-title{
+            color: $grey90 !important;
+        }
+        .fc-header-title-year{
+            color: #757575 !important;
+        }
+        .fc-header-title-month>h2{
+            color: #212121 !important;
+        }
+        .temporal-date-select-header{
+            color: #757575 !important;
+        }
+        .temporal-date-select-header-desc{
+            color: #212121 !important;
+            background-color: #FFF !important;        }
+        }
+    .temporal-cancel-button{
+        background-color: #BDBDBD !important;
+        color: #FFF !important;
+        &:hover{
+            background-color: #BDBDBD !important;
+            color: #FFF !important;
+        }
+    }
+    .temporal-request-button{
+        background-color: #00C1D4 !important;
+        color: #FFF !important;
+        &:hover{
+            background-color: #00C1D4 !important;
+            color: #FFF !important;
+        }
+        &:disabled{
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+    .temporal-mobile-calendar-view{
+        background-color: #FFF;
+    }
+    .temporal-mobile-day-button{
+        background-color: #D7D7D7 !important;
+    }
+    .temporal-mobile-select-time-container{
+        >div{
+            background-color: #FFF !important;
+
+            .temporal-mobile-badge{
+                color: $grey90 !important;
+            }
+        }
+    }
+}

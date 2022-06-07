@@ -1,0 +1,64 @@
+.fc-unthemed .fc-scroller .fc-content-col {
+    padding: 0rem;
+}
+
+.fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0rem;
+}
+
+.temp-cell {
+    background-color: aqua;
+}
+
+.current-time {
+    background-color:red;
+}
+
+.hover-button{
+    background-color: rgba(20, 20, 20, 0.10);
+    border-radius: 3px;
+    color: #9B9B9B;
+    position: relative;
+    top: 2px;
+    left: 5px;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.card .fc-time-grid .fc-slats td {
+    height: 1em;
+    border-bottom: 0;
+}
+
+.card .fc-body table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.8em;
+    line-height: 1.0;
+}
+
+.time-btn-in-course-signup {
+    cursor: pointer;
+    padding: 0 20px;
+}
+
+.time-btn-in-course-signup-mobile {
+    padding: 0 5px;
+}
+
+.time-btn-sat-container {
+    column-count: 2;
+    width: auto;
+    margin-top: 50px;
+}
+
+.w-auto-mt50 {
+    width: auto;
+    margin-top: 50px;
+}
+
+.fixedCalendarAutoOverflow{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 500px;
+}

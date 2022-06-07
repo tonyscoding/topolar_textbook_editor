@@ -1,0 +1,131 @@
+@import '../variable';
+@import '../mixin';
+
+.textbook-sidebar{
+    width: 400px;
+    background-color: $colorFF;
+    box-shadow: 0px 4px 10px #00000019;
+    position: absolute;
+    height:calc(100vh - 136px);
+    left: 0%;
+    transition: left 0.6s ease;
+    z-index:1;
+    overflow-y: scroll;
+    &::-webkit-scrollbar-thumb{
+        background-color:$grey30;
+        &:hover{
+            background-color:$grey30;
+        }
+    }
+    >.course-level-container{
+        padding:16px;
+    }
+    .textbook-prev{
+        margin-top:16px;
+        margin-left:16px;
+    }
+    .textbook-sidebar-toggle{
+        position:absolute;
+        right:16px;
+        top:16px;
+        cursor: pointer;
+    }
+    .textbook-sidebar-back{
+        cursor: pointer;
+    }
+    .course-level-browser{
+        display:flex;
+        font-size: 14px;
+        margin-top:4px;
+        margin-bottom:42px;
+        >div{
+            width:83px;
+            height:40px;
+            border-radius: 8px;
+            background-color: #F5F5F5;
+            color: $grey40;
+            @include set-item-center();
+            margin-right:10px;
+        }
+        .clicked{
+            color:$colorFF;
+            &.badge-color1{
+                background: linear-gradient(to left, #5116C8 0%, #987AEC 75%, #AB8DFF 100%);
+            }
+            &.badge-color2{
+                background: linear-gradient(to left, #0F39DF 0%, #4E9BFF 75%, #8DD8FF 100%);
+            }
+            &.badge-color3{
+                background: linear-gradient(to left, #EE7700 0%, #FFB14E 75%, #FFCA8D 100%);
+            }
+        }
+        .course-badge{
+            cursor: pointer;
+        }
+    }
+    .course-layout{
+        >div{
+            margin-bottom: 24px;
+        }
+        .course-title{
+            font-weight: bold;
+            font-size:18px;
+        }
+        .curriculum-level{
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            .curriculum-level-content{
+                display:flex;
+
+                .level-badge{
+                    width:41px;
+                    height:26px;
+                    @include set-item-center();
+                    color: $colorFF;
+                    border-radius: 8px;
+                    margin-right: 10px;
+                }
+                .badge-0{
+                    background-color: $grey30;
+                }
+                .badge-1{
+                    background-color: $grey40;
+                }
+                .badge-2{
+                    background-color: $grey50;
+                }
+                .badge-3{
+                    background-color: $grey70;
+                }
+                .badge-4{
+                    background-color: $grey80;
+                }
+                .badge-5{
+                    background-color: $grey90;
+                }
+            }
+            .curriculum-level-description{
+                height:26px;
+                line-height: 26px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                width: 298px;
+            }
+        }
+    }
+    &.closed{
+        left:-100%;
+        transition: left 0.6s ease;
+    }
+    &.fixed{
+        position:fixed;
+        top:78px;
+        // width: 300px;
+        // .curriculum-level-description{
+        //     width: 198px !important;
+        // }
+    }
+}

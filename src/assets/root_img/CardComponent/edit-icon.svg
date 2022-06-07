@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="9.864" height="9.864" viewBox="0 0 9.864 9.864">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="9.864" height="9.864" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="반복_그리드_11" data-name="반복 그리드 11" clip-path="url(#clip-path)">
+    <g transform="translate(-814.893 -258.943)">
+      <path id="Icon_open-pencil" data-name="Icon open-pencil" d="M7.4,0,6.165,1.233,8.631,3.7,9.864,2.466ZM4.932,2.466,0,7.4V9.864H2.466L7.4,4.932Z" transform="translate(814.893 258.943)" fill="#1db4b4"/>
+    </g>
+  </g>
+</svg>

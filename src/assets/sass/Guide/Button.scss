@@ -1,0 +1,182 @@
+@import '../mixin';
+@import '../variable';
+
+@mixin button-color($fontcolor, $bgcolor, $hoverfill, $hoverline){
+    // differ by type
+    &.fill {
+        border: none;
+        background-color: $bgcolor;
+        color: $fontcolor;
+
+        &:hover {
+            background-color: $hoverfill;
+        }
+
+        &:disabled {
+            background-color: $grey20;
+            color: $grey40;
+            &:hover {
+                background-color: $grey20;
+            }
+        }
+    }
+
+    &.line {
+        border: 1px solid $bgcolor;
+        background-color: rgba(255,255,255,0);
+        color: $bgcolor;
+
+        &:hover {
+            background-color: $hoverline;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            &:hover {
+                background-color: rgba(255,255,255,0);
+            }
+        }
+    }
+
+    &.text {
+        border: none;
+        background: none;
+        color: $bgcolor;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &.outline{
+        border: 1px solid $bgcolor;
+        background-color: rgba($bgcolor, 0);
+        color: #212121;
+
+        &:hover, &.active{
+            background-color: $bgcolor;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            &:hover {
+                background-color: #FFF;
+            }
+        }
+    }
+
+
+}
+
+.guide-button {
+    display: inline-flex;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    width: fit-content;
+    @include set-item-center();
+
+    // default button settings
+    &:focus {
+        outline: none;
+    }
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    // size
+
+    &.large {
+        height: 48px;
+        font-size: 16px;
+        padding: 0 24px;
+    }
+
+    &.medium {
+        height: 40px;
+        font-size: 14px;
+        padding: 0 16px;
+    }
+
+    &.small {
+        height: 32px;
+        font-size: 12px;
+        padding: 0 8px;
+    }
+
+    &.block {
+        width: 100%;
+    }
+
+    // color & type
+    &.topolar-blue {
+        @include button-color($white, $tb40, $tb60, $tb05);
+    }
+
+    &.black {
+        @include button-color($white, $grey80, $grey90, $grey10);
+    }
+
+    &.grey {
+        @include button-color($grey90, $grey30, $grey40, $grey10);
+    }
+
+    &.grey20 {
+        @include button-color($grey90, $grey20, $grey30, $grey10);
+    }
+
+    &.grey60 {
+        &.line {
+            border: 1px solid $grey60;
+            background-color: #FFF;
+            color: $grey60;
+    
+            &:disabled {
+                opacity: 0.4;
+                &:hover {
+                    background-color: #FFF;
+                }
+            }
+        }
+    }
+
+    // red can only be used with text
+    &.red {
+        &.line {
+            border: 1px solid $red;
+            background-color: #FFF;
+            color: $red;
+    
+            &:disabled {
+                opacity: 0.4;
+                &:hover {
+                    background-color: #FFF;
+                }
+            }
+        }
+        &.text {
+            border: none;
+            background: none;
+            color: $red;
+    
+            &:hover {
+                text-decoration: underline;
+            }
+    
+            &:disabled {
+                opacity: 0.5;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,112 @@
+/* .root-footer {
+    height: 395px;
+    background-color: #E2E2E2;
+    width: 100%;
+} */
+
+.service-footer {
+    height: 395px;
+    background-color: #000000;
+    width: 100%;
+}
+
+@media(min-width: 800px){
+    .root-footer-text-container{
+        font-size: 24px;
+        padding-top: 50px !important;
+    }
+
+    .root-footer-text-container {
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+    
+    .footer-nav > a {
+        display: inline;
+        color: #575757;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.5em;
+    }
+
+    .footer-nav-2 > li {
+        color: #575757;
+        text-decoration: none;
+        float: left;
+        font-size: 0.5em;
+        list-style-type: none;
+    }
+
+    .align-end-not-mobile {
+        align-self: flex-end;
+    }
+
+    .mt-mobile {
+        margin-top: 5em;
+    }
+}
+
+/* @media(min-width: 800px) and (max-width: 1279px){
+    .root-footer-text-container{
+        font-size: 18px;
+    }
+
+    .root-footer-text-container{
+        max-width: 800px;
+        margin: 0 auto;
+        padding-top: 61px;
+    }
+
+    .footer-nav > a {
+        display: inline;
+        color: #575757;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+    }  
+    
+    .align-end-not-mobile {
+        align-self: flex-end;
+    }
+
+    .mt-mobile {
+        margin-top: 5em;
+    }
+} */
+
+@media(max-width: 799px) {
+    .root-footer-text-container{
+        font-size: 15px;
+    }
+
+    .root-footer-text-container{
+        width: 100%;
+        padding: 5%;
+    }
+
+    .footer-nav > a {
+        display: inline;
+        color: #575757;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .width-in-mobile {
+        width: 30%;
+        margin-bottom: 2em;
+    }
+
+    .flex-column-mobile {
+        flex-direction: column;
+    }
+
+    .mt-mobile {
+        margin-top: 5em;
+    }
+}
+
+.lh-26 {
+    line-height: 26px;
+}

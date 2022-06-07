@@ -1,0 +1,966 @@
+@import '../../mixin';
+
+$langColor : (
+    "scratch": #F2961D,
+    "python": #6548E5,
+    "java": #2DCC5C,
+    "cplus": #006CE8,
+    "js": #E9C200
+);
+
+$headerBG : (
+    "scratch": transparent linear-gradient(90deg, #EF8C0B 0%, #FFD282 77%, #F6D89E 100%) 0% 0% no-repeat padding-box,
+    "python": transparent linear-gradient(90deg, #6548E5 0%, #B489EB 77%, #CBB3F1 100%) 0% 0% no-repeat padding-box,
+    "java": transparent linear-gradient(90deg, #2BCB5B 0%, #89F2A2 77%, #9BF3AD 100%) 0% 0% no-repeat padding-box,
+    "cplus": transparent linear-gradient(90deg, #006CE8 0%, #81BCFF 77%, #A8D4FF 100%) 0% 0% no-repeat padding-box,
+    "js": transparent linear-gradient(90deg, #E9C200 0%, #FFF781 77%, #FFF3A8 100%) 0% 0% no-repeat padding-box
+);
+
+$listBG: (
+    "scratch": #FFFCF2,
+    "python": #F6F2FF,
+    "java":  #F2FFF3,
+    "cplus": #EEF8FF,
+    "js": #FFFEF2
+);
+
+.main-curriculum-components-{
+    &sticky-header{
+        width: 100%;
+        z-index: 5;
+        
+        // box-shadow: 0px 4px 20px #0000001A;
+        >div{
+            display: flex;
+            justify-content: flex-start !important;
+            >div{
+                @include subhead-2;
+                cursor: pointer;
+                border-radius: 8px;
+                font-weight: lighter;
+    
+                &.active{
+                    box-shadow: 0px 4px 20px #0000001A;
+                    color: #FFFFFF;
+                    &[id=sticky-header-adv]{
+                        background: transparent linear-gradient(270deg, #EE7700 0%, #FFB14E 73%, #FFC27D 100%) 0% 0% no-repeat padding-box;
+                    }
+                    &[id=sticky-header-pio]{
+                        background: transparent linear-gradient(270deg, #0F39DF 0%, #4E9BFF 73%, #8DD8FF 100%) 0% 0% no-repeat padding-box;
+                    }
+                    &[id=sticky-header-mas]{
+                        background: transparent linear-gradient(270deg, #5116C8 0%, #987AEC 73%, #AB8DFF 100%) 0% 0% no-repeat padding-box;
+                    }
+                }
+            }
+        }
+        @include tablet-to-desktop{
+            background-color: white;
+            position: sticky;
+            top: 60px;
+            >div{
+                @include gap-sub(20px);
+                width: 1280px;
+                height: 92px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                >div{
+                    height: 60px;
+                    color: $grey40;
+                    width: 180px;
+                    padding: 20px 0 18px 21px;
+                    background-color: $grey10;
+                }
+            }
+        }
+        @include mobile{
+            padding-top: 12px;
+            display: flex;
+            justify-content: center;
+            padding: 12px 5.5% 0 5.5%;
+            position: sticky;
+            top: 40px;
+            >div{
+                width: 100%;
+                max-width: 360px;
+                @include gap-sub(8px);
+                @media(min-width: 361px) and (max-width: 799px){
+                    padding-left: 20px;
+                }
+                >div{
+                    // background: transparent linear-gradient(270deg, #12ACBB 0%, #4CD2DC 73%, #90E5E5 100%) 0% 0% no-repeat padding-box;
+                    border-radius: 8px;
+                    padding: 11px 14px;
+                    color: #FFF;
+                    white-space: nowrap;
+                    &[id=sticky-header-adv]{
+                        background: transparent linear-gradient(270deg, #EE7700 0%, #FFB14E 73%, #FFC27D 100%) 0% 0% no-repeat padding-box;
+                    }
+                    &[id=sticky-header-pio]{
+                        background: transparent linear-gradient(270deg, #0F39DF 0%, #4E9BFF 73%, #8DD8FF 100%) 0% 0% no-repeat padding-box;
+                    }
+                    &[id=sticky-header-mas]{
+                        background: transparent linear-gradient(270deg, #5116C8 0%, #987AEC 73%, #AB8DFF 100%) 0% 0% no-repeat padding-box;
+                    }
+                }
+            }
+        }
+        
+    }
+
+    &course-level-header{
+        flex-direction: column;
+
+        &.adv{
+            @include tablet-to-desktop{
+                margin-top: 16px;
+            }
+            @include mobile{
+                // margin-top: 40px;
+            }
+        }
+
+        &.pio{
+            @include tablet-to-desktop{
+                margin-top: 200px;
+            }
+            @include mobile{
+                margin-top: 40px;
+            }
+        }
+        &.mas{
+            @include tablet-to-desktop{
+                margin-top: 200px;
+            }
+            @include mobile{
+                margin-top: 40px;
+            }
+        }
+
+        >.title{
+            display: flex;
+            @include gap-sub(8px);
+            color: $grey90;
+            font-weight: bold;
+            @include mobile{
+                align-items: flex-end;
+            }
+        }
+        >.description{
+            color: $grey60;
+            @include tablet-to-desktop{
+                margin-top: 10px;
+            }
+            @include mobile{
+                margin-top: 4px;
+            }
+        }
+    }
+
+    &language-header{
+        flex-direction: column;
+        &.scratch{
+            @include tablet-to-desktop{
+                margin-top: 90px;
+            }
+            @include mobile{
+                margin-top: 40px;
+            }
+        }
+        &.python{
+            @include tablet-to-desktop{
+                margin-top: 70px;
+            }
+            @include mobile{
+                margin-top: 40px;
+            }
+        }
+        &.java{
+            @include tablet-to-desktop{
+                margin-top: 68px;
+            }
+            @include mobile{
+                margin-top: 40px;
+            }
+        }
+        &.cplus{
+            @include tablet-to-desktop{
+                margin-top: 53px;
+            }
+            @include mobile{
+                margin-top: 40px;
+            }
+        }
+        &.js{
+            @include tablet-to-desktop{
+                margin-top: 53px;
+            }
+            @include mobile{
+                margin-top: 40px;
+            }
+        }
+        >div:nth-child(1){
+            color: $grey90;
+            @include subhead-1();
+        }
+        >div:nth-child(2){
+            margin-top: 14px;
+            color: $grey60;
+            line-height: 24px !important;
+            @include body-1();
+            @include mobile{
+                display: none;
+            }
+        }
+    }
+
+    &curriculum-card-list{
+        display: flex;
+        @include tablet-to-desktop{
+            margin-top: 30px;
+            @include gap-sub(40px);
+        }
+        @include mobile{
+            margin-top: 12px;
+            flex-wrap: wrap;
+            @include gap-sub(16px);
+            >*{ margin-bottom: 16px; }
+            >*:nth-child(even){
+                margin-right: 0 !important;
+            }
+        }
+    }
+
+    &curriculum-card{
+        @include tablet-to-desktop{
+            width: 290px;
+            height: 290px;
+            >.header{
+                height: 44px;
+                @include gap-sub(8px);
+                padding: 0 16px;
+                >div{
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+
+            >.body{
+                position: relative;
+                height: 246px;
+                padding: 20px;
+                >div{
+                    position: absolute;
+                }
+                >div:nth-child(2){
+                    top: 88px;
+                }
+                >div:nth-child(3){
+                    top: 114px;
+                    width: 250px;
+                    font-weight: bold !important;
+                }
+                >div:nth-child(4){
+                    top: 163px;
+                    width: 260px;
+                }
+                >div:last-child{
+                    width: 41px;
+                    height: 26px;
+                    right: 16px;
+                    
+                }
+            }
+        }
+        @include mobile{
+            width: 152px;
+            height: 152px;
+            >.header{
+                height: 23px;
+                @include gap-sub(4px);
+                padding: 0 8px;
+                >div{
+                    width: 6px;
+                    height: 6px;
+                }
+            }
+
+            >.body{
+                height: 129px;
+                padding: 11px;
+                position: relative;
+                >div{
+                    position: absolute;
+                }
+                >div:nth-child(2){
+                    top: 52px;
+                }
+                >div:nth-child(3){
+                    top: 68px;
+                }
+                >div:nth-child(4){
+                    display: none;
+                }
+                >div:last-child{
+                    width: 34px;
+                    height: 17px;
+                    right: 8px;
+                }
+            }
+        }
+        flex-direction: column;
+        box-shadow: 0px 4px 20px #0000001A;
+        transition: transform 0.5s ease;
+        cursor: pointer;
+        &:hover{
+            transform: translateY(-10px);
+        }
+        >.header{
+            width: 100%;
+            transform: matrix(-1, 0, 0, -1, 0, 0);
+            display: flex;
+            align-items: center;
+            
+            border-radius: 0px 0px 8px 8px;
+            >div{
+                background-color: #FFF;
+                opacity: 0.3;
+                border-radius: 50%;
+            }
+
+            &.scratch{
+                background: transparent linear-gradient(90deg, #EF8C0B 0%, #FFD282 77%, #F6D89E 100%) 0% 0% no-repeat padding-box;
+            }
+
+            &.python{
+                background: transparent linear-gradient(90deg, #6548E5 0%, #B489EB 77%, #CBB3F1 100%) 0% 0% no-repeat padding-box;
+            }
+
+            &.java{
+                background: transparent linear-gradient(90deg, #2BCB5B 0%, #89F2A2 77%, #9BF3AD 100%) 0% 0% no-repeat padding-box;
+            }
+
+            &.cplus{
+                background: transparent linear-gradient(90deg, #006CE8 0%, #81BCFF 77%, #A8D4FF 100%) 0% 0% no-repeat padding-box;
+            }
+
+            &.js{
+                background: transparent linear-gradient(90deg, #E9C200 0%, #FFF781 77%, #FFF3A8 100%) 0% 0% no-repeat padding-box;
+            }
+        }
+
+        >.body{
+            width: 100%;
+            background-color: #FFF;
+            border-radius: 8px;
+            >div:last-child{
+                margin-top: auto;
+                text-align: right;
+                border-radius: 8px;
+                align-self: flex-end;
+                color: #FFF;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 100;
+                @include body-2();
+                
+                &.level-1{
+                    background: #BDBDBD 0% 0% no-repeat padding-box;
+                }
+                &.level-2{
+                    background: #9E9E9E 0% 0% no-repeat padding-box;
+                }
+                &.level-3{
+                    background: #616161 0% 0% no-repeat padding-box;
+                }
+                &.level-4{
+                    background: #212121 0% 0% no-repeat padding-box;
+                }
+            }
+            >div:nth-child(2){
+                @include body-2();
+
+                @each $lang, $color in $langColor{
+                    &.#{$lang}{
+                        color: $color;
+                    }
+                }
+                
+            }
+            >div:nth-child(3){
+                @include subhead-2();
+                color: $grey90;
+            }
+            
+            >div:nth-child(4){
+                color: $grey60;
+                @include body-2();
+            }
+        }
+    }
+
+    &moving-component{
+        position: absolute;
+        top: 10px;
+        right: 0;
+        animation-duration: 3s;
+        animation-name: moveupdown;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+
+        &.compass{
+            top:2777px;
+            left:1071px;
+        }
+
+        &.map{
+            top:704px;
+            left: 1031px;
+        }
+        @include mobile{
+            display: none;
+        }
+
+        @keyframes moveupdown{
+            0% { transform: translateY(0);}
+            50% { transform: translateY(30px);}
+            100% { transform: translateY(0);}
+        }
+    }
+
+    &curriculum-detail-card{
+        background-color: #FFF;
+        box-shadow: 0px 4px 20px #0000001A;
+        border-radius: 8px;
+        z-index: 5;
+
+        @include tablet-to-desktop{
+            width: 400px;
+            position: sticky;
+            top: 59px;
+        }
+        @include mobile{
+            width: 100%;
+            max-width: 320px;
+            position: absolute;
+        }
+
+        @each $lang, $color in $headerBG{
+            &.#{$lang}{
+                >.header{
+                    background: $color;
+                }
+            }
+        }
+
+        @each $lang, $color in $langColor{
+            &.#{$lang}{
+                >.detail-body{
+                    >div:nth-child(2){
+                        color: $color;
+                    }
+                }
+            }
+        }
+
+        >.header{
+            display: flex;
+            justify-content: flex-start;
+            @include gap-sub(8px);
+            align-items: center;
+
+            width: 100%;
+            height: 44px;
+            border-radius: 0px 0px 8px 8px;
+            padding: 0 16px;
+            transform: matrix(-1, 0, 0, -1, 0, 0);
+            
+            >div{
+                width: 10px;
+                height: 10px;
+                opacity: 0.3;
+                background-color: #FFF;
+                border-radius: 50%;
+            }
+        }
+
+        >.detail-body{
+            width: 100%;
+            height: calc(100% - 44px);
+            @include tablet-to-desktop{
+                padding: 20px;
+            }
+            @include mobile{
+                padding: 15px 16px;
+            }
+
+            >div:nth-child(1){
+                >div:nth-child(2){
+                    @include tablet-to-desktop{
+                        width: 41px;
+                        height: 26px;
+                    }
+                    @include mobile{
+                        width: 36px;
+                        height: 20px;
+                        font-size: 10px;
+                    }
+                    border-radius: 8px;
+                    color: white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &.level-1{
+                        background: #BDBDBD 0% 0% no-repeat padding-box;
+                    }
+                    &.level-2{
+                        background: #9E9E9E 0% 0% no-repeat padding-box;
+                    }
+                    &.level-3{
+                        background: #616161 0% 0% no-repeat padding-box;
+                    }
+                    &.level-4{
+                        background: #212121 0% 0% no-repeat padding-box;
+                    }
+                }
+            }
+
+            >div:nth-child(2){
+                @include body-2;
+                margin-top: 8px;
+                @include tablet-to-desktop{
+                }
+                @include mobile{
+
+                }
+            }
+            >div:nth-child(3){
+                @include subhead-1;
+                color: $grey90;
+                margin-top: 8px;
+                @include tablet-to-desktop{
+                }
+                @include mobile{
+
+                }
+            }
+            >div:nth-child(4){
+                @include tablet-to-desktop{
+                    margin-top: 17px;
+                }
+                @include mobile{
+                    margin-top: 11px;
+                }
+            }
+            >div:nth-child(5){
+                border: 1px solid #E0E0E0;
+                border-radius: 8px;
+                @include tablet-to-desktop{
+                    padding: 16px;
+                    margin-top: 23px;
+                    width: 368px;
+                    height: 120px;
+                }
+                @include mobile{
+                    padding: 12px;
+                    margin-top: 8px;
+                    width: 288px;
+                    height: 98px;
+                }
+                @include body-2;
+                >div:nth-child(1){
+                    color: $grey90;
+                    font-weight: bold;
+                }
+                >div:nth-child(2){
+                    display: flex;
+                    color: $grey60;
+                    >span{
+                        @include tablet-to-desktop{
+                            padding-left: 31px;
+                            font-size: 16px;
+                        }
+                        @include mobile{
+                            padding-left: 58px;
+                            font-size: 12px;
+                        }
+                    }
+                    &::before{
+                        font-family: "Material Icons";
+                        content: '\e935';
+                        font-size: 18px;
+                        padding-right: 6px;
+                    }
+                    @include tablet-to-desktop{
+                        margin-top: 19px;
+                    }
+                    @include mobile{
+                        margin-top: 21px;
+                    }
+                }
+                >div:nth-child(3){
+                    color: $grey60;
+                    display: flex;
+                    >span{
+                        color: $tb40;
+                        @include tablet-to-desktop{
+                            padding-left: 56px;
+                            font-size: 16px;
+                        }
+                        @include mobile{
+                            padding-left: 76px;
+                            font-size: 12px;
+                        }
+                    }
+                    &::before{
+                        font-family: "Material Icons";
+                        content: '\e870';
+                        font-size: 18px;
+                        padding-right: 6px;
+                    }
+                    @include tablet-to-desktop{
+                        margin-top: 8px;
+                    }
+                    @include mobile{
+                        margin-top: 12px;
+                    }
+                }
+            }
+            >button:nth-child(6){
+                &.isMobile{
+                    height: 32px;
+                    font-size: 12px;
+                }
+                margin-top: 10px;
+            }
+        }
+    }
+
+    &curriculum-detail-textbook-list-item{
+        display: flex;
+        align-items: center;
+        @include gap-sub(16px);
+        width: 100%;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 8px;
+        padding: 15px 16px;
+        // background: #F6F2FF 0% 0% no-repeat padding-box;
+
+        @each $lang, $color in $listBG {
+            &.#{$lang}{
+                background: $color;
+            }
+        }
+
+        @each $lang, $color in $langColor {
+            &.#{$lang}{
+                border: 1px solid $color;
+            }
+        }
+
+        >div:nth-child(1){
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFF;
+            @include subhead-2;
+            border-radius: 8px;
+            @each $lang, $color in $langColor {
+                &.#{$lang}{
+                    background-color: $color;
+                }
+            }
+        }
+        >div:nth-child(2){
+            color: $grey90;
+            @include subhead-2;
+        }
+        @include tablet-to-desktop{
+    
+        }
+        @include mobile{
+
+        }
+    }
+
+    &curriculum-info-container{
+        display: flex;
+        flex-direction: column;
+        @include gap-sub(48px, column);
+        width: 100%;
+
+        >.step1{
+            display: flex;
+            flex-direction: column;
+            @include tablet-to-desktop{
+                @include gap-sub(40px, column);
+            }
+            @include mobile{
+                @include gap-sub(12px, column);
+            }
+            >.header{
+                display: flex;
+                @include gap-sub(8px);
+                @include tablet-to-desktop{
+                    white-space: nowrap;
+                    align-items: center;
+                }
+                @include mobile{
+                    flex-direction: column-reverse;
+                }
+                >div:nth-child(1){
+                    font-size: 24px;
+                    color: $grey90;
+                    font-weight: bold;
+                }
+                >div:nth-child(2){
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #FFF;
+                    border-radius: 8px;
+                    vertical-align: middle;
+                    @include body-2;
+                    @each $lang, $color in $langColor{
+                        &.#{$lang} {
+                            background-color: $color;
+                        }
+                    }
+                    @include tablet-to-desktop{
+                        // width: 71px;
+                        height: 32px;
+                        padding: 0 10px;
+                    }
+                    @include mobile{
+                        width: fit-content;
+                        height: 20px;
+                        padding: 0 10px;
+                    }
+                }
+            }
+
+            >.step-body{
+                display: flex;
+                border: 1px solid #BDBDBD;
+                border-radius: 8px;
+                @include tablet-to-desktop{
+                    width: 768px;
+                    height: 310px;
+                    justify-content: center;
+                    align-items: center;
+                }
+                @include mobile{
+                    flex-direction: column;
+                    padding: 20px 16px;
+                    @include gap-sub(8px, column);
+                }
+
+                >div:nth-child(1){
+                    display: flex;
+                    @include tablet-to-desktop{
+                        flex-direction: column;
+                        align-items: center;
+                        padding-right: 60px;
+                        @include gap-sub(11px, column);
+                    }
+                    @include mobile{
+                        flex-direction: row-reverse;
+                        justify-content: flex-end;
+                    }
+                    >div:nth-child(1){
+                        background-image: url(../../../root_img/Main/Curriculum/Detail/wink.png);
+                        @include tablet-to-desktop{
+                            width: 36px;
+                            height: 36px;
+                            background-size: 100% 100%;
+                        }
+                        @include mobile{
+                            width: 18px;
+                            height: 18px;
+                            background-size: 100% 100%;
+                            margin-left: 4px;
+                        }
+                    }
+                    >div:nth-child(2){
+                        @include subhead-1;
+                        color: $grey90;
+                        font-weight: bold;
+                    }
+                }
+                >div:nth-child(2){
+                    background: #F5F5F5 0% 0% no-repeat padding-box;
+                    border-radius: 8px;
+                    >section>ul{
+                        list-style: none;
+                        margin: 0px;
+                        @include subhead-2;
+                        color: $grey90;
+                        padding-inline-start: 20px;
+                        @include tablet-to-desktop{
+                            padding: 30px 20px;
+                        }
+                        @include mobile{
+                            padding: 14px 10px;
+                        }
+                        >li{
+                            font-weight: 500;
+                            @include tablet-to-desktop{
+                                padding-bottom: 8px;
+                            }
+                            @include mobile{
+                                padding-bottom: 10px;
+                            }
+                            &::before{
+                                font-family: "Material Icons";
+                                content: '\e876';
+                                color: $tb40;
+                                padding-right: 9px;
+                                @include tablet-to-desktop{
+                                    font-size: 17px;
+                                }
+                                @include mobile{
+                                    font-size: 14px;
+                                }
+                            }
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+                        }
+                    }
+                    @include tablet-to-desktop{
+                        width: 496px;
+                    }
+                    @include mobile{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        >.step2, >.step3{
+            >.header{
+                display: flex;
+                align-items: center;
+                @include subhead-1;
+                color: $grey90;
+                font-weight: bold;
+
+                &.fire{
+                    &::after{
+                        margin-left: 8px;
+                        background-image: url(../../../root_img/Main/Curriculum/Detail/fire.png);
+                    }
+                }
+
+                &.book{
+                    &::after{
+                        margin-left: 8px;
+                        background-image: url(../../../root_img/Main/Curriculum/Detail/book.png);
+                    }
+                }
+                &::after{
+                    display: inline-block;
+                    content: "";
+                    @include tablet-to-desktop{
+                        width: 36px;
+                        height: 36px;
+                        background-size: 36px 36px;
+                    }
+                    @include mobile{
+                        width: 18px;
+                        height: 18px;
+                        background-size: 18px 18px;
+                    }
+                }
+            }
+        }
+
+        >.step2{
+            display: flex;
+            flex-direction: column;
+            >img{
+                margin: 0 auto;
+                @include tablet-to-desktop{
+                    padding-top: 100px;
+                }
+                @include mobile{
+                    padding-top: 40px;
+                    width: 250px;
+                    height: 770px;
+                }
+            }
+        }
+
+        >.step3{
+            padding-top: 50px;
+            >.textbook-list{
+                >section{
+                    display: flex;
+                    flex-direction: column;
+                    @include gap-sub(10px, column);
+                }
+                @include tablet-to-desktop{
+                    padding-top: 40px;
+                }
+                @include mobile{
+                    padding-top: 34px;
+                }
+            }
+        }
+    }
+
+    &course-info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #FFF;
+        box-shadow: 0px 4px 20px #0000001A;
+        border-radius: 8px;
+        @include tablet-to-desktop{
+            width: 290px;
+            height: 290px;
+            padding: 20px 11px;
+            >div:nth-child(1){
+                width: 83px;
+                height: 32px;
+            }
+            
+        }
+        @include mobile{
+            width: 152px;
+            height: 152px;
+            padding: 10px 11px;
+            >*{
+                font-size: 10px !important;
+            }
+            >div:nth-child(1){
+                width: 46px;
+                height: 18px;
+            }
+        }
+        >div:nth-child(1){
+            border: 1px solid $tb40;
+            @include subhead-2;
+            color: $tb40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 100;
+            border-radius: 30px;
+        }
+        >div:nth-child(2){
+            @include subhead-2;
+            color: $tb40;
+        }
+        >div:nth-child(4){
+            color: $grey60;
+            @include body-2;
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,132 @@
+@import '../mixin';
+@import '../variable';
+
+.guide-col1 {
+    @include tablet-to-desktop {
+        width: 70px;
+    }
+    @include mobile {
+        // width: 11.1vw;
+        width: 40px;
+    }
+}
+
+.guide-col2 {
+    @include tablet-to-desktop {
+        width: 180px;
+    }
+    @include mobile {
+        // width: 26.7vw;
+        width: 96px;
+    }
+}
+
+.guide-col3 {
+    @include tablet-to-desktop {
+        width: 290px;
+    }
+    @include mobile {
+        // width: 42.2vw;
+        width: 152px;
+    }
+}
+
+.guide-col4 {
+    @include tablet-to-desktop {
+        width: 400px;
+    }
+    @include mobile {
+        // width: 57.8vw;
+        width: 208px;
+    }
+}
+
+.guide-col5 {
+    @include tablet-to-desktop {
+        width: 510px;
+    }
+    @include mobile {
+        // width: 73.3vw;
+        width: 264px;
+    }
+}
+
+.guide-col6 {
+    @include tablet-to-desktop {
+        width: 620px;
+    }
+    @include mobile {
+        // width: 88.9vw;
+        width: 320px;
+    }
+}
+
+.guide-col7 {
+    @include tablet-to-desktop {
+        width: 730px;
+    }
+}
+
+.guide-col8 {
+    @include tablet-to-desktop {
+        width: 840px;
+    }
+}
+
+.guide-col9 {
+    @include tablet-to-desktop {
+        width: 950px;
+    }
+}
+
+.guide-col10 {
+    @include tablet-to-desktop {
+        width: 1060px;
+    }
+}
+
+.guide-col11 {
+    @include tablet-to-desktop {
+        width: 1170px;
+    }
+}
+
+.guide-col12 {
+    @include tablet-to-desktop {
+        width: 1280px;
+    }
+}
+
+.guide-col1,
+.guide-col2,
+.guide-col3,
+.guide-col4,
+.guide-col5,
+.guide-col6 {
+    &.guide-card{
+        >.card-content {
+            padding: 16px;
+        }
+        >.card-show-more {
+            right: 16px;
+            bottom: 16px;
+        }
+    }
+}
+
+.guide-col7,
+.guide-col8,
+.guide-col9,
+.guide-col10,
+.guide-col11,
+.guide-col12 {
+    &.guide-card{
+        >.card-content {
+            padding: 24px;
+        }
+        >.card-show-more {
+            right: 24px;
+            bottom: 24px;
+        }
+    }
+}

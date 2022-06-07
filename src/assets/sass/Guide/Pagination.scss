@@ -1,0 +1,53 @@
+@import '../mixin';
+@import '../screenSizeMixin';
+
+.pagination-container{
+    @include set-item-center;
+    width: 100%;
+    @include body-2;
+    color: $grey90;
+
+    .pagination-prev,
+    .pagination-next {
+        cursor: pointer;
+        font-weight: 700;
+    }
+
+    >.pagination-number-container{
+        @include set-item-center;
+        
+        @include tablet-to-desktop {
+            margin: 0 12px;
+            @include gap-sub(10px);
+        }
+
+        @include mobile {
+            margin: 0 4px;
+            @include gap-sub(9px);
+        }
+
+        .pagination-number{
+            @include tablet-to-desktop {
+                width: 24px;
+                height: 24px;
+            }
+    
+            @include mobile {
+                width: 18px;
+                height: 18px;
+            }
+            @include set-item-center;
+            cursor: pointer;
+
+            &:hover {
+                color: $tb40;
+            }
+
+            &.selected {
+                border-radius: 50%;
+                background-color: $tb40;
+                color: $white;
+            }
+        }
+    }
+}

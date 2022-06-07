@@ -1,0 +1,57 @@
+.status-badge-success {
+    width: 50%;
+    height: 21px;
+    border-radius: 3px;
+    background: #1DB4B4;
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+.status-badge-container {
+    width: auto;
+    height: auto;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.status-topolar {
+    background-color: #1DB4B4;
+    color: #FFFFFF
+}
+
+.status-black {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.status-red {
+    background-color: #B41D1D;
+    color: #FFFFFF;
+}
+
+.status-badge-ongoing {
+    width: 50%;
+    height: 21px;
+    border-radius: 3px;
+    background:#EA4DFF;
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+.status-badge-black {
+    width: 50%;
+    height: 21px;
+    border-radius: 3px;
+    background:#000000;
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+.padding-badge {
+    padding: 3px 5px;
+}
+
+.webkit-center {
+    text-align: -webkit-center;
+}

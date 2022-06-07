@@ -1,0 +1,41 @@
+@import '../mixin';
+
+.mypage-component-{
+    &base-card{
+        width: 100%;
+        background-color: #FFF;
+        flex-grow: 0;
+        border: 1px solid $grey30;
+        border-radius: 8px;
+        flex: 1;
+    }
+    
+    &base-card-header{
+        width: 100%;
+        >header{
+            @include tablet-to-desktop{
+                @include subhead-1-fix;
+                font-weight: 700;
+                padding: 30px;
+            }
+            @include mobile{
+                @include body-1-fix;
+                font-weight: 700;
+                padding: 12px 10px;
+            }
+            color: $grey90;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        >hr{
+            width: 100%;
+            border: 1px solid $grey30;
+            margin: 0;
+        }
+    }
+
+    &base-card-body{
+        @include tablet-to-desktop{ padding: 30px;}
+        @include mobile{padding: 12px 10px;} 
+        width: 100%;
+    }
+}

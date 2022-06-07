@@ -1,0 +1,74 @@
+@import '../../mixin';
+
+.#{$community-pre}body-{
+    &user-review{
+        >.tabs{
+            @include tablet-to-desktop{
+                padding: 56px 0 0 0;
+            }
+            @include mobile{
+                padding: 40px 0 0 0;
+            }
+        }
+
+        >.inputs{
+            display: flex;
+            @include gap-sub(13px);
+            justify-content: flex-end !important;
+            padding-bottom: 10px;
+            @include tablet-to-desktop{
+                padding-top: 60px;
+                >div{
+                    width: 200px;
+                }
+            }
+
+            @include mobile{
+                padding-top: 32px;
+                >div{
+                    flex: 1 1 0;
+                }
+            }
+        }
+
+        >.text-review-list{
+            min-height: 500px;
+            margin-bottom: 64px;
+            display: flex;
+            flex-direction: column;
+            @include gap-sub(20px, column);
+        }
+
+        >.video-review-list {
+            display: flex;
+            align-items: flex-start;
+            @include tablet-to-desktop{
+                @include gap-sub(40px);
+                >*{ margin-bottom: 40px;}
+                >*:nth-child(even){
+                    margin-right: 0 !important;
+                }
+            }
+            @include mobile{ >*{margin-bottom: 40px;}}
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            padding-top: 80px;
+            margin-bottom: 64px;
+            @include mobile{
+                align-items: center;
+                justify-content: center;
+                padding-top: 32px;
+            }
+            >div{
+                @include tablet-to-desktop{
+                    width: 620px;
+                    height: 484px;
+                }
+                @include mobile{
+                    width: 320px;
+                    height: auto;
+                }
+            }
+        }
+    }
+}

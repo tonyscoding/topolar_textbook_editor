@@ -1,0 +1,140 @@
+@import '../mixin';
+@import '../variable';
+
+.guide-input-container {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    
+    >div:first-child {
+        position: relative;
+        .viewPasswordIcon{
+            &::after{
+                content: '\e8f4';
+                font-family: "Material Icons Outlined";
+                font-size: 18px;
+                position: absolute;
+                top: 8px;
+                right: 12px;
+                cursor: pointer;
+            }
+            &.off{
+                &::after{
+                    content: '\e8f5' !important;
+                }
+            }
+        }
+
+        .guide-input {
+            width: 100%;
+            border: 1px solid $grey40;
+            border-radius: 4px;
+            background-color: $white;
+            padding: 10px 12px;
+            color: $grey90;
+        
+            &.valid {
+                border-color: $green !important;
+            }
+    
+            &.invalid {
+                border-color: $red !important;
+            }
+    
+            &:focus {
+                outline: none;
+                border-color: $tb40;
+            }
+        
+            &:disabled {
+                background-color: $grey30;
+                color: $grey40;
+            }
+        
+            &::placeholder {
+                color: $grey40;
+            }
+
+            &::-webkit-calendar-picker-indicator { 
+                //background: url('../../../guideComponents/Imgs/calendar_today_black_18dp.svg') no-repeat;
+                height: 18px;
+                padding: 0;
+                margin: 0;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+        }
+    
+        .search-button {
+            position: absolute;
+            cursor: pointer;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 12px;
+
+            &.disabled {
+                cursor: default;
+            }
+
+            &+.guide-input {
+                padding-right: 30px;
+            }
+        }
+    }
+
+    >div:nth-child(2) {
+        @include caption;
+        margin-top: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        height: fit-content;
+        @include gap-sub(4px);
+
+        &.valid-msg {
+            color: $green;
+            >div{
+                width: auto !important;
+            }
+        }
+        &.invalid-msg{
+            color: $red;
+            >div{
+                width: auto !important;
+            }
+        }
+    }
+}
+
+.guide-textarea-container {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+
+    .textarea {
+        resize: none;
+        padding: 6px 12px;
+        color: $grey90;
+        @include body-2;
+
+        &::placeholder {
+            color: $grey40;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $tb40;
+        }
+
+        @include scrollbar-small;
+    }
+
+    .text-count {
+        text-align: right;
+        color: $grey40;
+    }
+}

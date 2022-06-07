@@ -1,0 +1,200 @@
+@import '../_mixin';
+@import '../_variable';
+
+.my-page-calendar-container {
+    position: relative;
+    width: 527px;
+    margin: 0 auto;
+
+    
+    @include mobile{
+        min-width: unset;
+        width: auto !important;
+    }
+
+    >.fc {
+        >.fc-toolbar.fc-header-toolbar {
+            @include subhead-1;
+            color: $grey90;
+            height: fit-content;
+            min-height: 32px;
+            line-height: 32px;
+            @include tablet-to-desktop {
+                margin-bottom: 44px;
+            }
+            @include mobile {
+                margin-bottom: 22px;
+            }
+    
+            >.fc-left {
+                position:absolute;
+                top:16px;
+                height:0;
+                display:flex;
+                justify-content: space-between;
+                align-items: center;
+                @include tablet-to-desktop {
+                    left: 24px;
+                    width: 238px;
+                }
+                @include mobile {
+                    left: 0;
+                    width: 168px;
+                }
+        
+                >.fc-prev-button, >.fc-next-button {
+                    cursor: pointer;
+                    margin: 0;
+                }
+            }
+        
+            >.fc-center {
+                position: absolute;
+                @include set-item-center;
+                @include tablet-to-desktop {
+                    left: 48px;
+                    width: 190px;
+                }
+                @include mobile {
+                    left: 24px;
+                    width: 120px;
+                }
+        
+                >.fc-header-title {
+                    display: flex;
+                    @include gap-sub(5px);
+                    font-weight: 700;
+                }
+            }
+        }
+
+        th, td {
+            border-color: transparent;
+        }
+
+        .fc-today {
+            background-color: transparent;
+        }
+
+        .fc-week {
+            @include tablet-to-desktop {
+                height: 70px !important;
+            }
+            @include mobile {
+                height: 42px !important;
+            }
+        }
+
+        >.fc-view-container {
+            box-sizing: border-box !important;
+            @include subhead-2;
+            color: $grey90;
+            border: none;
+            .fc-sun {
+                color: $red;
+            }
+
+            .fc-content-skeleton {
+                height: 100%;
+                padding-bottom: 0;
+
+                >table {
+                    height: 100%;
+                    >thead{
+                        height: 100%;
+                        .fc-day-top {
+                            height: 100%;
+                            position: relative;
+                            @include tablet-to-desktop {
+                                padding-top:25px;
+                            }
+                            @include mobile {
+                                padding-top: 10px;
+                                padding-bottom: 0px;
+                            }
+
+                            .fc-day-number {
+                                height: 100%;
+                                margin: 0 auto;
+                                align-self: center;
+                                @include tablet-to-desktop {
+                                    @include set-item-center;
+                                    width: 32px;
+                                    height: 32px;
+                                }
+                                @include mobile {
+                                    width: 24px;
+                                    height: 24px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+
+                            }
+                        }
+                    }
+                    >tbody{
+                        height: 10px !important;
+                        .fc-event-container{
+                            padding: 0 !important;
+                            @include tablet-to-desktop {
+                                width: 10px !important;
+                                height: 10px !important;
+                            }
+                            @include mobile {
+                                width: 6px !important;
+                                height: 6px !important;
+                            }
+
+                            *{
+                                border-radius: 50% !important;
+                                @include tablet-to-desktop {
+                                    width: 10px !important;
+                                    height: 10px !important;
+                                }
+                                @include mobile {
+                                    width: 6px !important;
+                                    height: 6px !important;
+                                }
+                                margin: 0 auto ;
+                            }
+                            >.fc-day-grid-event{
+                                cursor: default;
+                                box-sizing: border-box !important;
+                                >.fc-content {
+                                    color: inherit;
+                                    overflow: unset;
+                                    position: relative;
+                                    padding: 0;
+                                }
+                                .fc-title {
+                                    position: absolute;
+                                    color: inherit;
+                                    @include caption;
+                                    @include tablet-to-desktop{
+                                        top: -10px;
+                                        margin-left: -17px;
+                                    }
+                                    @include mobile {
+                                        top: -3px;
+                                        margin-left: -16px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .fc-scroller{
+        overflow: hidden !important;
+        @include tablet-to-desktop {
+            height: 450px !important;
+        }
+        @include mobile {
+            height: 275px !important;
+        }
+    }
+}

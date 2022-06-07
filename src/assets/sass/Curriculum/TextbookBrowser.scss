@@ -1,0 +1,120 @@
+@import '../variable';
+@import '../mixin';
+.textbook-browser{
+    @include guide-scrollbar();
+    flex:1;
+    overflow-y: scroll;
+    padding:16px;
+    >.textbook-browser-title{
+        font-size:18px;
+        font-weight: bold;
+        color: $grey90;
+        margin-bottom: 39px;
+    }
+    >.small-title{
+        display: flex;
+        font-size: 16px;
+        margin-bottom: 11px;
+        >div{
+            height:24px;
+            width:24px;
+            background-image: url(../../root_img/Main/Curriculum/Detail/book.png);
+            background-size: 24px;
+        }
+    }
+    >.textbook-browser-index{
+        font-size: 14px;
+        @include flex-column();
+        >.textbook-order-box{
+            border-radius: 8px;
+            background-color: #F6F2FF;
+            display: flex;
+            padding-top: 12px;
+            padding-left: 12px;
+            overflow-y: hidden;
+            height: 54px;
+            transition: 0.6s ease;
+            margin-bottom:10px;
+            
+            &.current_textbook{
+                animation: test-blink 2s 0s linear infinite;
+            }
+
+            >.textbook-order{
+                @include flex-align-center-column();
+                >.textbook-order-badge{
+                    background-color: #6548E5;
+                    height: 32px;
+                    width: 32px;
+                    @include set-item-center();
+                    border-radius: 8px;
+                    color: $colorFF;
+                    font-weight: normal;
+                }
+                >.textbook-order-vline{
+                    background-color: #6548E5;
+                    width:1px;
+                    flex:1;
+                    @include set-item-center();
+                    align-self:center;
+                }
+            }
+            >.textbook-box{
+                margin-left: 16px;
+                padding-top : 6px;
+                padding-right:16px;
+                display: flex;
+                flex-direction: column;
+                flex:1;
+                .root-components-collapse{
+                    margin:unset;
+                }
+                .textbook{
+                    @include set-item-center();
+                    padding-bottom: 11px;
+                }
+                .textbook-title{
+                    align-self:start;
+                    padding-left:8px;
+                    color:$grey90;
+                    flex:1;
+                    cursor: pointer;
+                }
+                .textbook-collapse{
+                    cursor: pointer;
+                }
+            }
+            &.expanded{
+                height:fit-content;
+                transition: 0.6s ease;
+            }
+            &.disabled{
+                cursor: unset;
+                opacity: 0.5;
+                .textbook-title{
+                    cursor: unset;
+                }
+            }
+        }
+    }
+    .material-icons-outlined.textbook-checkmark{
+        color:$grey40;
+        font-size: 18px;
+        &.completed{
+            color:$grey90;
+            cursor: unset !important;
+        }
+        &.clickable{
+            cursor: pointer;
+            &:hover{
+                color:#6548E5;
+            }
+        }
+    }
+}
+
+@include keyframe(test-blink){
+    0% { border: 1px solid #6548E500;}
+    50% { border: 1px solid #6548E5;}
+    100%{ border: 1px solid #6548E500;}
+}

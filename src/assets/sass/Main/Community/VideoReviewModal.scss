@@ -1,0 +1,58 @@
+@import '../../mixin';
+
+.video-review-modal{
+    &:not(.isOpen){
+        display: none;
+    }
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >.modal-background{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: black;
+        opacity: 0.8;
+    }
+
+    >.video-review-modal-body{
+        width: 1050px;
+        height: auto;
+        background-color: rgba(255,255,255,1);
+        z-index: 1;
+        >div:first-child{
+            @include tablet-to-desktop{
+                width: 1050px !important;
+                height: 586px !important;
+            }
+            @include mobile{
+                width: 100% !important;
+                // height: 203px !important;
+            }
+        }
+
+        >.video-review-modal-content{
+            @include mobile{ display: none;}
+            padding: 24px;
+            >div:nth-child(1){
+                @include subhead-2;
+                color: $grey90;
+                font-weight: bold;
+            }
+            >div:nth-child(2){
+                font-size: 16px;
+                color: #707070;
+                margin-top: 16px;
+            }
+        }
+    }
+}

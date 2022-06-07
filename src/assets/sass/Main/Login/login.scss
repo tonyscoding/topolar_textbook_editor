@@ -1,0 +1,257 @@
+@import '../../mixin';
+
+@mixin section-layout{
+    >section{
+        width: 100%;
+        *{ width: 100%; }
+        >label{
+            color: $grey90;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        div + div{ margin-top: 8px; }
+        >.inline-container{
+            display: flex;
+            // gap: 10px;
+            @include gap-sub(10px);
+            >div:first-child{
+                flex: 6 1 0;
+            }
+            >button:nth-child(2){
+                flex: 1 1 0;
+                @include mobile{
+                    height: unset !important;
+                }
+            }
+        }
+        @content;
+    }
+}
+
+.main-login-index{
+    width: 100%;
+    display: flex;
+    >div{
+        @include tablet-to-desktop{
+            width: 50%;
+            min-height: 1020px;
+        }
+        @include mobile{
+            width: 100%;
+            padding: 50px 5.5% 40% 5.5%;
+        }
+        display: flex;
+        align-items: center;
+        >.login{
+            >div{
+                width: 100%;
+            }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+            >.logo{
+                @include tablet-to-desktop{
+                    width: 184px;
+                }
+                @include mobile{
+                    width: 140px;
+                }
+            }
+            >.login-inputs{
+                &:nth-child(2){ margin-top: 40px;}
+                &:nth-child(3){ margin-top: 8px;}
+                width: 100%;
+                >div{
+                    width: 100%;
+                    >.guide-input{
+                        width: 100%;
+                    }
+                }
+            }
+            // memory login
+            // >div:nth-child(4){
+            //     justify-content: flex-end;
+            //     margin-top: 12px;
+            //     >.checkbox-text{
+            //         color: #333 !important;
+            //         font-size: 14px;
+            //     }
+            // }
+            // login button
+            >button:nth-child(4){
+                margin-top: 24px;
+                width: 100%;
+            }
+            >div:nth-child(5){
+                margin-top: 8px;
+                >a, a:hover{
+                    color: $tb40;
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+            }
+            >div:nth-child(6){
+                display: flex;
+                justify-content: center;
+                font-size: 14px;
+                color: #E0E0E0;
+                margin-top: 30px;
+                >div:first-child{
+                    padding-right: 24px;
+                    color: $grey60;
+                    cursor: pointer;
+                }
+                >div:last-child{
+                    padding-left: 24px;
+                    color: $grey60;
+                    cursor: pointer;
+                }
+            }
+            >div:nth-child(7){
+                margin-top: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                >div:nth-child(1){
+                    font-size: 14px;
+                    color: #000;
+                    font-weight: bold;
+                }
+                >div:nth-child(2){
+                    display: flex;
+                    @include tablet-to-desktop{
+                        @include gap-sub(16px);
+                    }
+                    @include mobile{
+                        @include gap-sub(12px);
+                    }
+                }
+            }
+        }
+
+        .signup-agreement, .signup, [class^=main-find-]{
+            >div{width: 100%;}
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 410px;
+            margin: 0 auto;
+            >div:first-child{
+                &:not(.guide-loader-container){
+                    text-align: center;
+                    @include subhead-1;
+                    font-weight: bold;
+                    color: $grey90;
+                    margin-bottom: 30px;
+                    @include mobile{
+                        font-size: 18px !important;
+                    }
+                }
+            }
+        }
+
+        .signup-agreement{
+            >.agreements{
+                height: 211px;
+                background-color: #FFF;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 16px;
+                >hr{ 
+                    margin: 14px -16px;
+                    border: 1px solid #E0E0E0;
+                }
+                >div{
+                    @include body-2;
+                    &:first-child{
+                        @include body-1;
+                        color: $grey90;
+                        font-weight: bold;
+                    }
+                    &:nth-child(4), &:nth-child(5), &:nth-child(6){
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: baseline;
+                        >div:nth-child(2){
+                            text-decoration: underline;
+                            @include caption;
+                            color: $grey60;
+                        }
+                    }
+                    >span{
+                        color: $tb40 !important;
+                    }
+                    &+div{
+                        margin-top: 15px;
+                        @include mobile{
+                            margin-top: 12px;
+                            line-height: 15px;
+                        }
+                    }
+                }
+            }
+            >button{
+                width: 100%;
+                margin-top: 16px;
+            }
+        }
+
+        .signup{
+            >.register-form{
+                display: flex;
+                flex-direction: column;
+                @include gap-sub(33px, column);
+                @include section-layout{
+                    >.username{
+                        display: flex;
+                        @include gap-sub(10px);
+                        >div:first-child{
+                            flex: 6 1 0;
+                        }
+                        >button:nth-child(2){
+                            flex: 1 1 0;
+                            @include mobile{
+                                height: unset !important;
+                            }
+                        }
+                    }
+
+                }
+            }
+            >button{
+                width: 100%;
+                margin-top: 29px;
+            }
+        }
+
+        [class^=main-find-]{
+            display: flex;
+            flex-direction: column;
+            @include gap-sub(33px, column);
+            >div:first-child{
+                @include body-1;
+                color: $grey90;
+                font-weight: bold;
+            }
+            @include section-layout{
+
+            }
+            .username-list{
+                padding: 20px;
+                background-color: $grey30;
+                border-radius: 8px;
+            }
+        }
+    }
+    >div:nth-child(2){
+        background: url('../../../root_img/Main/loginForm.png') center center / cover no-repeat;
+        @include mobile{
+            display: none;
+        }
+    }
+}

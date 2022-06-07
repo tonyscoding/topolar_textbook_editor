@@ -1,0 +1,65 @@
+.logo-s {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#main-frame > div >div >h2 {
+    font: Gothic;
+    font-size: 40px;
+    color: #000000;
+    text-align: center;
+}
+
+#main-frame > div >div >h4 {
+    font: Gothic;
+    font-size: 20px;
+    color: #000000;
+    text-align: center;
+}
+
+#main-frame > div >div >h5 {
+    font: Gothic;
+    font-size: 16px;
+    color: #B0AAA9;
+    text-align: center;
+}
+
+.main-frame {
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.summary {
+    /* width: ; */
+    background-color: #f9f7e8;
+    vertical-align: middle;
+    padding:15px;
+}
+.tempToastSize{
+    height:240px;
+    width:100%;
+}
+.main-frame-textbook {
+    /* box-shadow: 0px 0px 30px #00000066; */
+}
+.main-frame-textbook .card-header {
+    box-shadow: none !important;
+    background-color: #61bfad;
+    padding: 12px 0 0 0;
+}
+.main-frame-textbook .card-title {
+    box-shadow: none !important;
+    color: #333;
+}
+.main-frame-textbook .card-body {
+    box-shadow: none !important;
+    background-color: #fefefe;
+}
+.main-frame-textbook .card {
+    box-shadow: none !important;
+    background-color: #fefefe;
+}
+

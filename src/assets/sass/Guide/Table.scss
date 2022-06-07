@@ -1,0 +1,87 @@
+@import '../mixin';
+
+.guide-table{
+    .react-bootstrap-table{
+        font-family: Spoqa Han Sans Neo;
+        >.table{
+            background-color: unset;
+            box-shadow: unset;
+            margin-bottom: 70px;
+
+            >thead{
+                background-color: #FFF;
+                border-top: 1px solid $tb40;
+                font: normal normal bold 16px/21px Spoqa Han Sans Neo;
+                color: $grey90
+            }
+
+            >tbody{
+                background-color: #FFF;
+                >tr{
+                    border-top: 1px solid $grey40;
+                    border-bottom: 1px solid $grey40;
+                    color: $grey60;
+                }
+            }
+
+            .reset-expansion-style{
+                text-align: left;
+                @include tablet-to-desktop{
+                    padding-left: 195px;
+                    background-color: $grey05;
+                }
+            }
+
+            .row-expansion-style{
+                >div{
+                    text-align: left;
+                    color: $grey90;
+                }
+            }
+        }
+
+        &-pagination{
+            >*:nth-child(1){
+                display: none !important;
+            }
+            >.react-bootstrap-table-pagination-list{
+                width: 100% !important;
+                display: flex;
+                justify-content: center;
+                -webkit-box-flex: unset;
+                flex: unset;
+                max-width: unset;
+
+                >ul>li[title^=next],li[title^=previous]{
+                    font-weight: bold;
+                    color: #212121 !important;
+                }
+
+                >ul>.page-item{
+                    width: 24px;
+                    height: 24px;
+                    padding-right: unset;
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    >a{
+                        background-color: unset;
+                        border: unset;
+                        text-align: center;
+                        padding: unset;
+                    }
+                    &.active{
+                        background-color: $tb40;
+                        border-radius: 50%;
+                        
+                        >a{
+                            color: #FFF !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

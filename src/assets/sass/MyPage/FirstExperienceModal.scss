@@ -1,0 +1,38 @@
+@import '../_mixin';
+@import '../_variable';
+
+.fe-modal {
+    display: flex;
+    
+    >div{
+        width: 100%;
+        padding-top: 25px;
+    }
+
+    >.fe-register {
+        @include tablet-to-desktop {
+            padding-left: 26px;
+        }
+        >.fe-warning {
+            display: flex;
+            @include caption-fix;
+        }
+    }
+
+    @include tablet-to-desktop {
+        >.fe-calendar {
+            border-top: 1px solid $grey30;
+            border-right: 1px solid $grey30;
+        }
+        >.fe-register {
+            border-top: 1px solid $grey30;
+        }
+    }
+
+    @include mobile {
+        flex-direction: column;
+        >.fe-calendar {
+            border-top: 1px solid $grey30;
+        }
+    }
+}

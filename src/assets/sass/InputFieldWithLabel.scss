@@ -1,0 +1,25 @@
+@import './mixin';
+
+.input-field-with-label{
+    width: 100%;
+    *{ width: 100%; }
+    >label{
+        color: $grey90;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    div + div{ margin-top: 8px; }
+    >.inline-container{
+        display: flex;
+        >div:first-child{
+            flex: 6 1 0;
+        }
+        >button:nth-child(2){
+            flex: 1 1 0;
+            @include mobile{
+                height: unset !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,319 @@
+// @import './subPageMixin';
+// @import './mainPageMixin';
+
+// // 공통적으로 사용되는 mixin
+// .sub-page-header{
+//     color: $color1F;
+//     @include tablet-to-desktop{
+//         margin-top: 109px !important;
+//         font-size: 2.8125rem;
+//     }
+//     @include mobile{
+//         margin-top: 58px !important;
+//         font-size: 1.375rem;
+//     }
+
+//     >hr {
+//         @include tablet-to-desktop{
+//             width: 40px;
+//             margin: 33px 0 69px 0;
+//         }
+//         @include mobile{
+//             width: 20px;
+//             margin: 19px 0 54px 0;
+//         }
+//     }
+// }
+
+// .sub-page-header-with-desc {
+//     text-align: center;
+//     @include tablet-to-desktop {
+//         margin-top: 109px !important;
+//         div:nth-child(1) {
+//             color: $color1F;
+//             font-size: 2rem;
+//         }
+//         div:nth-child(2) {
+//             color: $color37;
+//             margin-top: 42px;
+//             font-size: 1.125rem;
+//             font-weight: 100;
+//         }
+//     }
+
+//     @include mobile {
+//         margin-top: 58px !important;
+//         div:nth-child(1) {
+//             color: $color1F;
+//             font-size: 1.125rem;
+//         }
+//         div:nth-child(2) {
+//             color: $color37;
+//             margin-top: 27px;
+//             font-size: 0.875rem;
+//             font-weight: 100;
+//         }
+//     }
+
+//     >hr {
+//         @include tablet-to-desktop{
+//             width: 40px;
+//             margin: 33px 0 0 0;
+//         }
+//         @include mobile{
+//             width: 20px;
+//             margin: 19px 0 0 0;
+//         }
+//     }
+// }
+
+// .common-container{
+//     @include tablet-to-desktop{
+//         @include common-container();
+//     }
+//     @include mobile{
+//         @include common-container();
+//         padding: 0 5%;
+//     }
+// }
+
+// // SpeechBubble.js
+// .speech-bubble-container{
+//     width: 100%;
+//     background-color: #474747;
+//     @include set-item-center();
+//     color: $colorFF;
+//     position: relative;
+
+//     &::after{
+//         content: "";
+//         position: absolute;
+//         bottom: 0;
+//         left: 50%;
+//         width: 0;
+//         height: 0;
+//     }
+
+//     @include tablet-to-desktop {
+//         font-size: 2rem;
+
+//         &::after {
+//             border: 20px solid transparent;
+//             margin-left: -20px;
+//             margin-bottom: -20px;
+//             border-top-color: #464646;
+//             border-bottom: 0;
+//         }
+//     }
+
+//     @include mobile {
+//         font-size: 1.0625rem;
+
+//         &::after {
+//             border: 10px solid transparent;
+//             margin-left: -10px;
+//             margin-bottom: -10px;
+//             border-top-color: #464646;
+//             border-bottom: 0;
+//         }
+//     }
+// }
+
+// .sub-page-banner-box-shadow {
+//     box-shadow: 0px 0px 50px #C1C1C129;
+// }
+
+// // 이곳에 새로 추가되는 subPage 배너를 추가합니다.
+
+// // ***
+// // MAIN BANNER
+// // ***
+// .price-intro-banner{
+//     @include tablet-to-desktop {
+//         @include sub-page-banner('Price/price_intro_bg.png', $color32, $priceintro-banner);
+//     }
+
+//     @include mobile {
+//         @include sub-page-banner('Price/m_price_intor_bg.png', $color32, $priceintro-banner);
+//     }
+// }
+
+// .FAQ-banner {
+//     @include tablet-to-desktop {
+//         @include sub-page-banner('FAQ/BG_renewal_FAQ.png', $colorFF, $FAQ-banner);
+//     }
+
+//     @include mobile {
+//         @include sub-page-banner('FAQ/m_BG_renewal_FAQ.png', $colorFF, $FAQ-banner)
+//     }
+// }
+
+// .my-curriculum-index-banner{
+//     @include tablet-to-desktop{
+//         @include sub-page-banner('Curriculum/curriculum_bg12.png', $color32, $curriculum-banner);
+//     }
+//     @include mobile{
+//         @include sub-page-banner('Curriculum/m_curriculum_bg12.png', $color32, $curriculum-banner);
+//     }
+// }
+
+// .franchise-map-banner {
+//     @include tablet-to-desktop {
+//         @include sub-page-banner('FranchiseMap/renewal_franchise_map_bg.png', $color32, $franchise-banner);
+//     }
+//     @include mobile {
+//         @include sub-page-banner('FranchiseMap/m_renewal_franchise_map_bg.png', $color32, $franchise-banner);
+//     }
+// }
+
+// .consulting-banner {
+//     @include tablet-to-desktop {
+//         @include sub-page-banner('Consulting/renewal_consulting_bg.png', $color32, $consulting-banner);
+//     }
+//     @include mobile {
+//         @include sub-page-banner('Consulting/m_renewal_consulting_bg.png', $color32, $consulting-banner);
+//     }
+// }
+
+// .price-banner {
+//     @include tablet-to-desktop {
+//         @include sub-page-banner('Price/renewal_price_bg.png', $color32, $price-banner);
+//     }
+//     @include mobile {
+//         @include sub-page-banner('Price/m_renewal_price_bg.png', $color32, $price-banner);
+//     }
+// }
+
+// .service-center-banner {
+//     @include tablet-to-desktop {
+//         @include sub-page-banner('ServiceCenter/renewal_service_center_bg.png', $color32, $servicecenter-banner);
+//     }
+//     @include mobile {
+//         @include sub-page-banner('ServiceCenter/m_renewal_service_center_bg.png', $color32, $servicecenter-banner);
+//     }
+// }
+
+// // ***
+// // SUB BANNER
+// // sub-sub-page-banner: (background-image-url, margintop, color)
+// // ***
+
+// // Price
+// .sub-banner-price-page{
+//     @include tablet-to-desktop{
+//         @include sub-sub-page-banner('Price/go_to_price_banner.png', 236px, #FFFFFF);
+//         > div > div {
+//             font-size: 3rem;
+//         }
+//     }
+//     @include mobile{
+//         @include sub-sub-page-banner('Price/m_go_to_price_banner.png', 93px, #FFFFFF);
+//         @include flex-align-center();
+//         > div > div {
+//             font-size: 1rem
+//         }
+//     }
+// }
+
+// // Consulting
+// .sub-banner-consulting-page{
+//     @include tablet-to-desktop{
+//         @include sub-sub-page-banner('Price/go_to_consulting_banner.png', 0px, #464646);
+//         > div > div:first-child {
+//             font-size: 1.25rem;
+//         }
+//         > div > div:nth-child(2){
+//             font-size: 3rem;
+//         }
+//     }
+//     @include mobile{
+//         @include sub-sub-page-banner('Price/m_go_to_consulting_banner.png', 0px, #464646);
+//         @include flex-align-center();
+//         > div > div:first-child {
+//             font-size: 0.5625rem;
+//         }
+//         > div > div:nth-child(2){
+//             font-size: 1rem;
+//         }
+//     }
+// }
+
+// // MyCurriculum
+// .sub-banner-mycurriculum-section1 {
+//     @include main-page-sub-banner(null, $color1F, #FFFFFF);
+//     @include flex-align-center-column();
+//     @include tablet-to-desktop{
+//         justify-content: center;
+//         >div:nth-child(2){
+//             font-size: 1.25rem;
+//         }
+
+//         >.main-page-header > hr {
+//             margin-top: 44px;
+//             margin-bottom: 48px
+//         }
+//     }
+//     @include mobile{
+//         justify-content: center;
+
+//         >.main-page-header > hr {
+//             margin-top: 21px;
+//             margin-bottom: 26px
+//         }
+//     }
+// }
+
+// .sub-banner-mycurriculum-section2 {
+//     @include main-page-sub-banner(null, $color1F, #FAFAFA);
+//     @include flex-align-center-column();
+//     @include tablet-to-desktop{
+//         justify-content: center;
+//         >div:nth-child(1){
+//             font-size: 2rem;
+//         }
+//     }
+//     @include mobile{
+//         justify-content: center;
+//         >div:nth-child(1){
+//             font-size: 1.125rem;
+//         }
+//     }
+
+// }
+
+// // FAQ
+// .sub-banner-faq-section1 {
+//     @include main-page-sub-banner(null, $color1F, none);
+//     @include flex-align-center-column();
+//     @include tablet-to-desktop{
+//         justify-content: center;
+//         >div:nth-child(2){
+//             font-size: 1.25rem;
+//             font-weight: 100;
+//         }
+        
+//         >.main-page-header > hr {
+//             margin-top: 44px;
+//             margin-bottom: 48px
+//         }
+//     }
+//     @include mobile{
+//         justify-content: center;
+        
+//         >div:nth-child(1){
+//             font-weight: bold;
+//         }
+
+//         >div:nth-child(2){
+//             text-align: center;
+//             color: $color37;
+//             font-size: 0.875rem;
+//             font-weight: 100;
+//         }
+
+//         >.main-page-header > hr{
+//             margin-top: 21px;
+//             margin-bottom: 29px;
+//         }
+//     }
+// }

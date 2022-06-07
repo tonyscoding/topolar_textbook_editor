@@ -1,0 +1,148 @@
+.slide-register-first {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+
+.slide-register-first > ul {
+    list-style: none;
+}
+
+.slide-register-first > ul > li {
+    list-style: none;
+}
+
+.slide-register-first input {
+    display: none;
+}
+
+.slide-register-first ul {
+    width: calc(100% * 4);
+    display: flex;
+    transition: 1s;
+    padding: 0;
+    height:100%;
+}
+
+.slide-register-first li {
+    width: calc(100% / 4);
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+#pos1:checked ~ ul { margin-left: 0;}
+#pos2:checked ~ ul {margin-left: -100%;}
+#pos3:checked ~ ul {margin-left: -200%;}
+#pos4:checked ~ ul {margin-left: -300%;}
+
+.mt-10px {
+    margin-top: 10px;
+}
+
+.mt-28px {
+    margin-top: 28px;
+}
+
+.mb-100px {
+    margin-bottom: 100px;
+}
+
+.mt-5per {
+    margin-top: 5%;
+}
+
+.mt-10per {
+    margin-top: 10%;
+}
+
+.mb-10per {
+    margin-bottom: 10%;
+}
+
+.w-10per {
+    width:10%;
+}
+
+.w-80per {
+    width: 80%;
+}
+
+.align-start {
+    align-self: start;
+}
+
+.h-350 {
+    height: 350px;
+}
+
+.slide-ul ul li {
+    list-style: none;
+}
+
+.slide-ul ul {
+    width: calc(100% * 4);
+    display: flex;
+    transition: 1s;
+    padding: 0px;
+    /* height: 600px; */
+}
+
+.slide-ul li {
+    width: calc(100% / 4);
+    height: 100%;
+}
+
+.slide-ul input {
+    display: none;
+}
+
+#slide1:checked ~ ul {margin-left: 0;}
+#slide2:checked ~ ul {margin-left: -100%;}
+#slide3:checked ~ ul {margin-left: -200%;}
+#slide4:checked ~ ul {margin-left: -300%;}
+
+@media(min-width: 800px) {
+    .welcome-modal {
+        max-width: 1056px;
+        width: 1056px;
+    }
+    .register-first-slide-content-container {
+        display: flex;
+        height: 768px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .slide-ul {
+        height: 600px;
+        overflow: hidden;
+        position: relative;
+    }
+}
+
+@media(max-width: 799px) {
+    .welcome-modal {
+        width: 100%;
+    }
+    .register-first-slide-content-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .slide-ul {
+        height: 600px;
+        overflow: hidden;
+        position: relative;
+        margin: 30px;
+    }
+}
+
+@media(max-width: 480px) {
+    .welcome-modal {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+    }
+}

@@ -1,0 +1,58 @@
+@import './mixin';
+
+// 이곳에 BG 관련 이미지를 모두 정리합니다.
+// 다른 페이지에서 bg 참조가 필요한 경우 변수를 추가하여 정의합니다.
+// [main, service]-[path]-[propertyName]
+$root: 'main-root-';
+$community: 'main-community-';
+$curriculum: 'main-curriculum-';
+
+$rootImgPath: '../root_img/Main';
+$communityImgPath: '../root_img/Main/Community';
+$curriculumImgPath: '../root_img/Main/Curriculum';
+
+@mixin desktop-mobile-background-image($desktopUrl: '', $mobileUrl: '', $desktopSolidColor: false, $mobileSolidColor: false){
+    @include tablet-to-desktop{
+        @if($desktopSolidColor) {
+            background-color: $desktopSolidColor;
+        } @else {
+            background: url($desktopUrl) 50%/cover no-repeat;
+        }
+    }
+    
+    @include mobile{
+        @if($mobileSolidColor) {
+            background-color: $mobileSolidColor;
+        } @else {
+            background: url($mobileUrl) 50%/cover no-repeat;
+        }
+    }
+}
+
+@mixin background-with-images($url){
+    background: $url 50%/cover no-repeat;
+}
+
+.#{$root} {
+    &section3{
+        @include desktop-mobile-background-image('#{$rootImgPath}/homeImg3.png', '', false, #212121);
+    }
+
+    &section5{
+        @include desktop-mobile-background-image('#{$rootImgPath}/homeImg5.png', '#{$rootImgPath}/mHomeImg5.png');
+    }
+}
+
+.#{$community}{
+    &banner {
+        @include desktop-mobile-background-image('#{$communityImgPath}/communityHeader.png', '', false, #212121);
+        height: 300px;
+    }
+}
+
+.#{$curriculum}{
+    &banner {
+        @include desktop-mobile-background-image('#{$curriculumImgPath}/curriculumHeader.png', '', false, #212121);
+        height: 300px;
+    }
+}

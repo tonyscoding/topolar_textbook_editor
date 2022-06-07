@@ -1,0 +1,106 @@
+@import './mixin';
+
+@mixin scheudle-type($color: 'red'){
+    width: 7px;
+    height: 7px;
+    background-color: $color;
+    border-radius: 50%;
+}
+
+.service-schedule-type-indicator{
+    position: absolute;
+    top: 0;
+    display: flex;
+    margin: 1rem 0 0.5rem 0;
+    @include gap-sub(15px);
+    color: #ACACAC;
+    z-index: 1;
+    >div:first-child::before{
+        content: '\25CF';
+        width: 7px;
+        height: 7px;
+        color: black;
+    }
+    >div:nth-child(2)::before{
+        content: '\25CF';
+        width: 7px;
+        height: 7px;
+        color: red;
+    }
+    >div:nth-child(3)::before{
+        content: '\25CF';
+        width: 7px;
+        height: 7px;
+        color: green;
+    }
+    >div:nth-child(4)::before{
+        content: '\25CF';
+        width: 7px;
+        height: 7px;
+        color: purple;
+    }
+    >div:nth-child(5)::before{
+        content: '\25CF';
+        width: 7px;
+        height: 7px;
+        color: orange;
+    }
+}
+
+.service-calendar-container{
+    background-color: #2C2C2C;
+    width: 100%;
+    display: flex;
+
+    .fc-header-toolbar{
+        // display: none;
+        margin-bottom: 0 !important;
+        background-color: #212121 !important;
+    }
+
+    >.fc-time-grid, .fc-slats td {
+        height: 0.2rem;
+        padding-top: 0.3rem;
+        >span{
+            font-size: 0.8rem;
+        }
+    }
+
+    .fc-custom-teacher-schedule-week-view{
+        width: 50%;
+        margin-right: 5px;
+        border-radius: 4px;
+        border: 1px solid #FFFFFF33 !important;
+        >.fc-content{
+            padding: 0 2px !important;
+
+            >.fc-title{
+                min-height: 10px;
+                display: flex;
+                @include gap-sub(2px);
+                flex-wrap: wrap;
+                // 001: 체험수업, 002: 정규수업, 003: AI 딥러닝, 004: 겨울방학 유니티 특강, 005: 대학교 제휴특강
+                // 코드의 VALUE 값은 ADMIN에 의해서 변경될 수 있습니다.
+                >.course-type-001{
+                    @include scheudle-type(black);
+                }
+                >.course-type-002{
+                    @include scheudle-type(red);
+                }
+                >.course-type-003{
+                    @include scheudle-type(orange);
+                }
+                >.course-type-004{
+                    @include scheudle-type(green);
+                }
+                >.course-type-005{
+                    @include scheudle-type(purple);
+                }
+            }
+        }
+
+        &::before{
+            border-left: none;
+        }
+    }
+}

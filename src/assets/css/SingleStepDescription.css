@@ -1,0 +1,36 @@
+.CardHeader {
+    display: block;
+    width:100%;
+    margin:auto;
+    padding:unset;
+    padding-top:10px;
+    background:#61bfad;
+    border:solid #61bfad;
+}
+.CardBody {
+    display: block;
+    width:100%;
+    margin:auto;
+}
+.Card{
+    border:none;
+}
+
+.CardTitle {
+    font-size: calc(5px + 1vmin);
+    padding-left: 15px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.CardDescription{
+    text-align: left;
+}
+
+.SquareIcon {
+    width: calc(5px + 2vmin);
+    height: calc(5px + 2vmin);
+    vertical-align: middle;
+    margin-right:calc(5px + 2vmin);
+    position: relative;
+}

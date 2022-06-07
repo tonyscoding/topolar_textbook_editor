@@ -1,0 +1,278 @@
+@import '../mixin';
+
+$profileContentMargin: (
+    "name": 184px,
+    "username": 169px,
+    "password": 153px,
+    "dateOfBirth": 154px,
+    "email": 169px,
+    "mobile": 136px,
+    "parentMobile": 88px
+);
+
+$profileContentMobileMargin: (
+    "name": 63px,
+    "username": 50px,
+    "password": 37px,
+    "dateOfBirth": 37px,
+    "email": 50px,
+    "mobile": 47px,
+    "parentMobile": 21px
+);
+
+.mypage-profile-container{
+    @include tablet-to-desktop{ 
+        >div + div{
+            margin-top: 20px;
+        }
+    }
+    @include mobile{
+        >div + div {
+            margin-top: 10px;
+        }
+    }
+}
+
+.mypage-profile-view-table{
+    >.row-format{
+        position: relative;
+        border-top: 1px solid $grey30;
+        display: flex;
+        align-items: center;
+        padding: 23px 0 27px 20px;
+        >label{
+            font-weight: bold;
+            color: $grey90;
+            margin-bottom: 0;
+            @include tablet-to-desktop{
+                font-size: 16px;
+            }
+            @include mobile{
+                font-size: 14px;
+                white-space: nowrap;
+            }
+        }
+        >.profile-content{
+            color: $grey90;
+            display: flex;
+            position: relative;
+            @include body-2-fix;
+            @include tablet-to-desktop{
+                @each $key, $value in $profileContentMargin{
+                    &[name=#{$key}]{
+                        margin-left: $value;
+                    }
+                }
+            }
+            @include mobile{
+                @each $key, $value in $profileContentMobileMargin{
+                    &[name=#{$key}]{
+                        margin-left: $value;
+                    }
+                }
+                width: 100%;
+                *{
+                    width: 100%;
+                }
+                &[name=password]{
+                    width: auto;
+                }
+            }
+            &::after{
+                font-family: 'Material Icons Outlined';
+                content: '\e3c9';
+                font-size: 18px;
+                color: $tb40;
+                padding-left: 10px;
+                cursor: pointer;
+            }
+            &.isEdit{
+                flex-direction: column;
+                // gap: 8px;
+                &::after{
+                    display: none;
+                }
+                >div{
+                    display: flex;
+                    @include mobile{ flex-direction: column;}
+                    @include gap-sub(8px);
+                    >div{
+                        display: flex;
+                        @include gap-sub(8px);
+                        >button{
+                            white-space: nowrap;
+                            @include tablet-to-desktop{
+                                font-size: 14px;
+                                width: 72px;
+                                height: 40px;
+                            }
+                            @include mobile{
+                                font-size: 12px;
+                                width: 54px;
+                                height: 32px;
+                            }
+                        }
+                    }
+                    >.guide-input-container{
+                        flex-direction: column !important;
+                    }
+                }
+            }
+            &.disableEdit::after{
+                display: none;
+            }
+            .guide-input{
+                @include tablet-to-desktop{ width: 330px;}
+                @include mobile{ width: 100%;}
+            }
+        }
+    }
+
+    >.profile-img{
+        position: relative;
+        @include tablet-to-desktop{ 
+            height: 200px;
+            margin-top: 10px;
+        }
+        @include mobile{ 
+            height: 146px;
+            margin-top: 12px;
+        }
+        >label{
+            font-weight: bold;
+            color: $grey90;
+            @include tablet-to-desktop{
+                font-size: 16px;
+            }
+            @include mobile{
+                font-size: 14px;
+            }
+        }
+        >input{
+            display: none;
+        }
+        >.input-file-label {
+            @include tablet-to-desktop{
+                left: 316px;
+                top: 90px;
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+                max-width: 32px;
+            }
+            @include mobile{ 
+                left: 100px;
+                width: 80px;
+                height: 80px;
+            }
+            position: absolute;
+            cursor: pointer;
+            z-index: 1;
+            opacity: 0;
+            margin-bottom: 0px;
+        }
+        >img{
+            @include tablet-to-desktop{ 
+                left: 233px;
+                width: 120px;
+                height: 120px;
+            }
+            @include mobile{ 
+                left: 100px;
+                width: 80px;
+                height: 80px;
+            }
+            position: absolute;
+        }
+        >.guide-button {
+            @include tablet-to-desktop {
+                left: 225px;
+                top: 138px;
+            }
+            @include mobile {
+                left: 80px;
+                top: 94px;
+            }
+            position: absolute;
+        }
+    }
+}
+
+.mypage-profile-withdrawal{
+    .withdrawal-body{
+        display: flex;
+        color: $grey60;
+        align-items: center;
+        @include tablet-to-desktop{
+            font-size: 16px;
+            >button{ margin-left: 33px;}
+        }
+        @include mobile { 
+            font-size: 14px;
+            flex-direction: column;
+        }
+    }
+}
+
+.mypage-profile-social-connection{
+    .social-connection-container{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        >.social-icon{
+            >div:nth-child(2){
+                @include mobile{ display: none;}
+            }
+            display: flex;
+            align-items: center;
+            @include gap-sub(24px);
+            font-size: 16px;
+            color: $grey90;
+        }
+    }
+    .body-content{
+        display: flex;
+        flex-direction: column;
+        @include gap-sub(24px, column);
+        @include mobile{
+            padding: 24px 17px !important;
+        }
+    }
+}
+
+.mypage-profile-card-register{
+    .body-content{
+        >div{ color: #000000; font-size: 16px;}
+    }
+    .card-list-table{
+        width: 100%;
+        >thead{ background-color: #F5F5F5;}
+        >thead>tr{
+            >th{ 
+                text-align: center;
+                padding: 5px 0;
+                font-size: 14px;
+                color: #000000;
+            }
+            >th:first-child{ 
+                width: 80%; 
+            }
+        }
+        >tbody>tr{
+            >th{
+                padding: 13px 0;
+            }
+            >th:first-child{ width: 20%; text-align: center; }
+            >th:nth-child(2){ width: 60%; }
+            >th:nth-child(3){ 
+                width: 20%; 
+                text-align: center;
+                >button{
+                    width: 60px;
+                    height: 32px;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+}

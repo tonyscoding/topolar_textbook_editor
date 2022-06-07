@@ -1,0 +1,147 @@
+@import '../mixin';
+@import '../variable';
+
+.credit-detail-list {
+    display: flex;
+    flex-direction: column;
+    @include gap-sub(28px, column);
+    
+    >.filter-container {
+        @include tablet-to-desktop{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @include gap-sub(8px);
+            >div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                @include gap-sub(8px);
+            }
+        }
+        @include mobile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            @include gap-sub(8px, column);
+            >div{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    }
+
+    >.list-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        @include body-2-fix;
+
+        .list-collapse-container {
+            width: 100%;
+        }
+
+        .list-collapse {
+            @include tablet-to-desktop{
+                padding-top: 10px;
+            }
+            @include mobile {
+                padding-top: 8px;
+            }
+        }
+
+        .list {
+            background-color: $grey10;
+            width: 100%;
+            display: flex;
+            
+            @include tablet-to-desktop{
+                height: 96px;
+                padding: 17px 24px;
+                align-items: center;
+                justify-content: space-between;
+            }
+            @include mobile {
+                min-height: 120px;
+                padding: 28px 24px 12px 20px;
+                flex-direction: column;
+                align-items: left;
+            }
+
+            >div:nth-child(1) {
+                display: flex;
+            }
+
+            &.refund {//환불
+                .list-status {
+                    border: 1px solid $red;
+                    color: $red;
+                }
+
+                .list-point {
+                    color: $red;
+                }
+            }
+            &.plus {//적립
+                .list-status {
+                    border: 1px solid $green;
+                    color: $green;
+                }
+                .list-point {
+                    color: $green;
+                }
+            }
+            &.use {//사용
+                .list-status {
+                    border: 1px solid $tb60;
+                    color: $tb60;
+                }
+                .list-point {
+                    color: $tb60;
+                }
+            }
+
+            .list-status {
+                border-radius: 50%;
+                @include set-item-center;
+                width: 56px;
+                height: 56px;
+            }
+
+            .list-detail {
+                @include tablet-to-desktop{
+                    // width: 680px;
+                    margin-left: 36px;
+                }
+                @include mobile {
+                    margin-left: 40px;
+                }
+                display: flex;
+                flex-direction: column;
+                @include gap-sub(4px, column);
+                >.list-date {
+                    color: $grey60;
+                }
+                >.list-content {
+                    color: $grey90;
+                }
+                >.list-method {
+                    color: $grey60;
+                }
+            }
+        }
+
+        .list-click-more {
+            cursor: pointer;
+            width: 100%;
+            color: $grey90;
+            background-color: $grey10;
+            @include set-item-center;
+            height: 50px;
+        }
+    } 
+}

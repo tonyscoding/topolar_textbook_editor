@@ -1,0 +1,76 @@
+.avatar_overlay {
+    position: relative;
+    height: 84px;
+    width: 84px;
+    opacity: 0;
+    transition: .4s ease;
+    background-color: #5fc27e;
+    cursor: pointer;
+}
+
+.avatar_button {
+    position: relative;
+    width: 90px;
+    display: inline-block;
+}
+
+.connect_button {
+    position: static;
+    background-color: #5fc27e;
+    
+}
+
+.avatar_overlay_blue {
+    position: absolute;
+    height: 72px;
+    width: 72px;
+    opacity: 0;
+    transition: .4s ease;
+    background-color: #1db4b4;
+    cursor: pointer;
+}
+
+.call_icon {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.avatar_overlay:hover {
+    opacity: 1.0;
+}
+
+.avatar_overlay_blue:hover {
+    opacity: 1.0;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 900px; 
+    overflow-x: hidden;
+}
+
+.edit-icon {
+    color: #5b7dff;
+    cursor: pointer;
+}
+
+.user-disabled {
+    opacity : 0.5;
+    color: #6c757d;
+} 
+
+.classroom_settings .popover {
+    max-width: 500px;
+}
+
+.classroom-flex {
+    /* display: flex; */
+    margin-bottom: 2rem;
+}

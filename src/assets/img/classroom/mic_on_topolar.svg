@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="51" viewBox="0 0 52 51">
+  <defs>
+    <filter id="Selectbox.BG" x="0" y="0" width="52" height="51" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="그룹_10654" data-name="그룹 10654" transform="translate(-1061 -2857)">
+    <g id="그룹_10531" data-name="그룹 10531" transform="translate(835 2576)">
+      <g id="그룹_10378" data-name="그룹 10378" transform="translate(-64)">
+        <g transform="matrix(1, 0, 0, 1, 290, 281)" filter="url(#Selectbox.BG)">
+          <rect id="Selectbox.BG-2" data-name="Selectbox.BG" width="22" height="21" rx="4" transform="translate(15 15)" fill="#1db4b4"/>
+        </g>
+      </g>
+    </g>
+    <g id="그룹_10534" data-name="그룹 10534" transform="translate(-679 1442)">
+      <rect id="사각형_2679" data-name="사각형 2679" width="2" height="6" rx="1" transform="translate(1765 1436)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <g id="그룹_10499" data-name="그룹 10499" transform="translate(1763 1441.391)">
+        <line id="선_158" data-name="선 158" y1="2" transform="translate(3 3.609)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path id="패스_6143" data-name="패스 6143" d="M1769.469,1446a3.235,3.235,0,0,1-6.469,0" transform="translate(-1763 -1446)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

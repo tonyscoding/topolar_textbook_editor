@@ -1,0 +1,67 @@
+@import '../../mixin';
+
+.#{$community-pre}body-events{
+    .event-card-list{
+        display: flex;
+        flex-wrap: wrap;
+        
+        @include tablet-to-desktop{
+            padding-top: 60px;
+            justify-content: flex-start;
+            >div{
+                width: 620px;
+                height: 423;
+            }
+            @include gap-sub(40px, row);
+            >*{ margin-bottom: 40px;}
+            >*:nth-child(even){
+                margin-right: 0 !important;
+            }
+        }
+
+        @include mobile{
+            padding-top: 40px;
+            align-items: center;
+            justify-content: center;
+            >div{
+                width: 320px;
+                height: 218px;
+            }
+            @include gap-sub(40px, column);
+            >*{ margin-bottom: 40px;}
+            >*:nth-child(even){
+                margin-right: 0 !important;
+            }
+        }
+    }
+
+    >.pagination-container{
+        @include tablet-to-desktop{
+            margin-top: 70px;
+        }
+        @include mobile{
+            margin-top: 20px;
+        }
+    }
+
+    .event-card-content{
+        >div:nth-child(1){
+            color: $grey90;
+            @include tablet-to-desktop{
+                margin-bottom: 12px;
+            }
+            @include mobile{
+                margin-bottom: 4px;
+            }
+        }
+        >div:nth-child(2){
+            color: $grey60;
+        }
+    }
+
+    .card-content{
+        @include mobile{
+            padding: 8px !important;
+        }
+    }
+}

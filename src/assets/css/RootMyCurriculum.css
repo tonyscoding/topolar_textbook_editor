@@ -1,0 +1,78 @@
+.root-mycur-body {
+    position: relative;
+    /* height: 5239px; */
+    padding-top: 58px;
+    padding-bottom: 140px;
+}
+
+.root-mycur-body > * {
+    width: 100%;
+}
+
+.root-mycur-body > div {
+    margin-top: 5vw;
+}
+
+/* Fixed Font */
+.root-mycur-body .f-12 {
+    font-size: 12px;
+}
+
+.root-mycur-body .f-14 {
+    font-size: 14px;
+}
+
+.root-mycur-body .f-18 {
+    font-size: 18px;
+}
+
+.root-mycur-body .f-20 {
+    font-size: 20px;
+}
+
+.root-mycur-body .f-32 {
+    font-size: 32px;
+}
+
+.root-mycur-body .f-46 {
+    font-size: 46px;
+}
+
+.mycur-header {
+    background-image: url('../root_img/Curriculum/curriculum_bg12.png');
+    background-position: center;
+    background-size: 1280px 480px;
+    box-shadow: 0px 0px 60px #C1C1C129;
+    width:100%;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 0px !important;
+    color: #5A5A5A;
+}
+
+@media(min-width: 801px) {
+    .flex-between-mobile-in-column {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .button-width-45 {
+        width: 45%;
+    }
+}
+
+@media(max-width: 800px) {
+    .flex-between-mobile-in-column {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .button-width-45 {
+        width: 90%;
+        margin: 0 auto;
+    }
+}

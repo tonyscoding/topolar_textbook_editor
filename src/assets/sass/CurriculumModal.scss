@@ -1,0 +1,772 @@
+@import './screenSizeMixin';
+@import './mixin';
+
+.curriculum-test-modal-dialog {
+    @include tablet-to-desktop {
+        max-width: 1190px;
+        width: 1190px;
+        height: 675px;
+    }
+    @include mobile{
+        max-width: 320px;
+        width: 320px;
+        height: 600px;
+    }
+
+    >.modal-content{
+        background-color: #FFFFFF00 !important;
+        box-shadow: unset !important;
+    }
+
+    .curriculum-progress-bar {
+        align-self: center;
+        position: relative;
+
+        >div {
+            position: absolute;
+            color: #FFFFFF;
+        }
+        @include tablet-to-desktop {
+            height: 39px;
+            width: 1060px;
+            >div{
+                right: 20px;
+                font-size: 1.125rem;
+                line-height: 1.75rem;
+            }
+        }
+        @include mobile {
+            height: 26px;
+            width: 100%;
+            >div {
+                right: 5px;
+                font-size: 0.75rem;
+                line-height: 1rem;
+            }
+        }
+    }
+
+    .curriculum-test-modal {
+        background-color: #FFFFFF;
+        align-self: center;
+        position: relative;
+        @include tablet-to-desktop{
+            width: 1060px;
+            height: 636px;
+        }
+        @include mobile {
+            width: 100%;
+            height: 537px;
+        }
+
+        .curriculum-test-logo {
+            position: absolute;
+            @include tablet-to-desktop{
+                right: 27px;
+                bottom: 30px;
+            }
+            @include mobile {
+                right: 20px;
+                bottom: 15px;
+                width: 22px;
+                height: 13px;
+                @include set-item-center();
+                >img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+
+        .curriculum-test-header{
+            position: relative;
+            width: 100%;
+            background-color: #2F2F2F;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @include tablet-to-desktop{
+                height: 74px;
+                font-size: 1.5625rem;
+            }
+            @include mobile {
+                height: 37px;
+                font-size: 1rem;
+            }
+
+            >div{
+                position: absolute;
+                border-radius: 50%;
+                border: 2px solid #FFFFFF;
+                cursor: pointer;
+                @include set-item-center();
+
+                @include tablet-to-desktop{
+                    right: 21px;
+                    width: 35px;
+                    height: 35px;
+                    >img {
+                        width: 15px;
+                        height: 15px;
+                    }
+                }
+                @include mobile{
+                    right: 8px;
+                    width: 23px;
+                    height: 23px;
+                    >img {
+                        width: 9px;
+                        height: 9px;
+                    }
+                }
+                
+            }
+        }
+
+        .curriculum-test-content-container{
+            display: flex;
+            @include mobile {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .curriculum-test-page{
+                font-weight: bold;
+
+                >div:nth-child(1){
+                    color: $topolar;
+                }
+                >div:nth-child(2){
+                    color: $topolar;
+                }
+                >div:nth-child(3){
+                    color: #2D2D2D;
+                }
+
+                @include tablet-to-desktop {
+                    margin-top: 20px;
+                    margin-left: 30px;
+                    width: 116px;
+    
+                    >div:nth-child(1){
+                        font-size: 2.8125rem;
+                        color: $topolar;
+                        line-height: 3.375rem;
+                    }
+                    >div:nth-child(2){
+                        color: $topolar;
+                        font-size: 0.6875rem;
+                    }
+                    >div:nth-child(3){
+                        color: #2D2D2D;
+                        font-size: 1.5rem;
+                    }
+                }
+                @include mobile {
+                    width: 100%;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid #787878;
+    
+                    >div:nth-child(1){
+                        font-size: 1.5rem;
+                        line-height: 1.875rem;
+                    }
+                    >div:nth-child(2){
+                        font-size: 0.625rem;
+                        line-height: 0.625rem;
+                    }
+                    >div:nth-child(3){
+                        color: #2D2D2D;
+                        font-size: 0.9375rem;
+                    }
+
+                    .empty-text {
+                        margin-bottom: 22px;
+                    }
+                }
+            }
+
+            .curriculum-test-content{
+                word-break: keep-all;
+                position: relative;
+                >div:nth-child(1){
+                    color:#ADADAD;
+                    font-weight: bold;
+                }
+
+                @include tablet-to-desktop {
+                    margin-left: 105px;
+                    margin-top: 72px;
+                    >div:nth-child(1){
+                        font-size: 0.6875rem;
+                    }
+                }
+                @include mobile {
+                    margin-top: 23px;
+                    >div:nth-child(1){
+                        font-size: 0.625rem;
+                        line-height: 0.625rem;
+                    }
+                }
+
+                .curriculum-question {
+                    display: flex;
+                    @include tablet-to-desktop{
+                        margin-bottom: 30px;
+                    }
+                    @include mobile {
+                        flex-direction: column;
+                        margin-bottom: 15px;
+                    }
+                    >div:nth-child(1){
+                        color: #454545;
+                        font-weight: bold;
+                        >div{
+                            color: #CB2222;
+                        }
+                        @include tablet-to-desktop {
+                            font-size: 1.5rem;
+                            width: 210px;
+                            >div{
+                                font-size: 0.9375rem;
+                            }
+                        }
+                        @include mobile {
+                            font-size: 1rem;
+                            margin-bottom: 10px;
+                            >div{
+                                font-size: 0.625rem;
+                            }
+                        }
+                    }
+                    >div:nth-child(2){
+                        display: flex;
+                        @include tablet-to-desktop{
+                            margin-left: 80px;
+                        }
+                        @include mobile {
+
+                        }
+
+                        >div {
+                            display: flex;
+                            align-items: center;
+                            
+                            >img{
+                                cursor: pointer;
+                                @include mobile {
+                                    width: 10px;
+                                    height: 10px;
+                                }
+                            }
+                            >div {
+                                color: #505050;
+                                cursor: pointer;
+                                @include tablet-to-desktop{
+                                    margin-left: 10px;
+                                    font-size: 1.125rem;
+                                }
+                                @include mobile {
+                                    margin-left: 5px;
+                                    font-size: 0.875rem;
+                                }
+                            }
+
+                            .extra {
+                                border-top: unset;
+                                border-left: unset;
+                                border-right: unset;
+                                border-bottom:  1px solid #787878;
+                                @include tablet-to-desktop {
+                                    margin-left: 15px;
+                                    padding-left: 10px;
+                                    width: 314px;
+                                    height: 30px;
+                                }
+                                @include mobile {
+                                    margin-left: 5px;
+                                    padding-left: 10px;
+                                    width: 157px;
+                                    height: 19px;
+                                    font-size: 0.625rem;
+                                }
+                                &:focus {
+                                    outline: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .curriculum-question-personal-info {
+                    >div:nth-child(2){
+                        flex-direction: column;
+
+                        >div {
+                            position: relative;
+
+                            @include tablet-to-desktop {
+                                margin-bottom: 10px;
+                            }
+                            @include mobile {
+                                margin-bottom: 6px;
+                            }
+                            align-items: center;
+                            >div:nth-child(3){
+                                @include tablet-to-desktop {
+                                    margin-left: 30px;
+
+                                }
+                                @include mobile {
+                                    margin-left: 19px;
+                                }
+                                cursor: unset;
+                            }
+                            .school{
+                                z-index: 10;
+                                border: 1px solid #787878;
+                                border-radius: 3px;
+                                cursor: pointer;
+                                &:focus {
+                                    outline: none;
+                                }
+
+                                @include tablet-to-desktop{
+                                    margin-left: 12.5px;
+                                    padding-left: 10px;
+                                    width: 190px;
+                                    height: 27px;
+                                }
+                                @include mobile {
+                                    margin-left: 5px;
+                                    padding-left: 5px;
+                                    width: 140px;
+                                    height: 19px;
+                                    font-size: 0.625rem;
+                                }
+                            }
+                            .search-button {
+                                position: absolute;
+                                z-index: 99;
+                                @include tablet-to-desktop {
+                                    top:4px;
+                                    right:15px;
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                                @include mobile {
+                                    top: 4px;
+                                    right: 12px;
+                                    width: 13px;
+                                    height: 13px;
+                                }
+                                top:4px;
+                                right:15px;
+                                width: 20px;
+                                height: 20px;
+                                @include set-item-center();
+                                >img {
+                                    width: 100%;
+                                    height: 100%;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .curriculum-question-level {
+                    >div:nth-child(2){
+                        flex-direction: column;
+
+                        >div {
+                            @include tablet-to-desktop {
+                                margin-bottom: 50px;
+
+                            }
+                            @include mobile {
+                                margin-bottom: 8px;
+                            }
+                            >img {
+                                align-self: flex-start;
+                                margin-top: 6px;
+                            }
+                            >div:nth-child(2){
+                                width: 400px;
+                                word-break: keep-all;
+                                @include mobile {
+                                    >div:nth-child(2) {
+                                        height: 42px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .curriculum-question-1 {
+                    >div:nth-child(2){
+                        flex-direction: column;
+
+                        >div {
+                            @include tablet-to-desktop{
+                                margin-bottom: 10px;
+
+                            }
+                            @include mobile {
+                                margin-bottom: 8px;
+                            }
+                        }
+                    }
+                }
+
+                .curriculum-question-2 {
+                    @include tablet-to-desktop{
+                        >div:nth-child(2){
+                            flex-wrap: wrap;
+                            width: 400px;
+    
+                            >div {
+                                margin-bottom: 10px;
+                                width: 200px;
+                            }
+                        }
+                    }
+                    @include mobile {
+                        >div:nth-child(2){
+                            flex-wrap: wrap;
+                            width: 280px;
+    
+                            >div {
+                                margin-bottom: 8px;
+                                min-width: 92px;
+                                width: fit-content;
+                            }
+                        }
+                    }
+                    
+                }
+
+                .curriculum-last-1 {
+                    >div:nth-child(2){
+                        flex-direction: column;
+
+                        >div {
+                            @include tablet-to-desktop {
+                                margin-bottom: 20px;
+
+                            }
+                            @include mobile {
+                                margin-bottom: 8px;
+                            }
+                        }
+                    }
+                }
+
+                .curriculum-last-2 {
+                    @include tablet-to-desktop {
+                        >div:nth-child(2){
+                            flex-wrap: wrap;
+                            width: 500px;
+    
+                            >div {
+                                margin-bottom: 20px;
+                                min-width: 200px;
+                                width: fit-content;
+                            }
+                        }
+                    }
+                    @include mobile {
+                        >div:nth-child(2) {
+                            flex-direction: column;
+                            >div {
+                                margin-bottom: 8px;
+                            }
+                        }
+                    }
+                }
+
+                .curriculum-last {
+                    @include tablet-to-desktop {
+                        position: absolute;
+                        top: 258px;
+                        >div:nth-child(2){
+                            flex-wrap: wrap;
+                            width: 400px;
+    
+                            >div {
+                                margin-bottom: 20px;
+                                width: 200px;
+                            }
+                        }
+                    }
+                    @include mobile {
+                        >div:nth-child(2) {
+                            flex-direction: column;
+                            >div {
+                                margin-bottom: 8px;
+                            }
+                        }
+                    }
+                }
+
+                .curriculum-location {
+                    display: flex;
+                    @include tablet-to-desktop {
+                        margin-bottom: 30px;
+
+                    }
+                    @include mobile {
+                        margin-bottom: 15px;
+                        flex-direction: column;
+                    }
+                    >div:nth-child(1){
+                        color: #454545;
+                        font-weight: bold;
+                        @include tablet-to-desktop{
+                            font-size: 1.5rem;
+                            width: 210px;
+                        }
+                        @include mobile {
+                            font-size: 1rem;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    >div:nth-child(2){
+                        display: flex;
+                        @include tablet-to-desktop {
+                            margin-left: 80px;
+                        }
+                        @include mobile {
+                            
+                        }
+                        .select-temp {
+                            margin-right: 3px;
+                            color: #505050;
+                            background-color: #FFFFFF;
+                            border: 1px solid #787878;
+                            border-radius: 3px;
+                            @include tablet-to-desktop {
+                                width: 130px;
+                                height: 38px;
+                            }
+                            @include mobile {
+                                width: 91px;
+                                height: 19px;
+                                font-size: 0.625rem;
+                                padding: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .arrow-container {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: #2F2F2F;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+    }
+
+    .arrow-left{
+        @include tablet-to-desktop {
+            top: 352px;
+            padding-left: 16px;
+        }
+        @include mobile {
+            top: 570px;
+            left: 0px;
+            padding-left: 16px;
+        }
+    }
+
+    .arrow-right{
+        @include tablet-to-desktop {
+            top: 352px;
+            right: 0;
+            padding-left: 20px;
+        }
+        @include mobile {
+            top: 570px;
+            left: 270px;
+            padding-left: 20px;
+        }
+    }
+
+    .display-none {
+        display: none !important;
+    }
+}
+
+.curriculum-school-search-dialog {
+    @include tablet-to-desktop {
+        max-width: 384px;
+        width: 384px;
+        height: 487px;
+    }
+    @include mobile {
+        max-width: 280px;
+        width: 280px;
+        height: 487px;
+    }
+
+    >.modal-content{
+        background-color: #FFFFFF00 !important;
+        box-shadow: unset !important;
+    }
+
+    .curriculum-school-search-modal {
+        background-color: #FFFFFF;
+        align-self: center;
+        position: relative;
+        
+        width: 100%;
+        height: 100%;
+
+        .school-search-header {
+            position: relative;
+            width: 100%;
+            background-color: #2F2F2F;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @include tablet-to-desktop{
+                height: 50px;
+                font-size: 1.125rem;
+            }
+            @include mobile {
+                height: 37px;
+                font-size: 0.875rem;
+            }
+
+            >div{
+                position: absolute;
+                border-radius: 50%;
+                border: 2px solid #FFFFFF;
+                cursor: pointer;
+                @include set-item-center();
+
+                @include tablet-to-desktop{
+                    right: 10px;
+                    width: 20px;
+                    height: 20px;
+                    >img {
+                        width: 8px;
+                        height: 8px;
+                    }
+                }
+                @include mobile{
+                    right: 10px;
+                    width: 20px;
+                    height: 20px;
+                    >img {
+                        width: 8px;
+                        height: 8px;
+                    }
+                }
+            }
+        }
+
+        .school-search-content {
+            display: flex;
+            flex-direction: column;
+
+            >div:nth-child(1){
+                border-bottom: 1px solid black;
+                padding-bottom: 10px;
+                color: #ADADAD;
+                @include tablet-to-desktop {
+                    font-size: 1rem;
+                }
+                @include mobile {
+                    font-size: 0.875rem;
+                }
+            }
+
+            >div:nth-child(2){
+                display: flex;
+                margin-top: 10px;
+                >input{
+                    flex: 2;
+                    outline: none;
+                    margin-right: 10px;
+                }
+                >button{
+                    flex: 1;
+                    display: inline-flex;
+                    color: white;
+                    font-weight: bold;
+                    outline: unset;
+                    border-radius: 4px;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    background: $topolar;
+                    max-width: 70px;
+                }
+            }
+
+            >div:nth-child(3) {
+                height: 300px;
+                overflow: scroll;
+                .school-option {
+                    background-color: #F7F7F7;
+                    border-radius: 5px;
+                    padding: 5px;
+                    width: 100%;
+                    margin-bottom: 10px;
+                    cursor: pointer;
+                    // >div:nth-child(1){
+                    //     font-size: 0.875rem;
+                    // }
+                    // >div:nth-child(2){
+                    //     font-size: 0.75rem;
+                    // }
+                }
+            }
+
+            @include tablet-to-desktop {
+                margin: 20px 30px;
+                >div:nth-child(3){
+                    margin-top: 25px;
+
+                    .school-option{
+                        >div:nth-child(1){
+                            font-size: 0.875rem;
+                        }
+                        >div:nth-child(2){
+                            font-size: 0.75rem;
+                        }
+                    }
+                }
+            }
+            @include mobile {
+                margin: 10px 15px;
+                >div:nth-child(3){
+                    margin-top: 15px;
+
+                    .school-option{
+                        >div:nth-child(1){
+                            font-size: 0.75rem;
+                        }
+                        >div:nth-child(2){
+                            font-size: 0.625rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

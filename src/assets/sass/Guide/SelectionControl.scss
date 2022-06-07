@@ -1,0 +1,475 @@
+@import '../mixin';
+@import '../variable';
+
+@function border-pipeline ($transition_duration, $pipe) {
+    @return $transition_duration*$pipe;
+}
+
+@mixin border-animation($dimension, $easing ,$pipe) {
+    transition: 100ms $dimension $easing border-pipeline(100ms,$pipe);
+}
+
+// size = checkbox size, fontsize = text font size, marginleft = text margin left
+@mixin checkbox-size ($size, $fontsize, $marginleft) {
+    @include set-item-center();
+    flex-direction: row-reverse;
+    position: relative;
+    width: fit-content;
+    cursor: pointer;
+
+    >input {
+        display: none;
+
+        &:checked + .checkbox-label {
+            background-color: $tb40;
+            border: unset;
+
+            .checkbox-label-inner {
+                //background-image: url("../../../guideComponents/Imgs/checkTemp.svg"); //temparary check image as svg
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100% 100%;
+            }
+
+            &::before,
+            &::after,
+            .checkbox-label-inner::before,
+            .checkbox-label-inner::after {
+                display: none;
+            }
+        }
+    }
+
+    >.checkbox-label {
+        display: flex;
+        width: $size;
+        height: $size;
+        cursor: pointer;
+        border: 2px solid $grey40;
+        border-radius: 2px;
+        margin-bottom: 0;
+        position: relative;
+        
+        background-size: 200% 200%;
+        background-position: right;
+        transition: background-position 0.5s;
+
+        .checkbox-label-inner {
+            width: $size * 0.73;
+            height: $size * 0.558;
+            margin: auto;
+        }
+
+        &::before {
+            position: absolute; 
+            width: 0; 
+            height:2px; 
+            content: ''; 
+            background: $tb40;
+            top:-2px; 
+            left:-2px; 
+            @include border-animation( width, ease, 3);
+        }
+
+        &::after {
+            position: absolute; 
+            width: 2px; 
+            height:0; 
+            content: ''; 
+            background: $tb40;
+            top:-2px; 
+            right:-2px; 
+            @include border-animation( height, ease, 3);
+        }
+
+        &:hover {
+            &::before {
+                width: $size;
+                @include border-animation(width, ease, 0);
+            }
+
+            &::after {
+                height: $size;
+                @include border-animation(height, ease, 1);
+            }
+
+            .checkbox-label-inner::after {
+                width: $size;
+                @include border-animation(width, ease, 2);
+            }
+
+            .checkbox-label-inner::before {
+                height: $size;
+                @include border-animation(height, ease, 3);
+            }
+        }
+
+        >.checkbox-label-inner {
+            &::after {
+                position: absolute; 
+                width: 0; 
+                height:2px; 
+                content: ''; 
+                background: $tb40; 
+                bottom:-2px; 
+                right: -2px;
+                @include border-animation( width, ease, 1);
+            }
+
+            &::before {
+                position: absolute; 
+                width: 2px; 
+                height:0;
+                content: ''; 
+                background: $tb40; 
+                bottom:-2px; 
+                left: -2px; 
+                @include border-animation( height, ease, 0); 
+            }
+        }
+    }
+
+    >.checkbox-text {
+        margin-left: $marginleft;
+        font-size: $fontsize;
+        &:hover ~ .checkbox-label{
+            &::before {
+                width: $size;
+                @include border-animation(width, ease, 0);
+            }
+
+            &::after {
+                height: $size;
+                @include border-animation(height, ease, 1);
+            }
+
+            .checkbox-label-inner::after {
+                width: $size;
+                @include border-animation(width, ease, 2);
+            }
+
+            .checkbox-label-inner::before {
+                height: $size;
+                @include border-animation(height, ease, 3);
+            }
+        }
+    }
+}
+
+.checkbox-container-large {
+    @include checkbox-size(24px, 23px, 12px);
+}
+
+.checkbox-container-medium {
+    @include checkbox-size(20px, 15px, 8px);
+}
+
+.checkbox-container-small {
+    @include checkbox-size(16px, 13px, 8px)
+}
+
+// size = radio button size, fontsize = text font size, marginleft = text margin left, paddingcenter = checked circle's padding
+@mixin radio-size($size, $fontsize, $marginleft, $paddingcenter) {
+    @include set-item-center();
+    flex-direction: row-reverse;
+    position: relative;
+    width: fit-content;
+
+    >input {
+        display: none;
+        cursor: pointer;
+
+        &:checked + .radio-label {
+            border: 2px solid $tb40;
+            >.radio-label-inner {
+                position: absolute;
+                width: $size - 4px - 2*$paddingcenter;
+                height: $size - 4px  -2*$paddingcenter;
+                top: $paddingcenter;
+                left: $paddingcenter;
+                border-radius: 100%;
+                border: none;
+                background-color: $tb40;
+                display: flex;
+                align-self: center;
+            }
+        }
+    }
+
+    >.radio-label {
+        display: block;
+        width: $size;
+        height: $size;
+        cursor: pointer;
+        border: 2px solid $grey40;
+        border-radius: 100%;
+        margin-bottom: 0;
+        position: relative;
+
+        &::before,
+        &::after {
+            position: absolute;
+            width: $size;
+            height: $size;
+            content: '';
+            top:-2px; 
+            left:-2px; 
+            border-radius: 100%;
+        }
+
+        &::before {
+            border: 2px solid transparent;
+        }
+
+        &::after {
+            border: 0 solid transparent;
+        }
+
+        &:hover {
+            &::before {
+                border-top-color: $tb40;
+                border-right-color: $tb40;
+                border-bottom-color: $tb40;
+
+                transition: 
+                border-top-color 0.15s linear, // Stagger border appearances
+                border-right-color 0.15s linear 0.10s,
+                border-bottom-color 0.15s linear 0.20s;
+            }
+
+            &::after {
+                border-top: 2px solid $tb40; // Shows border
+                border-left-width: 2px; // Solid edges, invisible borders
+                border-right-width: 2px; // Solid edges, invisible borders
+                transform: rotate(270deg); // Rotate around circle
+                transition:
+                transform 0.4s linear 0s,
+                border-left-width 0s linear 0.35s; // Solid edge post-rotation
+            }
+        }
+    }
+
+    >.radio-text {
+        margin-left: $marginleft;
+        font-size: $fontsize;
+        cursor: pointer;
+
+        &:hover ~ .radio-label{
+            &::before {
+                border-top-color: $tb40;
+                border-right-color: $tb40;
+                border-bottom-color: $tb40;
+
+                transition: 
+                border-top-color 0.15s linear, // Stagger border appearances
+                border-right-color 0.15s linear 0.10s,
+                border-bottom-color 0.15s linear 0.20s;
+            }
+
+            &::after {
+                border-top: 2px solid $tb40; // Shows border
+                border-left-width: 2px; // Solid edges, invisible borders
+                border-right-width: 2px; // Solid edges, invisible borders
+                transform: rotate(270deg); // Rotate around circle
+                transition:
+                transform 0.4s linear 0s,
+                border-left-width 0s linear 0.35s; // Solid edge post-rotation
+            }
+        }
+    }
+}
+
+.radio-container-large {
+    @include radio-size(24px, 23px, 12px, 3px);
+}
+
+.radio-container-medium {
+    @include radio-size(20px, 15px, 8px, 2px);
+}
+
+.radio-container-small {
+    @include radio-size(16px, 13px, 8px, 2px);
+}
+
+// size = toggle circle size (height&width), height = toggle layer height
+@mixin toggleswitch-size($size, $height) {
+    @include set-item-center();
+    position: relative;
+    width: fit-content;
+
+    >.toggleswitch {
+        margin: auto;
+        height: $size;
+        position: relative;
+
+        >input {
+            position: relative;
+            width: $size + $height;
+            height: $size;
+            opacity: 0;
+            z-index: 3;
+            cursor: pointer;
+    
+            &:checked + .knob::before {
+                left: $height;
+                background-color: $tb40;
+            }
+    
+            &:checked ~ .layer {
+                background-color: $tb40;
+            }
+        }
+    
+        >.knob {
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            transition: 0.3s ease all;
+    
+            &::before {
+                position: absolute;
+                content: '';
+                width: $size;
+                height: $size;
+                background-color: $white;
+                border-radius: 50%;
+                top: 0;
+                left: 0;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+                transition: 0.3s ease all;
+            }
+        }
+    
+        >.layer {
+            border-radius: 100px;
+            position: absolute;
+            top: ($size - $height)/2;
+            left: 0;
+            width: $size + $height;
+            height: $height;
+            z-index: 1;
+            background-color: $grey40;
+            opacity: 0.2;
+            transition: 0.3s ease all;
+        }
+    }
+}
+
+.toggleswitch-container-large {
+    @include toggleswitch-size(24px, 16px);
+}
+
+.toggleswitch-container-medium {
+    @include toggleswitch-size(20px, 16px);
+}
+
+.toggleswitch-container-small {
+    @include toggleswitch-size(16px, 10px);
+}
+
+// height = toggle layer height, width = toggle layer width
+@mixin toggleswitch-bordered-size($height, $width){
+    @include set-item-center();
+    position: relative;
+    width: fit-content;
+
+    >.toggleswitch {
+        margin: auto;
+        height: $height;
+        position: relative;
+
+        >input {
+            position: relative;
+            width: $width;
+            height: $height;
+            opacity: 0;
+            z-index: 3;
+            cursor: pointer;
+    
+            &:checked + .knob::before {
+                left: $width - $height + 2px;
+            }
+    
+            &:checked ~ .layer {
+                background-color: $tb40;
+
+                >.on {
+                    display: block;
+                }
+
+                >.off {
+                    display: none;
+                }
+            }
+        }
+    
+        >.knob {
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            transition: 0.3s ease all;
+    
+            &::before {
+                position: absolute;
+                content: '';
+                width: $height - 4px;
+                height: $height - 4px;
+                background-color: $white;
+                border-radius: 50%;
+                top: 2px;
+                left: 2px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+                transition: 0.3s ease all;
+            }
+        }
+    
+        >.layer {
+            border-radius: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: $width;
+            height: $height;
+            z-index: 1;
+            background-color: $grey40;
+            transition: 0.3s ease all;
+            color: $white;
+            font-size: 12px;
+            line-height: 1.3em;
+            padding: 0 7px;
+
+            >.on {
+                position: absolute;
+                left: 7px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: none;
+            }
+
+            >.off {
+                position: absolute;
+                right: 7px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+}
+
+.toggleswitch-bordered-container-large {
+    @include toggleswitch-bordered-size(32px, 72px)
+}
+
+.toggleswitch-bordered-container-medium {
+    @include toggleswitch-bordered-size(32px, 72px)
+}
+
+.toggleswitch-bordered-container-small {
+    @include toggleswitch-bordered-size(24px, 56px)
+}

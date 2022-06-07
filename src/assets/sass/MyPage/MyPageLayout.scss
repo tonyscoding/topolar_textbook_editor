@@ -1,0 +1,346 @@
+@import '../mixin';
+@import '../variable';
+
+.#{$mypage-pre}body {
+    >div {
+        width: 100%;
+        >.#{$mypage-pre}{
+            &header {
+                >span{
+                    font-weight: 700;
+                }
+                @include tablet-to-desktop {
+                    text-align: center;
+                    padding-bottom: 50px;
+        
+                }
+                @include mobile {
+                    text-align: left;
+                    padding-bottom: 12px;
+                }
+            }
+
+            &curriculum {
+                border: 1px solid $tb40;
+                border-radius: 8px;
+                width: 100%;
+                background-color: $white;
+                @include mobile {
+                    display: none;
+                    height:auto;
+                    max-height:560px;
+                }
+
+                &.curriculum-none{
+                    @include flex-center-center();
+                    @include mobile{ display: none; }
+                    
+                    >.title-none{
+                        @include subhead-2();
+                        margin-bottom:20px;
+                    }
+                    >.curriculum-search{
+                        @include body-1();
+                        border-radius: 8px;
+                        border: 1px solid $tb;
+                        color: $tb;
+                        width:250px;
+                        height: 48px;
+                        cursor: pointer;
+                        @include set-item-center();
+                    }
+                }
+
+                hr{
+                    margin-top: 8px; 
+                    border-color: $grey20;
+                }
+                .user-name{
+                    font-weight: bold;
+                }
+                >.title{
+                    @include subhead-1();
+                    padding-left: 30px;
+                    padding-right: 24px;
+                    display: flex;
+                    >.curriculum-badge{
+                        color:$colorFF;
+                        @include body-1();
+                        border-radius: 8px;
+                        background-color: #0F39DF;
+                        @include set-item-center();
+                        margin-left:7px;
+                        width:80px;
+                        height:32px;
+                        @include mobile {
+                            width:53px;
+                            height:23px;
+                        }
+                    }
+                    @include mobile {
+                        padding:12px;
+                        align-items:center;
+                    }
+                }
+                >.contents{
+
+                    padding: 30px;
+                    display: flex;
+                    height: 100%;
+
+                    @include mobile {
+                        padding: 12px;
+                        flex-direction: column;
+                        .expand-btn{
+                            @include set-item-center();
+                            margin-top:8px;
+                            bottom:0px;
+                        }
+                    }
+                    .contents-mobile{
+                        flex:1;
+                        .textbook-browser{
+                            padding-top:12px;
+                        }
+                    }
+
+                    >.textbook-browser{
+                        padding-right:96px;
+                        .textbook-title{
+                            cursor:auto;
+                        }
+                    }
+
+                    >.progress-card{
+                        padding-top:12px;
+                        margin-right:44px;
+                        >.main-curriculum-components-curriculum-detail-card{
+                            width:480px;
+                            position: relative ;
+                            top: 0px;
+                            >.detail-body{
+                                padding:16px;
+                                >div:nth-child(3){
+                                    @include subhead-2;
+                                    font-weight: 700;
+                                }
+                            }
+                        }
+
+                        .progress-box{
+                            background-color: $grey10;
+                            border-radius: 8px;
+                            padding : 0px 20px;
+                            padding-top:27px;
+                            padding-bottom:21px;
+                            height:222px;
+                            >.progress-box-indicator{
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-end;
+                                position:absolute;
+                                height:127px;
+                                transition: width 0.6s ease;
+                                width:15%;
+                                >.progress-box-speech{
+                                    background-color: $grey90;
+                                    width:max-content;
+                                    padding: 0 6px;
+                                    height:27px;
+                                    border-radius: 8px;
+                                    color:$colorFF;
+                                    position:absolute;
+                                    left:0;
+                                    transition: left 0.6s ease;
+                                    @include caption;
+                                    @include set-item-center();
+                                }
+                                >.progress-box-speech-indicator{
+                                    margin-top:27px;
+                                    width: 20px;
+                                    margin-right: 25px;
+                                    height: 8px;
+                                    overflow: hidden;
+                                    position: relative;   
+                                    transition: background-color .3s;
+                                    >div{
+                                        position:absolute;
+                                        top: 0; left: 0;
+                                        width: 100%; height: 100%;
+                                        background-color: $grey90;
+                                        transform-origin: 100% 0;
+                                        transform: rotate(60deg) skewX(30deg); 
+                                    }
+                                }
+                                >.progress-box-tony{
+                                    width:67px;
+                                    height:77px;
+                                    margin-top:15px;
+                                    
+                                    @include mobile {
+                                        width:44px;
+                                        height:38px;
+                                    }
+                                }
+                            }
+                            >.progress-box-bar{
+                                display: flex;
+                                margin: 8px 0px;
+                                margin-top:142px;
+                                border-radius: 5px;
+                                height:10px;
+                                width:401px;
+                                border:1px solid $tb;
+                                >div{
+                                    background-color: $tb;
+                                    border-radius: 5px;
+                                    height:10px;
+                                    @include mobile {
+                                        height:6px;
+                                    }
+                                }
+                                transition: width 0.6s ease;
+                                @include mobile {
+                                    width:250px;
+                                    height:6px;
+                                }
+                            }
+                            >.progress-box-text{
+                                @include body-2;
+                                @include set-item-center();
+                            }
+                        }
+                        @include mobile {
+                            padding: unset;
+                        }
+                    }
+                }
+        
+                @include tablet-to-desktop {
+                    height: 600px;
+                    padding-top: 30px;
+                    padding-bottom: 30px;
+                }
+            }
+
+
+            &main {
+                display: flex;
+                >div:nth-child(2){
+                    width: 100%;
+                }
+
+                @include tablet-to-desktop {
+                    margin-top: 40px;
+                    @include gap-sub(40px);
+                    .#{$mypage-pre}sidebar {
+                        width: 290px;
+                        min-width: 290px;
+                        max-width: 290px;
+                        height: 500px;
+                        border: 1px solid $grey30;
+                        border-radius: 8px;
+                        padding: 30px 20px;
+                        background-color: $white;
+            
+                        .nav-container {
+                            margin: 20px 0 0 10px;
+            
+                            >div {
+                                width: fit-content;
+                                cursor: pointer;
+                                color: $grey90;
+                                margin-bottom: 20px;
+            
+                                &.active {
+                                    color: $tb40;
+                                }
+                            }
+                        }
+
+                        >.button-container{
+                            >button{
+                                animation: freetiralblink 2s infinite;
+                            }
+                        }
+                    }
+                }
+                @include mobile {
+                    flex-direction: column;
+                    .#{$mypage-pre}sidebar {
+                        background-color: transparent;
+                        margin-bottom: 12px;
+                        border-bottom: 1px solid $grey30;
+    
+                        >.button-container{
+                            margin: 16px 20px;
+                            >button{
+                                animation: freetiralblink 1s 1s infinite;
+                            }
+                        }
+                    }
+                }
+    
+                .#{$mypage-pre}content-body {
+                    display: flex;
+                    flex-direction: column;
+                    @include tablet-to-desktop {
+                        @include gap-sub(20px, column);
+                    }
+                    @include mobile {
+                        @include gap-sub(10px, column);
+                    }
+
+                    >.#{$mypage-pre}content-card {
+                        border: 1px solid $grey30;
+                        background-color: $white;
+                        border-radius: 8px;
+
+                        @include tablet-to-desktop {
+                            width: 950px;
+                        }
+
+                        @include mobile {
+                            width: 100%;
+                        }
+
+                        .#{$mypage-pre}content-tab-container,
+                        .#{$mypage-pre}content-header {
+                            border-bottom: 1px solid $grey30;
+                            @include tablet-to-desktop{
+                                padding: 25px 30px;
+                            }
+                            @include mobile {
+                                padding: 12px 10px;
+                            }
+                        }
+
+                        .#{$mypage-pre}content-header {
+                            color: $grey90;
+                            @include tablet-to-desktop {
+                                @include subhead-1-fix;
+                                font-weight: 700;
+                            }
+                            @include mobile {
+                                @include body-1-fix;
+                                font-weight: 700;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include keyframe(freetiralblink){
+    0% { 
+        background-color: #00C1D4;
+    }
+    50% { 
+        background-color: #00C1D400;
+        color: #00C1D4;
+        border: 1px solid #00C1D4;
+    }
+    100%{ background-color: #00C1D4; }
+}

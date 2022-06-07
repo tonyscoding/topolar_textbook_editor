@@ -1,0 +1,50 @@
+.modal-lg {
+    max-width: 800px;
+}
+.modal-lg .fc-time-grid .fc-slats td {
+    height: 0.5em;
+    border-bottom: 0;
+}
+
+.modal-lg .fc-body table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.5em;
+    line-height: 1.0;
+}
+.modal-lg .fc-day-grid .fc-bg .fc-enabled:hover{
+    background:lightblue;
+    cursor: pointer;
+}
+
+.modal-lg .fc-content-skeleton .fc-other-month{
+    opacity: 0.6
+}
+
+.fc-holiday{
+    background:#fd7e14;
+    opacity: 0.2;
+    color:red;
+}
+
+.fc-slats, /*horizontals*/
+.fc-content-skeleton, /*day numbers*/
+.fc-bgevent-skeleton /*events container*/{
+    pointer-events:none
+}
+
+
+
+/*Turn pointer events back on*/
+.fc-bgevent,
+.fc-event-container{
+    pointer-events:auto; /*events*/
+}
+
+.fc-sun { 
+    color:red;
+}
+
+.existing{
+    cursor: auto;
+}

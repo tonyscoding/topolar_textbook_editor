@@ -1,0 +1,130 @@
+@import '../_mixin';
+@import '../_variable';
+
+.guide-tooltip-container {
+    position: absolute;
+    margin: 0 !important;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    &.hide {
+        display: none;
+        z-index: 0;
+    }
+
+    &.black {
+        .guide-tooltip {
+            background: $grey90;
+            color: $white;
+        }
+
+        .guide-tooltip-arrow {
+            &.right {
+                border-right: 8px solid $grey90;
+            }
+    
+            &.bottom {
+                border-bottom: 8px solid $grey90;
+            }
+    
+            &.left {
+                border-left: 8px solid $grey90;
+            }
+    
+            &.top {
+                border-top: 8px solid $grey90;
+            }
+        }
+    }
+    &.white {
+        .guide-tooltip {
+            background-color: $white;
+            color: $grey60;
+        }
+
+        .guide-tooltip-arrow {
+            &.right {
+                border-right: 8px solid $white;
+            }
+    
+            &.bottom {
+                border-bottom: 8px solid $white;
+            }
+    
+            &.left {
+                border-left: 8px solid $white;
+            }
+    
+            &.top {
+                border-top: 8px solid $white;
+            }
+        }
+    }
+    .guide-tooltip {
+        @include caption;
+        box-shadow: 0px 4px 8px #00000029;
+        border-radius: 4px;
+        padding: 4px 8px;
+        width: max-content;
+        max-width: 400px;
+        position: absolute;
+        &.right {
+            top: 50%;
+            left: 8px;
+            transform: translate(0, -50%);
+        }
+        &.bottom {
+            left: 50%;
+            top: 8px;
+            transform: translate(-50%, 0);
+        }
+
+        &.left {
+            top: 50%;
+            transform: translate(0, -50%);
+            left: -8px;
+        }
+        &.top {
+            left: 50%;
+            top: -8px;
+            transform: translate(-50%, 0);
+        }
+    }
+    
+    .guide-tooltip-arrow {
+        position: absolute;
+        width: 0;
+        height: 0;
+
+        &.right {
+            top: 50%;
+            transform: translate(0,-50%);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        &.bottom {
+            transform: translate(-50%,0);
+            left: 50%;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+        }
+
+        &.left {
+            top: 50%;
+            right: 0;
+            transform: translate(0,-50%);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        &.top {
+            transform: translate(-50%,0);
+            left: 50%;
+            bottom: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+        }
+    }
+    
+}

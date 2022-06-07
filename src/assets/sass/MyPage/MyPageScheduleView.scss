@@ -1,0 +1,156 @@
+@import '../mixin';
+
+.mypage-schedule-view-container{
+    .mypage-component-base-card-header{
+        @include mobile { display: none !important;}
+    }
+
+    .schedule-view-body{
+        @include tablet-to-desktop{
+            height: 930px;
+            padding: 40px 10px;
+        }
+        @include mobile{
+            height: auto;
+            padding: 20px 10px 0 10px;
+        }
+        display: flex;
+
+        >div>.calendar-description{
+            @include tablet-to-desktop{
+                padding-left: 25px;
+            }
+            @include mobile{
+                padding-left: 13px;
+                display: none;
+            }
+            color: $grey60;
+            font-size: 10px;
+            >div{
+                display: flex;
+                align-items: center;
+                &[class=today]{
+                    &::before{
+                        content: "";
+                        display: inline-block;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        background-color: $tb40;
+                    }
+                }
+                &[class=select]{
+                    &::before{
+                        content: "";
+                        display: inline-block;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        background-color: white;
+                        border: 1px solid $tb40;
+                    }
+                }
+            }
+            >div + div{
+                margin-top: 13px;
+            }
+        }
+
+        .schedule-view-list{
+            @include mobile{display: none;}
+            width: 100%;
+            border-left: 1px solid $grey30;
+            margin: -40px 0;
+            overflow-y: scroll;
+            padding: 40px 0 0 10px;
+
+            &::-webkit-scrollbar-thumb{
+                background: $grey30 !important;
+            }
+
+            >div+div{
+                margin-top: 12px;
+            }
+
+            >div:last-child{
+                margin-bottom: 12px;
+            }
+
+            .no-schedule {
+                @include set-item-center();
+                color: $grey90;
+                @include body-1-fix;
+            }
+        }
+
+    }
+
+    >.schedule-view-list-mobile{
+        @include tablet-to-desktop{ display: none;}
+
+        .no-schedule {
+            @include set-item-center();
+            color: $grey90;
+            @include body-2-fix;
+        }
+        
+    }
+}
+
+.detailed-schedule-card{
+    @include mobile{
+        margin-top: 10px;
+    }
+    width: 100%;
+    border: 1px solid $grey30;
+    border-radius: 8px;
+    padding: 12px;
+    background-color: white;
+    >div:nth-child(1){
+        @include body-2-fix;
+        color: $grey90;
+    }
+    >div:nth-child(2){
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        @include body-2-fix;
+        color: $grey60;
+        >div:nth-child(1){
+            display: flex;
+            align-items: center;
+            &::before{
+                content: "";
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background-color: #B45EFF;
+                margin-right: 6px;
+            }
+        }
+        >button{
+            width: 60px;
+            height: 26px;
+            cursor: default !important;
+            font-size: 12px;
+            white-space: nowrap;
+            &:hover{
+                background-color: unset !important;
+            }
+
+            &.AT{
+                border: 1px solid #53C366;
+                color: #4CAF50;
+            }
+            &.AB{
+                border: 1px solid #F44336;
+                color: #F44336;
+            }
+            &.CR{
+                border: 1px solid #2196F3;
+                color: #2196F3;
+            }
+        }
+    }
+}

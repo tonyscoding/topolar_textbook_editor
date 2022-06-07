@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="51" viewBox="0 0 52 51">
+  <defs>
+    <filter id="Selectbox.BG" x="0" y="0" width="52" height="51" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="그룹_10650" data-name="그룹 10650" transform="translate(-1210 -2857)">
+    <g id="그룹_10378" data-name="그룹 10378" transform="translate(920 2576)">
+      <g transform="matrix(1, 0, 0, 1, 290, 281)" filter="url(#Selectbox.BG)">
+        <rect id="Selectbox.BG-2" data-name="Selectbox.BG" width="22" height="21" rx="4" transform="translate(15 15)" fill="#1db4b4"/>
+      </g>
+    </g>
+    <g id="그룹_10541" data-name="그룹 10541" transform="translate(-465.889 2189)">
+      <path id="패스_6133" data-name="패스 6133" d="M1706.084,696.2v.007l.132.131a1.329,1.329,0,0,1,0,1.882h0a1.329,1.329,0,0,1-1.879,0l-.138-.138a4.674,4.674,0,0,1-.885.366v.194a1.329,1.329,0,0,1-1.329,1.329h0a1.329,1.329,0,0,1-1.329-1.329v-.194a4.678,4.678,0,0,1-.885-.366l-.138.138a1.329,1.329,0,0,1-1.88,0h0a1.329,1.329,0,0,1,0-1.882l.132-.131V696.2a4.673,4.673,0,0,1-.366-.885h-.194a1.329,1.329,0,0,1-1.329-1.329v0a1.329,1.329,0,0,1,1.329-1.329h.194a4.671,4.671,0,0,1,.366-.885l-.138-.138a1.329,1.329,0,0,1,0-1.879h0a1.329,1.329,0,0,1,1.882,0l.131.132h.006a4.682,4.682,0,0,1,.885-.366v-.194a1.329,1.329,0,0,1,1.329-1.329h0a1.329,1.329,0,0,1,1.329,1.329v.194a4.678,4.678,0,0,1,.885.366h.007l.131-.132a1.329,1.329,0,0,1,1.882,0h0a1.329,1.329,0,0,1,0,1.879l-.137.138a4.7,4.7,0,0,1,.366.885h.194a1.329,1.329,0,0,1,1.329,1.329v0a1.329,1.329,0,0,1-1.329,1.329h-.194a4.7,4.7,0,0,1-.366.885v.007" transform="translate(0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <circle id="타원_72" data-name="타원 72" cx="2" cy="2" r="2" transform="translate(1699.889 692)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

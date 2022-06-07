@@ -1,0 +1,177 @@
+.table th, .table td {
+    border-top: none;
+}
+
+.card-body > .react-bootstrap-table .table {
+    color: #ACACAC;
+    box-shadow: none
+}
+
+.card-body > div > .react-bootstrap-table .table {
+    color: #ACACAC;
+    box-shadow: none
+}
+
+.react-bootstrap-table .table {
+    color: #ACACAC;
+    background-color: #2C2C2C;
+    box-shadow: 0 0 30px #00000066;
+}
+
+
+/* THEAD */
+.table thead tr {
+    height: 54px;
+}
+
+.table thead th {
+    vertical-align: middle;
+    border-bottom: none;
+}
+
+.react-bootstrap-table thead {
+    background-color: #1F1F1F;
+}
+
+/* TBODY */
+.react-bootstrap-table tbody {
+    background-color: #2C2C2C;
+}
+
+.table tbody tr {
+   height: 65px;
+   border-bottom: 1px solid #262626;
+}
+
+.table tbody td {
+    text-align: -webkit-center;
+}
+
+.react-bootstrap-table-page-btns-ul li {
+    padding-right: 0.5rem;
+    font-size: 12px;
+}
+
+.react-bootstrap-table-pagination-total {
+    padding-left: 0.75rem;
+    font-size: 12px;
+}
+
+.page-item.active .page-link {
+    background-color: #1F1F1F;
+    border-radius: 3px;
+    border-color: #1F1F1F;
+    color: #5D5D5D;
+}
+
+.page-link {
+    padding: 0.3rem 0.3rem;
+    background-color: #262626;
+    border-radius: 3px;
+    border-color: #262626;
+    color: #5D5D5D;
+}
+
+.padding-0 {
+    padding: 0px;
+}
+
+/* REACTSTRAP CUSTOM INPUT */
+.black-input, .black-input:focus {
+    background-color: #000000;
+    border-color: #000000;
+    color: white;
+    -webkit-appearance: none;
+    background-image: url('../root_img/CardComponent/Dropdown.svg');
+    background-repeat: no-repeat;
+    background-position-x: 97%;
+    background-position-y: center;
+    border: 1px solid #000000;
+    border-radius: unset;
+    min-width: 100px;
+}
+
+.grey-input-dropdown, .grey-input-dropdown:focus {
+    background-color: #606060;
+    border-color: #606060;
+    color: #fff;
+    -webkit-appearance: none;
+    background-image: url('../root_img/CardComponent/Dropdown.svg');
+    background-repeat: no-repeat;
+    background-position-x: 97%;
+    background-position-y: center;
+    border: 1px solid #000000;
+    border-radius: unset;
+    min-width: 100px;
+}
+
+.grey-input, .grey-input:focus {
+    background-color: #606060;
+    border-color: #606060;
+    color: #fff;
+    -webkit-appearance: none;
+    background-image: url('../root_img/CardComponent/edit-icon.svg');
+    background-repeat: no-repeat;
+    background-position-x: 90%;
+    background-position-y: center;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    border: 1px solid #606060;
+}
+
+.grey-input::-webkit-calendar-picker-indicator {
+    background: transparent;
+}
+
+/* CUSTOM DATE PICKER */
+.custom-datepicker > div > input, .custom-datepicker > div > input:focus {
+    background-color: #000000;
+    border-color: #000000;
+    color: white;
+    -webkit-appearance: none;
+    background-image: url('../root_img/CardComponent/Dropdown.svg');
+    background-repeat: no-repeat;
+    background-position-x: 97%;
+    background-position-y: center;
+    cursor: pointer;
+}
+
+.padding-75rem {
+    padding: 0.75rem;
+}
+
+.competition-table tbody {
+    color: #D4D4D4;
+}
+
+.competition-table tbody tr {
+    border-bottom: 1px solid #1F1F1F;
+}
+
+
+
+.competition-table tbody .row-expansion-style * > * {
+    background-color: unset !important; 
+}
+
+.competition-table .text-left h2, .competition-table .text-left h1 {
+    padding-inline-start: 40px;
+    color: #FAFAFA;
+}
+
+.competition-table .text-left li {
+    line-height: 25px;
+}
+
+
+.competition-table .text-left li a {
+    font-size: 1rem;
+    color: #F6FF00;
+    text-decoration: underline;
+    opacity: 0.95;
+}
+
+.competition-table .text-left li a:hover{
+    opacity: 0.6;
+}

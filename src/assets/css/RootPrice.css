@@ -1,0 +1,441 @@
+.root-price-body {
+    position: relative;
+    padding-bottom: 140px;
+}
+
+.root-price-body > * {
+    width: 100%;
+    word-break: keep-all;
+}
+
+.text-eng2 {
+    color: #919191;
+    line-height: 15px;
+    letter-spacing: -0.3px;
+}
+.text-short2 {
+    color: #5F5F5F;
+    line-height: 40px;
+    letter-spacing: -0.8px;
+    padding-top: 18px;
+}
+.text-long2 {
+    color: #575757;
+    /* line-height: 30px; */
+    letter-spacing: -0.5px;
+    padding-top: 36px;
+    text-align: center;
+}
+
+.p-s3-container {
+    margin-top: 36px;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    max-width: 1280px;
+}
+
+@media(min-width: 800px){
+    .root-price-button-temp{
+        max-width: 1280px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 22px;
+    }
+
+    .root-price-button-temp > div {
+        width: 620px;
+    }
+
+    .root-price-button-temp > div > button {
+        font-weight: 400;
+    }
+
+    .p-card {
+        width: 290px;
+        height: 599px;
+        background-color: #FEFFFE;
+        box-shadow: 0px 0px 60px #C1C1C129;
+        position: relative;
+    }
+
+    .type-eng {
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: -0.3px;
+        line-height: 15px;
+    }
+    
+    .type-kor {
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: -0.6px;
+        line-height: 30px;
+    }
+
+    .p-card-box {
+        position: absolute;
+        border-top: 1px solid #E7E7E7;
+        width: 90%;
+    }
+
+    .p-card-box.content1{
+        top: 97px;
+    }
+    
+    .p-card-box.content2{
+        top: 255px;
+    }
+    
+    .p-card-box.content3{
+        top: 362px;
+    }
+    
+    .p-card-tag.content4{
+        top: 481px;
+    }
+
+    .p-card-header {
+        margin-top: 12.5px;
+        color: #1DB4B4;
+        font-size: 12px;
+        letter-spacing: -0.3px;
+        line-height: 15px;
+        font-weight: bold;
+    }
+    
+    .p-card-content {
+        margin-top: 17px;
+        color: #505050;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        line-height: 24px;
+    }
+
+    .p-tag-header {
+        margin-top: 11.5px;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: -0.3px;
+        line-height: 15px;
+    }
+    
+    .p-tag-credit {
+        margin-top: 36px;
+        font-size: 26px;
+        font-weight: bold;
+        letter-spacing: -0.6px;
+        line-height: 24px;
+    }
+
+    .p-tag-price {
+        font-size: 16px;
+        letter-spacing: -0.4px;
+        line-height: 24px;
+        font-weight: 300;
+    }
+
+    .p-card-tag {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 119px;
+        background-color: #474747;
+        box-shadow: 0px 0px 60px #C1C1C129;
+    }
+
+    .p-tag-bg {
+        position: absolute;
+        left: 21.5px;
+        top: 13px;
+    }
+}
+
+@media(max-width: 799px){
+    .root-price-button-temp{
+        width: 320px;
+        display: flex;
+        justify-content: space-between;
+        margin: 22px auto 0 auto;
+    }
+
+    .root-price-button-temp > div {
+        width: 152px;
+    }
+
+    .root-price-button-temp > div > button {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .p-card {
+        width: 208px;
+        height: 461px;
+        background-color: #FEFFFE;
+        box-shadow: 0px 0px 60px #C1C1C129;
+        position: relative;
+    }
+
+    .type-eng {
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: -0.3px;
+        line-height: 15px;
+    }
+    
+    .type-kor {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: -0.6px;
+        line-height: 30px;
+    }
+
+    .p-card-box {
+        position: absolute;
+        border-top: 1px solid #E7E7E7;
+        width: 80%;
+    }
+
+    .p-card-box.content1{
+        top: 86px;
+    }
+    
+    .p-card-box.content2{
+        top: 194px;
+    }
+    
+    .p-card-box.content3{
+        top: 279px;
+    }
+    
+    .p-card-tag.content4{
+        top: 363px;
+    }
+
+    .p-card-header {
+        margin-top: 10px;
+        color: #1DB4B4;
+        font-size: 10px;
+        letter-spacing: -0.3px;
+        line-height: 15px;
+        font-weight: 700;
+    }
+    
+    .p-card-content {
+        margin-top: 10px;
+        color: #3F3F3F;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        line-height: 20px;
+    }
+
+    .p-tag-header {
+        margin-top: 11.5px;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: -0.3px;
+        line-height: 15px;
+    }
+    
+    .p-tag-credit {
+        margin-top: 18px;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: -0.6px;
+        line-height: 14px;
+    }
+
+    .p-tag-price {
+        font-size: 13px;
+        letter-spacing: -0.4px;
+        line-height: 24px;
+        font-weight: 100;
+        margin-top: 3px;
+    }
+
+    .p-card-tag {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 98px;
+        background-color: #474747;
+        box-shadow: 0px 0px 60px #C1C1C129;
+    }
+
+    .p-tag-bg > img {
+        height: 61px;
+    }
+
+    .p-tag-bg {
+        position: absolute;
+        left: 21.5px;
+        top: 19px;
+    }
+}
+
+.highlight-card {
+    background-color: #FFFDD1;
+}
+
+.p-card-container {
+    padding: 0 17px;
+}
+
+.p-card-type {
+    color: #1DB4B4;
+    padding-top: 14px;
+}
+
+.p-card-tag > div {
+    padding-right: 21px;
+    text-align: end;
+    color: #FFFFFF;
+}
+
+.s3-text {
+    width: 100%;
+    font-size: 14px;
+    color: #575757;
+    letter-spacing: -0.35px;
+    line-height: 17px;
+    text-align: center;
+    margin-bottom: 0px !important;
+}
+
+@media(min-width: 800px){
+    .s3-text{
+        margin-top: 20px !important;
+    }
+}
+
+@media(max-width: 799px){
+    .s3-text{
+        margin-top: 0;
+    }
+}
+
+.p-s4-container {
+    margin-top: 135px;
+    width: 100%;
+    height: 440px;
+    background-image: url('../root_img/Price/price_credit_bg.png');
+    background-size: 1280px 440px;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.p-s4-container > div {
+    padding-right: 35px;
+    text-align: end;
+    width: 100%;
+}
+
+.p-s4-s1 {
+    /* margin-top: 42px; */
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.p-s4-s2 {
+    /* margin-top: 103px; */
+    /* margin-bottom: 42.5px; */
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.s4-text1 {
+    font-size: 12px;
+    letter-spacing: -0.3px;
+    line-height: 15px;
+}
+.s4-text2 {
+    font-size: 32px;
+    letter-spacing: -0.8px;
+    margin-top: 8px;
+    line-height: 40px;
+}
+.s4-text3 {
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    margin-top: 11px;
+    line-height: 24px;
+}
+
+.s4-text4 {
+    letter-spacing: -0.6px;
+    line-height: 24px;
+    font-size: 24px;
+}
+
+.s4-text5 {
+    margin-top: 16px;
+    letter-spacing: -0.45px;
+    line-height: 30px;
+    font-size: 18px;
+}
+
+@media (min-width: 800px) {
+    .root-price-body {
+        width: 1280px;
+        margin: 0 auto;
+    }
+    
+}
+
+@media (max-width: 799px) {
+
+    .p-s3-container {
+        display: flex;
+        justify-content: space-evenly;
+        flex-flow: row wrap;
+    }
+
+    .p-s3-container > div {
+        margin-bottom: 32.5px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .p-s4-container {
+        height: 440px;
+        background-image: url('../root_img/Price/price_credit_bg.png');
+        background-size: cover;
+        background-position: 50% 75%;
+    }
+    
+    .s4-text1 {
+        font-size: 12px;
+        letter-spacing: -0.3px;
+        line-height: 15px;
+    }
+    .s4-text2 {
+        font-size: 25px;
+        letter-spacing: -0.8px;
+        margin-top: 8px;
+        line-height: 30px;
+    }
+    .s4-text3 {
+        font-size: 15px;
+        letter-spacing: -0.5px;
+        margin-top: 11px;
+        line-height: 20px;
+    }
+    
+    .s4-text4 {
+        letter-spacing: -0.6px;
+        line-height: 20px;
+        font-size: 20px;
+    }
+    .s4-text5 {
+        margin-top: 16px;
+        letter-spacing: -0.45px;
+        line-height: 24px;
+        font-size: 15px;
+    }
+}

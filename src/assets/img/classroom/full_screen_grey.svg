@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="51" viewBox="0 0 52 51">
+  <defs>
+    <filter id="Selectbox.BG" x="0" y="0" width="52" height="51" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="그룹_10653" data-name="그룹 10653" transform="translate(-1249 -2755)">
+    <g transform="matrix(1, 0, 0, 1, 1249, 2755)" filter="url(#Selectbox.BG)">
+      <rect id="Selectbox.BG-2" data-name="Selectbox.BG" width="22" height="21" rx="4" transform="translate(15 15)" fill="#464646"/>
+    </g>
+    <path id="패스_6137" data-name="패스 6137" d="M1473,1476.751v-2.5a1.25,1.25,0,0,1,1.25-1.25h2.5" transform="translate(-203 1303)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="패스_6138" data-name="패스 6138" d="M1486.751,1476.751v-2.5a1.25,1.25,0,0,0-1.25-1.25H1483" transform="translate(-206.748 1303)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="패스_6139" data-name="패스 6139" d="M1473,1483v2.5a1.25,1.25,0,0,0,1.25,1.25h2.5" transform="translate(-203 1299.251)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="패스_6140" data-name="패스 6140" d="M1486.751,1483v2.5a1.25,1.25,0,0,1-1.25,1.25H1483" transform="translate(-206.748 1299.251)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  </g>
+</svg>

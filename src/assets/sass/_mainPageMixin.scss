@@ -1,0 +1,239 @@
+@import './screenSizeMixin';
+@import './mixin';
+@import './variable';
+
+@mixin main-page-sub-banner($bgurl, $color, $solidcolor: false){
+    width: 100%;
+    color: $color;
+
+    @if $solidcolor{
+        background-color: $solidcolor;
+    } @else{
+        background: url('../root_img/MainBody/#{$bgurl}') center center / cover no-repeat;
+    }
+}
+
+@mixin main-page-banner($bgurl, $color){
+    width: 100%;
+    word-break: keep-all;
+    background: url('../root_img/#{$bgurl}') right center / cover no-repeat;
+    @include flex-align-center-column();
+
+    @include tablet-to-desktop{
+        .banner-content{
+            max-width: 1280px;
+            width: 100%;
+            padding-left: 10px;
+        }
+
+        .banner-content>div:nth-child(1){
+            margin-top: 185px;
+            margin-left: 5px;
+            height: 30px;
+            font-size: 1.125rem;
+            color: #FFFFFF;
+            background-color: $color;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-weight: lighter;
+            letter-spacing: 1px;
+            word-break: keep-all;
+        }
+
+        .banner-content>div:nth-child(2){
+            margin-top: 15px;
+            font-size: 3.75rem;
+            color: $color;
+            line-height: 75px;
+            letter-spacing: -2px;
+            width: fit-content;
+        }
+
+        .banner-content>div:nth-child(3){
+            font-size: 3.75rem;
+            color: $color;
+            line-height: 75px;
+            letter-spacing: -2px;
+            width: fit-content;
+        }
+
+        .banner-content>div:nth-child(4){
+            margin-top: 40px;
+            font-size: 1.25rem;
+            color: #4B4B4B;
+            line-height: 28px;
+            height: 85px;
+        }
+
+        .banner-content>div:nth-child(5){
+            width: 208px;
+            height: 46px;
+            margin-top: 60px;
+            font-size: 1.375rem;
+            color: #FFFFFF;
+            line-height: 28px;
+            border: 1px solid $color;
+            border-radius: 23px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .banner-content>div:nth-child(5):hover{
+            background-color: $color;
+            cursor: pointer;
+        }
+    }
+
+    @include mobile{
+        .banner-content{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .banner-content>div:nth-child(1){
+            width: fit-content;
+            padding: 0 15px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 13px;
+            color: #FFFFFF;
+            background-color: $color;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-weight: lighter;
+            letter-spacing: 0.5px;
+        }
+
+        .banner-content>div:nth-child(2){
+            margin-top: 10px;
+            font-size: 34px;
+            color: $color;
+            line-height: 40px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .banner-content>div:nth-child(3){
+            font-size: 34px;
+            color: $color;
+            line-height: 40px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .banner-content>div:nth-child(4){
+            margin-top: 16px;
+            text-align: center;
+            font-size: 14px;
+            color: #4B4B4B;
+            line-height: 20px;
+        }
+
+        .banner-content>div:nth-child(5){
+            display: none;
+        }
+    }
+}
+
+@mixin main-page-event-banner($bgurl, $color, $bgcolor){
+    position: relative;
+    width: 100%;
+    text-align: center;
+    @include flex-align-center-column();
+    div{
+        color: $color;
+    }
+
+    .banner-content {
+        position: absolute;
+        margin: 0 auto;
+        cursor: pointer;
+        color: #FFFFFF;
+        @include set-item-center();
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+    @include large-desktop {
+        background: url('../root_img/#{$bgurl}') center center / contain no-repeat !important;
+        background-color: $bgcolor !important;
+    }
+
+    @include tablet-to-desktop {
+        background: url('../root_img/#{$bgurl}') center center / cover no-repeat;
+        .unity {
+            top: 630px;
+            width: 305px;
+            height: 79px;
+            transform: translate(5px, 0px);
+            font-size: 1.875rem;
+        }
+
+        .supporters {
+            top: 574px;
+            width: 285px;
+            height: 77px;
+            transform: translate(-498.5px, 0px);
+            border-radius: 11% / 45%;
+        }
+    }
+
+    @include mobile {
+        background: url('../root_img/#{$bgurl}') center center / contain no-repeat;
+        background-color: $bgcolor;
+        .unity {
+            width: 35.9%;
+            height: 10.94%;
+            top: 76.56%;
+            transform: translate(1.2%, 0px);
+            font-size: 0.875rem;
+        }
+
+        .supporters {
+            top: 77.5%;
+            width: 32.2%;
+            height: 10.3%;
+            transform: translate(1.2%, 0px);
+            border-radius: 9% / 45%;
+        }
+    }
+}
+
+@mixin main-page-banner-indicator(){
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 12px;
+    @include gap-sub(12px);
+    
+    .circle-selected{
+        width: 36px;
+        height: 12px;
+        background-color: $tb40;
+        border-radius: 8px;
+        transition: 0.6s ease;
+    }
+
+    .circle-not-selected{
+        width: 12px;
+        height: 12px;
+        background-color: $black;
+        opacity: 0.2;
+        border-radius: 50%;
+        transition: 0.6s ease;
+        cursor: pointer;
+    }
+}

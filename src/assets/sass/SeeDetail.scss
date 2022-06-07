@@ -1,0 +1,81 @@
+@import './screenSizeMixin';
+$background: #29292933;
+$outline: #707070;
+
+@mixin button-color(){
+    background: $background;
+    &:hover{
+        background-color: #1DB4B4;
+    }
+}
+
+.button-see-detail {
+    @include button-color();
+    background-color: $background;
+    border-radius: 5px;
+    color: #FFFFFF;
+    outline: none !important;
+    border: none;
+    cursor: pointer;
+    font-weight: 100;
+
+    &.large {
+        width: 131px;
+        height: 46px;
+        font-size: 1rem;
+    }
+
+    &.medium {
+        width: 93px;
+        height: 29px;
+        font-size: 0.625rem;
+    }
+
+    &.topolar {
+        background-color: #00B4B4;
+
+        &:hover{
+            background-color: $background;
+        }
+    }
+
+    &.color35{
+        background-color: #353535;
+        
+        @include tablet-to-desktop{
+            font-size: 1rem;
+            font-weight: 200;
+            &:hover{
+                background-color: #00B4B4;
+            }
+
+            &.hoverDisabled{
+                &:hover{
+                    background-color: #353535 !important;
+                }
+            }
+        }
+
+        @include mobile {
+            font-size: 0.75rem;
+            font-weight: 500;
+            width: fit-content;
+        }
+
+    }
+
+    &.noRadius{
+        border-radius: unset;
+    }
+    
+    &.fullHeight {
+        height: 100%;
+    }
+    &:disabled{
+        opacity: 0.5;
+        cursor: initial;
+        &:hover{
+            background-color: #00B4B4;
+        }
+    }
+}

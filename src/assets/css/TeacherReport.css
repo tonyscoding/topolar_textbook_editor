@@ -1,0 +1,171 @@
+.tutor-classroom-report-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    /* max-height: 800px; */
+    overflow-x: hidden;
+    background-color: #FFFFFF;
+    color: #2C2C2C;
+}
+
+.tutor-classroom-report-container .report-header {
+    font-size: 40px !important;
+    color: #1DB4B4 !important;
+}
+
+.tutor-classroom-report-container .report-header-hr {
+    width: 100%;
+    border: 2px soild #1DB4B4 !important;
+}
+
+.tutor-classroom-report-container .textbook-title {
+    color: #000000;
+    font-size: 35px;
+    font-weight: 400;
+    margin: 20px 0;
+}
+
+.tutor-classroom-report-container .textbook-name {
+    color: #000000;
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.tutor-classroom-report-container .textbox {
+    background-color: #f9f7e8;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.report-evaluate-container .evaluate-header{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 20px;
+    background: rgb(249, 247, 232);
+    padding-bottom: 1px;
+    margin-bottom: 10px;
+}
+
+.day-comment-by-tutor {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 20px;
+    background: rgb(249, 247, 232);
+    padding-bottom: 1px;
+    margin-bottom: 10px;
+}
+
+.day-comment-by-tutor > .title {
+    font-size: calc(3px + 2vmin);
+    font-weight: 600;
+    color: #495057;
+}
+
+.report-evaluate-container > .evaluate-header > .title {
+    font-size: calc(3px + 2vmin);
+    font-weight: 600;
+    color: #495057;
+}
+
+.bg-bold-topolar {
+    background-color: #61bfad;
+    padding: 15px;
+}
+
+.SquareIcon {
+    width: calc(5px + 2vmin);
+    height: calc(5px + 2vmin);
+    vertical-align: middle;
+    margin-right:calc(5px + 2vmin);
+    position: relative;
+}
+
+.time-check-report-input{
+    margin-top: 5px;
+    margin-right: 10px;
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+}
+
+.report-saved-comment-container {
+    width: 100%;
+    flex-flow: wrap;
+    display: flex;
+}
+/* <div className="flex justify-content-center" style={{alignItems: 'center', height: '100%'}}>
+                                        
+</div> */
+.report-saved-comment-item-button-edit {
+    margin-top:-1.5px;
+    color:#2c2c2c;
+    cursor:pointer;
+}
+
+.report-saved-comment-item-button-edit:hover {
+    color:#1db4b4;
+}
+
+.report-saved-comment-item-content {
+    word-break:break-all;
+    text-align: left;
+    width:100%;
+    padding:3px;
+}
+.report-saved-comment-item-header {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.report-saved-comment-item {
+    width: 100%;
+    min-height: 70px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid black; */
+    background-color: #fefefe;
+    box-shadow: 0px 0px 10px #C1C1C1;
+    border-radius: 10px;
+    margin: 10px 10px;
+}
+
+.bg-movable-header {
+    background-color: #1DB4B4;
+    cursor: move;
+}
+
+.h-50px {
+    height: 50px;
+}
+
+.resizeable-div-container-in-report {
+    width: 20px !important;
+    background-color: #1F1F1F;
+    cursor: e-resize;
+    display: flex;
+    align-items: center;
+}
+
+.resizeable-div-container-down {
+    background-color: #1F1F1F;
+    display: flex;
+    justify-content: center;
+    cursor: n-resize;
+}

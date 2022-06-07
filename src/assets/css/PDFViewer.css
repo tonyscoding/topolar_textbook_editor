@@ -1,0 +1,27 @@
+.pdf-wrapper{
+    overflow: auto;
+    height: 560px;
+}
+
+#iframe-wrapper { width: 100%; height: 560px; padding: 0; overflow: hidden; }
+#frame { width: 133%; height: 133%; border: 5px solid black; }
+#frame {
+    -ms-zoom: 0.75;
+    -moz-transform: scale(0.75);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.75);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.75);
+    -webkit-transform-origin: 0 0;
+}
+/*
+#frame {
+    -ms-zoom: 0.75;
+    -moz-transform: scale(0.75);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.75);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.75);
+    -webkit-transform-origin: 0 0;
+}
+*/

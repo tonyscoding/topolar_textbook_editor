@@ -1,0 +1,182 @@
+@import '../mixin';
+@import '../variable';
+
+.guide-tabs-container-{
+    &text, &line{
+        >*:first-child{
+            padding-left: 0 !important;
+        }
+    }
+}
+
+.guide-tabs-container-line,
+.guide-tabs-container-box,
+.guide-tabs-container-text {
+    @include set-item-center();
+    >.guide-tabs{
+        cursor: pointer;
+        @include tablet-to-desktop{
+            padding: 0 18px;
+        }
+        @include mobile{
+            padding: 0 10px;
+        }
+        border: unset;
+        text-align: center;
+        @include set-item-center();
+
+        >div{
+            padding: 5px 0;
+        }
+
+        &.line{
+            background-color: unset;
+            color: $grey60;
+            @each $text, $color in $colors{
+                &.#{$text} {
+                    color: $color;
+                }
+            }
+
+            &.active {
+                color: $grey90;
+                font-weight: 700;
+                
+                @each $text, $color in $colors{
+                    &.#{$text} {
+                        color: $color;
+                    }
+                }
+
+                >div {
+                    border-bottom: 1px solid $grey90;
+                    padding: 7px 0;
+                }
+            }
+        }
+
+        &.box{
+            background-color: $white;
+            // border-radius: 8px;
+            border-radius: calc((1.3em + 20px)/2);
+            color: $grey90;
+            &.active {
+                color: $grey05;
+                background-color: $grey90;
+                
+                @each $text, $color in $colors{
+                    &.#{$text} {
+                        color: $color;
+                    }
+                }
+            }
+        }
+
+        &.text{
+            background-color: unset;
+            color: $grey60;
+            @each $text, $color in $colors{
+                &.#{$text} {
+                    color: $color;
+                }
+            }
+            &.active {
+                color: $grey90;
+                font-weight: 700;
+
+                @each $text, $color in $colors{
+                    &.#{$text} {
+                        color: $color;
+                    }
+                }
+            }
+        }
+    }
+
+    >.tabs-vl {
+        border-left: 1px solid $grey30;
+        height: 1em;
+    }
+}
+
+.guide-tabs-container-box {
+    @include gap-sub(10px);
+}
+
+.guide-tabs-container-arrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 100px;
+    background-color: $grey90;
+    opacity: 0.5;
+    color: $white;
+    width: fit-content;
+    margin: 0 auto;
+    
+    >.arrow-left, >.arrow-right {
+        cursor: pointer;
+    }
+
+    >.arrow-left {
+        width: 18px;
+        height: 18px;
+        margin: auto 7px;
+        @include set-item-center();
+    }
+
+    >.arrow-right {
+        width: 18px;
+        height: 18px;
+        margin: auto 7px;
+        @include set-item-center();
+    }
+
+    >.arrow-text {
+        padding: 7px 20px;
+        @include set-item-center();
+    }
+}
+
+.guide-tabs-container-box-slider {
+    @include set-item-center();
+    background-color: $white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    width: fit-content;
+    border-radius: 100px;
+    padding: 2px;
+    margin: 0 auto;
+    position: relative;
+
+    >.guide-tabs.box-slider{
+        @include set-item-center();
+        cursor: pointer;
+        padding: 3px 18px;
+        border: unset;
+        width: 125px;
+        text-align: center;
+
+        background-color: transparent;
+        border-radius: 100px;
+        color: $grey60;
+        z-index: 3;
+        &.active {
+            color: $grey05;
+        }
+
+        >div{
+            padding: 2px 0;
+            white-space: nowrap;
+        }
+    }
+
+    >.box-slider-box {
+        background-color: $tb40;
+        width: 125px;
+        position: absolute;
+        height: calc(1.3em + 10px);
+        border-radius: 100px;
+        z-index: 2;
+        top: 2px;
+    }
+}

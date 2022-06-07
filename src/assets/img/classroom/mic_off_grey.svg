@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="51" viewBox="0 0 52 51">
+  <defs>
+    <filter id="Selectbox.BG" x="0" y="0" width="52" height="51" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="그룹_10656" data-name="그룹 10656" transform="translate(-1009 -2752)">
+    <g id="그룹_10548" data-name="그룹 10548">
+      <g id="그룹_10531" data-name="그룹 10531" transform="translate(783 2471)">
+        <g id="그룹_10378" data-name="그룹 10378" transform="translate(-64)">
+          <g transform="matrix(1, 0, 0, 1, 290, 281)" filter="url(#Selectbox.BG)">
+            <rect id="Selectbox.BG-2" data-name="Selectbox.BG" width="22" height="21" rx="4" transform="translate(15 15)" fill="#464646"/>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g id="그룹_10613" data-name="그룹 10613" transform="translate(-731 1301)">
+      <g id="그룹_10613-2" data-name="그룹 10613" transform="translate(1762.561 1472)">
+        <path id="패스_6146" data-name="패스 6146" d="M1768.874,1480.874a1.684,1.684,0,0,1-2.874-1.19V1478" transform="translate(-1764.316 -1474.632)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path id="패스_6147" data-name="패스 6147" d="M1766.2,1473.1a1.663,1.663,0,0,1,1.572-1.1,1.687,1.687,0,0,1,1.684,1.684v2.807" transform="translate(-1764.404 -1472)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <line id="선_161" data-name="선 161" y1="2" transform="translate(3.439 9)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path id="패스_6148" data-name="패스 6148" d="M1763,1482a3.371,3.371,0,0,0,3.368,3.369,3.313,3.313,0,0,0,1.291-.258,3.351,3.351,0,0,0,1.353-1.027" transform="translate(-1763 -1476.386)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <line id="선_162" data-name="선 162" x1="8" y1="8" transform="translate(1762 1473)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

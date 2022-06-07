@@ -1,0 +1,125 @@
+.course_table_card .card-body {
+    padding: 0;
+}
+
+.course_table_card .react-bootstrap-table-pagination {
+    padding: 15px;
+}
+
+.course_feed .course_feed_icon {
+    margin-top: 4px;
+    margin-right: 10px;
+}
+
+.course_attendance_search {
+    text-align: right;
+}
+
+.card-header-with-search-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header-with-search-bar > label > input, .card-header-with-search-bar > label > input:focus {
+    background-color: #1F1F1F;
+    border: 3px solid #343434;
+}
+
+.badge-container {
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+}
+
+.half-box {
+    display: flex;
+    width: 45%;
+    height: 47px;
+    border-radius: 10px;
+    background-color: white;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.full-box {
+    width: 100%;
+    height: 47px;
+    border-radius: 10px;
+    background-color: white;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+.bg-color-lang {
+    background-color: #1DB46E;
+}
+
+.bg-color-level {
+    background-color: #D09907;
+}
+
+.bg-color-tname {
+    background-color: #1D74B4;
+}
+
+.progress-badge-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.progress-badge {
+    width: 100px;
+    height: 25px;
+    border-radius: 6px;
+    background-color: #1DB4B4;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.waiting-badge {
+    width: 100px;
+    height: 25px;
+    border-radius: 6px;
+    background-color: #ffb901;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.urlkey-is-not-null:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+.submitted-badge {
+    width: 100px;
+    height: 25px;
+    border-radius: 6px;
+    background-color: #B41D1D;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.service-header {
+    position: fixed;
+    z-index: 1049;
+    width: 100%;
+}
+
+@media (min-width: 800px) {
+    .service-header-height {
+        height: 76px;
+        position: relative;
+    }
+}
+
+@media (max-width: 799px) {
+    .service-header-height {
+        height: 76px;
+        position: relative;
+    }
+}

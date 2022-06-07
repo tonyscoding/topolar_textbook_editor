@@ -1,0 +1,47 @@
+@import '../../mixin';
+
+.#{$community-pre}body-{
+    &notice{
+        >.tabs{
+            justify-content: flex-start;
+            >div{ justify-content: flex-start !important;}
+            @include tablet-to-desktop{
+                padding: 60px 0 17px 0;
+            }
+            @include mobile{
+                padding: 40px 0 10px 0;
+            }
+        }        
+        >.notice-table{
+            @include mobile{
+                >.table-container{
+                    width: 100%;
+                    border-top: 2px solid $tb40;
+                    >div{
+                        &:not(.pagination-container){
+                            background-color: #FFF;
+                            padding: 16px 24px;
+                            border-bottom: 0.5px solid $grey40;
+                            >div:nth-child(1){
+                                color: $grey90;
+                                font-size: 12px;
+                                font-weight: bold;
+                                padding-bottom: 8px;
+                            }
+                            >div:nth-child(2){
+                                color: $grey60;
+                                font-size: 12px;
+                                >span{
+                                    color: $grey30;
+                                }
+                            }
+                        }
+                        &[class^=pagination-container] {
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

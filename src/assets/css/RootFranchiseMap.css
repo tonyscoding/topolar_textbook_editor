@@ -1,0 +1,373 @@
+.root-franchise-map-body {
+    position: relative;
+    height: 100%;
+}
+
+.root-franchise-map-body > * {
+    width: 100%;
+    letter-spacing: -1.2px;
+    word-break: keep-all;
+}
+
+@media (min-width: 800px) {
+    .root-franchise-map-body {
+        width: 1280px;
+        margin: 0 auto;
+    }
+
+    .mt-6 {
+        margin-top: 6px !important;
+    }
+
+    .mt-13 {
+        margin-top: 13px;
+    }
+
+    .mt-15 {
+        margin-top: 15px;
+    }
+
+    .mt-18 {
+        margin-top: 15px;
+    }
+
+    .mt-22 {
+        margin-top: 22px;
+    }
+
+    .mr-32 {
+        margin-right: 32px;
+    }
+
+    .mt-43 {
+        margin-top: 43px;
+    }
+
+    .mr-48 {
+        margin-right: 48px;
+    }
+
+    .mr-64 {
+        margin-right: 64px;
+    }
+
+    /* Section 2 */
+    .fra-s2-container {
+        margin-top: 77px;
+        text-align: center;
+    }
+
+    .fra-s2-container .content1 {
+        color: #919191;
+    }
+    .fra-s2-container .content2 {
+        color: #5F5F5F;
+    }
+    .fra-s2-container .content2 {
+        color: #575757;
+    }
+
+    /* Section 3 */
+    .fra-s3-container {
+        margin-top: 71px;
+        display:flex;
+    }
+
+    .fra-s3-container .search-button {
+        width: 272px;
+        height: 64px;
+        background-color: #FFFFFF;
+        justify-content: center;
+        display:flex;
+        align-items: center;
+        color:#575757;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 0 60px #C1C1C129;
+    }
+
+    .fra-s3-container .search-button:hover {
+        background-color: #1DB4B4;
+        border: none;
+        color:#FFFFFF;
+    }
+
+    .fra-s3-container .search-button:focus {
+        background-color: #B5B5B5;
+        color: #FFFFFF;
+        outline:none;
+    }
+    
+    .fra-s3-container .clicked {
+        background-color: #B5B5B5;
+        color: #FFFFFF;
+        outline:none;
+    }
+
+    /* Section 4 */
+
+    .fra-s4-container {
+        margin-top: 13px;
+        margin-bottom: 119px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap:wrap;
+        font-size:16px
+    }
+
+    .fra-s4-container .franchise-card{
+        background-color: #FFFFFF;
+        width: 608px;
+        height: 179px;
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        display: flex;
+        margin-top:46px;
+        box-shadow: 0 0 60px #C1C1C129;
+    }
+
+    .fra-s4-container .franchise-card .title{
+        border-right:1px dashed;
+        border-right-color: #CCCCCC;
+        width: 110px;
+        height: 100%;
+    }
+
+    .fra-s4-container .franchise-card .details{
+        padding-left: 48px;
+        width: auto;
+        height: 100%;
+        line-height: 200%;
+    }
+
+    
+    .fra-s4-container .franchise-card .detail-contents-1{
+        font-size: 0.95em;
+        line-height: 1.3;
+    }
+
+    .fra-s4-container .franchise-card .detail-contents-2{
+        font-size: 1.5em;
+    }
+
+    .fra-s4-container .franchise-card .buttons{
+        font-size: 0.625em;
+    }
+
+    .fra-s4-container .franchise-card .details .contact-button{
+        width: 93px;
+        height: 29px;
+        background-color: #B5B5B5;
+        justify-content: center;
+        display:flex;
+        align-items: center;
+        color:#FFFFFF;
+        cursor: pointer;
+        border: none;
+        font-size: 1em;
+    }
+
+    .fra-s4-container .franchise-card .details .contact-button:hover {
+        background-color: #1DB4B4;
+        color: #FFFFFF;
+        outline:none;
+    }
+    .fra-s4-container .franchise-card .details .contact-button:focus {
+        background-color: #606060;
+        color: #FFFFFF;
+        outline:none;
+    }
+    
+    .fra-s4-container .franchise-card .details .contact-button .clicked {
+        background-color: #606060;
+        color: #FFFFFF;
+        outline:none;
+    }
+    
+}
+
+@media (max-width: 799px) {
+    .root-franchise-map-body {
+        width: 100%;
+        max-width: 608px;
+        margin: 0 auto;
+    }
+
+    .mt-6 {
+        margin-top: 3.75px !important;
+    }
+
+    .mt-13 {
+        margin-top: 8px;
+    }
+
+    .mt-15 {
+        margin-top: 9px;
+    }
+
+    .mt-18 {
+        margin-top: 11px;
+    }
+
+    .mt-22 {
+        margin-top: 14px;
+    }
+
+    .mr-32 {
+        margin-right: 20px;
+    }
+
+    .mt-43 {
+        margin-top: 27px;
+    }
+
+    .mr-48 {
+        margin-right: 30px;
+    }
+    
+    .fra-s2-container {
+        margin-top: 48px;
+        text-align: center;
+    }
+
+    .fra-s2-container .content1 {
+        color: #919191;
+    }
+    .fra-s2-container .content2 {
+        color: #5F5F5F;
+    }
+    .fra-s2-container .content2 {
+        color: #575757;
+    }
+
+    /* Section 3 */
+    .fra-s3-container {
+        margin-top: 44px;
+        display:flex;
+        justify-content: space-between;
+    }
+
+    .fra-s3-container .search-button {
+        width: 22.5%;
+        height: 40px;
+        background-color: #FFFFFF;
+        justify-content: center;
+        display:flex;
+        align-items: center;
+        color:#575757;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 0 60px #C1C1C129;
+    }
+
+    .fra-s3-container .search-button:hover {
+        background-color: #1DB4B4;
+        border: none;
+        color:#FFFFFF;
+    }
+
+    .fra-s3-container .search-button:focus {
+        background-color: #B5B5B5;
+        color: #FFFFFF;
+        outline:none;
+    }
+    
+    .fra-s3-container .clicked {
+        background-color: #B5B5B5;
+        color: #FFFFFF;
+        outline:none;
+    }
+    
+    /* Section 4 */
+
+    .fra-s4-container {
+        max-width: 608px;
+        margin:0 auto;
+        margin-top: 13px;
+        margin-bottom: 119px;
+        display: flex;
+        flex-wrap:wrap;
+        font-size:8px;
+    }
+
+    .fra-s4-container .franchise-card{
+        background-color: #FFFFFF;
+        width: 100%;
+        padding-left: 2em;
+        padding-right: 2em;
+        padding-top: 1.5em;
+        padding-bottom: 1.5em;
+        display: flex;
+        margin: 0 auto;
+        margin-top:46px;
+        box-shadow: 0 0 60px #C1C1C129;
+    }
+
+    .fra-s4-container .franchise-card .title{
+        border-right:1px dashed;
+        border-right-color: #CCCCCC;
+        width: 25%;
+        height: 100%;
+        font-size:1em;
+    }
+
+    .fra-s4-container .franchise-card .title >div{
+        font-size:1.5em;
+    }
+
+    #franchise-name{
+        font-size:2em;
+    }
+
+    .fra-s4-container .franchise-card .details{
+        padding-left: 2em;
+        width: 75%;
+        height: 100%;
+        line-height: 250%;
+        font-size: 1em;
+    }
+
+    .fra-s4-container .franchise-card .detail-contents-1{
+        font-size: 1.5em;
+    }
+
+    .fra-s4-container .franchise-card .detail-contents-2{
+        font-size: 2.2em;
+    }
+
+    .fra-s4-container .franchise-card .buttons{
+        font-size: 1em;
+    }
+
+    .fra-s4-container .franchise-card .details .contact-button{
+        width: 93px;
+        height: 29px;
+        background-color: #919191;
+        justify-content: center;
+        display:flex;
+        align-items: center;
+        color:#FFFFFF;
+        cursor: pointer;
+        border: none;
+        font-size: 1em;
+    }
+
+    .fra-s4-container .franchise-card .details .contact-button:hover {
+        background-color: #5f5f5f;
+        color: #FFFFFF;
+        outline:none;
+    }
+    
+    .fra-s4-container .franchise-card .details .contact-button .clicked {
+        background-color: #5f5f5f;
+        color: #FFFFFF;
+        outline:none;
+    }
+
+}
+
+.f-b {
+    font-weight: bold;
+}

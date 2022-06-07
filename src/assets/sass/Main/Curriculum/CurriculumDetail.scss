@@ -1,0 +1,235 @@
+@import '../../mixin';
+
+$langColor : (
+    "scratch": #EF8C0B,
+    "python": #6548E5,
+    "java": #2BCB5B,
+    "cplus": #006CE8,
+    "js": #E9C200
+);
+
+
+.main-curriculum-detail-layout{
+    width: 100%;
+    background-color: white;
+    >.banner{
+        &.scratch{
+            background: transparent linear-gradient(90deg, #F1C46F 0%, #EF8C0B 100%) 0% 0% no-repeat padding-box;
+        }
+        &.python{
+            background: transparent linear-gradient(90deg, #A87FFB 0%, #7945E2 100%) 0% 0% no-repeat padding-box;
+        }
+        &.java{
+            background: transparent linear-gradient(90deg, #8FF3A6 0%, #2BCB5B 100%) 0% 0% no-repeat padding-box;
+        }
+        &.cplus{
+            background: transparent linear-gradient(90deg, #5CAEFE 0%, #006CE8 100%) 0% 0% no-repeat padding-box;
+        }
+        &.js{
+            background: transparent linear-gradient(90deg, #FFF080 0%, #E9C200 100%) 0% 0% no-repeat padding-box;
+        }
+        @include tablet-to-desktop{
+            >div{
+                .sticky-container{
+                    min-height: 2000px;
+                }
+                width: 1280px;
+                height: 100%;
+                margin: 0 auto;
+                position: relative;
+                padding-top: 59px;
+
+                >.computer-bg{
+                    position: absolute;
+                    top: 50px;
+                    right: 0;
+                    background: url('../../../root_img/Main/Curriculum/Detail/curriculumDetailBannerBg.png') no-repeat;
+                    width: 823px;
+                    height: 529px;
+                }
+                >div[class^=main-curriculum-detail-icons-]{
+                    position: absolute;
+                }
+                >.main-curriculum-detail-icons-{
+                    &scratch{
+                        left: 801px;
+                        top: 300px;
+                    }
+                    &python{
+                        left: 765px;
+                        top: 332px;
+                    }
+                    &java{
+                        left: 791px;
+                        top: 317px;
+                    }
+                    &cplus{
+                        left: 819px;
+                        top: 311px;
+                    }
+                    &js{
+                        left: 820px;
+                        top: 315px;
+                    }
+                }
+            }
+            height: 600px;
+        }
+        @include mobile{
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+            >div{
+                height: 320px;
+                padding-top: 20px;
+                >div{
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                }
+                >.computer-bg{
+                    display: none;
+                }
+                >div[class^=main-curriculum-detail-icons-]{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.main-curriculum-detail{
+    @include mobile{
+        padding-top: 50px;
+    }
+    >.curriculum-process{
+        display: flex;
+        @include tablet-to-desktop{
+            padding-left: 456px;
+            @include gap-sub(16px);
+        }
+        @include mobile{
+            @include gap-sub(40px);
+        }
+        >.process-line{
+            @include mobile{
+                display: none;
+            }
+            width: 40px;
+            height: 100%;
+
+            @each $lang, $color in $langColor{
+                &.#{$lang} {
+                    >.block{
+                        border: 3px solid $color;
+                        color: $color;
+                    }
+                    >[id^=curriculumProcessLine]{
+                        >svg>line{
+                            stroke: $color;
+                        }
+                    }
+                }
+            }
+
+            >.block{
+                width: 40px;
+                height: 40px;
+                border-radius: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+            }
+        }
+    }
+
+    >.adv-banner{
+        @include tablet-to-desktop{
+            margin-top: 100px;
+        }
+        @include mobile{
+            text-align: center;
+            margin-top: 30px;
+            >img{
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+    }
+
+    >.course-info{
+        text-align: center;
+        @include mobile{
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        >div:nth-child(1){
+            @include subhead-1;
+            color: $grey90;
+            font-weight: bold;
+            @include tablet-to-desktop{
+                margin-top: 89px;
+                text-align: start;
+            }
+            @include mobile{
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+        >div:nth-child(2){
+            display: flex;
+            @include tablet-to-desktop{
+                margin-top: 36px;
+                @include gap-sub(40px);
+            }
+            @include mobile{
+                @include gap-sub(16px);
+                >*{ margin-bottom: 16px;}
+                >*:nth-child(even){
+                    margin-right: 0 !important;
+                }
+                flex-wrap: wrap;
+                margin: 0 auto;
+                margin-top: 20px;
+            }
+        }
+    }
+    >.note{
+        background-color: #FFF;
+        border-top: 4px solid $tb40;
+        border-radius: 0px 0px 8px 8px;
+        box-shadow: 0px 4px 20px #0000001A;
+        @include tablet-to-desktop{
+            width: 1280px;
+            height: 168px;
+            padding: 24px;
+            margin-top: 93px;
+            >div:nth-child(2){
+                margin-top: 24px;
+                line-height: 24px;
+            }
+        }
+        @include mobile{
+            margin-top: 20px;
+            width: 100%;
+            height: 116px;
+            padding: 13px;
+            max-width: 320px;
+            margin: 20px auto 0 auto;
+            >div:nth-child(2){
+                margin-top: 12px;
+                white-space: nowrap;
+            }
+        }
+        >div:nth-child(1){
+            @include subhead-1;
+            color: $grey90;
+        }
+        >div{
+            @include body-2;
+            color: $grey60;
+        }
+    }
+}

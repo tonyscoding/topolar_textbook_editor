@@ -1,0 +1,244 @@
+@import '../_mixin';
+@import '../_variable';
+
+.point-detail-content {
+    >div {
+        display: flex;
+        flex-direction: column;
+        @include tablet-to-desktop {
+            padding: 30px;
+        }
+        @include mobile {
+            padding: 20px 10px;
+        }
+    }
+
+    >.point-detail-{
+        &refund {
+            @include gap-sub(8px, column);
+            @include tablet-to-desktop {
+                border-bottom: 1px solid $grey30;
+            }
+
+
+            >.refund-text {
+                @include body-1;
+                position: relative;
+                display: flex;
+                align-items: center;
+                color: $grey90;
+                >div {
+                    margin-left: 5px;
+                    cursor: pointer;
+                    @include set-item-center;
+                }
+            }
+
+            >.refund-amount {
+                @include headline;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                color: $grey90;
+                @include tablet-to-desktop{
+                    @include headline-fix;
+                }
+                @include mobile {
+                    @include subhead-1-fix;
+                }
+            }
+
+            >.bonus-point {
+                @include body-2;
+                padding: 22px;
+                background-color: $grey10;
+                border-radius: 8px;
+                color: $grey90;
+                >span {
+                    font-weight: 700;
+                }
+                @include tablet-to-desktop{
+                    padding: 22px;
+                }
+                @include mobile {
+                    padding: 10px;
+                    letter-spacing: -0.23px;
+                }
+            }
+
+            >.refund-time {
+                @include caption;
+                color: $grey60;
+                @include tablet-to-desktop{
+                    text-align: right;
+                }
+                @include mobile{
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
+
+.coupon-detail-content {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include tablet-to-desktop {
+        padding: 30px 30px 85px 30px;
+        @include gap-sub(20px, column);
+    }
+    @include mobile {
+        padding: 10px 10px 85px 10px;
+        @include gap-sub(12px, column);
+    }
+
+    >div {
+        width: 100%;
+    }
+
+    >.coupon-{
+        &container {
+            >.coupon-list {
+                background-color: $grey10;
+                border-radius: 8px;
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                flex-wrap: wrap;
+                @include tablet-to-desktop {
+                    padding: 50px 104px;
+                    @include gap-sub(40px);
+                    >*:nth-child(even){ margin-right: 0 !important;}
+                    >*:nth-last-child(1), >*:nth-last-child(2) { margin-bottom: 0 !important;}
+                    >*{ margin-bottom: 40px;}
+                }
+                @include mobile {
+                    padding: 10px 10px 35px 10px;
+                    @include gap-sub(12px, column);
+                    >*:nth-last-child(1){ margin-bottom: 0 !important;}
+                }
+
+            }
+        }
+
+        &refund {
+            background-color: $grey10;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            @include gap-sub(14px, column);
+            @include tablet-to-desktop {
+                padding: 24px 20px;
+            }
+            @include mobile {
+                padding: 12px;
+            }
+
+            >div:nth-child(1) {
+                color: $grey90;
+                @include subhead-2;
+            }
+
+            >ol {
+                margin: 0;
+                color: $grey60;
+                @include body-2;
+                line-height: 1.6em;
+                padding-left: 1em;
+            }
+        }
+
+        &marketing-checkbox {
+            background-color: $grey10;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include tablet-to-desktop {
+                padding: 24px 34px 24px 20px;
+            }
+            @include mobile {
+                padding: 12px;
+            }
+
+            >div:nth-child(1) {
+                >div:nth-child(1) {
+                    color: $grey90;
+                    @include subhead-2;
+                    font-weight: 700;
+                }
+    
+                >div:nth-child(2) {
+                    color: $grey60;
+                    @include body-2;
+                    @include tablet-to-desktop{
+                        margin-top: 8px;
+                    }
+                    @include mobile {
+                        margin-top: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.coupon-card {
+    width: 320px;
+    height: 200px;
+    border-radius: 8px;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &.disabled {
+        opacity: 0.5;
+    }
+
+    >.coupon-content {
+        padding: 16px 16px 0 16px;
+
+        >div:nth-child(1) {
+            color: $tb40;
+            @include body-2-fix;
+        }
+        >div:nth-child(2) {
+            color: $black;
+            @include subhead-2-fix;
+            font-weight: 700;
+            margin-top: 16px;
+        }
+        >div:nth-child(3) {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 30px;
+            >div:nth-child(1){
+                color: $tb40;
+                @include subhead-1-fix;
+                font-weight: 700;
+            }
+            >div:nth-child(2){
+                color: $grey60;
+                @include body-2-fix;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+
+            }
+        }
+    }
+
+    >.coupon-button {
+        height: 48px;
+        border-radius: 0 0 8px 8px;
+        cursor: pointer;
+        @include set-item-center;
+        background-color: $tb40;
+        color: $white;
+        @include body-2-fix;
+    }
+}

@@ -1,0 +1,229 @@
+@import '../../mixin';
+
+[class^=main-curriculum-icons-]{
+    display: inline-block;
+    background: url('../../../root_img/Main/Curriculum/curriculumIcons.png');
+    overflow: hidden;
+    @include tablet-to-desktop{
+        background-size: 588px 84px;
+    }
+    @include mobile{
+        background-size: 331px 47px;
+        &.force-desktop-width{
+            background-size: 588px 84px;
+        }
+    }
+}
+
+[class^=main-curriculum-detail-icons-]{
+    display: inline-block;
+    background: url('../../../root_img//Main/Curriculum/Detail/curriculumDetailIcons.png');
+    overflow: hidden;
+    background-size: 850px 166px;
+}
+
+[class^=main-curriculum-detail-footer-icons-]{
+    display: inline-block;
+    background: url('../../../root_img/Main/Curriculum/Detail/curriculumDetailFooterIcons.png');
+    overflow: hidden;
+    @include tablet-to-desktop{
+        background-size: 495px 120px;
+    }
+    @include mobile{
+        background-size: 248px 60px;
+    }
+}
+
+[class ^=main-curriculum-icons-language-]{
+    @include tablet-to-desktop{
+        width: 64px;
+        height: 64px;
+    }
+    @include mobile{
+        width: 36px;
+        height: 36px;
+        &.force-desktop-width{
+            width: 64px;
+            height: 64px;
+        }
+    }
+}
+
+[class^=main-curriculum-icons-level-]{
+    @include tablet-to-desktop{
+        width: 36px;
+        height: 36px;
+    }
+    @include mobile{
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.main-curriculum-icons-{
+    &language{
+        @include tablet-to-desktop{
+            &-scratch{
+                background-position: -514px -10px;
+            }
+            &-python{
+                background-position: -430px -10px;
+            }
+    
+            &-java{
+                background-position: -150px -10px;
+            }
+    
+            &-cplus{
+                background-position: -66px -10px;
+            }
+            &-js{
+                background-position: -234px -10px;
+            }
+
+        }
+        @include mobile{
+            &-scratch{
+                background-position: -289.1px -5.6px;
+                &.force-desktop-width{
+                    background-position: -514px -10px;
+                }
+            }
+            &-python{
+                background-position: -241.9px -5.6px;
+                &.force-desktop-width{
+                    background-position: -430px -10px;
+                }
+            }
+            &-java{
+                background-position: -84.4px -5.6px;
+                &.force-desktop-width{
+                    background-position: -150px -10px;
+                }
+            }
+            &-cplus{
+                background-position: -37.1px -5.6px;
+                &.force-desktop-width{
+                    background-position: -66px -10px;
+                }
+            }
+            &-js{
+                background-position: -131.6px -5.6px;
+                &.force-desktop-width{
+                    background-position: -234px -10px;
+                }
+            }
+        }
+    }
+
+    &level{        
+        @include tablet-to-desktop{
+            &-adv{
+                background-position: -10px -10px;
+            }
+    
+            &-pio{
+                background-position: -374px -10px;
+            }
+    
+            &-mas{
+                background-position: -318px -10px;
+            }
+        }
+        @include mobile {
+            &-adv{
+                background-position: -5px -5.6px;
+            }
+    
+            &-pio{
+                background-position: -210.4px -5.6px;
+            }
+    
+            &-mas{
+                background-position: -178.9px -5.6px;
+            }
+        }
+
+    }
+}
+
+.main-curriculum-detail-icons-{
+    &scratch{
+        width: 126px;
+        height: 126px;
+        background-position: -704px -20px;
+    }
+
+    &cplus {
+        width: 90px;
+        height: 101px;
+        background-position: -20px -20px;
+    }
+    
+    &java {
+        width: 149px;
+        height: 83px;
+        background-position: -150px -20px;
+    }
+    
+    &js {
+        width: 87px;
+        height: 92px;
+        background-position: -339px -20px;
+    }
+    
+    &python {
+        width: 198px;
+        height: 58px;
+        background-position: -466px -20px;
+    }
+    
+}
+
+.main-curriculum-detail-footer-icons-{
+    @include tablet-to-desktop{
+        &step1{
+            width: 101px;
+            height: 100px;
+            background-position: -10px -10px;
+        }
+        &step2{
+            width: 114px;
+            height: 87px;
+            background-position: -131px -10px;
+        }
+        &step3{
+            width: 90px;
+            height: 90px;
+            background-position: -265px -10px;
+        }
+        &step4{
+            width: 110px;
+            height: 80px;
+            background-position: -375px -10px;
+        }
+
+    }
+    @include mobile{
+        &step1{
+            width: 51px;
+            height: 50px;
+            background-position: -5px -5px;
+        }
+        &step2{
+            width: 57px;
+            height: 44px;
+            background-position: -66px -5px;
+        }
+        &step3{
+            width: 45px;
+            height: 45px;
+            background-position: -133px -5px;
+        }
+        &step4{
+            width: 55px;
+            height: 40px;
+            background-position: -188px -5px;
+        }
+    }
+}

@@ -1,0 +1,288 @@
+@import '../variable';
+@import '../mixin';
+
+.new-classroom{
+    .classroom-textbook-header{
+        height:68px;
+        background-color: $tb;
+        color: $colorFF;
+        display: flex;
+        align-items: center;
+        padding:16px;
+        >.textbook-sidebar-toggle{
+            cursor: pointer;
+            margin-right : 22px;
+        }
+    }
+
+    .classroom-footer{
+        height:64px;
+        position:absolute;
+        bottom:0;
+        width: 100%;
+        z-index: 2;
+        >.progress-bar-container{
+            height:8px;
+            width:calc(100vw - 104px);
+            >.progress-bar{
+                height:8px;
+                background-color: $tb;
+                transition: width 0.6s ease;
+            }
+        }
+        >.nav-bar{
+            border-top: $grey30 1px solid;
+            height:56px;
+            background-color: $colorFF;
+            @include set-item-center();
+            >.offset-container{
+                width:40px;
+                @include body-1();
+                margin: 0 80px;
+            }
+            .prev-button,.next-button{
+                cursor: pointer;
+                border: $grey30 1px solid;
+                border-radius: 8px;
+                width:80px;
+                height:40px;
+                @include body-2();
+                @include set-item-center();
+                &.disabled{
+                    cursor: unset;
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    .classroom-toolbar{
+        @include flex-column();
+        height:calc(100vh - 80px);
+        width:104px;
+        position:absolute;
+        right:0;
+        top:80px;
+        border-left: $grey30 1px solid;
+        background-color: $colorFF;
+        z-index: 3;
+        >.toolbar-contents{
+            @include flex-center-center();
+            flex:1;
+            >.toolbar-user-card{
+                font-size:12px;
+                margin-bottom:25px;
+                @include flex-center-center();
+                
+                >.toolbar-user-status{
+                    display: flex;
+                    margin-bottom:5px;
+                    >div{
+                        @include flex-center-center();
+                        position:relative;
+                        >.online{
+                            position:absolute;
+                            top: -4px;
+                            left: -7px;
+                            border-radius: 4px;
+                            width:8px;
+                            height:8px;
+                            background-color: #4CAF50;
+                        }
+                    }
+                }
+                
+                >.toolbar-user-image{
+                    @include flex-center-center();
+                    width:56px;
+                    height:56px;
+                    border-radius: 28px;
+                    margin-bottom:4px;
+                    &.online{
+                        cursor: pointer;
+                    }
+                }
+                >.toolbar-user-name{
+                    text-align: center;
+                    .teacher{
+                        font-size:14px;
+                    }
+                }
+            }
+
+            >.toolbar-button-placeholder{
+                @include flex-center-center();
+                margin-bottom:20px;
+                z-index: 5;
+                .toolbar-button{
+                    @include flex-center-center();
+                    width:56px;
+                    height:56px;
+                    border-radius: 28px;
+                    background-color: $grey10;
+                    margin-bottom:3px;
+                    cursor: pointer;
+                    &:hover{
+                        background-color: $tb;
+                        color: $colorFF;
+                    }
+                }
+            }
+        }
+        >.classroom-logout{
+            @include flex-center-center();
+            z-index: 5;
+            height:10%;
+            >div{
+                z-index: 5;
+                cursor: pointer;
+                @include flex-center-center();
+            }
+        }
+    }
+
+    .classroom-header{
+        position: relative;
+        background-color: $colorFF;
+        display: flex;
+        justify-content: space-between;
+        z-index: 1048;
+        height: 80px;
+        align-items: center;
+        padding: 0 32px;
+        box-shadow: 0px 2px 4px #00000033;
+        >.header-user-card{
+            display: flex;
+            width:144px;
+            cursor: pointer;
+            >.header-user-image{
+                @include flex-center-center();
+                width:56px;
+                height:56px;
+                border:1px solid;
+                border-radius: 28px;
+                margin-right: 8px;
+                >img{
+                    width:56px;
+                    height:56px;
+                }
+            }
+            >.header-user-name{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex:1;
+                color:$black;
+                >.header-bold{
+                    font-weight: bold;
+                }
+            }
+        }
+        >img{
+            cursor: pointer;
+        }
+    }
+    .textbook-content-view{
+        color:$grey90;
+        width:calc(100vw - 104px);
+        max-height:calc(100vh - 212px);
+        margin-right:104px;
+        padding: 57px;
+        font-size:16px;
+        overflow: scroll;
+        &::-webkit-scrollbar-thumb{
+            background-color:$grey30;
+        }
+        >div{
+            margin: 0 auto;
+            max-width:888px;
+        }
+        .textbook-header{
+            font-size:32px;
+            font-weight: bold;
+            margin-bottom:60px;
+        }
+        .textbook-body{
+            >.body-code{
+                >pre{
+                    >div{
+                        background-color: $grey10 !important;
+                        span{
+                            background-color: $grey10 !important;
+                        }
+                    }
+                }
+                border: $grey30 1px dashed;
+            }
+            >.body-desc{
+              border: $grey30 1px dashed;
+            }
+            >.body-image{
+              border: $grey30 1px dashed;
+            }
+            >.body-table{
+              border: $grey30 1px dashed;
+            }
+            .body-buttonGroup {
+              display: flex;
+              flex-direction: row;
+            }
+            
+
+            img{
+                max-width:100%;
+            }
+            
+        }
+    }
+
+    .classroom-modal-schedule {
+        display: flex;
+        @include gap-sub(20px);
+
+        >div {
+            width: 100%;
+        }
+
+        .header {
+            color: $grey90;
+            @include subhead-2-fix;
+            margin-bottom: 15px;
+        }
+
+        .modal-schedule-container {
+
+            >div+div{
+                margin-top: 12px;
+            }
+
+            &.calendar {
+                padding-top: 20px;
+                border: 1px solid $grey30;
+                border-radius: 8px;
+                margin-bottom: 10px;
+            }
+
+            &.schedule {
+                height: 140px;
+                overflow-y: overlay;
+                @include guide-scrollbar;
+            }
+
+            &.events {
+                margin-bottom: 30px;
+            }
+
+            &.notice {
+                @include set-item-center;
+                @include subhead-2-fix;
+                height: 360px;
+            }
+
+            .no-schedule {
+                @include set-item-center;
+                height: 100%;
+            }
+        }
+    }
+}

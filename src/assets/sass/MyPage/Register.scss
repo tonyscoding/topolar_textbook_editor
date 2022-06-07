@@ -1,0 +1,764 @@
+@import '../_mixin';
+@import '../_variable';
+
+.register-content {
+
+    display: flex;
+
+    >div:nth-child(1) {
+        height: inherit;
+        padding: 24px 10px ;
+        @include tablet-to-desktop {
+            width: 548px;
+            border-right: 1px solid $grey30;
+        }
+        @include mobile {
+            display: none;
+        }
+    }
+    >div:nth-child(2) {
+        @include tablet-to-desktop {
+            padding: 24px;
+            width: 400px;
+        }
+        @include mobile {
+            padding: 20px 12px;
+            width: 100%;
+        }
+    }
+}
+
+.hr {
+    border-top: 1px solid $grey30;
+}
+
+.register-detail {
+    display: flex;
+    flex-direction: column;
+
+    &._003, &._001, &._004 {
+        >.register-level-lang {margin-bottom: 8px;}
+        >.register-price {margin-bottom: 60px}
+        >.register-brief-policy {margin-bottom: 43px;}
+        >.register-select {margin-bottom: 20px;}
+        >.hr {margin-bottom: 20px;}
+        >.register-extend-duration {margin-bottom: 10px;}
+        >.register-summary {margin-bottom: 20px;}
+        >.register-total-price {margin-bottom: 20px;}
+    }
+
+    &._006, &._007, &._008 {
+        >.register-level-lang {margin-bottom: 50px;}
+        >.register-brief-policy {margin-bottom: 43px;}
+        >.hr {margin-bottom: 20px;}
+
+    }
+
+    &._002, &._005 {
+        >.select-type {margin-bottom: 10px;}
+        >.register-level-lang {margin-bottom: 10px;}
+        >.register-price {margin-bottom: 15px;}
+        >.register-reset {margin-bottom: 18px;}
+        >.select-duration {margin-bottom: 40px;}
+        >.register-select-day {margin-bottom: 55px;}
+        >.register-select-time {margin-bottom: 20px;}
+        >.hr {margin-bottom: 20px;}
+        >.register-summary {margin-bottom: 20px;}
+        >.register-total-price {margin-bottom: 20px;}
+    }
+
+    &.fe-register {
+        >.register-brief-policy {margin-bottom: 30px;}
+        >.register-select-day {margin-bottom: 55px;}
+        >.register-select-time {margin-bottom: 20px;}
+        >.hr {margin-bottom: 20px;}
+        >.register-summary {margin-bottom: 20px;}
+    }
+
+    >.register-level-lang{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        @include body-2-fix;
+        color: $grey90;
+        .special-course {
+            background-color: $grey90;
+        }
+        @each $lang, $color in $langColor{
+            .#{$lang}{
+                background-color: $color;
+            }
+        }
+        @each $level, $color in $levelColor{
+            .#{$level}{
+                background-color: $color;
+            }
+        }
+        >span{
+            padding: 5px 10px;
+            border-radius: 8px;
+            color: $white;
+            @include caption-fix;
+            margin: 0 16px 0 4px;
+        }
+    }
+
+    >.register-price {
+        color: $grey60;
+        @include body-2-fix;
+    }
+
+    >.register-brief-policy {
+        display: flex;
+        // align-items: center;
+        @include caption-fix;
+        color: $grey90;
+        >span {
+            margin-right: 5px;
+        }
+        >div {
+            display: flex;
+            flex-direction: column;
+            @include gap-sub(5px, column);
+        }
+    }
+
+    >.cancel-radio-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    >.register-reset {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    >.register-select {
+        display: flex;
+        flex-direction: column;
+        @include gap-sub(8px, column);
+        color: $grey90;
+    }
+
+    >.register-extend-duration {
+        display: flex;
+        align-items: center;
+        color: $grey90;
+        @include body-2-fix;
+        >span{
+            margin-right: 5px;
+        }
+        >div {
+            >span {
+                font-weight: 700;
+            }
+        }
+    }
+
+    >.special-course-summary {
+        background-color: $grey20;
+        border-radius: 8px;
+        padding: 12px 10px;
+        display: flex;
+        flex-direction: column;
+        @include gap-sub(14px, column);
+        color: $grey90;
+        @include body-2-fix;
+        margin-bottom: 30px;
+        >div {
+            display: flex;
+            @include gap-sub(60px);
+            >div{
+                min-width: 58px;
+            }
+        }
+    }
+
+    >.register-summary {
+        background-color: $grey20;
+        border-radius: 8px;
+        padding: 12px 10px;
+        display: flex;
+        flex-direction: column;
+        @include gap-sub(4px, column);
+        color: $grey90;
+        @include body-2-fix;
+        >div {
+            display: flex;
+            // align-items: center;
+            @include gap-sub(5px);
+            >div:nth-child(2) {
+                display: flex;
+                flex-wrap: wrap;
+                @include gap-sub(5px);
+            }
+        }
+    }
+
+    >.register-total-price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        >div:first-child {
+            @include body-2-fix;
+            color: $grey90;
+        }
+        >div:last-child {
+            display: flex;
+            align-items: center;
+            >.original-price{
+                @include caption-fix;
+                color: $grey60;
+                opacity: 0.43;
+                margin-right: 7px;
+                text-decoration: line-through;
+            }
+            >div:last-child{
+                color: $grey90;
+                >span{
+                    @include subhead-2-fix;
+                    font-weight: 700;
+                }
+                @include body-2-fix;
+            }
+        }
+    }
+
+    >.register-button-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        @include gap-sub(8px, column);
+    }
+
+    >.register-button-container-row {
+        @include set-item-center;
+        @include gap-sub(20px);
+    }
+
+    >.register-select-day {
+        @include body-2-fix;
+        display: flex;
+        flex-direction: column;
+
+        >.day-button-container {
+            display: flex;
+            border-radius: 8px;
+            width: fit-content;
+            margin-top: 8px;
+            @include mobile {
+                width: 100%;
+            }
+
+            >div:first-child {
+                border-radius: 4px 0px 0px 4px;
+            }
+            >div:last-child {
+                border-radius: 0px 4px 4px 0px;
+            }
+
+            >.day-button {
+                overflow: hidden;
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                @include set-item-center;
+                border: 1px solid $grey80;
+                color: $grey90;
+                margin-right: -1px;
+                &.active {
+                    background-color: $grey80;
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    >.register-select-time {
+        @include body-2-fix;
+        display: flex;
+        flex-direction: column;
+
+        >.time-button-container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            >*{ 
+                margin-right: 24px;
+                margin-bottom: 8px;
+            }
+
+            height: 292px;
+            width: fit-content;
+            margin-top: 8px;
+            >.active {
+                color: $white;
+                background-color: $grey80;
+            }
+            @include mobile {
+                &._6{
+                    height: 388px;
+                }
+            }
+        }
+    }
+}
+
+.payment-content {
+    display: flex;
+    @include mobile {
+        flex-direction: column;
+    }
+
+    >div:nth-child(1) {
+        height: inherit;
+        @include tablet-to-desktop {
+            width: 548px;
+            padding: 30px 40px 50px 30px;
+            border-right: 1px solid $grey30;
+        }
+        @include mobile {
+            width: 100%;
+            padding: 20px 10px;
+        }
+
+        
+
+        >.payment-detail {
+            display: flex;
+            flex-direction: column;
+            @include tablet-to-desktop {
+                @include gap-sub(30px, column);
+            }
+            @include mobile {
+                @include gap-sub(16px, column);
+            }
+            color: $grey90;
+            >.register-info, >.payment-payer-info, >.payment-coupon-point, >.payment-method {
+                display: flex;
+                flex-direction: column;
+                >div:first-child{
+                    @include subhead-2-fix;
+                    color: $grey90;
+                }
+            }
+
+            >.register-info {
+                display: flex;
+                flex-direction: column;
+                @include tablet-to-desktop {
+                    width: 350px;
+                }
+                @include mobile {
+                    width: 100%;
+                }
+
+                >div:first-child {
+                    margin-bottom: 14px;
+                }
+
+                >.register-summary {
+                    background-color: $grey20;
+                    border-radius: 8px;
+                    padding: 12px 10px;
+                    display: flex;
+                    flex-direction: column;
+                    @include gap-sub(4px, column);
+                    color: $grey90;
+                    @include body-2-fix;
+                    >div {
+                        display: flex;
+                        // align-items: center;
+                        @include gap-sub(5px);
+                        >div:nth-child(2) {
+                            display: flex;
+                            flex-wrap: wrap;
+                            @include gap-sub(5px);
+                        }
+                    }
+                }
+            }
+
+            >.payment-payer-info, >.payment-coupon-point {
+                width: 100%;
+                @include tablet-to-desktop {
+                    >div:first-child {
+                        margin-bottom: 36px;
+                    }
+                    
+                    >div {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 16px;
+                        >div:first-child {
+                            width: 80px;
+                        }
+                        >div:last-child {
+                            width: 400px;
+                        }
+                    }
+
+                    >.bonus-point {
+                        >div:last-child {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            
+                            >div {
+                                display: flex;
+                                align-items: center;
+                                width: 322px;
+                                @include gap-sub(5px);
+                            }
+                        }
+                    }
+                }
+
+                @include mobile {
+                    >div:first-child {
+                        margin-bottom: 20px;
+                    }
+
+                    >div {
+                        display: flex;
+                        flex-direction: column;
+                        @include gap-sub(4px, column);
+                        margin-bottom: 12px;
+                        >div:first-child {
+                            width: auto;
+                        }
+                        >div:last-child {
+                            width: 100%;
+                        }
+                    }
+
+                    >div:last-child {
+                        margin-bottom: 0;
+                    }
+
+                    >.bonus-point {
+                        >div:last-child {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            
+                            >div {
+                                display: flex;
+                                align-items: center;
+                                width: 174px;
+                                @include gap-sub(5px);
+                            }
+                        }
+                    }
+                }
+            }
+
+            >.payment-payer-info {
+                >div:nth-child(2) {
+                    @include tablet-to-desktop {
+                        justify-content: flex-end;
+                        margin-bottom: 8px;
+                    }
+
+                    @include mobile {
+                        margin-bottom: -10px;
+                        align-self: flex-end;
+                    }
+                }
+            }
+
+            >.payment-method {
+                >div:first-child {
+                    margin-bottom: 16px;
+                }
+
+                >.tip {
+                    @include caption;
+                    color: $grey90;
+                    text-align: right;
+                    margin-bottom: 4px;
+                    >span {
+                        text-decoration: underline;
+                    }
+                }
+
+                >.method-container {
+                    border-radius: 8px;
+                    background-color: $grey05;
+                    border: 1px solid $grey30;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0 16px;
+                    margin-bottom: 8px;
+                    @include body-2-fix;
+                    color: $grey90;
+
+                    >div:first-child {
+                        height: 56px;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        cursor: pointer;
+                    }
+
+                    >.method-detail {
+                        padding: 0 14px;
+                        margin: 18px 0;
+
+                        >div:first-child {
+                            display: flex;
+                            flex-direction: column;
+                            @include gap-sub(8px, column);
+                        }
+
+                        >.add-method {
+                            padding-top: 20px;
+                            @include set-item-center;
+                            >div{
+                                @include set-item-center;
+                                margin: 0 auto;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+
+                >div:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    >div:nth-child(2) {
+        @include tablet-to-desktop {
+            padding: 30px;
+            width: 400px;
+        }
+        @include mobile {
+            padding: 20px 10px;
+            width: 100%;
+        }
+
+        >.payment-confirm {
+            >.confirm-header {
+                @include subhead-2-fix;
+                color: $grey90;
+                margin-bottom: 20px;
+            }
+
+            >.hr {
+                margin-bottom: 20px;
+            }
+
+            >.confirm-original-price, >.confirm-discount-price, >.confirm-final-price {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                @include body-2-fix;
+            }
+
+            >.confirm-original-price {
+                color: $grey60;
+                margin-bottom: 10px;
+            }
+
+            >.confirm-discount-price {
+                color: $tb40;
+                margin-bottom: 10px;
+            }
+
+            >.confirm-final-price {
+                color: $grey90;
+                margin-bottom: 20px;
+                span{
+                    @include subhead-2-fix;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+.register-policy {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    @include gap-sub(14px, column);
+
+    &.franchise {
+        >div {
+            text-decoration: unset !important;
+            cursor: unset !important;
+        }
+    }
+
+    >div {
+        @each $text, $color in $colors{
+            &.#{$text} {
+                color: $color;
+            }
+        }
+    }
+
+    >div:first-child {
+        @include body-1-fix;
+        color: $grey90;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        
+        >span {
+            margin-right: 8px;
+        }
+    }
+
+    >ul{
+        list-style: none;
+        margin: 0;
+        padding-left: 0;
+        @include caption;
+        color: $grey60;
+        line-height: 1.6em;
+        margin-bottom: 14px;
+
+        >li {
+            padding-left: 1em;
+            text-indent: -1em;
+
+            &::before {
+                content: "-";
+                padding-right: 5px;
+            }
+        }
+    }
+
+    >div:last-child {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    &-mobile {
+        >div:first-child {
+            padding: 20px 10px;
+            @include body-2-fix;
+            color: $grey90;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+            >div:first-child {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                >span:first-child {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        >.policy-collapse-container {
+            margin: 0;
+
+            >.policy-collapse {
+                display: flex;
+                flex-direction: column;
+                @include gap-sub(14px, column);
+                padding: 0 12px 12px 12px;
+                &.franchise {
+                    >div {
+                        text-decoration: unset !important;
+                        cursor: unset !important;
+                    }
+                }
+
+                
+                >div {
+                    @each $text, $color in $colors{
+                        &.#{$text} {
+                            color: $color;
+                        }
+                    }
+                }
+
+                >ul {
+                    list-style: none;
+                    margin: 0;
+                    padding-left: 0;
+                    @include caption;
+                    color: $grey60;
+                    line-height: 1.6em;
+                    margin-bottom: 14px;
+            
+                    >li {
+                        padding-left: 1em;
+                        text-indent: -1em;
+            
+                        &::before {
+                            content: "-";
+                            padding-right: 5px;
+                        }
+                    }
+                }
+
+                >div:last-child {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+.payment-list {
+    @include tablet-to-desktop {
+        padding: 30px;
+    }
+    @include mobile {
+        padding: 20px 10px;
+    }
+}
+
+.payment-complete {
+    @include set-item-center;
+    flex-direction: column;
+    @include tablet-to-desktop {
+        height: 500px;
+        @include gap-sub(20px, column);
+    }
+    @include mobile {
+        height: 430px;
+        @include gap-sub(10px, column);
+    }
+
+    >div:nth-child(1){
+        color: $tb40;
+    }
+    >div:nth-child(2){
+        color: $grey90;
+        @include subhead-2;
+    }
+
+}
+
+.custom-ul{
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    @include caption;
+    color: $grey60;
+    line-height: 1.6em;
+    margin-bottom: 1rem;
+
+    >li {
+        padding-left: 1em;
+        text-indent: -1em;
+
+        &::before {
+            content: "-";
+            padding-right: 5px;
+        }
+    }
+}

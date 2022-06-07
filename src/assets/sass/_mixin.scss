@@ -1,0 +1,294 @@
+@import './variable';
+@import './screenSizeMixin';
+
+@mixin flex-center-center(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-align-center(){
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex-align-center-column(){
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@mixin set-item-center(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin banner-setting-with-url($bgurl){
+    width: 100%;
+    background: url($bgurl) 
+}
+
+@mixin sub-banner-setting($bgurl, $bgpositionx: center){
+    width: 100%;
+    background: url($bgurl) $bgpositionx center / cover no-repeat;
+}
+
+@mixin set-width-1280(){
+    width: 1280px;
+    margin: 0 auto;
+}
+
+@mixin common-container(){
+    // @include tablet-to-desktop {
+    //     width: 1280px;
+    //     margin: 0 auto;
+    // }
+    @include desktop {
+        width: 1280px;
+        margin: 0 auto;
+    }
+    @include tablet{
+        width: 100%;
+    }
+    @include mobile{
+        width: 100%;
+    }
+}
+
+@mixin max-width-container($color: #1F1F1F){
+    @include common-container();
+    @include flex-align-center-column();
+    height: auto;
+    color: $color;
+}
+
+@mixin set-fontsize-color($fontsize: 16px, $color: #FFFFFF){
+    font-size: $fontsize;
+    color: $color;
+}
+
+@mixin animation($delay, $duration, $name){
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $name;
+}
+
+@mixin keyframe($aniname){
+    @keyframes #{$aniname}{
+        @content;
+    }
+}
+
+// design guide font mixin
+@mixin display-1(){
+    font-weight: 400;
+    line-height: 1.3em;
+    @include tablet-to-desktop {
+        font-size: 52px;
+    }
+    @include mobile {
+        font-size: 40px
+    }
+}
+@mixin display-2(){
+    font-weight: 400;
+    line-height: 1.3em;
+    @include tablet-to-desktop {
+        font-size: 46px;
+    }
+    @include mobile {
+        font-size: 36px;
+    }
+}
+@mixin display-3(){
+    font-weight: 400;
+    line-height: 1.3em;
+    @include tablet-to-desktop {
+        font-size: 42px;
+    }
+    @include mobile {
+        font-size: 28px;
+    }
+}
+@mixin display-4(){
+    font-weight: 400;
+    line-height: 1.3em;
+    @include tablet-to-desktop {
+        font-size: 34px;
+    }
+    @include mobile {
+        font-size: 24px;
+    }
+}
+@mixin headline(){
+    font-weight: 400;
+    line-height: 1.3em;
+    @include tablet-to-desktop {
+        font-size: 30px;
+    }
+    @include mobile {
+        font-size: 20px;
+    }
+}
+@mixin subhead-1(){
+    font-weight: 400;
+    line-height: 1.3em;
+    @include tablet-to-desktop {
+        font-size: 24px;
+    }
+    @include mobile {
+        font-size: 14px;
+    }
+}
+@mixin subhead-2(){
+    font-weight: 400;
+    line-height: 1.3em;
+    @include tablet-to-desktop {
+        font-size: 18px;
+    }
+    @include mobile {
+        font-size: 14px;
+    }
+}
+@mixin body-1(){
+    font-weight: 400;
+    line-height: 1.3em;
+    @include tablet-to-desktop {
+        font-size: 16px;
+    }
+    @include mobile {
+        font-size: 12px;
+    }
+}
+@mixin body-2(){
+    font-weight: 400;
+    line-height: 1.3em;
+    @include tablet-to-desktop {
+        font-size: 14px;
+    }
+    @include mobile {
+        font-size: 10px;
+    }
+}
+@mixin caption(){
+    font-weight: 400;
+    line-height: 1.3em;
+    @include tablet-to-desktop {
+        font-size: 12px;
+    }
+    @include mobile {
+        font-size: 10px;
+    }
+}
+
+@mixin display-1-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 52px;
+}
+@mixin display-2-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 46px;
+}
+@mixin display-3-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 42px;
+}
+@mixin display-4-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 34px;
+}
+@mixin headline-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 30px;
+}
+@mixin subhead-1-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 24px;
+}
+@mixin subhead-2-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 18px;
+}
+@mixin body-1-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 16px;
+}
+@mixin body-2-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 14px;
+}
+@mixin caption-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 12px;
+}
+
+@mixin scrollbar-small {
+    @include guide-scrollbar(6px, 8px);
+}
+
+@mixin guide-scrollbar($width: 10px, $trackMargin: 0px) {
+    &::-webkit-scrollbar { 
+        width: $width;
+    }
+    &::-webkit-scrollbar-track { 
+        background-color:$white;
+        margin: $trackMargin;
+    }
+    &::-webkit-scrollbar-thumb { 
+        background: $grey30; 
+        border-radius: 10px;
+
+        &:hover {
+            background: $grey50; 
+        }
+
+        &:active {
+            background: $grey50; 
+        }
+    }
+    &::-webkit-scrollbar-track {
+        background-color: #FFFFFF00;
+    }
+    &::-webkit-scrollbar-button { 
+        display: none; 
+    }
+}
+
+@mixin sprite-setting($imageUrl) {
+    display: block;
+    flex-shrink: 0;
+    background-image: url($imageUrl);
+    background-repeat: no-repeat;
+}
+
+@mixin gap-sub($gapValue: 0px, $flexDirection: row){
+    @if $flexDirection == row {
+        >*{
+            margin-right: $gapValue;
+            &:last-child{ margin-right: 0 !important;}
+        }
+    }
+    @else {
+        >*{
+            margin-bottom: $gapValue;
+            &:last-child{ margin-bottom: 0 !important;}
+        }
+    }
+}

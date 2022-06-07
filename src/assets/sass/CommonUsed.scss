@@ -1,0 +1,458 @@
+@import './mixin';
+
+.max-width-body{
+    @include common-container();
+}
+
+.rectangle-banner{
+    &.medium{
+        width: 608px;
+        height: 196px;
+        font-size: 1.25rem;
+    }
+
+    @include mobile{
+        width:100% !important;
+        height: auto !important;
+    }
+
+}
+
+.relative-box{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.absolute-box{
+    position: absolute;
+}
+
+.root-quick-menu{
+    @include desktop{
+        position:fixed;
+        right: 50px;
+        width: 64px;
+        height: auto;
+        margin-top:5vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 997;
+
+        >.quick-menu-div {
+            width: 100%;
+            height: 100%;
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #1DB4B4;
+            border-radius: 4px;
+        }
+        >.quick-menu-div>div{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 63px;
+            justify-content: space-evenly;
+            padding-top:8px;
+            font-size: 12px;
+            text-align: center;
+            color: #1F1F1F;
+        }
+        >.quick-menu-div>div:hover{
+            cursor: pointer;
+        }
+
+        >.quick-menu-div>.quick-hr{
+            width:56px;
+            border-top:1px solid #D7E8E8;
+            border-width: thin;
+            margin: 0px;
+        }
+
+    
+        >.quick-menu-div > * {
+            font-size: 10px;
+        }
+
+        >.quick-goto-top{
+            width:48px;
+            height: 48px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #373737;
+            margin: 0 auto;
+            background-color: #FFFFFFCE;
+            text-align: center;
+            border-radius: 24px;
+            border: 1px solid #A2A2A2;
+            margin-top: 10px;
+        }
+        >.quick-goto-top > svg{
+            margin-top:12px;
+        }
+    
+        >.quick-goto-top:hover{
+            cursor: pointer;
+        }
+
+    }
+    @include tablet{
+        display: none;
+    }
+    @include mobile{ 
+        display: none;
+    }
+}
+
+.oval-container{
+    &.medium{
+        // width: 130px;
+        // height: 40px;
+        // border-radius: 20px;
+        // font-size: 1.375rem;
+        @include tablet-to-desktop {
+            width: 130px;
+            height: 40px;
+            border-radius: 20px;
+            font-size: 1.375rem;
+        }
+
+        @include mobile {
+            width: 65px;
+            height: 19px;
+            border-radius: 9.5px;
+            font-size: 0.9375rem;
+            line-height: 0.875rem;
+        }
+    }
+
+    &.topolar{
+        background-color: $lighttopolar;
+        color: $colorFF;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ticket-container {
+    position: relative;
+    display: flex;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 5px 10px 10px #1C1C1C11;
+
+    @include tablet-to-desktop {
+        width: 840px;
+        height: 300px;
+    }
+
+    @include mobile {
+        width: 320px;
+        height: 115px;
+    }
+
+    .vl {
+        position: absolute;
+        @include tablet-to-desktop {
+            left: 654px;
+            top: 21px;
+            height: 256px;
+            width: 2px;
+        }
+        @include mobile {
+            left: 238px;
+            top: 8px;
+            width: 1px;
+            height: 99px;
+        }
+    }
+
+    .ticket-airplane {
+        position: absolute;
+        background: url('../root_img/CardComponent/ticket_airplane.png') center center / contain no-repeat;
+        @include tablet-to-desktop {
+            left: 336px;
+            top: 82px;
+            width: 264px;
+            height: 262px;
+        }
+        @include mobile {
+            left: 140px;
+            top: 48px;
+            width: 85px;
+            height: 84px;
+        }
+    }
+
+    .ticket-content-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        @include tablet-to-desktop {
+            width: 655px;
+        }
+        @include mobile {
+            width: 238.5px;
+        }
+
+        &::before {
+            content: "";
+            height: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            @include tablet-to-desktop {
+                width: 655px;
+                border-bottom: 21px solid transparent;
+                border-right: 21px solid #fafafa;
+            }
+            @include mobile {
+                width: 238.5px;
+                border-bottom: 8px solid transparent;
+                border-right: 8px solid #fafafa;
+            }
+        }
+
+        &::after {
+            content: "";
+            height: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            box-shadow: 10px 10px 10px #eee;
+            @include tablet-to-desktop {
+                width: 655px;
+                border-top: 21px solid #fff;
+                border-right: 21px solid #eee;
+            }
+            @include mobile {
+                width: 238.5px;
+                border-top: 8px solid #fff;
+                border-right: 8px solid #eee;
+            }
+        }
+
+        .ticket-content {
+            display: flex;
+        }
+        
+        .ticket-content>div:nth-child(1) {
+            @include tablet-to-desktop {
+                width: 18px;
+                height: 144px;
+                background: url('../root_img/CardComponent/bcca_vertical_renewal.png') center center / contain no-repeat;
+                margin-top: 60px;
+                margin-left: 31px;
+            }
+            @include mobile {
+                width: 8px;
+                height: 66px;
+                background: url('../root_img/CardComponent/m_bcca_vertical_renewal.png') center center / contain no-repeat;
+                margin-top: 20px;
+                margin-left: 12px;
+            }
+            
+        }
+
+        .ticket-content>div:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+
+            @include tablet-to-desktop {
+                padding-left: 97px;
+            }
+            @include mobile {
+                padding-left: 36px;
+            }
+
+            >div:nth-child(1) {
+                color: #247474;
+                @include tablet-to-desktop {
+                    margin-top: 33px;
+                    font-size: 0.875rem;
+                    line-height: 20px;
+                }
+                @include mobile {
+                    margin-top: 10px;
+                    font-size: 0.625rem;
+                    line-height: 15px;
+                }
+            }
+            
+            >div:nth-child(2){
+                font-weight: bold;
+                @include tablet-to-desktop {
+                    margin-top: 14px;
+                    font-size: 1.5rem;
+                    line-height: 30px;
+                }
+                @include mobile {
+                    margin-top: 2px;
+                    font-size: 0.75rem;
+                    line-height: 15px;
+                }
+                >div:nth-child(1){
+                    color: #9B9B9B;
+                }
+                >div:nth-child(2){
+                    color: #373737;
+                }
+                >div:nth-child(3){
+                    color: #9B9B9B;
+                }
+            }
+
+            >div:nth-child(3){
+                @include tablet-to-desktop {
+                    margin-top: 26px;
+                    background: url('../root_img/CardComponent/ticket_barcode1.png') center center / contain no-repeat;
+                    width: 242px;
+                    height: 29px;
+                }
+                @include mobile {
+                    margin-top: 5px;
+                    background: url('../root_img/CardComponent/m_ticket_barcode1.png') center center / contain no-repeat;
+                    width: 94px;
+                    height: 11px;
+                }
+            }
+        }
+    }
+
+    .ticket-button-wrapper {
+        position: relative;
+        padding: 0;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        @include tablet-to-desktop{
+            width: 185px;
+        }
+        @include mobile{
+            width: 81px;
+        }
+        
+        &::before {
+            content: "";
+            height: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            @include tablet-to-desktop{
+                width: 185px;
+                border-bottom: 21px solid transparent;
+                border-left: 21px solid #fafafa;
+            }
+            @include mobile{
+                width: 81px;
+                border-bottom: 8px solid transparent;
+                border-left: 8px solid #fafafa;
+            }
+        }
+
+        &::after {
+            content: "";
+            height: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            box-shadow: 10px 10px 10px #eee;
+            @include tablet-to-desktop{
+                width: 185px;
+                border-top: 21px solid #fff;
+                border-left: 21px solid #eee;
+            }
+            @include mobile{
+                width: 81px;
+                border-top: 8px solid #fff;
+                border-left: 8px solid #eee;
+            }
+        }
+
+        >div:nth-child(1){
+            @include tablet-to-desktop {
+                letter-spacing: -1.65px;
+            }
+            @include mobile {
+                letter-spacing: -1px;
+            }
+        }
+
+        >div:nth-child(2){
+            background-color: #00B4B4;
+            color: #FFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            @include tablet-to-desktop {
+                margin-top: 85px;
+                margin-left: 23px;
+                width: 139px;
+                height: 44px;
+                border-radius: 22px;
+                font-size: 1.5rem;
+            }
+
+            @include mobile {
+                margin-top: 37px;
+                margin-left: 7px;
+                width: 67px;
+                height: 22px;
+                border-radius: 11px;
+                font-size: 0.875rem;
+            }
+
+            &:hover {
+                background-color: #ededed;
+                color:#b5b5b5;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+
+        >div:nth-child(3){
+            @include tablet-to-desktop {
+                margin-top: 58px;
+                margin-left: 23px;
+                width: 139px;
+                height: 29px;
+                background: url('../root_img/CardComponent/ticket_barcode2.png') center center / contain no-repeat;
+            }
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+
+    .ticket-header {
+        width: 100%;
+        background-color: $topolar;
+        color: $colorF6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include tablet-to-desktop{
+            height: 42px;
+            font-size: 1.25rem;
+            line-height: 30px;
+        }
+        @include mobile{
+            height: 16px;
+            font-size: 0.625rem;
+            line-height: 13px;
+            font-weight: lighter;
+        }
+    }
+}

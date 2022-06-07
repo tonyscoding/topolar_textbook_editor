@@ -1,0 +1,320 @@
+@import './mixin';
+
+@mixin sprite-setting($imageUrl) {
+    display: block;
+    flex-shrink: 0;
+    background-image: url($imageUrl);
+    background-repeat: no-repeat;
+}
+
+// in mobile sidebar page
+.mobile-sidebar-sprite{
+    @include sprite-setting('../root_img/imageSprites1.png');
+    background-size: 200px 190px;
+}
+
+.desktop-sidebar-sprite{
+    @include sprite-setting('../root_img/imageSprites1.png');
+    background-size: 400px 380px;
+}
+
+.mobile-sidebar-curriculum{
+    width: 40px;
+    height: 40px;
+    background-position: -55px -85px;
+}
+
+.mobile-sidebar-reviews{
+    width: 40px;
+    height: 40px;
+    background-position: -5px -105px;
+}
+
+.mobile-sidebar-faq{
+    width: 40px;
+    height: 40px;
+    background-position: -149px -5px;
+}
+
+.mobile-sidebar-price-info{
+    width: 40px;
+    height: 40px;
+    background-position: -155px -55px;
+}
+
+.mobile-sidebar-event{
+    width: 40px;
+    height: 40px;
+    background-position: -105px -85px;
+}
+
+.white-topolar-logo{
+    width: 88px;
+    height: 15px;
+    background-position: -55px -135px;
+}
+
+.white-close-btn{
+    width: 15px;
+    height: 16px;
+    background-position: -5px -5px;
+}
+
+.mobile-sidebar-naver{
+    width: 40px;
+    height: 40px;
+    background-position: -155px -105px;
+}
+
+.mobile-sidebar-kakao{
+    width: 40px;
+    height: 40px;
+    background-position: -5px -45px;
+}
+
+.mobile-sidebar-hamburger{
+    width: 19px;
+    height: 14px;
+    background-position: -30px -5px;
+}
+
+.footer-naver{
+    width: 60px;
+    height: 60px;
+    background-position: -10px -310px;
+    cursor: pointer;
+}
+
+.footer-kakao{
+    width: 60px;
+    height: 60px;
+    background-position: -218px -90px;
+    cursor: pointer;
+}
+
+// in user-review page
+.desktop-user-review-sprite{
+    @include sprite-setting('../root_img/UserReview/userReviewSprite.png');
+    background-size: 704px 301px;
+}
+
+.mobile-user-review-sprite{
+    @include sprite-setting('../root_img/UserReview/userReviewSprite.png');
+    background-size: 352px 150px;
+}
+
+.user-review-left-arrow{
+    width: 24px;
+    height: 38px;
+    background-position: -192px -10px;
+    cursor: pointer;
+}
+
+.user-review-right-arrow{
+    width: 24px;
+    height: 38px;
+    background-position: -308px -111px;
+    cursor: pointer;
+}
+
+// tr: text review
+.user-review-tr-profile1{
+    @include tablet-to-desktop(){
+        width: 80px;
+        height: 81px;
+        background-position: -236px -10px;
+    }
+
+    @include mobile(){
+        width: 40px;
+        height: 40px;
+        background-position: -118px -5px;
+    }
+}
+
+.user-review-tr-profile2{
+    @include tablet-to-desktop(){
+        width: 80px;
+        height: 80px;
+        background-position: -10px -111px;
+    }
+
+    @include mobile(){
+        width: 40px;
+        height: 40px;
+        background-position: -5px -55px;
+    }
+}
+
+.user-review-tr-profile3{
+    @include tablet-to-desktop(){
+        width: 79px;
+        height: 80px;
+        background-position: -110px -111px;
+    }
+
+    @include mobile(){
+        width: 40px;
+        height: 40px;
+        background-position: -55px -55px;
+    }
+}
+
+.user-review-tr-profile4{
+    @include tablet-to-desktop(){
+        width: 79px;
+        height: 80px;
+        background-position: -209px -111px;
+    }
+
+    @include mobile(){
+        width: 40px;
+        height: 40px;
+        background-position: -104px -55px;
+    }
+}
+
+.user-review-tr-profile5{
+    @include tablet-to-desktop(){
+        width: 80px;
+        height: 80px;
+        background-position: -10px -211px;
+    }
+
+    @include mobile(){
+        width: 40px;
+        height: 40px;
+        background-position: -5px -105px;
+    }
+}
+
+.user-review-tr-profile6{
+    @include tablet-to-desktop(){
+        width: 80px;
+        height: 80px;
+        background-position: -110px -211px;
+    }
+
+    @include mobile(){
+        width: 40px;
+        height: 40px;
+        background-position: -55px -105px;
+    }
+}
+
+.user-review-live-review-heart{
+    @include tablet-to-desktop(){
+        width: 35px;
+        height: 32px;
+        background-position: -90px -10px;
+    }
+
+    @include mobile(){
+        width: 14px;
+        height: 12px;
+        background-position: -72px -5px;
+    }
+}
+
+.desktop-user-review-sprite3{
+    @include sprite-setting('../root_img/UserReview/userReviewSprite3.png');
+    background-size: 242px 160px;
+}
+
+.mobile-user-review-sprite3{
+    @include sprite-setting('../root_img/UserReview/userReviewSprite3.png');
+    background-size: 121px 80px;
+}
+
+.user-review-live-review-profile0{
+    @include tablet-to-desktop(){
+        width: 61px;
+        height: 60px;
+        background-position: -10px -10px;
+    }
+
+    @include mobile(){
+        width: 30px;
+        height: 30px;
+        background-position: -5px -5px;
+    }
+}
+.user-review-live-review-profile1{
+    @include tablet-to-desktop(){
+        width: 61px;
+        height: 60px;
+        background-position: -10px -90px;
+    }
+
+    @include mobile(){
+        width: 30px;
+        height: 30px;
+        background-position: -5px -45px;
+    }
+}
+.user-review-live-review-profile2{
+    @include tablet-to-desktop(){
+        width: 60px;
+        height: 61px;
+        background-position: -91px -10px;
+    }
+
+    @include mobile(){
+        width: 30px;
+        height: 30px;
+        background-position: -45px -5px;
+    }
+}
+.user-review-live-review-profile3{
+    @include tablet-to-desktop(){
+        width: 61px;
+        height: 60px;
+        background-position: -171px -10px;
+    }
+
+    @include mobile(){
+        width: 30px;
+        height: 30px;
+        background-position: -85px -5px;
+    }
+}
+
+// Arrow sprites
+.desktop-arrow-sprite{
+    @include sprite-setting('../root_img/arrowSprites.png');
+    background-size: 263px 186px;
+}
+
+.mobile-arrow-sprite{
+    @include sprite-setting('../root_img/arrowSprites.png');
+    background-size: 131px 93px;
+}
+
+.grey-left-arrow{
+    @include mobile(){
+        width: 30px;
+        height: 30px;
+        background-position: -5px -5px;
+    }
+}
+
+.grey-right-arrow{
+    @include mobile(){
+        width: 30px;
+        height: 30px;
+        background-position: -45px -5px;
+    }
+}
+
+.video-play-arrow{
+    @include tablet-to-desktop(){
+        width: 83px;
+        height: 83px;
+        background-position: -170px -10px;
+    }
+    @include mobile(){
+        width: 42px;
+        height: 43px;
+        background-position: -5px -45px;
+    }
+}

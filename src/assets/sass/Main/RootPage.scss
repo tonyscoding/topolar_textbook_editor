@@ -1,0 +1,190 @@
+@import '../mixin';
+
+$imgSection2: 'homeImg2Content';
+$mobileImgSection2: 'mHomeImg2Content';
+
+img[alt^=#{$imgSection2}]{
+    position: absolute;
+    left: 0;
+    top: 111px;
+}
+
+img[alt=#{$mobileImgSection2}1]{
+    position: absolute;
+    left: 50%;
+    top: 345px;
+    margin-left: -96px;
+}
+
+img[alt=#{$mobileImgSection2}2]{
+    position: absolute;
+    left: 50%;
+    top: 345px;
+    margin-left: -164px;
+}
+
+img[alt=#{$mobileImgSection2}3]{
+    position: absolute;
+    left: 50%;
+    top: 345px;
+    margin-left: -152px;
+}
+
+.main-root-section-title{
+    @include display-3;
+    color: $grey90;
+    font-weight: bold;
+}
+
+.main-page-section-{
+    &2-container{
+        .root-components-auto-slider{
+            >div{
+                >div:nth-child(1){
+                    background-image: url(../../root_img/Main/mainSlide1.png);
+                    background-size: 100% 100%;
+                }
+                >div:nth-child(2){
+                    background-image: url(../../root_img/Main/mainSlide2.png);
+                    background-size: 100% 100%;
+                }
+                >div:nth-child(3){
+                    background-image: url(../../root_img/Main/mainSlide3.png);
+                    background-size: 100% 100%;
+                }
+            }
+        }
+    }
+
+    &4-container{
+        >div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            >div:nth-child(1){
+                text-align: center;
+            }
+            >.main-root-section-4-content{
+                position: relative;
+                @include tablet-to-desktop{
+                    width: 840px;
+                    height: 728px;
+                    margin-top: 60px;
+                }
+                @include mobile{
+                    width: 320px;
+                    height: 383px;
+                    margin-top: 28px;
+                }
+                >.circle-container{
+                    @include tablet-to-desktop{
+                        top: 628px !important;
+                    }
+                    @include mobile{
+                        top: 306px !important;
+                        justify-content: unset !important;
+                        width: auto !important;
+                    }
+                    position: absolute;
+                    >.circle-not-selected{
+                        background-color: #000 !important;
+                        opacity: 0.2 !important;
+                    }
+                }
+                >.root-components-auto-slider>div{
+                    @include mobile{
+                        overflow-x: scroll;
+                        overflow-y: hidden;
+                        scroll-snap-type: x mandatory;
+                        &::-webkit-scrollbar-thumb{ background: unset !important;}
+                    }
+                    >div:nth-child(1){
+                        @include tablet-to-desktop{ background-image: url(../../root_img/Main/homeImg4Content1.png); }
+                        @include mobile { 
+                            background-image: url(../../root_img/Main/mHomeImg4Content1.png);
+                            scroll-snap-align: start;
+                        }
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+                    >div:nth-child(2){
+                        @include tablet-to-desktop{ background-image: url(../../root_img/Main/homeImg4Content2.png); }
+                        @include mobile { 
+                            background-image: url(../../root_img/Main/mHomeImg4Content2.png); 
+                            scroll-snap-align: start;
+                        }
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+                    >div:nth-child(3){
+                        @include tablet-to-desktop{ background-image: url(../../root_img/Main/homeImg4Content3.png); }
+                        @include mobile{
+                            background-image: url(../../root_img/Main/mHomeImg4Content3.png);
+                            scroll-snap-align: start;
+                        }
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+                }
+
+                >button{
+                    @include tablet-to-desktop{
+                        left: 340px;
+                        width: 160px;
+                        height: 48px;
+                    }
+                    @include mobile{
+                        left: 91px;
+                        width: 144px;
+                        height: 40px;
+                        font-size: 14px;
+                    }
+                    position: absolute;
+                    bottom: 0;
+                    &:hover{
+                        background-color: #FFF !important;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+.main-page-user-reviews-{
+    &user{
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #212121;
+        justify-content: center;
+        margin-top: 28px;
+        &::after{
+            content: "";
+            display: inline-block;
+            width: 17px;
+            height: 25px;
+            background-image: url('../../root_img/Main/userReviewsIcon.png');
+            background-size: 100% 100%;
+            margin-left: 7px;
+        }
+    }
+    &description{
+        font-size: 12px;
+        color: #757575;
+        line-height: 18px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-top: 24px;
+    }
+
+    &play-button{
+        position: absolute;
+        left: 50%;
+        margin-left: -28px;
+        top: 62px;
+
+
+    }
+}
