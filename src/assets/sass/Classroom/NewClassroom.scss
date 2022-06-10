@@ -73,7 +73,7 @@
                 font-size:12px;
                 margin-bottom:25px;
                 @include flex-center-center();
-                
+
                 >.toolbar-user-status{
                     display: flex;
                     margin-bottom:5px;
@@ -91,7 +91,7 @@
                         }
                     }
                 }
-                
+
                 >.toolbar-user-image{
                     @include flex-center-center();
                     width:56px;
@@ -203,6 +203,7 @@
             margin-bottom:60px;
         }
         .textbook-body{
+            text-align: start;
             >.body-code{
                 >pre{
                     >div{
@@ -215,24 +216,24 @@
                 border: $grey30 1px dashed;
             }
             >.body-desc{
-              border: $grey30 1px dashed;
+                border: $grey30 1px dashed;
             }
             >.body-image{
-              border: $grey30 1px dashed;
+                border: $grey30 1px dashed;
             }
             >.body-table{
-              border: $grey30 1px dashed;
+                border: $grey30 1px dashed;
             }
             .body-buttonGroup {
-              display: flex;
-              flex-direction: row;
+                display: flex;
+                flex-direction: row;
             }
-            
+
 
             img{
                 max-width:100%;
             }
-            
+
         }
     }
 

@@ -90,7 +90,7 @@ const TextbookSidebar = ({
 
             <div className="textbook-prev" onClick={()=>setViewType(viewType-1)}>
                 <span className="textbook-sidebar-back material-icons-outlined">
-                    westㄴㄷㄹㅁㅈㄷㄹㅁㄷㅈㄹ
+                    west
                 </span>
             </div>
 
