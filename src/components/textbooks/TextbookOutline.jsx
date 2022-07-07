@@ -122,16 +122,39 @@ const TextbookOutline = ({
 					setIndex(stepIndex, itemIndex);
 				}
 				return(
-					<div key={step.title + CurrentIndex} className={"textbook-step" + (stepIndicator==CurrentIndex?" current" : "")}
-					     onClick={()=>{setStepIndicator(CurrentIndex)}} onMouseEnter={() => {setHoverItemIndex(itemIndex)}} onMouseLeave={() => {setHoverItemIndex(null)}}>
+					<div key={step.title + CurrentIndex}
+					     className={"textbook-step" + (stepIndicator==CurrentIndex?" current" : "")}
+					     onClick={()=>{
+							 setStepIndicator(CurrentIndex)
+						 }}
+					     onMouseEnter={() => {
+							 setHoverItemIndex(itemIndex)
+						 }}
+					     onMouseLeave={() => {
+							 setHoverItemIndex(null)
+						 }}
+					     style={{display: "flex", flexDirection: "column"}}
+					>
 						- {step.title}
 
 						{hoverItemIndex === itemIndex && hoverStepIndex === stepIndex &&
-							<div>
-								<button onClick={() => {itemAddClick(stepIndex, itemIndex)}}>아이템 추가</button>
-								<button onClick={() => {deleteItem(stepIndex, itemIndex)}}>아이템 제거</button>
-								<button onClick={() => {itemChangeClick(stepIndex, itemIndex)}}>아이템 이름 변경</button>
-							</div>
+							<Button.Group size="xs" ghost color="gradient">
+								<Button
+									onClick={() => {itemAddClick(stepIndex, itemIndex)}}
+								>
+									아이템 추가
+								</Button>
+								<Button
+									onClick={() => {deleteItem(stepIndex, itemIndex)}}
+								>
+									아이템 제거
+								</Button>
+								<Button
+									onClick={() => {itemChangeClick(stepIndex, itemIndex)}}
+								>
+									아이템 이름 변경
+								</Button>
+							</Button.Group>
 						}
 					</div>
 				)
@@ -144,11 +167,23 @@ const TextbookOutline = ({
 						<div className="textbook-step-container">{textbookSteps}</div>
 						{hoverStepIndex === stepIndex && !step_dict.step_items.length && <button onClick={() => {itemAddClick(stepIndex, 0)}}>아이템 추가</button>}
 						{hoverStepIndex === stepIndex &&
-							<div>
-								<button onClick={() => {stepAddClick(stepIndex)}}>스탭 추가</button>
-								<button onClick={() => {deleteStep(stepIndex)}}>스탭 제거</button>
-								<button onClick={() => {stepChangeClick(stepIndex)}}>스탭 이름 변경</button>
-							</div>
+							<Button.Group size="sm" ghost color="gradient">
+								<Button
+									onClick={() => {stepAddClick(stepIndex)}}
+								>
+									스탭 추가
+								</Button>
+								<Button
+									onClick={() => {deleteStep(stepIndex)}}
+								>
+								스탭 제거
+								</Button>
+								<Button
+									onClick={() => {stepChangeClick(stepIndex)}}
+								>
+								스탭 이름 변경
+								</Button>
+							</Button.Group>
 						}
 					</div>
 				</>
@@ -167,7 +202,16 @@ const TextbookOutline = ({
 	return (
 		<>
 			<div>
-				<button onClick={() => {stepAddClick(-1)}}>스탭 추가</button>
+				<Button
+					onClick={() => {
+						stepAddClick(-1)
+					}}
+					size={"sm"}
+					color={"gradient"}
+					ghost
+				>
+					스탭 추가
+				</Button>
 			</div>
 			{parsedJSONBook}
 		</>
