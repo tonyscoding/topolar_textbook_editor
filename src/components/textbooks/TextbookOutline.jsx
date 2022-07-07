@@ -28,7 +28,7 @@ const TextbookOutline = ({
 		setParsedJSONBook(parseTextbook(JSONBook));
 	}, [hoverStepIndex, hoverItemIndex]);
 
-	const stepAddClick = (stepIndex) => {
+	const stepAddClick = (index) => {
 		confirmAlert({
 			customUI: ({ onClose }) => {
 				return (
@@ -37,14 +37,14 @@ const TextbookOutline = ({
 						onClose={onClose}
 						handleOnclick={addStep}
 						type={"step"}
-						data={{"stepIndex": stepIndex + 1}}
+						data={{"stepIndex": index + 1}}
 					/>
 				);
 			}
 		})
 	}
 
-	const stepChangeClick = (stepIndex) => {
+	const stepChangeClick = (index) => {
 		confirmAlert({
 			customUI: ({ onClose }) => {
 				return (
@@ -53,24 +53,14 @@ const TextbookOutline = ({
 						onClose={onClose}
 						handleOnclick={setStep}
 						type={"stepChange"}
-						data={{"stepIndex": stepIndex}}
+						data={{"stepIndex": index}}
 					/>
 				);
 			}
 		})
 	}
 
-	const itemAddClick = (stepIndex, itemIndex) => {
-		// smalltalk
-		// .prompt('Question', '아이템 제목을 입력해주세요.', '')
-		// .then((value) => {
-		//     console.log(value);
-		//     addItem(value, stepIndex, itemIndex + 1)
-		// })
-		// .catch((e) => {
-		//     console.log(e)
-		// });
-
+	const itemAddClick = (stepIdx, itemIdx) => {
 		confirmAlert({
 			customUI: ({ onClose }) => {
 				return (
@@ -79,24 +69,14 @@ const TextbookOutline = ({
 						onClose={onClose}
 						handleOnclick={addItem}
 						type={"item"}
-						data={{"stepIndex": stepIndex, "itemIndex": itemIndex + 1}}
+						data={{"stepIndex": stepIdx, "itemIndex": itemIdx + 1}}
 					/>
 				);
 			}
 		})
 	}
 
-	const itemChangeClick = (stepIndex, itemIndex) => {
-		// smalltalk
-		// .prompt('Question', '바꿀 제목을 입력해주세요.', '')
-		// .then((value) => {
-		//     console.log(value);
-		//     setItem(value, stepIndex, itemIndex)
-		// })
-		// .catch((e) => {
-		//     console.log(e)
-		// });
-
+	const itemChangeClick = (stepIdx, itemIdx) => {
 		confirmAlert({
 			customUI: ({ onClose }) => {
 				return (
@@ -105,7 +85,7 @@ const TextbookOutline = ({
 						onClose={onClose}
 						handleOnclick={setItem}
 						type={"itemChange"}
-						data={{"stepIndex": stepIndex, "itemIndex": itemIndex}}
+						data={{"stepIndex": stepIdx, "itemIndex": itemIdx}}
 					/>
 				);
 			}

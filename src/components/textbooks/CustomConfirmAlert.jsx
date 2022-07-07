@@ -26,7 +26,7 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 					auto
 					onClick={() => {
 						if (type === 'step') {
-							handleOnclick(inputRef.current, data.index);
+							handleOnclick(inputRef.current, data.stepIndex);
 							inputRef.current = '';
 							onClose();
 						}
@@ -36,7 +36,7 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 							onClose();
 						}
 						else if (type === 'stepChange') {
-							handleOnclick(inputRef.current, data.index);
+							handleOnclick(inputRef.current, data.stepIndex);
 							inputRef.current = '';
 							onClose();
 						}
