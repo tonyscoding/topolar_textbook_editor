@@ -67,9 +67,8 @@ export const CodeEditor = (props) => {
 			<AceEditor
 				style={{width: "100%", marginLeft: "1vw"}}
 				mode={codeLanguage.codeEditorName}
-				theme="xcode"
+				theme="tomorrow"
 				name="blah2"
-				// onLoad={this.onLoad}
 				onChange={(e) => {
 					setCode(e);
 					props.code.current = e;
@@ -80,8 +79,8 @@ export const CodeEditor = (props) => {
 				highlightActiveLine={true}
 				value={code}
 				setOptions={{
-					enableBasicAutocompletion: false,
-					enableLiveAutocompletion: false,
+					enableBasicAutocompletion: true,
+					enableLiveAutocompletion: true,
 					enableSnippets: true,
 					showLineNumbers: true,
 					tabSize: 4,

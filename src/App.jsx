@@ -2,15 +2,15 @@ import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import NewClassroom from "./components/classroom";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <NewClassroom />
-    </div>
-  )
+	return (
+		<div className="App">
+			<NewClassroom />
+		</div>
+	)
 }
 
 export default App

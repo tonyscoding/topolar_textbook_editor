@@ -2,6 +2,7 @@
 @import '../mixin';
 
 .new-classroom{
+    text-align: start;
     .classroom-textbook-header{
         height:68px;
         background-color: $tb;
@@ -16,11 +17,11 @@
     }
 
     .classroom-footer{
+        z-index: 999;
         height:64px;
         position:absolute;
         bottom:0;
         width: 100%;
-        z-index: 2;
         >.progress-bar-container{
             height:8px;
             width:calc(100vw - 104px);
@@ -203,13 +204,12 @@
             margin-bottom:60px;
         }
         .textbook-body{
-            text-align: start;
             >.body-code{
                 >pre{
                     >div{
-                        background-color: $grey10 !important;
+                        //background-color: $grey10 !important;
                         span{
-                            background-color: $grey10 !important;
+                            //background-color: $grey10 !important;
                         }
                     }
                 }

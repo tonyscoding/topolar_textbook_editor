@@ -19,7 +19,7 @@ code {
 }
 
 .dropdown {
-    width: 250px;
+    width: 200px;
     background-color: var(--bg);
     border: var(--border);
     border-radius: var(--border-radius);
@@ -33,7 +33,7 @@ code {
 }
 
 .menu-item {
-    height: 30px;
+    height: 20px;
     display: flex;
     align-items: center;
     border-radius: var(--border-radius);
