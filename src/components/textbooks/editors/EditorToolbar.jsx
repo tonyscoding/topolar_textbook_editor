@@ -89,8 +89,8 @@ export const formats = [
 ];
 
 // Quill Toolbar component
-export const QuillToolbar = () => (
-  <div id="toolbar">
+export const QuillToolbar = (props) => (
+  <div id="toolbar" onFocus={() => props.onFocus()} onBlur={() => props.onBlur()}>
     <span className="ql-formats">
       {/* <select className="ql-font" defaultValue="arial">
         <option value="arial">Arial</option>

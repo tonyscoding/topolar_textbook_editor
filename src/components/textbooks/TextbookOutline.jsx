@@ -22,7 +22,7 @@ const TextbookOutline = ({
 
 	useEffect(() => {
 		setParsedJSONBook(parseTextbook(JSONBook));
-	}, [JSONBook]);
+	}, [JSON.stringify(JSONBook)]);
 
 	useEffect(() => {
 		setParsedJSONBook(parseTextbook(JSONBook));
@@ -145,7 +145,19 @@ const TextbookOutline = ({
 					<div className="textbook-steps" key={'textbook_steps_'+stepIndex} onMouseEnter={() => {setHoverStepIndex(stepIndex)}} onMouseLeave={() => {setHoverStepIndex(null)}}>
 						<div className="textbook-step-title"> Step {step_dict.step_no}. {step_dict.step_title}</div>
 						<div className="textbook-step-container">{textbookSteps}</div>
-						{hoverStepIndex === stepIndex && !step_dict.step_items.length && <button onClick={() => {itemAddClick(stepIndex, 0)}}>아이템 추가</button>}
+						{hoverStepIndex === stepIndex && !step_dict.step_items.length &&
+							<Button
+								onClick={() => {
+									itemAddClick(stepIndex, 0)
+								}}
+								size={"sm"}
+								ghost
+								color={"gradient"}
+								css={{marginLeft: "6px"}}
+							>
+								아이템 추가
+							</Button>
+						}
 						{hoverStepIndex === stepIndex &&
 							<Button.Group size="sm" ghost color="gradient">
 								<Button
