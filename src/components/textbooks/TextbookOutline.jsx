@@ -7,12 +7,15 @@ import { confirmAlert } from "react-confirm-alert";
 import { Button, Input } from "@nextui-org/react";
 import CustomConfirmAlert from "./CustomConfirmAlert";
 
+import {useRecoilState} from "recoil";
+import { stepIndexState, itemIndexState } from "@/utils/States";
 
 const TextbookOutline = ({
-     stepIndicator,
-     setStepIndicator,
      JSONBook,
  }) => {
+	const [stepIndex, setStepIndex] = useRecoilState(stepIndexState);
+	const [itemIndex, setItemIndex] = useRecoilState(itemIndexState);
+
 	const [hoverStepIndex, setHoverStepIndex] = useState(null);
 	const [hoverItemIndex, setHoverItemIndex] = useState(null);
 	const { setIndex, addStep, setStep, deleteStep, addItem, setItem, deleteItem } = useContext(TextbookContext);
@@ -94,21 +97,20 @@ const TextbookOutline = ({
 
 	const parseTextbook = (textbook) =>{
 		let index = -1
-		const textbookContents = textbook.textbook_contents.map((step_dict, stepIndex)=>{
-			const textbookSteps = step_dict.step_items.map((step, itemIndex)=>{
-				index +=1
+		const textbookContents = textbook.textbook_contents.map((step_dict, nowStepIndex)=>{
+			const textbookSteps = step_dict.step_items.map((step, nowItemIndex)=>{
+				index += 1
 				const CurrentIndex = index;
-				if(stepIndicator==CurrentIndex) {
-					setIndex(stepIndex, itemIndex);
-				}
+
 				return(
 					<div key={step.title + CurrentIndex}
-					     className={"textbook-step" + (stepIndicator==CurrentIndex?" current" : "")}
+					     className={"textbook-step" + (nowStepIndex === stepIndex && nowItemIndex === itemIndex ? " current" : "")}
 					     onClick={()=>{
-							 setStepIndicator(CurrentIndex)
+							 setStepIndex(nowStepIndex)
+						     setItemIndex(nowItemIndex)
 						 }}
 					     onMouseEnter={() => {
-							 setHoverItemIndex(itemIndex)
+							 setHoverItemIndex(nowItemIndex)
 						 }}
 					     onMouseLeave={() => {
 							 setHoverItemIndex(null)
@@ -117,20 +119,20 @@ const TextbookOutline = ({
 					>
 						- {step.title}
 
-						{hoverItemIndex === itemIndex && hoverStepIndex === stepIndex &&
+						{hoverItemIndex === nowItemIndex && hoverStepIndex === nowStepIndex &&
 							<Button.Group size="xs" ghost color="gradient">
 								<Button
-									onClick={() => {itemAddClick(stepIndex, itemIndex)}}
+									onClick={() => {itemAddClick(nowStepIndex, nowItemIndex)}}
 								>
 									아이템 추가
 								</Button>
 								<Button
-									onClick={() => {deleteItem(stepIndex, itemIndex)}}
+									onClick={() => {deleteItem(nowStepIndex, nowItemIndex)}}
 								>
 									아이템 제거
 								</Button>
 								<Button
-									onClick={() => {itemChangeClick(stepIndex, itemIndex)}}
+									onClick={() => {itemChangeClick(nowStepIndex, nowItemIndex)}}
 								>
 									아이템 이름 변경
 								</Button>
@@ -142,13 +144,13 @@ const TextbookOutline = ({
 
 			return(
 				<>
-					<div className="textbook-steps" key={'textbook_steps_'+stepIndex} onMouseEnter={() => {setHoverStepIndex(stepIndex)}} onMouseLeave={() => {setHoverStepIndex(null)}}>
+					<div className="textbook-steps" key={'textbook_steps_' + nowStepIndex} onMouseEnter={() => {setHoverStepIndex(nowStepIndex)}} onMouseLeave={() => {setHoverStepIndex(null)}}>
 						<div className="textbook-step-title"> Step {step_dict.step_no}. {step_dict.step_title}</div>
 						<div className="textbook-step-container">{textbookSteps}</div>
-						{hoverStepIndex === stepIndex && !step_dict.step_items.length &&
+						{hoverStepIndex === nowStepIndex && !step_dict.step_items.length &&
 							<Button
 								onClick={() => {
-									itemAddClick(stepIndex, 0)
+									itemAddClick(nowStepIndex, 0)
 								}}
 								size={"sm"}
 								ghost
@@ -158,20 +160,20 @@ const TextbookOutline = ({
 								아이템 추가
 							</Button>
 						}
-						{hoverStepIndex === stepIndex &&
+						{hoverStepIndex === nowStepIndex &&
 							<Button.Group size="sm" ghost color="gradient">
 								<Button
-									onClick={() => {stepAddClick(stepIndex)}}
+									onClick={() => {stepAddClick(nowStepIndex)}}
 								>
 									스탭 추가
 								</Button>
 								<Button
-									onClick={() => {deleteStep(stepIndex)}}
+									onClick={() => {deleteStep(nowStepIndex)}}
 								>
 								스탭 제거
 								</Button>
 								<Button
-									onClick={() => {stepChangeClick(stepIndex)}}
+									onClick={() => {stepChangeClick(nowStepIndex)}}
 								>
 								스탭 이름 변경
 								</Button>

@@ -11,13 +11,16 @@ const TextbookSidebar = ({
      toggleSidebar=null,
      isOpen = true,
      textbookCompleteCallback = null,
-     stepIndicator = 0,
-     setStepIndicator = null,
      JSONBook = null,
      setJSONBook = null,
-
+     movePage,
+     addStep,
+     deleteStep,
+     changeStepTitle,
+     addItem,
+     deleteItem,
+     changeItemTitle
  }) => {
-    const [viewType, setViewType] = useState(0);
     const { imageLib, setImageLib, addImageLib } = useContext(ImageContext);
 
     const downloadJson = () => {
@@ -84,10 +87,19 @@ const TextbookSidebar = ({
     return (
         <div className={"textbook-sidebar" + (isOpen? "" : " closed") + (textbookCompleteCallback? " fixed" : "")}>
             <span className="textbook-sidebar-toggle" onClick={()=>{toggleSidebar(false)}}>
-            close
+                close
             </span>
 
-            <TextbookOutline stepIndicator={stepIndicator} setStepIndicator={setStepIndicator} JSONBook={JSONBook}/>
+            <TextbookOutline
+                JSONBook={JSONBook}
+                movePage={movePage}
+                addStep={addStep}
+                deleteStep={deleteStep}
+                changeStepTitle={changeStepTitle}
+                addItem={addItem}
+                deleteItem={deleteItem}
+                changeItemTitle={changeItemTitle}
+            />
             <hr></hr>
             <button onClick={() => {setJSONBook(loadTextbook())}}>퀵로드</button>
             <br></br>

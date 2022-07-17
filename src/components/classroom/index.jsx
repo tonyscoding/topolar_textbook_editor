@@ -13,268 +13,116 @@ import { ImageContext } from "@/contexts/ImageContext";
 import { saveTextbook, loadTextbook } from "@/helpers/electronFileSystem";
 
 import tutorial from "@/textbook/Textbook_lv0_0_tutorial/Textbook_lv0_0_tutorial.json";
+
+import {useRecoilState} from "recoil";
+import { stepIndexState, itemIndexState } from "@/utils/States";
+
 const NewClassroom = () =>{
-
-    const [Textbook, setTextbook] = useState(null);
-
+    const [JSONBook, setJSONBook] = useState(tutorial);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    const [stepIndicator, setStepIndicator] = useState(0);
-    const [stepsList, setStepsList] = useState([]);
-    const [stepsListLength, setStepsListLength] = useState(null);
+    const [stepIndex, setStepIndex] = useRecoilState(stepIndexState);
+    const [itemIndex, setItemIndex] = useRecoilState(itemIndexState);
 
-    const [JSONBook, setJSONBook] = useState(tutorial);
+    useEffect(() => {
+        console.log(JSONBook.textbook_contents[stepIndex].step_items[itemIndex]);
+    }, [stepIndex, itemIndex]);
 
-    const [stepIndex, setStepIndex] = useState(0);
-    const [itemIndex, setItemIndex] = useState(0);
-    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-
-    const [imageLib, setImageLib] = useState(new Map());
-
-    const movePage = () => {
-        let steps_list = [];
-        JSONBook.textbook_contents.forEach((step)=>{
-            //JSONBook.textbook_content.textbook_contents.forEach((step)=>{
-            steps_list = steps_list.concat(step.step_items);
-        });
-        setStepsList(steps_list);
-        setStepsListLength(steps_list.length);
+    // 새로운 stepIndex와 itemIndex가 들어오면 화면 업데이트
+    const movePage = (newStepIndex, newItemIndex) => {
+        setStepIndex(newStepIndex);
+        setItemIndex(newItemIndex);
     }
 
-    useEffect(()=>{
-        movePage();
-        forceUpdate();
-    },[stepIndicator, JSONBook])
-
-    const setIndex = (stepIndex, itemIndex) => {
-        setStepIndex(stepIndex);
-        setItemIndex(itemIndex);
-    }
-
-    const addStep = (stepTitle, stepIndex) => {
-        let newBook = JSONBook;
-        for(let i = stepIndex; i < newBook.textbook_contents.length; i++) {
-            newBook.textbook_contents[i].step_no = i+1;
+    const fitStepIndex = (newJSONBook) => {
+        for (let i = 0; i < newJSONBook.textbook_contents.length; i++) {
+            newJSONBook.textbook_contents[i].step_no = i + 1;
         }
 
-        newBook.textbook_contents.splice(stepIndex, 0, {
-            "step_title": stepTitle,
-            "step_no": stepIndex,
-            "step_items": []
-        })
-        console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
+        return newJSONBook;
     }
 
-    const addItem = (itemTitle, stepIndex, itemIndex) => {
-        let newBook = JSONBook;
-        newBook.textbook_contents[stepIndex].step_items.splice(itemIndex, 0, {
-            "title": itemTitle,
-            "tags": [],
-            "collapse": false,
-            "components": []
+    // 필요한 것
+    // 1. step 추가
+    const addStep = (lastStepIndex, newStepTitle) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents.splice(lastStepIndex + 1, 0, {
+            step_title: newStepTitle,
+            step_no: -1,
+            step_items: []
         })
 
-        console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
+        newJSONBook = fitStepIndex(newJSONBook);
+        setJSONBook(newJSONBook);
     }
+    // 2. step 삭제
+    const deleteStep = (deleteStepIndex) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents.splice(deleteStepIndex, 1);
 
-    const setItem = (itemTitle, stepIndex, itemIndex) => {
-        let newBook = JSONBook;
-        newBook.textbook_contents[stepIndex].step_items[itemIndex].title = itemTitle;
-
-        console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
+        newJSONBook = fitStepIndex(newJSONBook);
+        setJSONBook(newJSONBook);
     }
+    // 3. step 이름 변경
+    const changeStepTitle = (changeStepIndex, newStepTitle) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[changeStepIndex].step_title = newStepTitle;
 
-    const setStep = (stepTitle, stepIndex) => {
-        let newBook = JSONBook;
-        newBook.textbook_contents[stepIndex].step_title = stepTitle;
-
-        console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
+        newJSONBook = fitStepIndex(newJSONBook);
+        setJSONBook(newJSONBook);
     }
-
-    const deleteStep = (stepIndex) => {
-        let newBook = JSONBook;
-        for(let i = stepIndex+1; i < newBook.textbook_contents.length; i++) {
-            newBook.textbook_contents[i].stepIndex = i-1;
-        }
-
-        newBook.textbook_contents.splice(stepIndex, 1)
-        console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
-    }
-
-    const deleteItem = (stepIndex, itemIndex) => {
-        let newBook = JSONBook;
-        newBook.textbook_contents[stepIndex].step_items.splice(itemIndex, 1)
-
-        console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
-    }
-
-    const addDescription = (index, text) => {
-        let newBook = JSONBook;
-        newBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
-            "type": "desc",
-            "description": text
+    // 4. item 추가
+    const addItem = (nowStepIndex, lastItemIndex, newItemTitle) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[nowStepIndex].step_items.splice(lastItemIndex + 1, 0, {
+            title: newItemTitle,
+            tags: [],
+            collapse: false,
         })
-
-        console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
+        setJSONBook(newJSONBook);
+    }
+    // 5. item 삭제
+    const deleteItem = (nowStepIndex, deleteItemIndex) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[nowStepIndex].step_items.splice(deleteItemIndex, 1);
+        setJSONBook(newJSONBook);
+    }
+    // 6. item 이름 변경
+    const changeItemTitle = (nowStepIndex, changeItemIndex, newItemTitle) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[nowStepIndex].step_items[changeItemIndex].title = newItemTitle;
+        setJSONBook(newJSONBook);
     }
 
-    const addImage = (index, name) => {
-        let newBook = JSONBook;
-        if(name === null) {
-            return
-        }
-        newBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
-            "type": "image",
-            "name": "",
-            "src": name
-        })
-
-        console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
-    }
-
-    const addCode = (index, text, language) => {
-        let newBook = JSONBook;
-        newBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
-            "type": "code",
-            "code": "~~~" + language + " \n" + text + "\n ~~~"
-        })
-
-        console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
-    }
-
-    const addLink = (index, textbook_id, indicator) => {
-        let newBook = JSONBook;
-        newBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
-            "type": "link",
-            "textbook_id": textbook_id,
-            "indicator": indicator
-        })
-
-        console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
-    }
-
-    const addTable = (index) => {
-        let newBook = JSONBook;
-    }
-
-    const deleteDescription = (index) => {
-        let new_textbook = JSONBook
-        new_textbook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index,1);
-        setTextbook(new_textbook);
-        forceUpdate();
-    }
-
-    const setDescription = async (index, text) => {
-        let newBook = JSONBook
-        // console.log(index, text)
-        newBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].description = text
-        // console.log(newBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].description)
-
-        // console.log(new_textbook)
-
-        // newBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 1);
-        // newBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
-        //   "type": "desc",
-        //   "description": text
-        // })
-
-        // console.log(newBook)
-
-        setJSONBook(newBook);
-        saveTextbook(newBook);
-        forceUpdate();
-    }
-
-    const addImageLib = (key, value) => {
-        console.log("image added", key);
-        setImageLib((prev) => new Map([...prev, [key, value]]));
-    };
-
-    const textbookContextValue = useMemo(() => ({
-            stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addLink, addTable, deleteDescription, addStep, setStep, deleteStep, addItem, setItem, deleteItem, setDescription}
-    ), [stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addLink, addTable, deleteDescription, addStep, setStep, deleteStep, addItem, setItem, deleteItem, setDescription]);
-
-    const imageContextValue = useMemo(() => ({
-        imageLib, setImageLib, addImageLib
-    }),[imageLib, setImageLib, addImageLib]);
-
-    if(stepsList.length === 0) {
-        return null;
-    }
     return (
         <>
-            {/* {screenSize==='desktop' &&
-        <ClassroomEventPopup
-            isOpen={isCouponModalOpen}
-            toggle={()=>setIsCouponModalOpen(!isCouponModalOpen)}
-        >
-        </ClassroomEventPopup>
-        } */}
-
             <div className="new-classroom fit-app">
-                <ImageContext.Provider value={imageContextValue}>
-                    <TextbookContext.Provider value={textbookContextValue}>
-                        <TextbookSidebar
-                            toggleSidebar={setSidebarOpen}
-                            textbookOnClickCallback={null}
-                            isOpen = {sidebarOpen}
-                            currentTextbook = {Textbook}
-                            JSONBook = {JSONBook}
-                            setJSONBook = {setJSONBook}
-                            stepIndicator = {stepIndicator}
-                            setStepIndicator = {setStepIndicator}
-                            lastTextbook={Textbook}/>
+                <TextbookSidebar
+                    toggleSidebar={setSidebarOpen}
+                    textbookOnClickCallback={null}
+                    isOpen={sidebarOpen}
+                    JSONBook={JSONBook}
+                    setJSONBook={setJSONBook}
+                    movePage={movePage}
+                    addStep={addStep}
+                    deleteStep={deleteStep}
+                    changeStepTitle={changeStepTitle}
+                    addItem={addItem}
+                    deleteItem={deleteItem}
+                    changeItemTitle={changeItemTitle}
+                />
 
-                        <div className="classroom-textbook-header">
-                            <span onClick={()=>{setSidebarOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open</span>
-                            {Textbook? Textbook.name : null}
-                        </div>
+                <div className="classroom-textbook-header">
+                    <span onClick={()=>{setSidebarOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open</span>
+                </div>
 
-                        <ClassroomFooter maxIndex={stepsListLength} stepIndicator={stepIndicator} setStepIndicator={setStepIndicator}/>
-                        {<TextbookContentView JSONLoading={false} data={stepsList? stepsList[stepIndicator] : null} />}
-
-                    </TextbookContext.Provider>
-                </ImageContext.Provider>
+                <ClassroomFooter />
+                {
+                    <TextbookContentView
+                        JSONLoading={false}
+                        data={JSONBook.textbook_contents[stepIndex].step_items[itemIndex]}
+                    />
+                }
             </div>
         </>
     )

@@ -59,8 +59,6 @@ export const CodeEditor = (props) => {
 		}
 	];
 
-	console.log("CodeEditor Rerendered");
-
 	return (
 		<div style={{display: "flex", flexDirection: "row", marginTop: "50px", marginBottom: "20px"}}>
 			<CodeLanguageSelectBox codeLanguage={codeLanguage} setCodeLanguage={setCodeLanguage} options={options}  />
@@ -84,6 +82,7 @@ export const CodeEditor = (props) => {
 					enableSnippets: true,
 					showLineNumbers: true,
 					tabSize: 4,
+					useWorker: false
 				}}/>
 		</div>
 	)

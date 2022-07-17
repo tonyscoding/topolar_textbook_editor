@@ -26,7 +26,7 @@ export const DescEditor = (props) => {
 				theme="snow"
 				style={{height:"250px"}}
 				onBlur={() => {
-					if (!toolbar.current) {
+					if (!toolbar.current && props.handleBlur) {
 						props.handleBlur();
 					}
 				}}

@@ -25,16 +25,15 @@ import ButtonGroup from "@/components/textbooks/ButtonGroup";
 const TextbookContentView = ({
          data,
          JSONLoading,
-         stepIndex,
      }) => {
 
     const text = useRef("");
     const code = useRef("");
     const codeLanguage = useRef("");
 
-    const[linkId, setLinkId] = useState(null);
-    const[linkIndicator, setLinkIndicator] = useState(null);
-    const[selectedImage, setSelectedImage] = useState(null);
+    const [linkId, setLinkId] = useState(null);
+    const [linkIndicator, setLinkIndicator] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
     const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
     if (JSONLoading){
