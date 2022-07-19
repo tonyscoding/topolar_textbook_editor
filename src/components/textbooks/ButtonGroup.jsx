@@ -13,6 +13,7 @@ export const ButtonGroup = ({
     linkIndicator,
 	addDesc,
 	addCode,
+	addSingleCard,
     deleteJSONBookItem
 }) => {
 	const stepIndex = useRecoilValue(stepIndexState);
@@ -51,6 +52,17 @@ export const ButtonGroup = ({
 				}}
 			>
 				link 추가
+			</Button>
+
+			<Button
+				size="small"
+				type="fill"
+				color="black"
+				onClick={() => {
+					addSingleCard(index + 1, linkId, linkIndicator);
+				}}
+			>
+				s_card 추가
 			</Button>
 
 			{

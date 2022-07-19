@@ -13,6 +13,7 @@ export const TextbookContext = createContext({
   addImage: () => {},
   addCode: () => {},
   addLink: () => {},
+  addSingleCard: () => {},
   addTable: () => {},
   deleteDescription: () => {},
   setDescription: () => {}

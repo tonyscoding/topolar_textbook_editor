@@ -13,6 +13,7 @@ import LinkEditor from "@/components/textbooks/editors/LinkEditor";
 import DescContent from '@/components/textbooks/contents/DescContent';
 import CodeContent from '@/components/textbooks/contents/CodeContent';
 import ImageContent from '@/components/textbooks/contents/ImageContent';
+import CardContent from '@/components/textbooks/contents/CardContent';
 
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
 
@@ -22,6 +23,7 @@ const TextbookContentView = ({
          addDesc,
          changeDesc,
          addCode,
+         addSingleCard,
          changeCode,
          deleteJSONBookItem
      }) => {
@@ -63,6 +65,7 @@ const TextbookContentView = ({
                             linkIndicator={linkIndicator}
                             addDesc={addDesc}
                             addCode={addCode}
+                            addSingleCard={addSingleCard}
                             deleteJSONBookItem={deleteJSONBookItem}
                         />
                         {reactHtmlParser(data.description_title)}
@@ -104,7 +107,12 @@ const TextbookContentView = ({
                                                     <Button size="small"> 힌트 보기 </Button>
                                                     {hoverItemIndex === index &&
                                                         <ButtonGroup index={index}/>}
-                                                </div> : null
+                                                   </div> : 
+                                        type === "single_card" ? 
+                                        <div className={"body-card"} key={components_item.code+index} >
+                                            <CardContent JSONLoading={false} data={components_item}/>
+                                        </div>
+                                            : null
                                         }
                                         {
                                             hoverItemIndex === index &&
@@ -117,6 +125,7 @@ const TextbookContentView = ({
                                                     linkIndicator={linkIndicator}
                                                     addDesc={addDesc}
                                                     addCode={addCode}
+                                                    addSingleCard={addSingleCard}
                                                     deleteJSONBookItem={deleteJSONBookItem}
                                                 />
                                         }

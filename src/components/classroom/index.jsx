@@ -135,6 +135,24 @@ const NewClassroom = () =>{
         newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(deleteIndex, 1);
         setJSONBook(newJSONBook);
     }
+    // 12.single_card 추가
+    const addSingleCard = (nowStepIndex, nowItemIndex, index, newCode, language) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+
+        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
+            "type": "single_card",
+            "components": [
+                {
+                    "type": "desc",
+                    "description": "수정하세요"
+                }
+            ]
+        })
+
+        console.log(newJSONBook)
+
+        setJSONBook(newJSONBook);
+    }
 
     return (
         <>
@@ -166,6 +184,7 @@ const NewClassroom = () =>{
                         addDesc={addDesc}
                         changeDesc={changeDesc}
                         addCode={addCode}
+                        addSingleCard={addSingleCard}
                         changeCode={changeCode}
                         deleteJSONBookItem={deleteJSONBookItem}
                     />
