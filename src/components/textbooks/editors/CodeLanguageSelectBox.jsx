@@ -28,7 +28,7 @@ export const CodeLanguageSelectBox = ({options, codeLanguage, setCodeLanguage}) 
 	}
 
 	return (
-		<div className="dropdown" style={{ height: menuHeight }} ref={dropdownRef}>
+		<div className="dropdown">
 			<div className="menu">
 				{
 					options.map((option, index) => {

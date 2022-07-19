@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer, useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import TextbookOutline from "@/components/textbooks/TextbookOutline";
 
 import { ImageContext } from '@/contexts/ImageContext';
@@ -6,6 +6,9 @@ import { ImageContext } from '@/contexts/ImageContext';
 import { saveImage, loadImage, saveTextbook, loadTextbook } from "@/helpers/electronFileSystem";
 
 import '@/assets/sass/Curriculum/TextbookSidebar.scss'
+import {Button} from "@nextui-org/react";
+import { FiUpload, FiDownload, FiRefreshCcw } from "react-icons/fi";
+
 
 const TextbookSidebar = ({
      toggleSidebar=null,
@@ -86,9 +89,14 @@ const TextbookSidebar = ({
 
     return (
         <div className={"textbook-sidebar" + (isOpen? "" : " closed") + (textbookCompleteCallback? " fixed" : "")}>
-            <span className="textbook-sidebar-toggle" onClick={()=>{toggleSidebar(false)}}>
+            <Button
+                style={{"position": "absolute", "top": "0", "right": "0"}}
+                onClick={()=>{toggleSidebar(false)}}
+                size={"sm"}
+                color={"error"}
+            >
                 close
-            </span>
+            </Button>
 
             <TextbookOutline
                 JSONBook={JSONBook}
@@ -101,17 +109,32 @@ const TextbookSidebar = ({
                 changeItemTitle={changeItemTitle}
             />
             <hr></hr>
-            <button onClick={() => {setJSONBook(loadTextbook())}}>퀵로드</button>
-            <br></br>
+            <Button.Group color={"gradient"} ghost>
+                <Button>
+                    <FiDownload style={{marginRight: 10}}/>
+                    <label htmlFor={"input-file"} style={{marginTop: 10}}>
+                        파일 로드
+                    </label>
+                    <input type="file" name="json" onChange={onJsonChange} id={"input-file"} style={{display: 'none'}}/>
+                </Button>
+                <Button onClick={downloadJson}>
+                    <FiUpload style={{marginRight: 10}}/>
+                    <div>json 변환</div>
+                </Button>
+                <Button onClick={() => {setJSONBook(loadTextbook())}}>
+                    <FiRefreshCcw style={{marginRight: 10}}/>
+                    <div>퀵로드</div>
+                </Button>
+            </Button.Group>
             <hr></hr>
-            json파일 로드<input type="file" name="json" onChange={onJsonChange}/>
-
-            <br></br>
-            <hr></hr>
-            <button onClick={downloadJson}> json 변환 </button>
-            <br></br>
-            <hr></hr>
-            이미지파일 한번에 업로드 : <input type="file" name="myImage" onChange={onFolderChange} directory="" webkitdirectory="" multiple=""/>
+            <Button.Group color={'gradient'}>
+                <Button ghost>
+                    <label htmlFor={"get-images"} style={{marginTop: 10}}>
+                        이미지파일 한번에 업로드
+                    </label>
+                    <input type="file" name="myImage" id="get-images" onChange={onFolderChange} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />
+                </Button>
+            </Button.Group>
         </div>
     )
 

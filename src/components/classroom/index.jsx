@@ -123,7 +123,7 @@ const NewClassroom = () =>{
 
         setJSONBook(newJSONBook);
     }
-    // 10. code 수정
+    // 10. code 수정(미완성)
     const changeCode = (nowStepIndex, nowItemIndex, changeCodeIndex, newCode) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
         newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex][changeCodeIndex] = newCode;
