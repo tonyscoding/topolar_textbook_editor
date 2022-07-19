@@ -7,12 +7,6 @@ import {ButtonGroup} from "@/components/textbooks/ButtonGroup";
 
 export const ImageContent = ({
      components_item,
-     index,
-     text,
-     codeLanguage,
-     code,
-     linkId,
-     linkIndicator,
      selectedImage,
      setSelectedImage
  }) => {
@@ -48,17 +42,6 @@ export const ImageContent = ({
             <br />
             <b> {reactHtmlParser(components_item.name? components_item.name:null)} </b>
             <br />
-            {
-                hovered ?
-                    <ButtonGroup
-                        index={index}
-                        text={text}
-                        codeLanguage={codeLanguage}
-                        code={code}
-                        linkId={linkId}
-                        linkIndicator={linkIndicator}
-                    /> : null
-            }
         </div>
     );
 }

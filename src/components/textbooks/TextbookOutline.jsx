@@ -8,7 +8,7 @@ import { Button, Input } from "@nextui-org/react";
 import CustomConfirmAlert from "./CustomConfirmAlert";
 
 import {useRecoilState} from "recoil";
-import { stepIndexState, itemIndexState } from "@/utils/States";
+import { stepIndexState, itemIndexState, pageIndicatorState } from "@/utils/States";
 
 const TextbookOutline = ({
      JSONBook,
@@ -22,6 +22,7 @@ const TextbookOutline = ({
  }) => {
 	const [stepIndex, setStepIndex] = useRecoilState(stepIndexState);
 	const [itemIndex, setItemIndex] = useRecoilState(itemIndexState);
+	const [pageIndicator, setPageIndicator] = useRecoilState(pageIndicatorState);
 
 	const [hoverStepIndex, setHoverStepIndex] = useState(null);
 	const [hoverItemIndex, setHoverItemIndex] = useState(null);
@@ -112,7 +113,7 @@ const TextbookOutline = ({
 					<div key={step.title + CurrentIndex}
 					     className={"textbook-step" + (nowStepIndex === stepIndex && nowItemIndex === itemIndex ? " current" : "")}
 					     onClick={()=>{
-							 movePage(nowStepIndex, nowItemIndex)
+							 movePage(nowStepIndex, nowItemIndex);
 						 }}
 					     onMouseEnter={() => {
 							 setHoverItemIndex(nowItemIndex)

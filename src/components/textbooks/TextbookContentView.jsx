@@ -1,12 +1,6 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import '@/assets/sass/Curriculum/TextbookBrowser.scss'
 import reactHtmlParser from 'react-html-parser';
-
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import {materialLight} from 'react-syntax-highlighter/dist/esm/styles/prism'
-
-import Markdown from 'react-markdown';
-import gfm from 'remark-gfm';
 
 import {loadImage} from '@/helpers/electronFileSystem'
 
@@ -25,6 +19,11 @@ import ButtonGroup from "@/components/textbooks/ButtonGroup";
 const TextbookContentView = ({
          data,
          JSONLoading,
+         addDesc,
+         changeDesc,
+         addCode,
+         changeCode,
+         deleteJSONBookItem
      }) => {
 
     const text = useRef("");
@@ -55,50 +54,77 @@ const TextbookContentView = ({
 
 
                     <div className="textbook-body">
-                        <ButtonGroup index={-1} text={text} codeLanguage={codeLanguage} linkId={linkId} linkIndicator={linkIndicator} />
+                        <ButtonGroup
+                            index={-1}
+                            text={text}
+                            codeLanguage={codeLanguage}
+                            code={code}
+                            linkId={linkId}
+                            linkIndicator={linkIndicator}
+                            addDesc={addDesc}
+                            changeDesc={changeDesc}
+                            addCode={addCode}
+                            changeCode={changeCode}
+                            deleteJSONBookItem={deleteJSONBookItem}
+                        />
                         {reactHtmlParser(data.description_title)}
                         {
-                            data.components.map((components_item, index) => {
+                            data.components?.map((components_item, index) => {
                                 let type = components_item.type;
 
                                 return (
-                                    type === "desc" ?
-                                        <DescContent
-                                            key={index}
-                                            index={index}
-                                            text={text}
-                                            components_item={components_item}
-                                            codeLanguage={codeLanguage}
-                                            code={code}
-                                            linkId={linkId}
-                                            linkIndicator={linkIndicator}
-                                        /> :
-                                    type === "code" ?
-                                        <CodeContent
-                                            key={index}
-                                            index={index}
-                                            text={text}
-                                            components_item={components_item}
-                                            codeLanguage={codeLanguage}
-                                            code={code}
-                                            linkId={linkId}
-                                            linkIndicator={linkIndicator}
-                                        /> :
-                                    type === "image" ?
-                                        <ImageContent
-                                            key={index}
-                                            components_item={components_item}
-                                            index={index}
-                                            loadImage={loadImage}
-                                            selectedImage={selectedImage}
-                                            setSelectedImage={setSelectedImage}
-                                            ButtonGroup={ButtonGroup}
-                                        /> :
-                                    type === "link" ?
-                                        <div className={"body-link"} key={components_item.link+count_for_key} onMouseEnter={() => {setHoverItemIndex(index)}} onMouseLeave={() => {setHoverItemIndex(null)}}>
-                                            <Button size="small"> 힌트 보기 </Button>
-                                            {hoverItemIndex === index && <ButtonGroup index={index}/>}
-                                        </div> : null
+                                    <div onMouseEnter={() => setHoverItemIndex(index)} onMouseLeave={() => setHoverItemIndex(null)} className={'body-desc'}>
+                                        {
+                                            type === "desc" ?
+                                                <DescContent
+                                                    key={index}
+                                                    index={index}
+                                                    components_item={components_item}
+                                                    changeDesc={changeDesc}
+                                                /> :
+                                            type === "code" ?
+                                                <CodeContent
+                                                    key={index}
+                                                    index={index}
+                                                    components_item={components_item}
+                                                /> :
+                                            type === "image" ?
+                                                <ImageContent
+                                                    key={index}
+                                                    components_item={components_item}
+                                                    loadImage={loadImage}
+                                                    selectedImage={selectedImage}
+                                                    setSelectedImage={setSelectedImage}
+                                                /> :
+                                            type === "link" ?
+                                                <div className={"body-link"} key={components_item.link}
+                                                     onMouseEnter={() => {
+                                                         setHoverItemIndex(index)
+                                                     }} onMouseLeave={() => {
+                                                    setHoverItemIndex(null)
+                                                }}>
+                                                    <Button size="small"> 힌트 보기 </Button>
+                                                    {hoverItemIndex === index &&
+                                                        <ButtonGroup index={index}/>}
+                                                </div> : null
+                                        }
+                                        {
+                                            hoverItemIndex === index &&
+                                                <ButtonGroup
+                                                    index={index}
+                                                    text={text}
+                                                    codeLanguage={codeLanguage}
+                                                    code={code}
+                                                    linkId={linkId}
+                                                    linkIndicator={linkIndicator}
+                                                    addDesc={addDesc}
+                                                    changeDesc={changeDesc}
+                                                    addCode={addCode}
+                                                    changeCode={changeCode}
+                                                    deleteJSONBookItem={deleteJSONBookItem}
+                                                />
+                                        }
+                                    </div>
                                 )
                             })
                         }

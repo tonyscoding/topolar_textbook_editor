@@ -10,15 +10,7 @@ export const itemIndexState = atom({
 	default: 0
 });
 
-export const nowDescState = atom({
-	key: 'nowDescState',
-	default: ""
-});
-
-export const nowCodeState = atom({
-	key: 'nowCodeState',
-	default: {
-		language: "",
-		code: ""
-	}
+export const pageIndicatorState = atom({
+	key: 'pageIndicatorState',
+	default: 0
 });

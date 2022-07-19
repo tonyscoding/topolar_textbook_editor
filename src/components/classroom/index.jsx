@@ -47,9 +47,9 @@ const NewClassroom = () =>{
     const addStep = (lastStepIndex, newStepTitle) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
         newJSONBook.textbook_contents.splice(lastStepIndex + 1, 0, {
-            step_title: newStepTitle,
-            step_no: -1,
-            step_items: []
+            "step_title": newStepTitle,
+            "step_no": stepIndex,
+            "step_items": []
         })
 
         newJSONBook = fitStepIndex(newJSONBook);
@@ -75,10 +75,12 @@ const NewClassroom = () =>{
     const addItem = (nowStepIndex, lastItemIndex, newItemTitle) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
         newJSONBook.textbook_contents[nowStepIndex].step_items.splice(lastItemIndex + 1, 0, {
-            title: newItemTitle,
-            tags: [],
-            collapse: false,
+            "title": newItemTitle,
+            "tags": [],
+            "collapse": false,
+            "components": []
         })
+
         setJSONBook(newJSONBook);
     }
     // 5. item 삭제
@@ -91,6 +93,49 @@ const NewClassroom = () =>{
     const changeItemTitle = (nowStepIndex, changeItemIndex, newItemTitle) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
         newJSONBook.textbook_contents[nowStepIndex].step_items[changeItemIndex].title = newItemTitle;
+        setJSONBook(newJSONBook);
+    }
+    // 7. desc 추가
+    const addDesc = (nowStepIndex, nowItemIndex, index, newDesc) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
+            "type": "desc",
+            "description": newDesc
+        })
+
+        console.log(newJSONBook)
+        setJSONBook(newJSONBook);
+    }
+    // 8. desc 수정
+    const changeDesc = (nowStepIndex, nowItemIndex, index, newDesc) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].description = newDesc;
+
+        setJSONBook(newJSONBook);
+    }
+    // 9. code 추가
+    const addCode = (nowStepIndex, nowItemIndex, index, newCode, language) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+
+        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
+            "type": "code",
+            "code": "~~~" + language + " \n" + newCode + "\n ~~~"
+        })
+
+        console.log(newJSONBook)
+
+        setJSONBook(newJSONBook);
+    }
+    // 10. code 수정
+    const changeCode = (nowStepIndex, nowItemIndex, changeCodeIndex, newCode) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex][changeCodeIndex] = newCode;
+        setJSONBook(newJSONBook);
+    }
+    // 11. content 삭제
+    const deleteJSONBookItem = (nowStepIndex, nowItemIndex, deleteIndex) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(deleteIndex, 1);
         setJSONBook(newJSONBook);
     }
 
@@ -116,11 +161,16 @@ const NewClassroom = () =>{
                     <span onClick={()=>{setSidebarOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open</span>
                 </div>
 
-                <ClassroomFooter />
+                <ClassroomFooter JSONBook={JSONBook} />
                 {
                     <TextbookContentView
                         JSONLoading={false}
-                        data={JSONBook.textbook_contents[stepIndex].step_items[itemIndex] ? JSONBook.textbook_contents[stepIndex].step_items[itemIndex] : null}
+                        data={JSONBook.textbook_contents[stepIndex]?.step_items[itemIndex] ? JSONBook.textbook_contents[stepIndex].step_items[itemIndex] : null}
+                        addDesc={addDesc}
+                        changeDesc={changeDesc}
+                        addCode={addCode}
+                        changeCode={changeCode}
+                        deleteJSONBookItem={deleteJSONBookItem}
                     />
                 }
             </div>

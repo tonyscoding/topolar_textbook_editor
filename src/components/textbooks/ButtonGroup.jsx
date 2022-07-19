@@ -2,8 +2,24 @@ import React, {useContext, useEffect, useState} from "react";
 import {TextbookContext} from '@/contexts/TextbookContext';
 import Button from '@/components/Button';
 
-export const ButtonGroup = ({index, text, codeLanguage, code, linkId, linkIndicator}) => {
-	const {addDescription, addCode, addLink, deleteDescription} = useContext(TextbookContext);
+import {useRecoilState, useRecoilValue} from "recoil";
+import { stepIndexState, itemIndexState } from "@/utils/States";
+
+export const ButtonGroup = ({
+    index,
+    text,
+    codeLanguage,
+    code,
+    linkId,
+    linkIndicator,
+	addDesc,
+	changeDesc,
+	addCode,
+	changeCode,
+    deleteJSONBookItem
+}) => {
+	const stepIndex = useRecoilValue(stepIndexState);
+	const itemIndex = useRecoilValue(itemIndexState);
 
 	return (
 		<div className={"body-buttonGroup"}>
@@ -12,7 +28,7 @@ export const ButtonGroup = ({index, text, codeLanguage, code, linkId, linkIndica
 				type="fill"
 				color="black"
 				onClick={() => {
-					addDescription(index + 1, text.current ? text.current : "<p><br /></p>");
+					addDesc(stepIndex, itemIndex, index + 1, text.current ? text.current : "<p><br /></p>");
 				}}
 			>
 				desc 추가
@@ -23,7 +39,7 @@ export const ButtonGroup = ({index, text, codeLanguage, code, linkId, linkIndica
 				type="fill"
 				color="black"
 				onClick={() => {
-					addCode(index + 1, code.current, codeLanguage.current.saveName);
+					addCode(stepIndex, itemIndex, index + 1, code.current, codeLanguage.current.saveName);
 				}}
 			>
 				code 추가
@@ -47,7 +63,7 @@ export const ButtonGroup = ({index, text, codeLanguage, code, linkId, linkIndica
 						type="fill"
 						color="red"
 						onClick={() => {
-							deleteDescription(index);
+							deleteJSONBookItem(stepIndex, itemIndex, index);
 						}}
 					>
 						제거

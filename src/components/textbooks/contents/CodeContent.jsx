@@ -9,23 +9,7 @@ import AceEditor from "react-ace";
 
 export const CodeContent = ({
     components_item,
-    index,
-    text,
-    codeLanguage,
-    code,
-    linkId,
-    linkIndicator
 }) => {
-
-	const [hovered, setHovered] = useState(false);
-	const handleMouseEnter = () => {
-		setHovered(true);
-	}
-
-	const handleMouseLeave = () => {
-		setHovered(false);
-	}
-
 	const parseOptions = {
 		"cpp": "c_cpp",
 		"c_cpp": "c_cpp",
@@ -37,11 +21,7 @@ export const CodeContent = ({
 	}
 
 	return (
-		<div
-			className={"body-code"}
-			onMouseEnter={() => {handleMouseEnter()}}
-			onMouseLeave={() => {handleMouseLeave()}}
-		>
+		<div>
 			<Markdown
 				children={components_item.code}
 				components={{
@@ -51,7 +31,7 @@ export const CodeContent = ({
 								<AceEditor
 									style={{width: "100%", height: "300px"}}
 									mode={parseOptions[match[1]]}
-									theme="xcode"
+									theme="tomorrow"
 									fontSize={14}
 									showPrintMargin={true}
 									readOnly={true}
@@ -73,18 +53,6 @@ export const CodeContent = ({
 					}
 				}}
 			/>
-
-			{
-				hovered ?
-					<ButtonGroup
-						index={index}
-						text={text}
-						codeLanguage={codeLanguage}
-						code={code}
-						linkId={linkId}
-						linkIndicator={linkIndicator}
-					/> : null
-			}
 		</div>
 	);
 }
