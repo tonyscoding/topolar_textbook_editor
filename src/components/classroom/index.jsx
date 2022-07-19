@@ -120,7 +120,7 @@ const NewClassroom = () =>{
                 {
                     <TextbookContentView
                         JSONLoading={false}
-                        data={JSONBook.textbook_contents[stepIndex].step_items[itemIndex]}
+                        data={JSONBook.textbook_contents[stepIndex].step_items[itemIndex] ? JSONBook.textbook_contents[stepIndex].step_items[itemIndex] : null}
                     />
                 }
             </div>
