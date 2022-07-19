@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState, useContext } from 'rea
 import '@/assets/sass/Curriculum/TextbookOutline.scss'
 
 import { TextbookContext } from '@/contexts/TextbookContext';
-// import smalltalk from 'smalltalk';
+
 import { confirmAlert } from "react-confirm-alert";
 import { Button, Input } from "@nextui-org/react";
 import CustomConfirmAlert from "./CustomConfirmAlert";
@@ -12,13 +12,19 @@ import { stepIndexState, itemIndexState } from "@/utils/States";
 
 const TextbookOutline = ({
      JSONBook,
+     movePage,
+     addStep,
+     deleteStep,
+     changeStepTitle,
+     addItem,
+     deleteItem,
+     changeItemTitle
  }) => {
 	const [stepIndex, setStepIndex] = useRecoilState(stepIndexState);
 	const [itemIndex, setItemIndex] = useRecoilState(itemIndexState);
 
 	const [hoverStepIndex, setHoverStepIndex] = useState(null);
 	const [hoverItemIndex, setHoverItemIndex] = useState(null);
-	const { setIndex, addStep, setStep, deleteStep, addItem, setItem, deleteItem } = useContext(TextbookContext);
 
 	const [parsedJSONBook, setParsedJSONBook] = useState(null);
 	const inputRef = useRef('');
@@ -29,7 +35,7 @@ const TextbookOutline = ({
 
 	useEffect(() => {
 		setParsedJSONBook(parseTextbook(JSONBook));
-	}, [hoverStepIndex, hoverItemIndex]);
+	}, [hoverStepIndex, hoverItemIndex, stepIndex, itemIndex]);
 
 	const stepAddClick = (index) => {
 		confirmAlert({
@@ -40,7 +46,7 @@ const TextbookOutline = ({
 						onClose={onClose}
 						handleOnclick={addStep}
 						type={"step"}
-						data={{"stepIndex": index + 1}}
+						data={{"stepIndex": index}}
 					/>
 				);
 			}
@@ -54,7 +60,7 @@ const TextbookOutline = ({
 					<CustomConfirmAlert
 						inputRef={inputRef}
 						onClose={onClose}
-						handleOnclick={setStep}
+						handleOnclick={changeStepTitle}
 						type={"stepChange"}
 						data={{"stepIndex": index}}
 					/>
@@ -72,7 +78,7 @@ const TextbookOutline = ({
 						onClose={onClose}
 						handleOnclick={addItem}
 						type={"item"}
-						data={{"stepIndex": stepIdx, "itemIndex": itemIdx + 1}}
+						data={{"stepIndex": stepIdx, "itemIndex": itemIdx}}
 					/>
 				);
 			}
@@ -86,7 +92,7 @@ const TextbookOutline = ({
 					<CustomConfirmAlert
 						inputRef={inputRef}
 						onClose={onClose}
-						handleOnclick={setItem}
+						handleOnclick={changeItemTitle}
 						type={"itemChange"}
 						data={{"stepIndex": stepIdx, "itemIndex": itemIdx}}
 					/>
@@ -106,8 +112,7 @@ const TextbookOutline = ({
 					<div key={step.title + CurrentIndex}
 					     className={"textbook-step" + (nowStepIndex === stepIndex && nowItemIndex === itemIndex ? " current" : "")}
 					     onClick={()=>{
-							 setStepIndex(nowStepIndex)
-						     setItemIndex(nowItemIndex)
+							 movePage(nowStepIndex, nowItemIndex)
 						 }}
 					     onMouseEnter={() => {
 							 setHoverItemIndex(nowItemIndex)

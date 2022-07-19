@@ -5,11 +5,6 @@ import Button from '@/components/Button';
 export const ButtonGroup = ({index, text, codeLanguage, code, linkId, linkIndicator}) => {
 	const {addDescription, addCode, addLink, deleteDescription} = useContext(TextbookContext);
 
-	// useEffect(() => {
-	// 	console.log("code : ", code);
-	// 	console.log("codeLanguage : ", codeLanguage);
-	// }, []);
-
 	return (
 		<div className={"body-buttonGroup"}>
 			<Button
