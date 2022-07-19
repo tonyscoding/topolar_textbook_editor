@@ -1,8 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
-import {TextbookContext} from '@/contexts/TextbookContext';
+import React from "react";
 import Button from '@/components/Button';
 
-import {useRecoilState, useRecoilValue} from "recoil";
+import { useRecoilValue } from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
 
 export const ButtonGroup = ({
@@ -13,9 +12,7 @@ export const ButtonGroup = ({
     linkId,
     linkIndicator,
 	addDesc,
-	changeDesc,
 	addCode,
-	changeCode,
     deleteJSONBookItem
 }) => {
 	const stepIndex = useRecoilValue(stepIndexState);

@@ -1,10 +1,6 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React from 'react'
 import Markdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
 
-import {ButtonGroup} from "@/components/textbooks/ButtonGroup";
-import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
-import {materialLight} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import AceEditor from "react-ace";
 
 export const CodeContent = ({

@@ -1,14 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState, useContext } from 'react';
 import '@/assets/sass/Curriculum/TextbookOutline.scss'
 
-import { TextbookContext } from '@/contexts/TextbookContext';
-
 import { confirmAlert } from "react-confirm-alert";
 import { Button, Input } from "@nextui-org/react";
 import CustomConfirmAlert from "./CustomConfirmAlert";
 
-import {useRecoilState} from "recoil";
-import { stepIndexState, itemIndexState, pageIndicatorState } from "@/utils/States";
+import { useRecoilValue } from "recoil";
+import { stepIndexState, itemIndexState } from "@/utils/States";
 
 const TextbookOutline = ({
      JSONBook,
@@ -20,9 +18,8 @@ const TextbookOutline = ({
      deleteItem,
      changeItemTitle
  }) => {
-	const [stepIndex, setStepIndex] = useRecoilState(stepIndexState);
-	const [itemIndex, setItemIndex] = useRecoilState(itemIndexState);
-	const [pageIndicator, setPageIndicator] = useRecoilState(pageIndicatorState);
+	const stepIndex = useRecoilValue(stepIndexState);
+	const itemIndex = useRecoilValue(itemIndexState);
 
 	const [hoverStepIndex, setHoverStepIndex] = useState(null);
 	const [hoverItemIndex, setHoverItemIndex] = useState(null);

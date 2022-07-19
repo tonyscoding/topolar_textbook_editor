@@ -7,9 +7,6 @@ import ClassroomFooter from "@/components/classroom/ClassroomFooter";
 import TextbookSidebar from '@/components/textbooks/TextbookSidebar';
 import TextbookContentView from '@/components/textbooks/TextbookContentView';
 
-import { TextbookContext } from "@/contexts/TextbookContext";
-import { ImageContext } from "@/contexts/ImageContext";
-
 import { saveTextbook, loadTextbook } from "@/helpers/electronFileSystem";
 
 import tutorial from "@/textbook/Textbook_lv0_0_tutorial/Textbook_lv0_0_tutorial.json";

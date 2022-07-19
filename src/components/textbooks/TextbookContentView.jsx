@@ -62,9 +62,7 @@ const TextbookContentView = ({
                             linkId={linkId}
                             linkIndicator={linkIndicator}
                             addDesc={addDesc}
-                            changeDesc={changeDesc}
                             addCode={addCode}
-                            changeCode={changeCode}
                             deleteJSONBookItem={deleteJSONBookItem}
                         />
                         {reactHtmlParser(data.description_title)}
@@ -118,9 +116,7 @@ const TextbookContentView = ({
                                                     linkId={linkId}
                                                     linkIndicator={linkIndicator}
                                                     addDesc={addDesc}
-                                                    changeDesc={changeDesc}
                                                     addCode={addCode}
-                                                    changeCode={changeCode}
                                                     deleteJSONBookItem={deleteJSONBookItem}
                                                 />
                                         }

@@ -2,11 +2,9 @@ import React, {useEffect, useState, useContext, useRef} from 'react'
 import Markdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
-import {ButtonGroup} from "@/components/textbooks/ButtonGroup";
 import {DescEditor} from "@/components/textbooks/editors/DescEditor";
-import { TextbookContext } from '@/contexts/TextbookContext';
 
-import {useRecoilValue} from "recoil";
+import { useRecoilValue } from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
 
 export const DescContent = ({
