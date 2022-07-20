@@ -135,6 +135,17 @@ const NewClassroom = () =>{
         newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(deleteIndex, 1);
         setJSONBook(newJSONBook);
     }
+    // 12. link 추가
+    const addLink = (nowStepIndex, nowItemIndex, index, textbook_id, indicator) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
+            "type": "link",
+            "textbook_id": textbook_id,
+            "indicator": indicator
+        })
+
+        setJSONBook(newJSONBook);
+    }
 
     return (
         <>
@@ -167,6 +178,7 @@ const NewClassroom = () =>{
                         changeDesc={changeDesc}
                         addCode={addCode}
                         changeCode={changeCode}
+                        addLink={addLink}
                         deleteJSONBookItem={deleteJSONBookItem}
                     />
                 }

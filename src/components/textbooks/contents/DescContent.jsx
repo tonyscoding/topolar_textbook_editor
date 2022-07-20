@@ -18,6 +18,7 @@ export const DescContent = ({
 	const item = useRef('');
 	const [wantToEdit, setWantToEdit] = useState(false);
 
+	console.log("Desc Render");
 	useEffect(() => {
 		item.current = components_item.description
 	}, [components_item])

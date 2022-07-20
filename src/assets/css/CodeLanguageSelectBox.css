@@ -44,6 +44,10 @@ code {
     text-decoration: none;
 }
 
+.menu-item {
+    cursor: default;
+}
+
 .menu-item .icon {
     margin-right: 0.5rem;
 }
@@ -52,7 +56,7 @@ code {
     filter: none;
 }
 
-.menu-item:hover {
-    background-color: #525357;
-    color: white;
-}
+/*.menu-item:hover {*/
+/*    background-color: #03c1d4;*/
+/*    color: white;*/
+/*}*/

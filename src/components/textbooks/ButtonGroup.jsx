@@ -3,20 +3,35 @@ import Button from '@/components/Button';
 
 import { useRecoilValue } from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
+import {confirmAlert} from "react-confirm-alert";
+import CustomAlert from "@/textbooks/CustomAlert";
 
 export const ButtonGroup = ({
     index,
     text,
     codeLanguage,
     code,
-    linkId,
-    linkIndicator,
+	link,
 	addDesc,
 	addCode,
+	addLink,
     deleteJSONBookItem
 }) => {
 	const stepIndex = useRecoilValue(stepIndexState);
 	const itemIndex = useRecoilValue(itemIndexState);
+
+	const alert = (index) => {
+		confirmAlert({
+			customUI: ({ onClose }) => {
+				return (
+					<CustomAlert
+						onClose={onClose}
+						message={"교재 아이디와 페이지를 모두 입력해주세요."}
+					/>
+				);
+			}
+		})
+	}
 
 	return (
 		<div className={"body-buttonGroup"}>
@@ -47,7 +62,11 @@ export const ButtonGroup = ({
 				type="fill"
 				color="black"
 				onClick={() => {
-					addLink(index + 1, linkId, linkIndicator);
+					if (link.current?.textbook_id && link.current?.indicator) {
+						addLink(stepIndex, itemIndex, index + 1, link.current.textbook_id, link.current.indicator);
+					} else {
+						alert("교재 아이디와 페이지를 입력해주세요.");
+					}
 				}}
 			>
 				link 추가

@@ -35,7 +35,9 @@ export const CodeLanguageSelectBox = ({options, codeLanguage, setCodeLanguage}) 
 						return (
 							<div key={index}>
 							{
-								option.displayName === selectedMenu.displayName ? <DropdownItem option={option} style={{backgroundColor: "#525357", color: "white"}} /> :
+								option.displayName === selectedMenu.displayName ?
+									<DropdownItem option={option} style={{backgroundColor: "#03c1d4", color: "white"}} />
+									:
 									<DropdownItem option={option} />
 							}
 							</div>

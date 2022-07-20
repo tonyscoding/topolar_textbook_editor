@@ -1,25 +1,38 @@
 import React from "react";
+import {Input} from "@nextui-org/react";
 
-export const LinkEditor = ({linkId, linkIndicator, setLinkId, setLinkIndicator}) => {
+export const LinkEditor = ({
+	link
+}) => {
 	const handleIdChange = (e) => {
-		console.log(e.target.value)
-		setLinkId(e.target.value);
+		console.log(link.current.textbook_id)
+		link.current = {
+			textbook_id: e.target.value,
+			indicator: link.current.indicator
+		};
 	}
 	const handleIndicatorChange = (e) => {
-		setLinkIndicator(e.target.value);
+		console.log(link.current.indicator)
+
+		link.current = {
+			textbook_id: link.current.textbook_id,
+			indicator: e.target.value
+		};
 	}
 
 	return (
-		<div style={{display: "flex", flexDirection: "row"}}>
-			<div>
-				<div>교재 번호</div>
-				<input type="text" value={linkId || ''} onChange={handleIdChange} style={{marginRight: "20px"}} />
-			</div>
+		<div style={{display: "flex", flexDirection: "row", width: 365, justifyContent: 'space-between'}}>
+			<Input
+				label={"교재 아이디"}
+				type="number"
+				onChange={handleIdChange}
+			/>
 
-			<div>
-				<div>페이지</div>
-				<input type="text" value={linkIndicator || ''} onChange={handleIndicatorChange} />
-			</div>
+			<Input
+				label={"페이지"}
+				type="number"
+				onChange={handleIndicatorChange}
+			/>
 		</div>
 	);
 };

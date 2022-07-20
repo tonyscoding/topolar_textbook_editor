@@ -13,6 +13,7 @@ import LinkEditor from "@/components/textbooks/editors/LinkEditor";
 import DescContent from '@/components/textbooks/contents/DescContent';
 import CodeContent from '@/components/textbooks/contents/CodeContent';
 import ImageContent from '@/components/textbooks/contents/ImageContent';
+import LinkContent from '@/components/textbooks/contents/LinkContent';
 
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
 
@@ -23,15 +24,15 @@ const TextbookContentView = ({
          changeDesc,
          addCode,
          changeCode,
+         addLink,
          deleteJSONBookItem
      }) => {
 
     const text = useRef("");
     const code = useRef("");
     const codeLanguage = useRef("");
+    const link = useRef({textbook_id: "", indicator: ""});
 
-    const [linkId, setLinkId] = useState(null);
-    const [linkIndicator, setLinkIndicator] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
@@ -59,10 +60,10 @@ const TextbookContentView = ({
                             text={text}
                             codeLanguage={codeLanguage}
                             code={code}
-                            linkId={linkId}
-                            linkIndicator={linkIndicator}
+                            link={link}
                             addDesc={addDesc}
                             addCode={addCode}
+                            addLink={addLink}
                             deleteJSONBookItem={deleteJSONBookItem}
                         />
                         {reactHtmlParser(data.description_title)}
@@ -95,16 +96,10 @@ const TextbookContentView = ({
                                                     setSelectedImage={setSelectedImage}
                                                 /> :
                                             type === "link" ?
-                                                <div className={"body-link"} key={components_item.link}
-                                                     onMouseEnter={() => {
-                                                         setHoverItemIndex(index)
-                                                     }} onMouseLeave={() => {
-                                                    setHoverItemIndex(null)
-                                                }}>
-                                                    <Button size="small"> 힌트 보기 </Button>
-                                                    {hoverItemIndex === index &&
-                                                        <ButtonGroup index={index}/>}
-                                                </div> : null
+                                                <LinkContent
+                                                    key={components_item.link}
+                                                    components_item={components_item}
+                                                /> : null
                                         }
                                         {
                                             hoverItemIndex === index &&
@@ -113,10 +108,10 @@ const TextbookContentView = ({
                                                     text={text}
                                                     codeLanguage={codeLanguage}
                                                     code={code}
-                                                    linkId={linkId}
-                                                    linkIndicator={linkIndicator}
+                                                    link={link}
                                                     addDesc={addDesc}
                                                     addCode={addCode}
+                                                    addLink={addLink}
                                                     deleteJSONBookItem={deleteJSONBookItem}
                                                 />
                                         }
@@ -139,12 +134,7 @@ const TextbookContentView = ({
 
                 <div style={{marginTop: "20px", marginBottom: "20px"}}>
                 </div>
-                <LinkEditor
-                    linkId={linkId}
-                    linkIndicator={linkIndicator}
-                    setLinkId={setLinkId}
-                    setLinkIndicator={setLinkIndicator}
-                />
+                <LinkEditor link={link} />
             </div>
         </div>
     )
