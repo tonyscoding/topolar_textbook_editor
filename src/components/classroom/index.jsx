@@ -79,11 +79,13 @@ const NewClassroom = () =>{
         })
 
         setJSONBook(newJSONBook);
+        movePage(nowStepIndex, lastItemIndex + 1);
     }
     // 5. item 삭제
     const deleteItem = (nowStepIndex, deleteItemIndex) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
         newJSONBook.textbook_contents[nowStepIndex].step_items.splice(deleteItemIndex, 1);
+
         setJSONBook(newJSONBook);
     }
     // 6. item 이름 변경
