@@ -108,11 +108,11 @@ const TextbookContentView = ({
                                                     {hoverItemIndex === index &&
                                                         <ButtonGroup index={index}/>}
                                                    </div> : 
-                                        type === "single_card" ? 
-                                        <div className={"body-card"} key={components_item.code+index} >
-                                            <CardContent JSONLoading={false} data={components_item}/>
-                                        </div>
-                                            : null
+                                            type === "single_card" ? 
+                                                <div className={"body-card"} key={components_item.code+index} >
+                                                    <CardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} deleteJSONBookItem={deleteJSONBookItem}/>
+                                                </div>
+                                                : null
                                         }
                                         {
                                             hoverItemIndex === index &&

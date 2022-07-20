@@ -14,7 +14,9 @@ export const ButtonGroup = ({
 	addDesc,
 	addCode,
 	addSingleCard,
-    deleteJSONBookItem
+    deleteJSONBookItem,
+	isCard,
+	cardIndex
 }) => {
 	const stepIndex = useRecoilValue(stepIndexState);
 	const itemIndex = useRecoilValue(itemIndexState);
@@ -26,7 +28,7 @@ export const ButtonGroup = ({
 				type="fill"
 				color="black"
 				onClick={() => {
-					addDesc(stepIndex, itemIndex, index + 1, text.current ? text.current : "<p><br /></p>");
+					addDesc(stepIndex, itemIndex, index + 1, text.current ? text.current : "<p><br /></p>", isCard ? cardIndex + 1 : null);
 				}}
 			>
 				desc 추가
@@ -66,13 +68,13 @@ export const ButtonGroup = ({
 			</Button>
 
 			{
-				index > -1 ?
+				(isCard ? cardIndex > -1 : index > -1)  ?
 					<Button
 						size="small"
 						type="fill"
 						color="red"
 						onClick={() => {
-							deleteJSONBookItem(stepIndex, itemIndex, index);
+							deleteJSONBookItem(stepIndex, itemIndex, index, cardIndex ? cardIndex : null);
 						}}
 					>
 						제거

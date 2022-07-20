@@ -93,14 +93,19 @@ const NewClassroom = () =>{
         setJSONBook(newJSONBook);
     }
     // 7. desc 추가
-    const addDesc = (nowStepIndex, nowItemIndex, index, newDesc) => {
+    const addDesc = (nowStepIndex, nowItemIndex, index, newDesc, cardIndex=null) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
+        const content = {
             "type": "desc",
             "description": newDesc
-        })
+        }
 
-        console.log(newJSONBook)
+        if(cardIndex == null) {
+            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
+        } else {
+            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
+        }
+        
         setJSONBook(newJSONBook);
     }
     // 8. desc 수정
@@ -130,9 +135,15 @@ const NewClassroom = () =>{
         setJSONBook(newJSONBook);
     }
     // 11. content 삭제
-    const deleteJSONBookItem = (nowStepIndex, nowItemIndex, deleteIndex) => {
+    const deleteJSONBookItem = (nowStepIndex, nowItemIndex, deleteIndex, cardIndex=null) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(deleteIndex, 1);
+        console.log("delete", nowStepIndex, nowItemIndex, deleteIndex, cardIndex)
+        if(cardIndex==null) {
+            newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(deleteIndex, 1);
+        } else {
+            newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components[deleteIndex].components.splice(cardIndex, 1);
+        }
+        
         setJSONBook(newJSONBook);
     }
     // 12.single_card 추가
@@ -148,9 +159,6 @@ const NewClassroom = () =>{
                 }
             ]
         })
-
-        console.log(newJSONBook)
-
         setJSONBook(newJSONBook);
     }
 
