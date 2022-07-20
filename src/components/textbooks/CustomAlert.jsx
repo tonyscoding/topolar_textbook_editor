@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Input} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 const CustomAlert = ({ onClose, message }) => {
 	return (

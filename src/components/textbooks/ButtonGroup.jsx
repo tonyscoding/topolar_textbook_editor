@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 import { useRecoilValue } from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
 import {confirmAlert} from "react-confirm-alert";
-import CustomAlert from "@/textbooks/CustomAlert";
+import CustomAlert from "@/components/textbooks/CustomAlert";
 
 export const ButtonGroup = ({
     index,
