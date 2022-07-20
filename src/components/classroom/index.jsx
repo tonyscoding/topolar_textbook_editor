@@ -146,6 +146,16 @@ const NewClassroom = () =>{
 
         setJSONBook(newJSONBook);
     }
+    // 13. video 추가
+    const addVideo = (nowStepIndex, nowItemIndex, index, videoUrl) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
+            "type": "video",
+            "url": videoUrl
+        })
+
+        setJSONBook(newJSONBook);
+    }
 
     return (
         <>
@@ -179,6 +189,7 @@ const NewClassroom = () =>{
                         addCode={addCode}
                         changeCode={changeCode}
                         addLink={addLink}
+                        addVideo={addVideo}
                         deleteJSONBookItem={deleteJSONBookItem}
                     />
                 }

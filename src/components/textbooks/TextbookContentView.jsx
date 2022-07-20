@@ -4,16 +4,16 @@ import reactHtmlParser from 'react-html-parser';
 
 import {loadImage} from '@/helpers/electronFileSystem'
 
-import Button from '@/components/Button';
-
 import DescEditor from '@/components/textbooks/editors/DescEditor';
 import CodeEditor from '@/components/textbooks/editors/CodeEditor';
 import LinkEditor from "@/components/textbooks/editors/LinkEditor";
+import VideoEditor from "@/components/textbooks/editors/VideoEditor";
 
 import DescContent from '@/components/textbooks/contents/DescContent';
 import CodeContent from '@/components/textbooks/contents/CodeContent';
 import ImageContent from '@/components/textbooks/contents/ImageContent';
 import LinkContent from '@/components/textbooks/contents/LinkContent';
+import VideoContent from '@/components/textbooks/contents/VideoContent';
 
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
 
@@ -25,6 +25,7 @@ const TextbookContentView = ({
          addCode,
          changeCode,
          addLink,
+         addVideo,
          deleteJSONBookItem
      }) => {
 
@@ -32,6 +33,7 @@ const TextbookContentView = ({
     const code = useRef("");
     const codeLanguage = useRef("");
     const link = useRef({textbook_id: "", indicator: ""});
+    const videoUrl = useRef("");
 
     const [selectedImage, setSelectedImage] = useState(null);
     const [hoverItemIndex, setHoverItemIndex] = useState(null);
@@ -61,9 +63,11 @@ const TextbookContentView = ({
                             codeLanguage={codeLanguage}
                             code={code}
                             link={link}
+                            videoUrl={videoUrl}
                             addDesc={addDesc}
                             addCode={addCode}
                             addLink={addLink}
+                            addVideo={addVideo}
                             deleteJSONBookItem={deleteJSONBookItem}
                         />
                         {reactHtmlParser(data.description_title)}
@@ -97,9 +101,15 @@ const TextbookContentView = ({
                                                 /> :
                                             type === "link" ?
                                                 <LinkContent
-                                                    key={components_item.link}
+                                                    key={index}
                                                     components_item={components_item}
-                                                /> : null
+                                                /> :
+                                            type === "video" ?
+                                                <VideoContent
+                                                    key={index}
+                                                    components_item={components_item}
+                                                />
+                                                : null
                                         }
                                         {
                                             hoverItemIndex === index &&
@@ -109,9 +119,11 @@ const TextbookContentView = ({
                                                     codeLanguage={codeLanguage}
                                                     code={code}
                                                     link={link}
+                                                    videoUrl={videoUrl}
                                                     addDesc={addDesc}
                                                     addCode={addCode}
                                                     addLink={addLink}
+                                                    addVideo={addVideo}
                                                     deleteJSONBookItem={deleteJSONBookItem}
                                                 />
                                         }
@@ -123,21 +135,34 @@ const TextbookContentView = ({
                 </div>
             </div>
 
-            <div style={{marginTop: "50px"}}>
-                <div style={{marginTop: "20px", marginBottom: "20px"}}>
+            <div>
+                <div style={styles.divider}>
                     <DescEditor placeholder={"이곳에 desc 입력"} text={text} />
                 </div>
 
-                <div>
+                <div style={styles.divider}>
                     <CodeEditor codeLanguage={codeLanguage} code={code} />
                 </div>
 
-                <div style={{marginTop: "20px", marginBottom: "20px"}}>
+                <div style={styles.divider}>
+                    <LinkEditor link={link} />
                 </div>
-                <LinkEditor link={link} />
+
+                <div style={styles.divider}>
+                    <VideoEditor videoUrl={videoUrl} />
+                </div>
             </div>
         </div>
     )
+}
+
+const styles = {
+    divider: {
+        marginTop: "20px",
+        marginBottom: "20px",
+        paddingTop: 20,
+        borderTop: "1px solid #dfdfdf"
+    }
 }
 
 export default TextbookContentView

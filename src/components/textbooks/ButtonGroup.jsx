@@ -12,9 +12,11 @@ export const ButtonGroup = ({
     codeLanguage,
     code,
 	link,
+	videoUrl,
 	addDesc,
 	addCode,
 	addLink,
+	addVideo,
     deleteJSONBookItem
 }) => {
 	const stepIndex = useRecoilValue(stepIndexState);
@@ -70,6 +72,17 @@ export const ButtonGroup = ({
 				}}
 			>
 				link 추가
+			</Button>
+
+			<Button
+				size="small"
+				type="fill"
+				color="black"
+				onClick={() => {
+					addVideo(stepIndex, itemIndex, index + 1, videoUrl.current);
+				}}
+			>
+				video 추가
 			</Button>
 
 			{

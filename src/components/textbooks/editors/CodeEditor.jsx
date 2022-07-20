@@ -60,7 +60,7 @@ export const CodeEditor = (props) => {
 	];
 
 	return (
-		<div style={{display: "flex", flexDirection: "row", marginTop: "50px", marginBottom: "20px"}}>
+		<div style={{display: "flex", flexDirection: "row"}}>
 			<CodeLanguageSelectBox codeLanguage={codeLanguage} setCodeLanguage={setCodeLanguage} options={options}  />
 			<AceEditor
 				style={{width: "100%", marginLeft: "1vw"}}
