@@ -224,27 +224,6 @@ const NewClassroom = () =>{
 
         setJSONBook(newJSONBook);
     }
-    // 12. link 추가
-    const addLink = (nowStepIndex, nowItemIndex, index, textbook_id, indicator) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
-            "type": "link",
-            "textbook_id": textbook_id,
-            "indicator": indicator
-        })
-
-        setJSONBook(newJSONBook);
-    }
-    // 13. video 추가
-    const addVideo = (nowStepIndex, nowItemIndex, index, videoUrl) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
-            "type": "video",
-            "url": videoUrl
-        })
-
-        setJSONBook(newJSONBook);
-    }
 
     return (
         <>
