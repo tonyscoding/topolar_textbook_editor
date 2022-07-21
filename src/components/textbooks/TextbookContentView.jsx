@@ -25,7 +25,8 @@ const TextbookContentView = ({
          addCode,
          addSingleCard,
          changeCode,
-         deleteJSONBookItem
+         deleteJSONBookItem,
+         changeCardTitle
      }) => {
 
     const text = useRef("");
@@ -110,9 +111,15 @@ const TextbookContentView = ({
                                                    </div> : 
                                             type === "single_card" ? 
                                                 <div className={"body-card"} key={components_item.code+index} >
-                                                    <CardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} deleteJSONBookItem={deleteJSONBookItem}/>
+                                                    <CardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} changeDesc={changeDesc} deleteJSONBookItem={deleteJSONBookItem} changeCardTitle={changeCardTitle}/>
                                                 </div>
-                                                : null
+                                                : 
+                                            type === "double_card" ?
+                                                <div className={"body-doublecard"} key={components_item.code+count_for_key} >
+                                                    <DoubleCardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} deleteJSONBookItem={deleteJSONBookItem}/>
+                                                </div>
+                                                :
+                                                null
                                         }
                                         {
                                             hoverItemIndex === index &&

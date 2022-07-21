@@ -10,6 +10,8 @@ import { stepIndexState, itemIndexState } from "@/utils/States";
 export const DescContent = ({
     components_item,
     index,
+	isCard,
+	cardIndex,
 	changeDesc
 }) => {
 	const stepIndex = useRecoilValue(stepIndexState);
@@ -24,7 +26,7 @@ export const DescContent = ({
 
 	const handleBlur = (e) => {
 		setWantToEdit(false);
-		changeDesc(stepIndex, itemIndex, index, item.current);
+		changeDesc(stepIndex, itemIndex, index, item.current, isCard ? cardIndex : null);
 	}
 
 	return (

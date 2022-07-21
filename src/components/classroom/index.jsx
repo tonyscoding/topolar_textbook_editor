@@ -109,9 +109,14 @@ const NewClassroom = () =>{
         setJSONBook(newJSONBook);
     }
     // 8. desc 수정
-    const changeDesc = (nowStepIndex, nowItemIndex, index, newDesc) => {
+    const changeDesc = (nowStepIndex, nowItemIndex, index, newDesc, cardIndex=null) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].description = newDesc;
+        
+        if(cardIndex == null) {
+            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].description = newDesc;
+        } else {
+            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components[cardIndex].description = newDesc;
+        }
 
         setJSONBook(newJSONBook);
     }
@@ -123,7 +128,7 @@ const NewClassroom = () =>{
             "type": "code",
             "code": "~~~" + language + " \n" + newCode + "\n ~~~"
         }
-        
+
         console.log("add", nowStepIndex, nowItemIndex, index, cardIndex)
         if(cardIndex == null) {
             newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
@@ -157,6 +162,7 @@ const NewClassroom = () =>{
 
         newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
             "type": "single_card",
+            "title" : "제목",
             "components": [
                 {
                     "type": "desc",
@@ -164,6 +170,35 @@ const NewClassroom = () =>{
                 }
             ]
         })
+        setJSONBook(newJSONBook);
+    }
+
+    // 13.double_card 추가
+    const addDoubleCard = (nowStepIndex, nowItemIndex, index) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+
+        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
+            "type": "double_card",
+            "first_components": [
+                {
+                    "type": "desc",
+                    "description": "수정하세요"
+                }
+            ],
+            "second_components": [
+                {
+                    "type": "desc",
+                    "description": "수정하세요"
+                }
+            ]
+        })
+        setJSONBook(newJSONBook);
+    }
+
+    // 14. cardtitle 수정
+    const changeCardTitle = (nowStepIndex, nowItemIndex, index, newDesc) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].title = newDesc;
         setJSONBook(newJSONBook);
     }
 
@@ -200,6 +235,7 @@ const NewClassroom = () =>{
                         addSingleCard={addSingleCard}
                         changeCode={changeCode}
                         deleteJSONBookItem={deleteJSONBookItem}
+                        changeCardTitle={changeCardTitle}
                     />
                 }
             </div>

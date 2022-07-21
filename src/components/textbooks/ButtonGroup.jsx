@@ -78,7 +78,7 @@ export const ButtonGroup = ({
 						type="fill"
 						color="red"
 						onClick={() => {
-							deleteJSONBookItem(stepIndex, itemIndex, index-1, isCard ? cardIndex : null);
+							deleteJSONBookItem(stepIndex, itemIndex, isCard ? index : index-1, isCard ? cardIndex : null);
 						}}
 					>
 						제거

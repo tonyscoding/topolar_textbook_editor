@@ -9,16 +9,21 @@ import Button from '@/components/Button';
 import DescContent from '@/components/textbooks/contents/DescContent';
 import CodeContent from '@/components/textbooks/contents/CodeContent';
 import ImageContent from '@/components/textbooks/contents/ImageContent';
+import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
 
 import {Card} from "@/components/Card";
+import {DescEditor} from "@/components/textbooks/editors/DescEditor";
+
+import { useRecoilValue } from "recoil";
+import { stepIndexState, itemIndexState } from "@/utils/States";
 
 const CardContent = ({
         data,
         JSONLoading,
         index,
-        stepIndex,
         addDesc,
         changeDesc,
         addCode,
@@ -27,7 +32,8 @@ const CardContent = ({
         text,
         code,
         codeLanguage,
-        deleteJSONBookItem
+        deleteJSONBookItem,
+        changeCardTitle
      }) => {
     console.log("data", data);
 
@@ -43,14 +49,34 @@ const CardContent = ({
         return null;
     }
 
+    const stepIndex = useRecoilValue(stepIndexState);
+	const itemIndex = useRecoilValue(itemIndexState);
+
+	const item = useRef('');
+	const [wantToEdit, setWantToEdit] = useState(false);
+
+    const handleBlur = (e) => {
+		setWantToEdit(false);
+		changeCardTitle(stepIndex, itemIndex, index, item.current);
+	}
 
     return (
         <Card
-            width={"guide-col8"}
+            width={ "guide-col8" }
             hideLine={0}
             style={{marginBottom: "20px"}}
         >
-            <b>제목</b>
+            <div
+                className={"body-desc"}
+                onDoubleClick={() => {setWantToEdit(true)}}
+            >
+                {
+                    wantToEdit ?
+                        <DescEditor placeholder={"이곳에 desc 입력"} text={item} handleBlur={handleBlur} />
+                        :
+                        <Markdown children={data.title} rehypePlugins={[rehypeRaw]} />
+                }
+            </div>
                 <ButtonGroup index={index} text={text} code={code} codeLanguage={codeLanguage} linkId={linkId} linkIndicator={linkIndicator} addCode={addCode} addDesc={addDesc} isCard={true} cardIndex={-1}/>
                 {reactHtmlParser(data.description_title)}
                 {
@@ -65,11 +91,14 @@ const CardContent = ({
                                     key={cardIndex}
                                     index={cardIndex}
                                     text={text}
+                                    changeDesc={changeDesc}
                                     components_item={components_item}
                                     codeLanguage={codeLanguage}
                                     code={code}
                                     linkId={linkId}
                                     linkIndicator={linkIndicator}
+                                    isCard={true}
+                                    cardIndex={cardIndex}
                                 /> :
                             type === "code" ?
                                 <CodeContent
