@@ -51,7 +51,7 @@ const CardContent = ({
             style={{marginBottom: "20px"}}
         >
             <b>제목</b>
-                <ButtonGroup index={index} text={text} codeLanguage={codeLanguage} linkId={linkId} linkIndicator={linkIndicator} addDesc={addDesc} isCard={true} cardIndex={-1}/>
+                <ButtonGroup index={index} text={text} code={code} codeLanguage={codeLanguage} linkId={linkId} linkIndicator={linkIndicator} addCode={addCode} addDesc={addDesc} isCard={true} cardIndex={-1}/>
                 {reactHtmlParser(data.description_title)}
                 {
                     data.components.map((components_item, cardIndex) => {

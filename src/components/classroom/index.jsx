@@ -116,15 +116,20 @@ const NewClassroom = () =>{
         setJSONBook(newJSONBook);
     }
     // 9. code 추가
-    const addCode = (nowStepIndex, nowItemIndex, index, newCode, language) => {
+    const addCode = (nowStepIndex, nowItemIndex, index, newCode, language, cardIndex=null) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
 
-        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
+        const content = {
             "type": "code",
             "code": "~~~" + language + " \n" + newCode + "\n ~~~"
-        })
-
-        console.log(newJSONBook)
+        }
+        
+        console.log("add", nowStepIndex, nowItemIndex, index, cardIndex)
+        if(cardIndex == null) {
+            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
+        } else {
+            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
+        }
 
         setJSONBook(newJSONBook);
     }

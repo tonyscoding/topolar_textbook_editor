@@ -39,7 +39,8 @@ export const ButtonGroup = ({
 				type="fill"
 				color="black"
 				onClick={() => {
-					addCode(stepIndex, itemIndex, index + 1, code.current, codeLanguage.current.saveName);
+					console.log(codeLanguage.current.saveName)
+					addCode(stepIndex, itemIndex, index, code.current, codeLanguage.current.saveName, isCard ? cardIndex + 1 : null);
 				}}
 			>
 				code 추가
@@ -50,22 +51,25 @@ export const ButtonGroup = ({
 				type="fill"
 				color="black"
 				onClick={() => {
-					addLink(index + 1, linkId, linkIndicator);
+					addLink(index + 1, linkId, linkIndicator, isCard ? cardIndex + 1 : null);
 				}}
 			>
 				link 추가
 			</Button>
-
-			<Button
-				size="small"
-				type="fill"
-				color="black"
-				onClick={() => {
-					addSingleCard(stepIndex, itemIndex, index + 1);
-				}}
-			>
-				s_card 추가
-			</Button>
+			{
+				!isCard ? 
+				<Button
+					size="small"
+					type="fill"
+					color="black"
+					onClick={() => {
+						addSingleCard(stepIndex, itemIndex, index + 1);
+					}}
+				>
+					s_card 추가
+				</Button> :
+				null
+			}
 
 			{
 				(isCard ? cardIndex > -1 : index > -1)  ?
