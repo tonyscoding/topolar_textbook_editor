@@ -28,7 +28,7 @@ export const ButtonGroup = ({
 				type="fill"
 				color="black"
 				onClick={() => {
-					addDesc(stepIndex, itemIndex, index + 1, text.current ? text.current : "<p><br /></p>", isCard ? cardIndex + 1 : null);
+					addDesc(stepIndex, itemIndex, isCard ? index : index + 1, text.current ? text.current : "<p><br /></p>", isCard ? cardIndex + 1 : null);
 				}}
 			>
 				desc 추가
@@ -61,7 +61,7 @@ export const ButtonGroup = ({
 				type="fill"
 				color="black"
 				onClick={() => {
-					addSingleCard(index + 1, linkId, linkIndicator);
+					addSingleCard(stepIndex, itemIndex, index + 1);
 				}}
 			>
 				s_card 추가
@@ -74,7 +74,7 @@ export const ButtonGroup = ({
 						type="fill"
 						color="red"
 						onClick={() => {
-							deleteJSONBookItem(stepIndex, itemIndex, index, cardIndex ? cardIndex : null);
+							deleteJSONBookItem(stepIndex, itemIndex, isCard ? index+1 : index, isCard ? cardIndex : null);
 						}}
 					>
 						제거

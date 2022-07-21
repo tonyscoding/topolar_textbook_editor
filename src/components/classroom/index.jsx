@@ -99,7 +99,7 @@ const NewClassroom = () =>{
             "type": "desc",
             "description": newDesc
         }
-
+        console.log("add", nowStepIndex, nowItemIndex, index, cardIndex)
         if(cardIndex == null) {
             newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
         } else {
@@ -147,7 +147,7 @@ const NewClassroom = () =>{
         setJSONBook(newJSONBook);
     }
     // 12.single_card 추가
-    const addSingleCard = (nowStepIndex, nowItemIndex, index, newCode, language) => {
+    const addSingleCard = (nowStepIndex, nowItemIndex, index) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
 
         newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
