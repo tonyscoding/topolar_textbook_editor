@@ -12,6 +12,7 @@ import VideoEditor from "@/components/textbooks/editors/VideoEditor";
 import DescContent from '@/components/textbooks/contents/DescContent';
 import CodeContent from '@/components/textbooks/contents/CodeContent';
 import ImageContent from '@/components/textbooks/contents/ImageContent';
+import CardContent from '@/components/textbooks/contents/CardContent';
 import LinkContent from '@/components/textbooks/contents/LinkContent';
 import VideoContent from '@/components/textbooks/contents/VideoContent';
 
@@ -23,7 +24,9 @@ const TextbookContentView = ({
          addDesc,
          changeDesc,
          addCode,
+         addSingleCard,
          changeCode,
+         changeCardTitle,
          addLink,
          addVideo,
          deleteJSONBookItem
@@ -58,7 +61,7 @@ const TextbookContentView = ({
 
                     <div className="textbook-body">
                         <ButtonGroup
-                            index={-1}
+                            index={0}
                             text={text}
                             codeLanguage={codeLanguage}
                             code={code}
@@ -66,6 +69,7 @@ const TextbookContentView = ({
                             videoUrl={videoUrl}
                             addDesc={addDesc}
                             addCode={addCode}
+                            addSingleCard={addSingleCard}
                             addLink={addLink}
                             addVideo={addVideo}
                             deleteJSONBookItem={deleteJSONBookItem}
@@ -100,10 +104,21 @@ const TextbookContentView = ({
                                                     setSelectedImage={setSelectedImage}
                                                 /> :
                                             type === "link" ?
-                                                <LinkContent
-                                                    key={index}
-                                                    components_item={components_item}
-                                                /> :
+                                            <LinkContent
+                                                key={index}
+                                                components_item={components_item}
+                                            />  : 
+                                            type === "single_card" ? 
+                                                <div className={"body-card"} key={components_item.code+index} >
+                                                    <CardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} changeDesc={changeDesc} deleteJSONBookItem={deleteJSONBookItem} changeCardTitle={changeCardTitle}/>
+                                                </div>
+                                                : 
+                                            type === "double_card" ?
+                                                <div className={"body-doublecard"} key={components_item.code+count_for_key} >
+                                                    <DoubleCardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} deleteJSONBookItem={deleteJSONBookItem}/>
+                                                </div>
+                                                :
+
                                             type === "video" ?
                                                 <VideoContent
                                                     key={index}
@@ -114,7 +129,7 @@ const TextbookContentView = ({
                                         {
                                             hoverItemIndex === index &&
                                                 <ButtonGroup
-                                                    index={index}
+                                                    index={index+1}
                                                     text={text}
                                                     codeLanguage={codeLanguage}
                                                     code={code}
@@ -122,6 +137,7 @@ const TextbookContentView = ({
                                                     videoUrl={videoUrl}
                                                     addDesc={addDesc}
                                                     addCode={addCode}
+                                                    addSingleCard={addSingleCard}
                                                     addLink={addLink}
                                                     addVideo={addVideo}
                                                     deleteJSONBookItem={deleteJSONBookItem}
