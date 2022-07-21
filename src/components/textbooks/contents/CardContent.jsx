@@ -102,7 +102,7 @@ const CardContent = ({
                             {
                                 hoverItemCardIndex === cardIndex &&
                                 <ButtonGroup
-                                    index={index-1}
+                                    index={index}
                                     text={text}
                                     codeLanguage={codeLanguage}
                                     code={code}
