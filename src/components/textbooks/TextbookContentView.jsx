@@ -4,16 +4,17 @@ import reactHtmlParser from 'react-html-parser';
 
 import {loadImage} from '@/helpers/electronFileSystem'
 
-import Button from '@/components/Button';
-
 import DescEditor from '@/components/textbooks/editors/DescEditor';
 import CodeEditor from '@/components/textbooks/editors/CodeEditor';
 import LinkEditor from "@/components/textbooks/editors/LinkEditor";
+import VideoEditor from "@/components/textbooks/editors/VideoEditor";
 
 import DescContent from '@/components/textbooks/contents/DescContent';
 import CodeContent from '@/components/textbooks/contents/CodeContent';
 import ImageContent from '@/components/textbooks/contents/ImageContent';
 import CardContent from '@/components/textbooks/contents/CardContent';
+import LinkContent from '@/components/textbooks/contents/LinkContent';
+import VideoContent from '@/components/textbooks/contents/VideoContent';
 
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
 
@@ -25,16 +26,18 @@ const TextbookContentView = ({
          addCode,
          addSingleCard,
          changeCode,
-         deleteJSONBookItem,
-         changeCardTitle
+         changeCardTitle,
+         addLink,
+         addVideo,
+         deleteJSONBookItem
      }) => {
 
     const text = useRef("");
     const code = useRef("");
     const codeLanguage = useRef("");
+    const link = useRef({textbook_id: "", indicator: ""});
+    const videoUrl = useRef("");
 
-    const [linkId, setLinkId] = useState(null);
-    const [linkIndicator, setLinkIndicator] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
@@ -62,11 +65,13 @@ const TextbookContentView = ({
                             text={text}
                             codeLanguage={codeLanguage}
                             code={code}
-                            linkId={linkId}
-                            linkIndicator={linkIndicator}
+                            link={link}
+                            videoUrl={videoUrl}
                             addDesc={addDesc}
                             addCode={addCode}
                             addSingleCard={addSingleCard}
+                            addLink={addLink}
+                            addVideo={addVideo}
                             deleteJSONBookItem={deleteJSONBookItem}
                         />
                         {reactHtmlParser(data.description_title)}
@@ -99,16 +104,10 @@ const TextbookContentView = ({
                                                     setSelectedImage={setSelectedImage}
                                                 /> :
                                             type === "link" ?
-                                                <div className={"body-link"} key={components_item.link}
-                                                     onMouseEnter={() => {
-                                                         setHoverItemIndex(index)
-                                                     }} onMouseLeave={() => {
-                                                    setHoverItemIndex(null)
-                                                }}>
-                                                    <Button size="small"> 힌트 보기 </Button>
-                                                    {hoverItemIndex === index &&
-                                                        <ButtonGroup index={index}/>}
-                                                   </div> : 
+                                            <LinkContent
+                                                key={index}
+                                                components_item={components_item}
+                                            />  : 
                                             type === "single_card" ? 
                                                 <div className={"body-card"} key={components_item.code+index} >
                                                     <CardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} changeDesc={changeDesc} deleteJSONBookItem={deleteJSONBookItem} changeCardTitle={changeCardTitle}/>
@@ -119,7 +118,13 @@ const TextbookContentView = ({
                                                     <DoubleCardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} deleteJSONBookItem={deleteJSONBookItem}/>
                                                 </div>
                                                 :
-                                                null
+
+                                            type === "video" ?
+                                                <VideoContent
+                                                    key={index}
+                                                    components_item={components_item}
+                                                />
+                                                : null
                                         }
                                         {
                                             hoverItemIndex === index &&
@@ -128,11 +133,13 @@ const TextbookContentView = ({
                                                     text={text}
                                                     codeLanguage={codeLanguage}
                                                     code={code}
-                                                    linkId={linkId}
-                                                    linkIndicator={linkIndicator}
+                                                    link={link}
+                                                    videoUrl={videoUrl}
                                                     addDesc={addDesc}
                                                     addCode={addCode}
                                                     addSingleCard={addSingleCard}
+                                                    addLink={addLink}
+                                                    addVideo={addVideo}
                                                     deleteJSONBookItem={deleteJSONBookItem}
                                                 />
                                         }
@@ -144,26 +151,34 @@ const TextbookContentView = ({
                 </div>
             </div>
 
-            <div style={{marginTop: "50px"}}>
-                <div style={{marginTop: "20px", marginBottom: "20px"}}>
+            <div>
+                <div style={styles.divider}>
                     <DescEditor placeholder={"이곳에 desc 입력"} text={text} />
                 </div>
 
-                <div>
+                <div style={styles.divider}>
                     <CodeEditor codeLanguage={codeLanguage} code={code} />
                 </div>
 
-                <div style={{marginTop: "20px", marginBottom: "20px"}}>
+                <div style={styles.divider}>
+                    <LinkEditor link={link} />
                 </div>
-                <LinkEditor
-                    linkId={linkId}
-                    linkIndicator={linkIndicator}
-                    setLinkId={setLinkId}
-                    setLinkIndicator={setLinkIndicator}
-                />
+
+                <div style={styles.divider}>
+                    <VideoEditor videoUrl={videoUrl} />
+                </div>
             </div>
         </div>
     )
+}
+
+const styles = {
+    divider: {
+        marginTop: "20px",
+        marginBottom: "20px",
+        paddingTop: 20,
+        borderTop: "1px solid #dfdfdf"
+    }
 }
 
 export default TextbookContentView

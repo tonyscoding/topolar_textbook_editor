@@ -79,11 +79,13 @@ const NewClassroom = () =>{
         })
 
         setJSONBook(newJSONBook);
+        movePage(nowStepIndex, lastItemIndex + 1);
     }
     // 5. item 삭제
     const deleteItem = (nowStepIndex, deleteItemIndex) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
         newJSONBook.textbook_contents[nowStepIndex].step_items.splice(deleteItemIndex, 1);
+
         setJSONBook(newJSONBook);
     }
     // 6. item 이름 변경
@@ -201,6 +203,27 @@ const NewClassroom = () =>{
         newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].title = newDesc;
         setJSONBook(newJSONBook);
     }
+    // 12. link 추가
+    const addLink = (nowStepIndex, nowItemIndex, index, textbook_id, indicator) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
+            "type": "link",
+            "textbook_id": textbook_id,
+            "indicator": indicator
+        })
+
+        setJSONBook(newJSONBook);
+    }
+    // 13. video 추가
+    const addVideo = (nowStepIndex, nowItemIndex, index, videoUrl) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
+            "type": "video",
+            "url": videoUrl
+        })
+
+        setJSONBook(newJSONBook);
+    }
 
     return (
         <>
@@ -234,6 +257,8 @@ const NewClassroom = () =>{
                         addCode={addCode}
                         addSingleCard={addSingleCard}
                         changeCode={changeCode}
+                        addLink={addLink}
+                        addVideo={addVideo}
                         deleteJSONBookItem={deleteJSONBookItem}
                         changeCardTitle={changeCardTitle}
                     />
