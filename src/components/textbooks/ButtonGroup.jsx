@@ -18,7 +18,6 @@ export const ButtonGroup = ({
 	addDesc,
 	addCode,
 	addSingleCard,
-    deleteJSONBookItem,
 	isCard,
 	cardIndex,
 	addLink,
@@ -53,7 +52,7 @@ export const ButtonGroup = ({
 				<Button
 					auto
 					onClick={() => {
-						addDesc(stepIndex, itemIndex, index + 1, text.current ? text.current : "<p><br /></p>");
+						addDesc(stepIndex, itemIndex, index, text.current ? text.current : "<p><br /></p>", isCard ? cardIndex + 1 : null);
 					}}
 				>
 					desc 추가
@@ -61,33 +60,35 @@ export const ButtonGroup = ({
 				<Button
 					auto
 					onClick={() => {
-						addCode(stepIndex, itemIndex, index + 1, code.current, codeLanguage.current.saveName);
+						addCode(stepIndex, itemIndex, index, code.current, codeLanguage.current.saveName, isCard ? cardIndex + 1 : null);
 					}}
 				>
 					code 추가
 				</Button>
-				<Button
-					auto
-					onClick={() => {
-						if (link.current?.textbook_id && link.current?.indicator) {
-							addLink(stepIndex, itemIndex, index + 1, link.current.textbook_id, link.current.indicator);
-						} else {
-							alert("교재 아이디와 페이지를 입력해주세요.");
-						}
-					}}
-				>
-					link 추가
-				</Button>
-				<Button
-					auto
-					onClick={() => {
-						addVideo(stepIndex, itemIndex, index + 1, videoUrl.current);
-					}}
-				>
-					video 추가
-				</Button>
+				
 				{
 					!isCard ? 
+					<>
+					<Button
+						auto
+						onClick={() => {
+							if (link.current?.textbook_id && link.current?.indicator) {
+								addLink(stepIndex, itemIndex, index + 1, link.current.textbook_id, link.current.indicator, isCard ? cardIndex + 1 : null);
+							} else {
+								alert("교재 아이디와 페이지를 입력해주세요.");
+							}
+						}}
+					>
+						link 추가
+					</Button>
+					<Button
+						auto
+						onClick={() => {
+							addVideo(stepIndex, itemIndex, index + 1, videoUrl.current);
+						}}
+					>
+						video 추가
+					</Button>
 					<Button
 						size="small"
 						type="fill"
@@ -97,7 +98,9 @@ export const ButtonGroup = ({
 						}}
 					>
 						s_card 추가
-					</Button> :
+					</Button>
+					</>
+					:
 					null
 				}
 			</Button.Group>
