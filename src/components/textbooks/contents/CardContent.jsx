@@ -37,9 +37,6 @@ const CardContent = ({
      }) => {
     console.log("data", data);
 
-    const[linkId, setLinkId] = useState(null);
-    const[linkIndicator, setLinkIndicator] = useState(null);
-    const[selectedImage, setSelectedImage] = useState(null);
     const [hoverItemCardIndex, setHoverItemCardIndex] = useState(null);
 
     if (JSONLoading){
@@ -77,57 +74,44 @@ const CardContent = ({
                         <Markdown children={data.title} rehypePlugins={[rehypeRaw]} />
                 }
             </div>
-                <ButtonGroup index={index} text={text} code={code} codeLanguage={codeLanguage} linkId={linkId} linkIndicator={linkIndicator} addCode={addCode} addDesc={addDesc} isCard={true} cardIndex={-1}/>
+                <ButtonGroup
+                    index={index}
+                    text={text}
+                    code={code}
+                    codeLanguage={codeLanguage}
+                    addCode={addCode}
+                    addDesc={addDesc}
+                    isCard={true}
+                    cardIndex={-1}
+                />
                 {reactHtmlParser(data.description_title)}
                 {
                     data.components.map((components_item, cardIndex) => {
                         let type = components_item.type;
 
                         return (
-                            <div onMouseEnter={() => setHoverItemCardIndex(cardIndex)} onMouseLeave={() => setHoverItemCardIndex(null)} className={'body-desc'}>
+                            <div
+                                onMouseEnter={() => setHoverItemCardIndex(cardIndex)}
+                                onMouseLeave={() => setHoverItemCardIndex(null)}
+                                className={'body-desc'}
+                            >
                             {
                             type === "desc" ?
                                 <DescContent
-                                    key={cardIndex}
-                                    index={cardIndex}
-                                    text={text}
-                                    changeDesc={changeDesc}
+                                    key={index}
+                                    index={index}
                                     components_item={components_item}
-                                    codeLanguage={codeLanguage}
-                                    code={code}
-                                    linkId={linkId}
-                                    linkIndicator={linkIndicator}
+                                    changeDesc={changeDesc}
                                     isCard={true}
                                     cardIndex={cardIndex}
                                 /> :
                             type === "code" ?
                                 <CodeContent
                                     key={cardIndex}
-                                    index={cardIndex}
-                                    text={text}
                                     components_item={components_item}
-                                    codeLanguage={codeLanguage}
-                                    code={code}
-                                    linkId={linkId}
-                                    linkIndicator={linkIndicator}
-                                /> :
-                            type === "image" ?
-                                <ImageContent
-                                    key={cardIndex}
-                                    components_item={components_item}
-                                    index={cardIndex}
-                                    loadImage={loadImage}
-                                    selectedImage={selectedImage}
-                                    setSelectedImage={setSelectedImage}
-                                    ButtonGroup={ButtonGroup}
-                                /> :
-                            type === "link" ?
-                                <div className={"body-link"} key={components_item.link+count_for_key} onMouseEnter={() => {setHoverItemCardIndex(index)}} onMouseLeave={() => {setHoverItemCardIndex(null)}}>
-                                    <Button size="small"> 힌트 보기 </Button>
-                                    {hoverItemCardIndex === cardIndex && <ButtonGroup index={cardIndex}/>}
-                                </div>
-                                : null
+                                /> : null
                             }
+
                             {
                                 hoverItemCardIndex === cardIndex &&
                                 <ButtonGroup
@@ -135,8 +119,6 @@ const CardContent = ({
                                     text={text}
                                     codeLanguage={codeLanguage}
                                     code={code}
-                                    linkId={linkId}
-                                    linkIndicator={linkIndicator}
                                     addDesc={addDesc}
                                     addCode={addCode}
                                     addSingleCard={addSingleCard}
@@ -145,10 +127,11 @@ const CardContent = ({
                                     cardIndex={cardIndex}
                                 />
                             }
-                                        </div>)
+                            </div>
+                        )
                     })
                 }
-                
+
         </Card>
     )
 }

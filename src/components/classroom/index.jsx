@@ -107,13 +107,13 @@ const NewClassroom = () =>{
         } else {
             newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
         }
-        
+
         setJSONBook(newJSONBook);
     }
     // 8. desc 수정
     const changeDesc = (nowStepIndex, nowItemIndex, index, newDesc, cardIndex=null) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        
+
         if(cardIndex == null) {
             newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].description = newDesc;
         } else {
@@ -150,12 +150,12 @@ const NewClassroom = () =>{
     const deleteJSONBookItem = (nowStepIndex, nowItemIndex, deleteIndex, cardIndex=null) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
         console.log("delete", nowStepIndex, nowItemIndex, deleteIndex, cardIndex)
-        if(cardIndex==null) {
+        if(cardIndex === null) {
             newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(deleteIndex, 1);
         } else {
             newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components[deleteIndex].components.splice(cardIndex, 1);
         }
-        
+
         setJSONBook(newJSONBook);
     }
     // 12.single_card 추가

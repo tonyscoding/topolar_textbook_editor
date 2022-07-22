@@ -65,15 +65,15 @@ export const ButtonGroup = ({
 				>
 					code 추가
 				</Button>
-				
+
 				{
-					!isCard ? 
+					!isCard ?
 					<>
 					<Button
 						auto
 						onClick={() => {
 							if (link.current?.textbook_id && link.current?.indicator) {
-								addLink(stepIndex, itemIndex, index + 1, link.current.textbook_id, link.current.indicator, isCard ? cardIndex + 1 : null);
+								addLink(stepIndex, itemIndex, index, link.current.textbook_id, link.current.indicator, isCard ? cardIndex + 1 : null);
 							} else {
 								alert("교재 아이디와 페이지를 입력해주세요.");
 							}
@@ -84,7 +84,7 @@ export const ButtonGroup = ({
 					<Button
 						auto
 						onClick={() => {
-							addVideo(stepIndex, itemIndex, index + 1, videoUrl.current);
+							addVideo(stepIndex, itemIndex, index, videoUrl.current);
 						}}
 					>
 						video 추가
@@ -106,7 +106,7 @@ export const ButtonGroup = ({
 			</Button.Group>
 
 			{
-				(isCard ? cardIndex > -1 : index > -1)  ?
+				(isCard ? cardIndex > -1 : index > 0)  ?
 					<Button
 						size={"sm"}
 						color={"error"}
@@ -114,7 +114,7 @@ export const ButtonGroup = ({
 						auto
 						ghost
 						onClick={() => {
-							deleteJSONBookItem(stepIndex, itemIndex, isCard ? index : index-1, isCard ? cardIndex : null);
+							deleteJSONBookItem(stepIndex, itemIndex, isCard ? index : index - 1, isCard ? cardIndex : null);
 						}}
 					>
 						제거

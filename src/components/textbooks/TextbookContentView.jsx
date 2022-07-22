@@ -107,12 +107,12 @@ const TextbookContentView = ({
                                             <LinkContent
                                                 key={index}
                                                 components_item={components_item}
-                                            />  : 
-                                            type === "single_card" ? 
+                                            />  :
+                                            type === "single_card" ?
                                                 <div className={"body-card"} key={components_item.code+index} >
                                                     <CardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} changeDesc={changeDesc} deleteJSONBookItem={deleteJSONBookItem} changeCardTitle={changeCardTitle}/>
                                                 </div>
-                                                : 
+                                                :
                                             type === "double_card" ?
                                                 <div className={"body-doublecard"} key={components_item.code+count_for_key} >
                                                     <DoubleCardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} deleteJSONBookItem={deleteJSONBookItem}/>
