@@ -9,4 +9,4 @@
 #### 5. ```yarn deploy && yarn deploy:mac```
 
 ## Note
-1. 직접 build 한 파일을 수정하지 않도록 조치 
+1. 직접 build 한 파일을 수정하지 않도록 조치 필요
