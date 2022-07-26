@@ -23,6 +23,7 @@ const NewClassroom = () =>{
 
     useEffect(() => {
         console.log(JSONBook.textbook_contents[stepIndex].step_items[itemIndex]);
+
     }, [stepIndex, itemIndex]);
 
     // 새로운 stepIndex와 itemIndex가 들어오면 화면 업데이트

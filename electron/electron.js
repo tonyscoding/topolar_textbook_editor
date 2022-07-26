@@ -24,10 +24,10 @@ function createWindow() {
     * 빌드되는 build 폴더의 index.html 파일을 로드합니다.
     * */
     const startUrl = isDev ? 'http://localhost:3000' : url.format({
-        pathname: path.join(__dirname, 'index.html'),
+        pathname: path.join(__dirname, '/../build/index.html'),
         protocol: 'file:',
         slashes: true
-    })
+    });
 
     /*
     * startUrl에 배정되는 url을 맨 위에서 생성한 BrowserWindow에서 실행시킵니다.

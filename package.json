@@ -1,14 +1,15 @@
 {
   "name": "topolar_textbook_editor",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "electron/electron.js",
+  "homepage": "./",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
-    "electron:pack": "yarn build && electron-builder build",
+    "electron:pack": "yarn build && electron-builder build -c.extraMetadata.main=electron/electron.js",
     "electron:dev": "concurrently -k \"cross-env BROWSER=none yarn dev\" \"electron .\"",
     "electron:builder": "electron-builder",
     "build:for:electron": "cross-env ELECTRON=true vite build",
@@ -53,7 +54,7 @@
     "concurrently": "^7.2.1",
     "cross-env": "^7.0.3",
     "electron": "^19.0.8",
-    "electron-builder": "^23.0.3",
+    "electron-builder": "23.0.3",
     "vite": "2.9.14",
     "wait-on": "^6.0.1"
   },
