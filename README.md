@@ -7,3 +7,6 @@
 #### 3. build폴더의 assets/index.OOOOOOOO.js파일 열기
 #### 4. 51번째 줄에 있는 모든 Object.keys(변수명)앞에 if(변수명)입력(return 뒤에 있는 Object.keys는 제외)
 #### 5. ```yarn deploy && yarn deploy:mac```
+
+## Note
+1. 직접 build 한 파일을 수정하지 않도록 조치 
