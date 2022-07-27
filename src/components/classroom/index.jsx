@@ -197,14 +197,7 @@ const NewClassroom = () =>{
         })
         setJSONBook(newJSONBook);
     }
-
-    // 14. cardtitle 수정
-    const changeCardTitle = (nowStepIndex, nowItemIndex, index, newDesc) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].title = newDesc;
-        setJSONBook(newJSONBook);
-    }
-    // 12. link 추가
+    // 14. link 추가
     const addLink = (nowStepIndex, nowItemIndex, index, textbook_id, indicator) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
         newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
@@ -215,7 +208,7 @@ const NewClassroom = () =>{
 
         setJSONBook(newJSONBook);
     }
-    // 13. video 추가
+    // 15. video 추가
     const addVideo = (nowStepIndex, nowItemIndex, index, videoUrl) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
         newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
