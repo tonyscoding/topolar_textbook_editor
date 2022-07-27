@@ -254,7 +254,6 @@ const NewClassroom = () =>{
                         addLink={addLink}
                         addVideo={addVideo}
                         deleteJSONBookItem={deleteJSONBookItem}
-                        changeCardTitle={changeCardTitle}
                     />
                 }
             </div>

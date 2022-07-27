@@ -32,8 +32,7 @@ const CardContent = ({
         text,
         code,
         codeLanguage,
-        deleteJSONBookItem,
-        changeCardTitle
+        deleteJSONBookItem
      }) => {
     console.log("data", data);
 
@@ -52,28 +51,12 @@ const CardContent = ({
 	const item = useRef('');
 	const [wantToEdit, setWantToEdit] = useState(false);
 
-    const handleBlur = (e) => {
-		setWantToEdit(false);
-		changeCardTitle(stepIndex, itemIndex, index, item.current);
-	}
-
     return (
         <Card
             width={ "guide-col8" }
             hideLine={0}
             style={{marginBottom: "20px"}}
         >
-            <div
-                className={"body-desc"}
-                onDoubleClick={() => {setWantToEdit(true)}}
-            >
-                {
-                    wantToEdit ?
-                        <DescEditor placeholder={"이곳에 desc 입력"} text={item} handleBlur={handleBlur} />
-                        :
-                        <Markdown children={data.title} rehypePlugins={[rehypeRaw]} />
-                }
-            </div>
                 <ButtonGroup
                     index={index}
                     text={text}
@@ -84,7 +67,6 @@ const CardContent = ({
                     isCard={true}
                     cardIndex={-1}
                 />
-                {reactHtmlParser(data.description_title)}
                 {
                     data.components.map((components_item, cardIndex) => {
                         let type = components_item.type;
