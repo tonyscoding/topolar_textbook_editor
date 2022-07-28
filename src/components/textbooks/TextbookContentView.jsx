@@ -26,7 +26,6 @@ const TextbookContentView = ({
          addCode,
          addSingleCard,
          changeCode,
-         changeCardTitle,
          addLink,
          addVideo,
          deleteJSONBookItem
@@ -121,7 +120,6 @@ const TextbookContentView = ({
                                                         addCode={addCode}
                                                         changeDesc={changeDesc}
                                                         deleteJSONBookItem={deleteJSONBookItem}
-                                                        changeCardTitle={changeCardTitle}
                                                     />
                                                 </div>
                                                 :
