@@ -87,6 +87,11 @@
 }
 
 // design guide font mixin
+@mixin font-bold(){
+    font-family: 'SpoqaHanSansNeo-Bold';
+}
+
+
 @mixin display-1(){
     font-weight: 400;
     line-height: 1.3em;
@@ -237,6 +242,11 @@
     font-weight: 400;
     line-height: 1.3em;
     font-size: 12px;
+}
+@mixin caption-mobile-fix{
+    font-weight: 400;
+    line-height: 1.3em;
+    font-size: 10px;
 }
 
 @mixin scrollbar-small {

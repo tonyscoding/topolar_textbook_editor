@@ -18,6 +18,8 @@ import VideoContent from '@/components/textbooks/contents/VideoContent';
 
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
 
+import {Card} from "@/components/Card";
+
 const TextbookContentView = ({
          data,
          JSONLoading,
@@ -49,6 +51,9 @@ const TextbookContentView = ({
 
     return (
         <div className="textbook-content-view">
+        `    <Card
+                width={ "guide-col10" }
+            >
             <div>
                 <div className={"textbook-container"}>
                     <div className={"textbook-header"}>
@@ -177,6 +182,7 @@ const TextbookContentView = ({
                     <VideoEditor videoUrl={videoUrl} />
                 </div>
             </div>
+            </Card>
         </div>
     )
 }
