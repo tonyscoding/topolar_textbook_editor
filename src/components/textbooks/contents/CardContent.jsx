@@ -8,6 +8,7 @@ import Button from '@/components/Button';
 
 import DescContent from '@/components/textbooks/contents/DescContent';
 import CodeContent from '@/components/textbooks/contents/CodeContent';
+import LinkContent from '@/components/textbooks/contents/LinkContent';
 import ImageContent from '@/components/textbooks/contents/ImageContent';
 import Markdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
@@ -15,7 +16,6 @@ import rehypeRaw from 'rehype-raw';
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
 
 import {Card} from "@/components/Card";
-import {DescEditor} from "@/components/textbooks/editors/DescEditor";
 
 import { useRecoilValue } from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
@@ -24,8 +24,10 @@ const CardContent = ({
         data,
         JSONLoading,
         index,
+        link,
         addDesc,
         changeDesc,
+        addLink,
         addCode,
         addSingleCard,
         changeCode,
@@ -61,6 +63,8 @@ const CardContent = ({
                     index={index}
                     text={text}
                     code={code}
+                    link={link}
+                    addLink={addLink}
                     codeLanguage={codeLanguage}
                     addCode={addCode}
                     addDesc={addDesc}
@@ -80,7 +84,7 @@ const CardContent = ({
                             {
                             type === "desc" ?
                                 <DescContent
-                                    key={index}
+                                    key={cardIndex}
                                     index={index}
                                     components_item={components_item}
                                     changeDesc={changeDesc}
@@ -89,6 +93,11 @@ const CardContent = ({
                                 /> :
                             type === "code" ?
                                 <CodeContent
+                                    key={cardIndex}
+                                    components_item={components_item}
+                                /> : 
+                            type === "link" ?
+                                <LinkContent
                                     key={cardIndex}
                                     components_item={components_item}
                                 /> : null
@@ -100,7 +109,9 @@ const CardContent = ({
                                     index={index}
                                     text={text}
                                     codeLanguage={codeLanguage}
+                                    link={link}
                                     code={code}
+                                    addLink={addLink}
                                     addDesc={addDesc}
                                     addCode={addCode}
                                     addSingleCard={addSingleCard}

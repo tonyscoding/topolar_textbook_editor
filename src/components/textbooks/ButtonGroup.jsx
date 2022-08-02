@@ -66,12 +66,12 @@ export const ButtonGroup = ({
 					code 추가
 				</Button>
 
-				{
-					!isCard ?
-					<>
+	
+					
 					<Button
 						auto
 						onClick={() => {
+							console.log("link", link);
 							if (link.current?.textbook_id && link.current?.indicator) {
 								addLink(stepIndex, itemIndex, index, link.current.textbook_id, link.current.indicator, isCard ? cardIndex + 1 : null);
 							} else {
@@ -81,6 +81,9 @@ export const ButtonGroup = ({
 					>
 						link 추가
 					</Button>
+				{
+				!isCard ?
+				<>
 					<Button
 						auto
 						onClick={() => {

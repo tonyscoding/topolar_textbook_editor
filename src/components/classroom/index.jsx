@@ -198,13 +198,20 @@ const NewClassroom = () =>{
         setJSONBook(newJSONBook);
     }
     // 14. link 추가
-    const addLink = (nowStepIndex, nowItemIndex, index, textbook_id, indicator) => {
+    const addLink = (nowStepIndex, nowItemIndex, index, textbook_id, indicator, cardIndex=null) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
+
+        const content = {
             "type": "link",
             "textbook_id": textbook_id,
             "indicator": indicator
-        })
+        }
+
+        if(cardIndex === null) {
+            newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, content);
+        } else {
+            newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components[index].components.splice(cardIndex, 0, content);
+        }
 
         setJSONBook(newJSONBook);
     }
