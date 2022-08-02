@@ -9,6 +9,7 @@ import Button from '@/components/Button';
 import DescContent from '@/components/textbooks/contents/DescContent';
 import CodeContent from '@/components/textbooks/contents/CodeContent';
 import LinkContent from '@/components/textbooks/contents/LinkContent';
+import VideoContent from '@/components/textbooks/contents/VideoContent';
 import ImageContent from '@/components/textbooks/contents/ImageContent';
 import Markdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
@@ -29,7 +30,9 @@ const CardContent = ({
         changeDesc,
         addLink,
         addCode,
+        addVideo,
         addSingleCard,
+        videoUrl,
         changeCode,
         text,
         code,
@@ -65,7 +68,9 @@ const CardContent = ({
                     code={code}
                     link={link}
                     addLink={addLink}
+                    addVideo={addVideo}
                     codeLanguage={codeLanguage}
+                    videoUrl={videoUrl}
                     addCode={addCode}
                     addDesc={addDesc}
                     isCard={true}
@@ -100,6 +105,11 @@ const CardContent = ({
                                 <LinkContent
                                     key={cardIndex}
                                     components_item={components_item}
+                                /> : 
+                            type === "video" ?
+                                <VideoContent
+                                    key={index}
+                                    components_item={components_item}
                                 /> : null
                             }
 
@@ -114,6 +124,8 @@ const CardContent = ({
                                     addLink={addLink}
                                     addDesc={addDesc}
                                     addCode={addCode}
+                                    addVideo={addVideo}
+                                    videoUrl={videoUrl}
                                     addSingleCard={addSingleCard}
                                     deleteJSONBookItem={deleteJSONBookItem}
                                     isCard={true}

@@ -81,9 +81,7 @@ export const ButtonGroup = ({
 					>
 						link 추가
 					</Button>
-				{
-				!isCard ?
-				<>
+
 					<Button
 						auto
 						onClick={() => {
@@ -92,6 +90,9 @@ export const ButtonGroup = ({
 					>
 						video 추가
 					</Button>
+				{
+				!isCard ?
+				<>
 					<Button
 						size="small"
 						type="fill"
