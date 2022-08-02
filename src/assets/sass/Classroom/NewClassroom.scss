@@ -198,6 +198,11 @@
             margin: 0 auto;
             max-width:888px;
         }
+        >.guide-card {
+            width: auto;
+            box-shadow: 0 0px 0px rgba(0,0,0,0.2);
+            padding: 24px;
+        }
         .textbook-header{
             font-size:32px;
             font-weight: bold;
