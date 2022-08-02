@@ -26,10 +26,6 @@ const TextbookContentView = ({
          addDesc,
          changeDesc,
          addCode,
-         addSingleCard,
-         changeCode,
-         addLink,
-         addVideo,
          deleteJSONBookItem
      }) => {
 
@@ -71,12 +67,7 @@ const TextbookContentView = ({
                             code={code}
                             link={link}
                             videoUrl={videoUrl}
-                            addDesc={addDesc}
-                            addCode={addCode}
-                            addSingleCard={addSingleCard}
-                            addLink={addLink}
-                            addVideo={addVideo}
-                            deleteJSONBookItem={deleteJSONBookItem}
+
                         />
                         {reactHtmlParser(data.description_title)}
                         {
@@ -91,7 +82,6 @@ const TextbookContentView = ({
                                                     key={index}
                                                     index={index}
                                                     components_item={components_item}
-                                                    changeDesc={changeDesc}
                                                 /> :
                                             type === "code" ?
                                                 <CodeContent
@@ -119,16 +109,11 @@ const TextbookContentView = ({
                                                         text={text}
                                                         code={code}
                                                         link={link}
-                                                        addLink={addLink}
-                                                        addVideo={addVideo}
                                                         codeLanguage={codeLanguage}
                                                         data={components_item}
                                                         index={index}
                                                         videoUrl={videoUrl}
-                                                        addDesc={addDesc}
-                                                        addCode={addCode}
-                                                        changeDesc={changeDesc}
-                                                        deleteJSONBookItem={deleteJSONBookItem}
+                                    
                                                     />
                                                 </div>
                                                 :
@@ -153,12 +138,7 @@ const TextbookContentView = ({
                                                     code={code}
                                                     link={link}
                                                     videoUrl={videoUrl}
-                                                    addDesc={addDesc}
-                                                    addCode={addCode}
-                                                    addSingleCard={addSingleCard}
-                                                    addLink={addLink}
-                                                    addVideo={addVideo}
-                                                    deleteJSONBookItem={deleteJSONBookItem}
+                   
                                                 />
                                         }
                                     </div>

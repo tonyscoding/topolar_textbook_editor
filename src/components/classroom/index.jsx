@@ -9,17 +9,22 @@ import TextbookContentView from '@/components/textbooks/TextbookContentView';
 
 import { saveTextbook, loadTextbook } from "@/helpers/electronFileSystem";
 
-import tutorial from "@/textbook/Textbook_lv0_0_tutorial/Textbook_lv0_0_tutorial.json";
+
 
 import {useRecoilState} from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
+import { JSONbookState } from '@/utils/States';
 
 const NewClassroom = () =>{
-    const [JSONBook, setJSONBook] = useState(tutorial);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
     const [stepIndex, setStepIndex] = useRecoilState(stepIndexState);
     const [itemIndex, setItemIndex] = useRecoilState(itemIndexState);
+
+    useEffect(() => {
+
+    },[])
 
     useEffect(() => {
         console.log(JSONBook.textbook_contents[stepIndex].step_items[itemIndex]);
@@ -95,136 +100,7 @@ const NewClassroom = () =>{
         newJSONBook.textbook_contents[nowStepIndex].step_items[changeItemIndex].title = newItemTitle;
         setJSONBook(newJSONBook);
     }
-    // 7. desc 추가
-    const addDesc = (nowStepIndex, nowItemIndex, index, newDesc, cardIndex=null) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        const content = {
-            "type": "desc",
-            "description": newDesc
-        }
-        console.log("add", nowStepIndex, nowItemIndex, index, cardIndex)
-        if(cardIndex == null) {
-            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
-        } else {
-            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
-        }
 
-        setJSONBook(newJSONBook);
-    }
-    // 8. desc 수정
-    const changeDesc = (nowStepIndex, nowItemIndex, index, newDesc, cardIndex=null) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-
-        if(cardIndex == null) {
-            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].description = newDesc;
-        } else {
-            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components[cardIndex].description = newDesc;
-        }
-
-        setJSONBook(newJSONBook);
-    }
-    // 9. code 추가
-    const addCode = (nowStepIndex, nowItemIndex, index, newCode, language, cardIndex=null) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-
-        const content = {
-            "type": "code",
-            "code": "~~~" + language + " \n" + newCode + "\n ~~~"
-        }
-
-        console.log("add", nowStepIndex, nowItemIndex, index, cardIndex)
-        if(cardIndex == null) {
-            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
-        } else {
-            newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
-        }
-
-        setJSONBook(newJSONBook);
-    }
-    // 10. code 수정(미완성)
-    const changeCode = (nowStepIndex, nowItemIndex, changeCodeIndex, newCode) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex][changeCodeIndex] = newCode;
-        setJSONBook(newJSONBook);
-    }
-    // 11. content 삭제
-    const deleteJSONBookItem = (nowStepIndex, nowItemIndex, deleteIndex, cardIndex=null) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        console.log("delete", nowStepIndex, nowItemIndex, deleteIndex, cardIndex)
-        if(cardIndex === null) {
-            newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(deleteIndex, 1);
-        } else {
-            newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components[deleteIndex].components.splice(cardIndex, 1);
-        }
-
-        setJSONBook(newJSONBook);
-    }
-    // 12.single_card 추가
-    const addSingleCard = (nowStepIndex, nowItemIndex, index) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-
-        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
-            "type": "single_card",
-            "title" : "제목",
-            "components": [
-                {
-                    "type": "desc",
-                    "description": "수정하세요"
-                }
-            ]
-        })
-        setJSONBook(newJSONBook);
-    }
-
-    // 13.double_card 추가
-    const addDoubleCard = (nowStepIndex, nowItemIndex, index) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-
-        newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
-            "type": "double_card",
-            "first_components": [
-                {
-                    "type": "desc",
-                    "description": "수정하세요"
-                }
-            ],
-            "second_components": [
-                {
-                    "type": "desc",
-                    "description": "수정하세요"
-                }
-            ]
-        })
-        setJSONBook(newJSONBook);
-    }
-    // 14. link 추가
-    const addLink = (nowStepIndex, nowItemIndex, index, textbook_id, indicator, cardIndex=null) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-
-        const content = {
-            "type": "link",
-            "textbook_id": textbook_id,
-            "indicator": indicator
-        }
-
-        if(cardIndex === null) {
-            newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, content);
-        } else {
-            newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components[index].components.splice(cardIndex, 0, content);
-        }
-
-        setJSONBook(newJSONBook);
-    }
-    // 15. video 추가
-    const addVideo = (nowStepIndex, nowItemIndex, index, videoUrl) => {
-        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-        newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
-            "type": "video",
-            "url": videoUrl
-        })
-
-        setJSONBook(newJSONBook);
-    }
 
     return (
         <>
@@ -253,14 +129,7 @@ const NewClassroom = () =>{
                     <TextbookContentView
                         JSONLoading={false}
                         data={JSONBook.textbook_contents[stepIndex]?.step_items[itemIndex] ? JSONBook.textbook_contents[stepIndex].step_items[itemIndex] : null}
-                        addDesc={addDesc}
-                        changeDesc={changeDesc}
-                        addCode={addCode}
-                        addSingleCard={addSingleCard}
-                        changeCode={changeCode}
-                        addLink={addLink}
-                        addVideo={addVideo}
-                        deleteJSONBookItem={deleteJSONBookItem}
+
                     />
                 }
             </div>

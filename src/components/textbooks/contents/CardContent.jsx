@@ -26,18 +26,10 @@ const CardContent = ({
         JSONLoading,
         index,
         link,
-        addDesc,
-        changeDesc,
-        addLink,
-        addCode,
-        addVideo,
-        addSingleCard,
         videoUrl,
-        changeCode,
         text,
         code,
         codeLanguage,
-        deleteJSONBookItem
      }) => {
     console.log("data", data);
 
@@ -67,12 +59,10 @@ const CardContent = ({
                     text={text}
                     code={code}
                     link={link}
-                    addLink={addLink}
-                    addVideo={addVideo}
+
                     codeLanguage={codeLanguage}
                     videoUrl={videoUrl}
-                    addCode={addCode}
-                    addDesc={addDesc}
+
                     isCard={true}
                     cardIndex={-1}
                 />
@@ -92,7 +82,6 @@ const CardContent = ({
                                     key={cardIndex}
                                     index={index}
                                     components_item={components_item}
-                                    changeDesc={changeDesc}
                                     isCard={true}
                                     cardIndex={cardIndex}
                                 /> :
@@ -121,13 +110,9 @@ const CardContent = ({
                                     codeLanguage={codeLanguage}
                                     link={link}
                                     code={code}
-                                    addLink={addLink}
-                                    addDesc={addDesc}
-                                    addCode={addCode}
-                                    addVideo={addVideo}
+                    
                                     videoUrl={videoUrl}
-                                    addSingleCard={addSingleCard}
-                                    deleteJSONBookItem={deleteJSONBookItem}
+                                
                                     isCard={true}
                                     cardIndex={cardIndex}
                                 />

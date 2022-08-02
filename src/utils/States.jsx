@@ -1,4 +1,5 @@
 import {atom} from "recoil";
+import tutorial from "@/textbook/Textbook_lv0_0_tutorial/Textbook_lv0_0_tutorial.json";
 
 export const stepIndexState = atom({
 	key: 'stepIndexState',
@@ -14,3 +15,8 @@ export const pageIndicatorState = atom({
 	key: 'pageIndicatorState',
 	default: 0
 });
+
+export const JSONbookState = atom({
+	key: 'JSONbookState',
+	default: tutorial
+})
