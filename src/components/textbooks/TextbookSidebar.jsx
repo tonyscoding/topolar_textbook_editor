@@ -1,7 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import TextbookOutline from "@/components/textbooks/TextbookOutline";
-
-import { ImageContext } from '@/contexts/ImageContext';
 
 import { saveImage, loadImage, saveTextbook, loadTextbook } from "@/helpers/electronFileSystem";
 
@@ -23,8 +21,7 @@ const TextbookSidebar = ({
      addItem,
      deleteItem,
      changeItemTitle
- }) => {
-    const { imageLib, setImageLib, addImageLib } = useContext(ImageContext);
+}) => {
 
     const downloadJson = () => {
         const saveText = JSON.stringify(JSONBook, null, "\t");
@@ -44,6 +41,49 @@ const TextbookSidebar = ({
         // a.remove();
         console.log(JSONBook)
     }
+
+    const convertToNewJsonBook = async (event) => {
+        const success = async function ( content ) {
+            let json = JSON.parse(content);
+
+            for (let i = 0; i < json.textbook_contents.length; i++) {
+                for (let j = 0; j < json.textbook_contents[i].step_items.length; j++) {
+                    for (let k = 0; k < json.textbook_contents[i].step_items[j].components.length; k++) {
+                        if (json.textbook_contents[i].step_items[j].components[k].type === "image") {
+                            const fileName = json.textbook_contents[i].step_items[j].components[k].src.split("/").pop(0);
+                            for (let l = 0; l < files.length; l++) {
+                                if (files[l].name === fileName) {
+                                    const binary = await toBase64(files[l]);
+
+                                    json.textbook_contents[i].step_items[j].components[k] = {
+                                        "type": "desc",
+                                        "description": "<p><img src=\"" + binary + "\" /></p>"
+                                    };
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            setJSONBook(json);
+        }
+
+        // 폴더 불러오기
+        let files = event.target.files;
+
+        const reader = new FileReader();
+
+        for (let i = 0; i < files.length; i++) {
+            if (files[i].name.includes(".json")) {
+                reader.onload = function ( event ) { success( event.target.result ) };
+                reader.readAsText( files[i] );
+                break;
+            }
+        }
+    }
+
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -67,8 +107,8 @@ const TextbookSidebar = ({
             }
             //saveImage(name, await toBase64(file));
             const binary = await toBase64(file);
+            console.log(file);
             addImageLib(name, binary);
-            console.log(name);
         }
     }
 
@@ -108,8 +148,8 @@ const TextbookSidebar = ({
                 deleteItem={deleteItem}
                 changeItemTitle={changeItemTitle}
             />
-            <hr></hr>
-            <Button.Group color={"gradient"} ghost>
+            <hr />
+            <Button.Group color={"gradient"} ghost size={"sm"}>
                 <Button>
                     <FiDownload style={{marginRight: 10}}/>
                     <label htmlFor={"input-file"} style={{marginTop: 10}}>
@@ -125,8 +165,16 @@ const TextbookSidebar = ({
                     <FiRefreshCcw style={{marginRight: 10}}/>
                     <div>퀵로드</div>
                 </Button>
+                <Button>
+                    <FiDownload style={{marginRight: 10}}/>
+                    <label htmlFor={"convert-file"} style={{marginTop: 10}}>
+                        컨버터
+                    </label>
+                    {/*<input type="file" name="json" onChange={convertToNewJsonBook} id={"convert-file"} style={{display: 'none'}}/>*/}
+                    <input type="file" name="convertFile" id="convert-file" onChange={convertToNewJsonBook} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />
+                </Button>
             </Button.Group>
-            <hr></hr>
+            <hr />
             <Button.Group color={'gradient'}>
                 <Button ghost>
                     <label htmlFor={"get-images"} style={{marginTop: 10}}>

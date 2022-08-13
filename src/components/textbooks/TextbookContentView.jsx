@@ -2,8 +2,6 @@ import React, {useRef, useState} from 'react';
 import '@/assets/sass/Curriculum/TextbookBrowser.scss'
 import reactHtmlParser from 'react-html-parser';
 
-import {loadImage} from '@/helpers/electronFileSystem'
-
 import DescEditor from '@/components/textbooks/editors/DescEditor';
 import CodeEditor from '@/components/textbooks/editors/CodeEditor';
 import LinkEditor from "@/components/textbooks/editors/LinkEditor";
@@ -35,7 +33,6 @@ const TextbookContentView = ({
     const link = useRef({textbook_id: "", indicator: ""});
     const videoUrl = useRef("");
 
-    const [selectedImage, setSelectedImage] = useState(null);
     const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
     if (JSONLoading){
@@ -47,7 +44,7 @@ const TextbookContentView = ({
 
     return (
         <div className="textbook-content-view">
-        `    <Card
+            <Card
                 width={ "guide-col10" }
             >
             <div>
@@ -88,15 +85,14 @@ const TextbookContentView = ({
                                                     key={index}
                                                     index={index}
                                                     components_item={components_item}
-                                                /> :
+                                                />
+                                                :
                                             type === "image" ?
                                                 <ImageContent
                                                     key={index}
                                                     components_item={components_item}
-                                                    loadImage={loadImage}
-                                                    selectedImage={selectedImage}
-                                                    setSelectedImage={setSelectedImage}
-                                                /> :
+                                                />
+                                                :
                                             type === "link" ?
                                             <LinkContent
                                                 key={index}

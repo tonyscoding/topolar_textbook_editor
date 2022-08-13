@@ -23,14 +23,14 @@ export const ButtonGroup = ({
 	const itemIndex = useRecoilValue(itemIndexState);
 	const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
 
-	    // 7. desc 추가
+	    // desc 추가
 		const addDesc = (nowStepIndex, nowItemIndex, index, newDesc, cardIndex=null) => {
 			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
 			const content = {
 				"type": "desc",
 				"description": newDesc
 			}
-			console.log("add", nowStepIndex, nowItemIndex, index, cardIndex)
+
 			if(cardIndex == null) {
 				newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
 			} else {
@@ -39,19 +39,8 @@ export const ButtonGroup = ({
 	
 			setJSONBook(newJSONBook);
 		}
-		// 8. desc 수정
-		// const changeDesc = (nowStepIndex, nowItemIndex, index, newDesc, cardIndex=null) => {
-		// 	let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-	
-		// 	if(cardIndex == null) {
-		// 		newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].description = newDesc;
-		// 	} else {
-		// 		newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components[cardIndex].description = newDesc;
-		// 	}
-	
-		// 	setJSONBook(newJSONBook);
-		// }
-		// 9. code 추가
+
+		// code 추가
 		const addCode = (nowStepIndex, nowItemIndex, index, newCode, language, cardIndex=null) => {
 			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
 	
@@ -59,8 +48,7 @@ export const ButtonGroup = ({
 				"type": "code",
 				"code": "~~~" + language + " \n" + newCode + "\n ~~~"
 			}
-	
-			console.log("add", nowStepIndex, nowItemIndex, index, cardIndex)
+
 			if(cardIndex == null) {
 				newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
 			} else {
@@ -69,16 +57,18 @@ export const ButtonGroup = ({
 	
 			setJSONBook(newJSONBook);
 		}
-		// 10. code 수정(미완성)
+
+		// code 수정(미완성)
 		const changeCode = (nowStepIndex, nowItemIndex, changeCodeIndex, newCode) => {
 			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
 			newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex][changeCodeIndex] = newCode;
 			setJSONBook(newJSONBook);
 		}
-		// 11. content 삭제
+
+		// content 삭제
 		const deleteJSONBookItem = (nowStepIndex, nowItemIndex, deleteIndex, cardIndex=null) => {
 			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-			console.log("delete", nowStepIndex, nowItemIndex, deleteIndex, cardIndex)
+
 			if(cardIndex === null) {
 				newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(deleteIndex, 1);
 			} else {
@@ -87,7 +77,8 @@ export const ButtonGroup = ({
 	
 			setJSONBook(newJSONBook);
 		}
-		// 12.single_card 추가
+
+		// single_card 추가
 		const addSingleCard = (nowStepIndex, nowItemIndex, index) => {
 			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
 	
@@ -104,7 +95,7 @@ export const ButtonGroup = ({
 			setJSONBook(newJSONBook);
 		}
 	
-		// 13.double_card 추가
+		// double_card 추가
 		const addDoubleCard = (nowStepIndex, nowItemIndex, index) => {
 			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
 	
@@ -125,7 +116,8 @@ export const ButtonGroup = ({
 			})
 			setJSONBook(newJSONBook);
 		}
-		// 14. link 추가
+
+		// link 추가
 		const addLink = (nowStepIndex, nowItemIndex, index, textbook_id, indicator, cardIndex=null) => {
 			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
 	
@@ -143,7 +135,8 @@ export const ButtonGroup = ({
 	
 			setJSONBook(newJSONBook);
 		}
-		// 15. video 추가
+
+		// video 추가
 		const addVideo = (nowStepIndex, nowItemIndex, index, videoUrl) => {
 			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
 			newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {

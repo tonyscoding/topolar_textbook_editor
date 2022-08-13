@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import NewClassroom from "./components/classroom";
-import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {RecoilRoot} from 'recoil';
 import './assets/css/Theme.css';
@@ -12,14 +10,17 @@ import './assets/sass/CommonUsed.scss';
 import './assets/sass/BackgroundImages.scss';
 import './assets/sass/Guide/Font.scss';
 import './assets/sass/Guide/ColWidth.scss';
+import {DragDropContext} from "react-beautiful-dnd";
 
 
 function App() {
 	return (
 		<RecoilRoot>
-			<div className="App">
-				<NewClassroom />
-			</div>
+			<DragDropContext>
+				<div className="App">
+					<NewClassroom />
+				</div>
+			</DragDropContext>
 		</RecoilRoot>
 	)
 }

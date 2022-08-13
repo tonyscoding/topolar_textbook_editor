@@ -23,7 +23,7 @@ function createWindow() {
     * 만일 URL을 따로 지정하지 않을경우 (프로덕션빌드) React 앱이
     * 빌드되는 build 폴더의 index.html 파일을 로드합니다.
     * */
-    const startUrl = isDev ? 'http://localhost:3000' : url.format({
+    const startUrl = isDev ? 'http://localhost:5173' : url.format({
         pathname: path.join(__dirname, '/../build/index.html'),
         protocol: 'file:',
         slashes: true
