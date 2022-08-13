@@ -1,7 +1,7 @@
 import React from 'react';
 import TextbookOutline from "@/components/textbooks/TextbookOutline";
 
-import { saveImage, loadImage, saveTextbook, loadTextbook } from "@/helpers/electronFileSystem";
+import { loadTextbook } from "@/helpers/electronFileSystem";
 
 import '@/assets/sass/Curriculum/TextbookSidebar.scss'
 import {Button} from "@nextui-org/react";
@@ -112,18 +112,18 @@ const TextbookSidebar = ({
         }
     }
 
-    const onJsonChange = (event) => {
-        var reader = new FileReader();
-        let json = event.target.files[0];
-
-        var success = function ( content ) {
-            console.log( JSON.parse(content) );
-            setJSONBook(JSON.parse(content))
-        }
-
-        reader.onload = function ( event ) { success( event.target.result ) };
-        reader.readAsText( json );
-    }
+    // const onJsonChange = (event) => {
+    //     var reader = new FileReader();
+    //     let json = event.target.files[0];
+    //
+    //     var success = function ( content ) {
+    //         console.log( JSON.parse(content) );
+    //         setJSONBook(JSON.parse(content))
+    //     }
+    //
+    //     reader.onload = function ( event ) { success( event.target.result ) };
+    //     reader.readAsText( json );
+    // }
 
     console.log("isopen" , isOpen)
 
@@ -184,6 +184,9 @@ const TextbookSidebar = ({
                     <input type="file" name="myImage" id="get-images" onChange={onFolderChange} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />
                 </Button>
             </Button.Group>
+            <hr />
+
+            v0.0.7
         </div>
     )
 
