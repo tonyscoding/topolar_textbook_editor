@@ -16,29 +16,34 @@ jobs:
       matrix:
         os: [macos-latest] #[macos-latest, ubuntu-latest, windows-latest]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      
       - name: Add MacOS certs
         run: chmod +x add-osx-cert.sh && ./add-osx-cert.sh
         env:
           MAC_CERT: ${{ secrets.MAC_CERT }}
           MAC_CERT_PASSWORD: ${{ secrets.MAC_CERT_PASSWORD }}
-
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
+          
       - name: Install Node.js, Npm
         uses: actions/setup-node@v3
         with:
           node-version: '16'
+          
       - name: Install dependencies
         run: yarn install
+        
       - name: Pack
         run: GH_TOKEN=${{ secrets.GH_TOKEN }} yarn electron:pack
+        
       - name: Copy build files
         run: |
           mkdir build
           cp -r dist/assets build
           cp dist/index.html build
+          
       - name: Deploy
         run: |
           GH_TOKEN=${{ secrets.GH_TOKEN }} yarn deploy
