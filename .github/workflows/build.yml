@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Pack
-        run: yarn electron:pack
+        run: GH_TOKEN=${{ secrets.GH_TOKEN }} yarn electron:pack
       - name: Copy build files
         run: |
           mkdir build
