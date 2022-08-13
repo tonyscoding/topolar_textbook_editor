@@ -35,8 +35,8 @@ jobs:
           cp dist/index.html build
       - name: Deploy
         run: |
-          yarn deploy
-          yarn deploy:mac        
+          GH_TOKEN=${{ secrets.GH_TOKEN }} yarn deploy
+          GH_TOKEN=${{ secrets.GH_TOKEN }} yarn deploy:mac        
 
       - uses: bbonkr/get-version-action@v1.0.4
         id: get_version
