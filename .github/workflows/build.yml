@@ -81,9 +81,21 @@ jobs:
         if: ${{ steps.gitTagCheck.outputs.tag == '' }}
         run: echo ${{ steps.release_drafter.outputs.upload_url }}
         
+      - name: Change exe name
+        run: mv "dist/topolar_textbook_editor Setup ${{ steps.get_version.outputs.version }}.exe" "dist/topolar_textbook_editor-Setup-${{ steps.get_version.outputs.version }}.exe"
+        
+      - name: Change assets files dir
+        run: |
+          mkdir dist/release
+          mv dist/latest.yml dist/release
+          mv dist/latest-mac.yml dist/release
+          mv dist/topolar_textbook_editor-Setup-${{ steps.get_version.outputs.version }}.exe dist/release
+          mv dist/topolar_textbook_editor-${{ steps.get_version.outputs.version }}-arm64.dmg dist/release
+          mv dist/topolar_textbook_editor-${{ steps.get_version.outputs.version }}-arm64-mac.zip dist/release
+
       - name: Upload Assets
         uses: csexton/release-asset-action@v2
         with:
-          pattern: "dist/*"
+          pattern: "dist/release*"
           github-token: ${{ secrets.GH_TOKEN }}
           release-url: ${{ steps.release_drafter.outputs.upload_url }}
