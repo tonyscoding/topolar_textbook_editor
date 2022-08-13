@@ -84,10 +84,6 @@ jobs:
       - name: Upload Assets
         uses: csexton/release-asset-action@v2
         with:
-          pattern: |
-            "dist/*.yml",
-            "dist/*.exe",
-            "dist/*.dmg",
-            "dist/*.zip"
+          pattern: "dist/*"
           github-token: ${{ secrets.GH_TOKEN }}
           release-url: ${{ steps.release_drafter.outputs.upload_url }}
