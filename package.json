@@ -9,10 +9,10 @@
     "preview": "vite preview",
     "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
     "electron:pack": "pnpm build && electron-builder build -c.extraMetadata.main=electron/electron.js",
-    "electron:dev": "concurrently -k \"cross-env BROWSER=none pnpm dev\" \"electron .\"",
+    "electron:dev": "concurrently -k \"cross-env BROWSER=none yarn dev\" \"electron .\"",
     "electron:builder": "electron-builder",
     "build:for:electron": "cross-env ELECTRON=true vite build",
-    "app:build": "pnpm build:for:electron && pnpm electron:builder",
+    "app:build": "yarn build:for:electron && yarn electron:builder",
     "deploy": "electron-builder --windows --x64",
     "deploy:mac": "electron-builder --mac"
   },
