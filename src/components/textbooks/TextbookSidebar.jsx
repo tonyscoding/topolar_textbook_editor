@@ -152,10 +152,11 @@ const TextbookSidebar = ({
             <Button.Group color={"gradient"} ghost size={"sm"}>
                 <Button>
                     <FiDownload style={{marginRight: 10}}/>
-                    <label htmlFor={"input-file"} style={{marginTop: 10}}>
+                    <label htmlFor={"convert-file"} style={{marginTop: 10}}>
                         파일 로드
                     </label>
-                    <input type="file" name="json" onChange={onJsonChange} id={"input-file"} style={{display: 'none'}}/>
+                    {/*<input type="file" name="json" onChange={convertToNewJsonBook} id={"convert-file"} style={{display: 'none'}}/>*/}
+                    <input type="file" name="convertFile" id="convert-file" onChange={convertToNewJsonBook} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />
                 </Button>
                 <Button onClick={downloadJson}>
                     <FiUpload style={{marginRight: 10}}/>
@@ -165,14 +166,14 @@ const TextbookSidebar = ({
                     <FiRefreshCcw style={{marginRight: 10}}/>
                     <div>퀵로드</div>
                 </Button>
-                <Button>
-                    <FiDownload style={{marginRight: 10}}/>
-                    <label htmlFor={"convert-file"} style={{marginTop: 10}}>
-                        컨버터
-                    </label>
-                    {/*<input type="file" name="json" onChange={convertToNewJsonBook} id={"convert-file"} style={{display: 'none'}}/>*/}
-                    <input type="file" name="convertFile" id="convert-file" onChange={convertToNewJsonBook} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />
-                </Button>
+                {/*<Button>*/}
+                {/*    <FiDownload style={{marginRight: 10}}/>*/}
+                {/*    <label htmlFor={"convert-file"} style={{marginTop: 10}}>*/}
+                {/*        컨버터*/}
+                {/*    </label>*/}
+                {/*    /!*<input type="file" name="json" onChange={convertToNewJsonBook} id={"convert-file"} style={{display: 'none'}}/>*!/*/}
+                {/*    <input type="file" name="convertFile" id="convert-file" onChange={convertToNewJsonBook} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />*/}
+                {/*</Button>*/}
             </Button.Group>
             <hr />
             <Button.Group color={'gradient'}>
