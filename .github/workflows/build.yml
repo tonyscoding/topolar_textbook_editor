@@ -86,4 +86,4 @@ jobs:
         with:
           pattern: "dist/*"
           github-token: ${{ secrets.GH_TOKEN }}
-          release-url: ${{ github.event.client_payload.url }}     
+          release-url: ${{ steps.release_drafter.outputs.upload_url }}
