@@ -91,7 +91,7 @@
     },
     "directories": {
       "buildResources": "./resources/installer/",
-      "output": "./dist/",
+      "output": "./build/",
       "app": "."
     }
   }

@@ -16,6 +16,13 @@ jobs:
       matrix:
         os: [macos-latest] #[macos-latest, ubuntu-latest, windows-latest]
     steps:
+      - name: Add MacOS certs
+        if: matrix.os == 'macos-latest' && startsWith(github.ref, 'refs/tags/')
+        run: chmod +x add-osx-cert.sh && ./add-osx-cert.sh
+        env:
+          CERTIFICATE_OSX_APPLICATION: ${{ secrets.MAC_CERT }}
+          CERTIFICATE_PASSWORD: ${{ secrets.MAC_CERT_PASSWORD }}
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
