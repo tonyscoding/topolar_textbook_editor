@@ -80,12 +80,10 @@ jobs:
       - name: Check Upload Url
         if: ${{ steps.gitTagCheck.outputs.tag == '' }}
         run: echo ${{ steps.release_drafter.outputs.upload_url }}
-
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v2
-        if: ${{ steps.gitTagCheck.outputs.tag == '' }}
+        
+      - name: Upload Assets
+        uses: csexton/release-asset-action@v2
         with:
-          token: ${{ secrets.GH_TOKEN }}
-          repository: pressogh/topolar_textbook_editor
-          event-type: upload-assets
-          client-payload: '{ "url": "${{ steps.release_drafter.outputs.upload_url }}" }'
+          pattern: "dist/*"
+          github-token: ${{ secrets.GH_TOKEN }}
+          release-url: ${{ github.event.client_payload.url }}     
