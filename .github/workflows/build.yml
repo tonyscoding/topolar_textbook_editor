@@ -31,7 +31,7 @@ jobs:
       - name: Copy build files
         run: |
           mkdir build
-          cp dist/assets build
+          cp -r dist/assets build
           cp dist/index.html build
       - name: Deploy
         run: |
