@@ -85,7 +85,7 @@ jobs:
         uses: csexton/release-asset-action@v2
         with:
           pattern: |
-            "dist/lastest*.yml",
+            "dist/*.yml",
             "dist/*.exe",
             "dist/*.dmg",
             "dist/*.zip"
