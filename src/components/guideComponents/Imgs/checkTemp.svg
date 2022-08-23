@@ -1,0 +1,14 @@
+<svg id="color_white_1" data-name="color/white 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17.6" height="13.4" viewBox="0 0 17.6 13.4">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Mask" d="M5.6,10.6,1.4,6.4,0,7.8l5.6,5.6,12-12L16.2,0Z" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <path id="Mask-2" data-name="Mask" d="M5.6,10.6,1.4,6.4,0,7.8l5.6,5.6,12-12L16.2,0Z" fill="#fff"/>
+  <g id="color_white_1-2" data-name="color/white 1" clip-path="url(#clip-path)">
+    <g id="color_white_1-3" data-name="color/white 1" transform="translate(-3.4 -5.475)">
+      <rect id="color_white_1_background" data-name="color/white 1 background" width="24" height="24" transform="translate(0 -0.125)" fill="rgba(0,0,0,0)"/>
+      <rect id="Rectangle_Copy_15" data-name="Rectangle Copy 15" width="24" height="24" transform="translate(0 -0.125)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

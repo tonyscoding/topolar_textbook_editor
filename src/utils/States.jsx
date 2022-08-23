@@ -20,3 +20,18 @@ export const JSONbookState = atom({
 	key: 'JSONbookState',
 	default: tutorial
 })
+
+export const userState = atom({
+	key: "user",
+	default: null
+})
+
+export const curriculumState = atom({
+	key: "curriculum",
+	default: {}
+})
+
+export const serverTextbookOpenState = atom({
+	key: "serverTextbookOpenState",
+	default: true
+})

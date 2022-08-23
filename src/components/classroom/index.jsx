@@ -7,23 +7,30 @@ import ClassroomFooter from "@/components/classroom/ClassroomFooter";
 import TextbookSidebar from '@/components/textbooks/TextbookSidebar';
 import TextbookContentView from '@/components/textbooks/TextbookContentView';
 
-import { saveTextbook, loadTextbook } from "@/helpers/electronFileSystem";
-
-
-
 import {useRecoilState} from "recoil";
-import { stepIndexState, itemIndexState } from "@/utils/States";
+import { stepIndexState, itemIndexState, serverTextbookOpenState } from "@/utils/States";
 import { JSONbookState } from '@/utils/States';
+import {useCurriculumCallback, useLoginCallback, useTextbookListByLevelCallback} from "@/apis/apiCallbackes";
+import useAuthHeader from "@/apis/authHeader";
+import {getTextbookListByLevel} from "@/apis/apiServices";
+import ServerTextbookSidebar from "@/components/serverTextbook/ServerTextbookSidebar";
 
 const NewClassroom = () =>{
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [serverTextbookOpen, setServerTextbookOpen] = useRecoilState(serverTextbookOpenState);
 
     const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
     const [stepIndex, setStepIndex] = useRecoilState(stepIndexState);
     const [itemIndex, setItemIndex] = useRecoilState(itemIndexState);
 
-    useEffect(() => {
+    const login = useLoginCallback();
+    const getCurriculum = useCurriculumCallback();
+    const getTextbookListByLevel = useTextbookListByLevelCallback();
+    const authHeader = useAuthHeader();
 
+    useEffect(() => {
+        login({username: "admin1", password: "xhsltmzheld"})
+            .then(() => getTextbookListByLevel(3, 3))
     },[])
 
     useEffect(() => {
@@ -120,8 +127,11 @@ const NewClassroom = () =>{
                     changeItemTitle={changeItemTitle}
                 />
 
+                <ServerTextbookSidebar />
+
                 <div className="classroom-textbook-header">
                     <span onClick={()=>{setSidebarOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open</span>
+                    <span onClick={()=>{setServerTextbookOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">serverOpen</span>
                 </div>
 
                 <ClassroomFooter JSONBook={JSONBook} />

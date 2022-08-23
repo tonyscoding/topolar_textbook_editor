@@ -12,7 +12,6 @@ import './assets/sass/Guide/Font.scss';
 import './assets/sass/Guide/ColWidth.scss';
 import {DragDropContext} from "react-beautiful-dnd";
 
-
 function App() {
 	return (
 		<RecoilRoot>
