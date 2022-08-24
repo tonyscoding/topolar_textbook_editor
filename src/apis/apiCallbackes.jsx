@@ -2,6 +2,8 @@ import {useRecoilCallback, useRecoilValue} from "recoil";
 import {curriculumState, JSONbookState, levelItemState, userState} from "@/utils/States";
 import {getTextbookListByLevel, login, getCurriculum, getJSONTextbook, getTextbook} from "@/apis/apiServices";
 import getAuthHeader from "@/apis/authHeader";
+import {useState} from "react";
+import {getProblem} from "@/apis/apiServices";
 
 export const useLoginCallback = () => {
     return useRecoilCallback(({snapshot, set}) =>
@@ -53,4 +55,22 @@ export const useGetJSONTextbookCallback = () => {
             },
         [user],
     );
+}
+
+export const useGetProblemCallback = () => {
+    const user = useRecoilValue(userState);
+    const [loading, setLoading] = useState(true);
+    const [resolved, setResolved] = useState();
+    const callback = useRecoilCallback(({snapshot, set}) =>
+            async (number) => {
+                console.log("problem callback", number);
+                const {data} = await getProblem(getAuthHeader(user?.token), number);
+
+                setLoading(false);
+                setResolved(data);
+                return data
+            },
+        [user],
+    );
+    return [loading, resolved, callback];
 }

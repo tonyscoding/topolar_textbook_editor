@@ -2,10 +2,10 @@ import axios, {AxiosResponse} from "axios";
 
 // URL
 // export const API_URL = 'tocol.info';
-// export const API_URL = '127.0.0.1:8000';
-export const API_PROTOCOL = "https://";
-// export const API_PROTOCOL = "http://";
-export const API_URL = 'www.topolar.co.kr';
+export const API_URL = '127.0.0.1:8000';
+// export const API_PROTOCOL = "https://";
+export const API_PROTOCOL = "http://";
+// export const API_URL = 'www.topolar.co.kr';
 //export const SOC_PROTOCOL = "ws://";
 export const SOC_PROTOCOL = "wss://";
 export const MEDIA_SERVER_URL = 'www.topolar.co.kr';
@@ -43,4 +43,8 @@ export const deleteTextbook = ({authHeader, textbookId}) => {
 
 export const uploadFile = ({authHeader, file}) => {
     return axios.put(`${URL}/api/textbook/upload/`, file, authHeader);
+}
+
+export const getProblem = (authHeader, number) => {
+    return axios.get(`${URL}/api/problem/${number}`, authHeader);
 }
