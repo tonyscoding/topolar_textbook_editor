@@ -48,3 +48,7 @@ export const uploadFile = ({authHeader, file}) => {
 export const getProblem = (authHeader, number) => {
     return axios.get(`${URL}/api/problem/${number}`, authHeader);
 }
+
+export const getCourseList = (authHeader) => {
+    return axios.get(`${URL}/api/course/`, authHeader);
+}

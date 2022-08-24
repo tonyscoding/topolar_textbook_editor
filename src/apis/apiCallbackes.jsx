@@ -1,6 +1,21 @@
 import {useRecoilCallback, useRecoilValue} from "recoil";
-import {curriculumState, JSONbookState, levelItemState, userState} from "@/utils/States";
-import {getTextbookListByLevel, login, getCurriculum, getJSONTextbook, getTextbook} from "@/apis/apiServices";
+import {
+    courseListState,
+    curriculumState,
+    itemIndexState,
+    JSONbookState,
+    levelItemState,
+    stepIndexState,
+    userState
+} from "@/utils/States";
+import {
+    getTextbookListByLevel,
+    login,
+    getCurriculum,
+    getJSONTextbook,
+    getTextbook,
+    getCourseList
+} from "@/apis/apiServices";
 import getAuthHeader from "@/apis/authHeader";
 import {useState} from "react";
 import {getProblem} from "@/apis/apiServices";
@@ -50,8 +65,22 @@ export const useGetJSONTextbookCallback = () => {
                 if (data) {
                     const jsonBook = await getJSONTextbook(getAuthHeader(user?.token), data.file.id);
                     console.log(jsonBook)
+                    set(stepIndexState, 0);
+                    set(itemIndexState, 0);
                     set(JSONbookState, jsonBook.data.data.textbook_content);
                 }
+            },
+        [user],
+    );
+}
+
+export const useGetCourseListCallback = () => {
+    const user = useRecoilValue(userState);
+    return useRecoilCallback(({snapshot, set}) =>
+            async () => {
+                const {data} = await getCourseList(getAuthHeader(user?.token));
+                console.log(data);
+                set(courseListState, data.response[0])
             },
         [user],
     );

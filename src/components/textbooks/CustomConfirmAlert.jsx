@@ -1,6 +1,10 @@
 import React from 'react';
 import {Button, Input} from "@nextui-org/react";
 
+const ProblemViewer = () => {
+
+}
+
 const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 	const handleConfirm = (e) => {
 		if (!e || e.key === 'Enter') {

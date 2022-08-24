@@ -40,3 +40,8 @@ export const serverTextbookOpenState = atom({
 	key: "serverTextbookOpenState",
 	default: true
 })
+
+export const courseListState = atom({
+	key: "courseListState",
+	default: []
+})
