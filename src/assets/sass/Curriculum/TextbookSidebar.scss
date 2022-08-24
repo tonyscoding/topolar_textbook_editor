@@ -6,7 +6,7 @@
     background-color: $colorFF;
     box-shadow: 0px 4px 10px #00000019;
     position: absolute;
-    height:calc(100vh - 136px);
+    height:calc(100vh - 7vh);
     left: 0%;
     transition: left 0.6s ease;
     z-index:999;
@@ -135,9 +135,9 @@
     background-color: $colorFF;
     box-shadow: 0px 4px 10px #00000019;
     position: absolute;
-    height:calc(100vh - 136px);
-    right: 0%;
-    transition: right 0.6s ease;
+    height:calc(100vh - 7vh);
+    left: 0%;
+    transition: left 0.6s ease;
     z-index:999;
     overflow-y: scroll;
     &::-webkit-scrollbar-thumb{

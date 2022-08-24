@@ -40,7 +40,7 @@
 
             &.active {
                 color: $grey90;
-                font-weight: 700;
+                @include font-bold;
                 
                 @each $text, $color in $colors{
                     &.#{$text} {
@@ -82,7 +82,7 @@
             }
             &.active {
                 color: $grey90;
-                font-weight: 700;
+                @include font-bold;
 
                 @each $text, $color in $colors{
                     &.#{$text} {
@@ -162,6 +162,7 @@
         z-index: 3;
         &.active {
             color: $grey05;
+            @include font-bold;
         }
 
         >div{

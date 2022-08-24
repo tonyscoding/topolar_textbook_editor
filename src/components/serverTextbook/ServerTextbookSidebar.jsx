@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useRecoilState} from "recoil";
 import {serverTextbookOpenState} from "@/utils/States";
+import ServerTextbookBrowser from "@/components/serverTextbook/ServerTextbookBrowser";
 
 const ServerTextbookSidebar = () => {
     const [serverTextbookOpen, setServerTextbookOpen] = useRecoilState(serverTextbookOpenState);
@@ -14,6 +15,7 @@ const ServerTextbookSidebar = () => {
             close
             </span>
 
+            <ServerTextbookBrowser />
             {/*<TextbookBrowser*/}
             {/*    textbookDict = {TextbookIndexLoading? null : TextbookIndex}*/}
             {/*    textbookOnClickCallback = {textbookOnClickCallback? handleTextbookOnClick : null}*/}

@@ -1,10 +1,5 @@
-import {useRecoilValue} from "recoil";
-import {userState} from "@/utils/States";
-
-const useAuthHeader = () => {
-    const user = useRecoilValue(userState);
-    if (user) {
-        const token = user.token;
+const getAuthHeader = (token) => {
+    if (token) {
         if (!token) {
             return null;
         }
@@ -12,4 +7,4 @@ const useAuthHeader = () => {
     }
 }
 
-export default useAuthHeader;
+export default getAuthHeader;

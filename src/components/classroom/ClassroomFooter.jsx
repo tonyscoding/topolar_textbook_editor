@@ -13,7 +13,6 @@ const ClassroomFooter = (JSONBook) => {
 
     useEffect(() => {
         let tempMaxIndex = 0;
-        console.log(JSONBook.JSONBook);
         for (let i = 0; i < JSONBook.JSONBook.textbook_contents.length; i++) {
             for (let j = 0; j < JSONBook.JSONBook.textbook_contents[i].step_items.length; j++) {
                 if (i === stepIndex && j === itemIndex) {

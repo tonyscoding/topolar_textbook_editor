@@ -7,12 +7,10 @@ import ClassroomFooter from "@/components/classroom/ClassroomFooter";
 import TextbookSidebar from '@/components/textbooks/TextbookSidebar';
 import TextbookContentView from '@/components/textbooks/TextbookContentView';
 
-import {useRecoilState} from "recoil";
+import {useRecoilState, useRecoilValue} from "recoil";
 import { stepIndexState, itemIndexState, serverTextbookOpenState } from "@/utils/States";
-import { JSONbookState } from '@/utils/States';
-import {useCurriculumCallback, useLoginCallback, useTextbookListByLevelCallback} from "@/apis/apiCallbackes";
-import useAuthHeader from "@/apis/authHeader";
-import {getTextbookListByLevel} from "@/apis/apiServices";
+import { JSONbookState, userState } from '@/utils/States';
+import {useCurriculumCallback, useLoginCallback} from "@/apis/apiCallbackes";
 import ServerTextbookSidebar from "@/components/serverTextbook/ServerTextbookSidebar";
 
 const NewClassroom = () =>{
@@ -23,20 +21,27 @@ const NewClassroom = () =>{
     const [stepIndex, setStepIndex] = useRecoilState(stepIndexState);
     const [itemIndex, setItemIndex] = useRecoilState(itemIndexState);
 
+    const user = useRecoilValue(userState);
+
     const login = useLoginCallback();
     const getCurriculum = useCurriculumCallback();
-    const getTextbookListByLevel = useTextbookListByLevelCallback();
-    const authHeader = useAuthHeader();
 
     useEffect(() => {
         login({username: "admin1", password: "xhsltmzheld"})
-            .then(() => getTextbookListByLevel(3, 3))
     },[])
+
+    useEffect(() => {
+        getCurriculum();
+    }, [user?.token]);
 
     useEffect(() => {
         console.log(JSONBook.textbook_contents[stepIndex].step_items[itemIndex]);
 
     }, [stepIndex, itemIndex]);
+
+    useEffect(() => {
+        console.log("!@!@!@@", JSONBook);
+    }, []);
 
     // 새로운 stepIndex와 itemIndex가 들어오면 화면 업데이트
     const movePage = (newStepIndex, newItemIndex) => {
@@ -131,17 +136,22 @@ const NewClassroom = () =>{
 
                 <div className="classroom-textbook-header">
                     <span onClick={()=>{setSidebarOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open</span>
-                    <span onClick={()=>{setServerTextbookOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">serverOpen</span>
+                    <span onClick={()=>{setServerTextbookOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open server</span>
                 </div>
 
-                <ClassroomFooter JSONBook={JSONBook} />
                 {
-                    <TextbookContentView
+                    JSONBook.textbook_contents ? (
+                        <div>
+                        <ClassroomFooter JSONBook={JSONBook} />
+                        <TextbookContentView
                         JSONLoading={false}
                         data={JSONBook.textbook_contents[stepIndex]?.step_items[itemIndex] ? JSONBook.textbook_contents[stepIndex].step_items[itemIndex] : null}
 
-                    />
+                        />
+                        </div>
+                    ) : null
                 }
+
             </div>
         </>
     )

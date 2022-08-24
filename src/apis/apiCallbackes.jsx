@@ -1,7 +1,7 @@
-import {useRecoilCallback} from "recoil";
-import {curriculumState, userState} from "@/utils/States";
-import {getCurriculum, getTextbookListByLevel, login} from "@/apis/apiServices";
-import useAuthHeader from "@/apis/authHeader";
+import {useRecoilCallback, useRecoilValue} from "recoil";
+import {curriculumState, JSONbookState, levelItemState, userState} from "@/utils/States";
+import {getTextbookListByLevel, login, getCurriculum, getJSONTextbook, getTextbook} from "@/apis/apiServices";
+import getAuthHeader from "@/apis/authHeader";
 
 export const useLoginCallback = () => {
     return useRecoilCallback(({snapshot, set}) =>
@@ -16,25 +16,41 @@ export const useLoginCallback = () => {
 }
 
 export const useCurriculumCallback = () => {
-    const authHeader = useAuthHeader();
+    const user = useRecoilValue(userState);
     return useRecoilCallback(({snapshot, set}) =>
         async () => {
-            const {data} = await getCurriculum(authHeader);
+            const {data} = await getCurriculum(getAuthHeader(user?.token));
             console.log(data)
             set(curriculumState, data);
         },
-        [],
+        [user],
     );
 }
 
-export const useTextbookListByLevelCallback = () => {
-    const authHeader = useAuthHeader();
+export const useGetTextbookListByLevelCallback = () => {
+    const user = useRecoilValue(userState);
     return useRecoilCallback(({snapshot, set}) =>
             async (curriculum, textbookLevel) => {
-                const {data} = await getTextbookListByLevel(authHeader, curriculum, textbookLevel);
+                const {data} = await getTextbookListByLevel(getAuthHeader(user?.token), curriculum, textbookLevel);
                 console.log(data)
-                set(curriculumState, data);
+                set(levelItemState, data);
             },
-        [],
+        [user],
+    );
+}
+
+export const useGetJSONTextbookCallback = () => {
+    const user = useRecoilValue(userState);
+    return useRecoilCallback(({snapshot, set}) =>
+            async (id) => {
+                const {data} = await getTextbook(getAuthHeader(user?.token), id);
+                console.log(data)
+                if (data) {
+                    const jsonBook = await getJSONTextbook(getAuthHeader(user?.token), data.file.id);
+                    console.log(jsonBook)
+                    set(JSONbookState, jsonBook.data.data.textbook_content);
+                }
+            },
+        [user],
     );
 }

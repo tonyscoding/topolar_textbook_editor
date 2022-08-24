@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
-import 'assets/sass/Guide/Tabs.scss';
+import '@/assets/sass/Guide/Tabs.scss';
 import * as $ from 'jquery';
 
 const Tabs = ({children, type, style, tabStyle, tabTextStyle, borderStyle='', setParentActiveTab, initIndex=0, font, vertical, tabColor, activeColor}) => {

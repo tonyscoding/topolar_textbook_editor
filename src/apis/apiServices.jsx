@@ -1,15 +1,15 @@
 import axios, {AxiosResponse} from "axios";
 
 // URL
-export const API_URL = 'tocol.info';
+// export const API_URL = 'tocol.info';
 // export const API_URL = '127.0.0.1:8000';
 export const API_PROTOCOL = "https://";
 // export const API_PROTOCOL = "http://";
-// export const API_URL = 'www.topolar.co.kr';
+export const API_URL = 'www.topolar.co.kr';
 //export const SOC_PROTOCOL = "ws://";
 export const SOC_PROTOCOL = "wss://";
-// export const MEDIA_SERVER_URL = 'www.topolar.co.kr';
-export const MEDIA_SERVER_URL = 'www.tocol.info'
+export const MEDIA_SERVER_URL = 'www.topolar.co.kr';
+// export const MEDIA_SERVER_URL = 'www.tocol.info'
 
 const URL = API_PROTOCOL + API_URL;
 
@@ -17,11 +17,11 @@ export const login = (body) => {
     return axios.post(`${URL}/api/login/`, body)
 }
 
-export const getJSONTextbook = ({authHeader, fileId}) => {
+export const getJSONTextbook = (authHeader, fileId) => {
     return axios.get(`${URL}/api/textbook/jsontype/${fileId}/`,authHeader)
 }
 
-export const getTextbook = ({authHeader, textbookId}) => {
+export const getTextbook = (authHeader, textbookId) => {
     return axios.get(`${URL}/api/textbook/${textbookId}/`, authHeader);
 }
 

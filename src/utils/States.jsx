@@ -31,6 +31,11 @@ export const curriculumState = atom({
 	default: {}
 })
 
+export const levelItemState = atom({
+	key: "levelItem",
+	default: {}
+})
+
 export const serverTextbookOpenState = atom({
 	key: "serverTextbookOpenState",
 	default: true
