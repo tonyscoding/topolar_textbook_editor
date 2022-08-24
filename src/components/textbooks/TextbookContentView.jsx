@@ -122,11 +122,6 @@ const TextbookContentView = ({
                                                     />
                                                 </div>
                                                 :
-                                            type === "multi_card" ?
-                                                <div className={"body-multicard"} key={index} >
-                                                    <MultiCardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index}/>
-                                                </div>
-                                                :
                                             type === "video" ?
                                                 <VideoContent
                                                     key={index}
