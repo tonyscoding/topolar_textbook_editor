@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import 'assets/sass/Guide/Card.scss';
+import '../../assets/sass/Guide/Card.scss';
 
 export const Card = ({children, width, imgSrc, imgHover, onClick, style, mediaStyle, contentStyle, hoverType, hideLine, hideExtend}) => {
 
@@ -28,22 +28,22 @@ export const Card = ({children, width, imgSrc, imgHover, onClick, style, mediaSt
     return (
         <div className={classNames("guide-card", hoverType, width)} style={style} onClick={onClick}>
             {imgSrc?
-            <div className='card-media' style={mediaStyle}>
-                <img src={imgSrc}/>
-                {imgHover?
-                <div className='card-media-hover'>
-                </div>:null}
-            </div>
-            :
-            null}
+                <div className='card-media' style={mediaStyle}>
+                    <img src={imgSrc}/>
+                    {imgHover?
+                        <div className='card-media-hover'>
+                        </div>:null}
+                </div>
+                :
+                null}
             <div ref={cardRef} className={classNames('card-content', !hideExtend&&extend?"extend":"", extend?hide?"hide"+hideLine: "show":null)} style={contentStyle}>
                 {children}
             </div>
             {!hideExtend&&extend?
-            <div className='card-show-more' onClick={(e)=>toggleHide(e)}>
-                {hide?'더보기':'닫기'}
-            </div>
-            :null}
+                <div className='card-show-more' onClick={(e)=>toggleHide(e)}>
+                    {hide?'더보기':'닫기'}
+                </div>
+                :null}
         </div>
     )
 }

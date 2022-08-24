@@ -13,10 +13,13 @@ import ImageContent from '@/components/textbooks/contents/ImageContent';
 import CardContent from '@/components/textbooks/contents/CardContent';
 import LinkContent from '@/components/textbooks/contents/LinkContent';
 import VideoContent from '@/components/textbooks/contents/VideoContent';
+import MultiCardContent from '@/components/textbooks/contents/MultiCardContent';
+import ProblemContent from "@/components/textbooks/contents/ProblemContent";
 
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
 
 import {Card} from "@/components/Card";
+
 
 const TextbookContentView = ({
          data,
@@ -66,7 +69,13 @@ const TextbookContentView = ({
                             videoUrl={videoUrl}
 
                         />
-                        {reactHtmlParser(data.description_title)}
+                        { data.title[0] === "#" ? (
+                            <ProblemContent number={data.title.slice(1)} count_for_key={0}/>
+                        ) : (
+                            <>
+                                {reactHtmlParser(data.description_title)}
+                            </>
+                        )}
                         {
                             data.components?.map((components_item, index) => {
                                 let type = components_item.type;
@@ -113,9 +122,9 @@ const TextbookContentView = ({
                                                     />
                                                 </div>
                                                 :
-                                            type === "double_card" ?
-                                                <div className={"body-doublecard"} key={index} >
-                                                    <DoubleCardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} deleteJSONBookItem={deleteJSONBookItem}/>
+                                            type === "multi_card" ?
+                                                <div className={"body-multicard"} key={index} >
+                                                    <MultiCardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index}/>
                                                 </div>
                                                 :
                                             type === "video" ?
