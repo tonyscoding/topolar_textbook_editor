@@ -114,6 +114,20 @@ const NewClassroom = () =>{
     }
 
 
+    const addProblem = (nowStepIndex, lastItemIndex, number) => {
+        let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+        newJSONBook.textbook_contents[nowStepIndex].step_items.splice(lastItemIndex + 1, 0, {
+            "title": "#"+number,
+            "tags": [],
+            "collapse": false,
+            "components": []
+        })
+
+        setJSONBook(newJSONBook);
+        movePage(nowStepIndex, lastItemIndex + 1);
+    }
+
+
     return (
         <>
             <div className="new-classroom fit-app">
@@ -130,6 +144,7 @@ const NewClassroom = () =>{
                     addItem={addItem}
                     deleteItem={deleteItem}
                     changeItemTitle={changeItemTitle}
+                    addProblem={addProblem}
                 />
 
                 <ServerTextbookSidebar />

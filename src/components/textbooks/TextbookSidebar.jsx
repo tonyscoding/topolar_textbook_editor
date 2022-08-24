@@ -20,7 +20,8 @@ const TextbookSidebar = ({
      changeStepTitle,
      addItem,
      deleteItem,
-     changeItemTitle
+     changeItemTitle,
+    addProblem
 }) => {
 
     const downloadJson = () => {
@@ -147,6 +148,7 @@ const TextbookSidebar = ({
                 addItem={addItem}
                 deleteItem={deleteItem}
                 changeItemTitle={changeItemTitle}
+                addProblem={addProblem}
             />
             <hr />
             <Button.Group color={"gradient"} ghost size={"sm"}>
