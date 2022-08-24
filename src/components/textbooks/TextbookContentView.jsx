@@ -13,7 +13,6 @@ import ImageContent from '@/components/textbooks/contents/ImageContent';
 import CardContent from '@/components/textbooks/contents/CardContent';
 import LinkContent from '@/components/textbooks/contents/LinkContent';
 import VideoContent from '@/components/textbooks/contents/VideoContent';
-import MultiCardContent from '@/components/textbooks/contents/MultiCardContent';
 import ProblemContent from "@/components/textbooks/contents/ProblemContent";
 
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
