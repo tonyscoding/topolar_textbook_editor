@@ -44,3 +44,7 @@ export const deleteTextbook = ({authHeader, textbookId}) => {
 export const uploadFile = ({authHeader, file}) => {
     return axios.put(`${URL}/api/textbook/upload/`, file, authHeader);
 }
+
+export const getCourseList = (authHeader) => {
+    return axios.get(`${URL}/api/course/`, authHeader);
+}

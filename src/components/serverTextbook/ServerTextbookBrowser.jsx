@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {useRecoilState} from "recoil";
-import {curriculumState, levelItemState} from "@/utils/States";
+import {useRecoilState, useRecoilValue} from "recoil";
+import {courseListState, curriculumState, levelItemState} from "@/utils/States";
 import {useGetJSONTextbookCallback, useGetTextbookListByLevelCallback} from "@/apis/apiCallbackes";
+import {confirmAlert} from "react-confirm-alert";
+import TextbookUploadAlert from "@/components/serverTextbook/TextbookUploadAlert";
 
 const headerItem = {
     "001": "모험가",
@@ -12,6 +14,7 @@ const headerItem = {
 const ServerTextbookBrowser = () => {
     const [curriculum, setCurriculum] = useRecoilState(curriculumState);
     const [levelItem, setLevelItem] = useRecoilState(levelItemState);
+    const courseList = useRecoilValue(courseListState);
 
     const [selectedCourse, setSelectedCourse] = useState('002');
     const [selectedLanguage, setSelectedLanguage] = useState();
@@ -61,9 +64,31 @@ const ServerTextbookBrowser = () => {
 
             {
                 selectedCourse && selectedLanguage && levelItem ? (
+                    // 코스, 언어, 레벨이 선택되었을 때 레벨에 해당하는 교재 리스트를 보여준다.
                     <div>
                         <div>
                             <div>{levelItem.description}</div>
+                            <div
+                                style={{marginBottom: 20}}
+                                onClick={() => {
+                                    confirmAlert({
+                                        customUI: ({ onClose }) => {
+                                            return (
+                                                <TextbookUploadAlert
+                                                    onClose={onClose}
+                                                    data={{
+                                                        "language": selectedLanguage,
+                                                        "level": selectedLevel,
+                                                        "courseList": courseList
+                                                    }}
+                                                />
+                                            );
+                                        }
+                                    })
+                                }}
+                            >
+                                교재 리스트 +
+                            </div>
                             <div>
                                 {
                                     levelItem.data ? (
@@ -72,11 +97,38 @@ const ServerTextbookBrowser = () => {
                                                 <div>
                                                     {
                                                         levelItem.data[item].map((itemIndex, index) => {
-                                                            return (
-                                                                <div onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}>
-                                                                    {levelItem.data[item][index].name}
-                                                                </div>
-                                                            )
+                                                            // 첫 아이템만 들여쓰기 없이 표시
+                                                            if (index === 0) {
+                                                                return (
+                                                                    <div
+                                                                        onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}
+                                                                        style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '80%'}}
+                                                                    >
+                                                                        <div>
+                                                                            {levelItem.data[item][index].name}
+                                                                        </div>
+                                                                        <div
+                                                                            onClick={() => {
+
+                                                                            }}
+                                                                        >
+                                                                            +
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            }
+
+                                                            // 나머지는 서브 교재 -> 들여쓰기 적용
+                                                            else {
+                                                                return (
+                                                                    <div
+                                                                        onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}
+                                                                        style={{marginLeft: 20}}
+                                                                    >
+                                                                        {levelItem.data[item][index].name}
+                                                                    </div>
+                                                                )
+                                                            }
                                                         })
                                                     }
                                                 </div>
@@ -88,6 +140,7 @@ const ServerTextbookBrowser = () => {
                         </div>
                     </div>
                 ) : (
+                    // 아닐 때에는 언어, 레벨을 선택할 수 있도록 해준다.
                     <div style={styles.courseContainer}>
                         <div>
                         {

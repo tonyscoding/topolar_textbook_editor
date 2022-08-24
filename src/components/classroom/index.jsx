@@ -10,7 +10,7 @@ import TextbookContentView from '@/components/textbooks/TextbookContentView';
 import {useRecoilState, useRecoilValue} from "recoil";
 import { stepIndexState, itemIndexState, serverTextbookOpenState } from "@/utils/States";
 import { JSONbookState, userState } from '@/utils/States';
-import {useCurriculumCallback, useLoginCallback} from "@/apis/apiCallbackes";
+import {useCurriculumCallback, useGetCourseListCallback, useLoginCallback} from "@/apis/apiCallbackes";
 import ServerTextbookSidebar from "@/components/serverTextbook/ServerTextbookSidebar";
 
 const NewClassroom = () =>{
@@ -25,6 +25,7 @@ const NewClassroom = () =>{
 
     const login = useLoginCallback();
     const getCurriculum = useCurriculumCallback();
+    const getCourseList = useGetCourseListCallback();
 
     useEffect(() => {
         login({username: "admin1", password: "xhsltmzheld"})
@@ -32,16 +33,8 @@ const NewClassroom = () =>{
 
     useEffect(() => {
         getCurriculum();
+        getCourseList();
     }, [user?.token]);
-
-    useEffect(() => {
-        console.log(JSONBook.textbook_contents[stepIndex].step_items[itemIndex]);
-
-    }, [stepIndex, itemIndex]);
-
-    useEffect(() => {
-        console.log("!@!@!@@", JSONBook);
-    }, []);
 
     // 새로운 stepIndex와 itemIndex가 들어오면 화면 업데이트
     const movePage = (newStepIndex, newItemIndex) => {
