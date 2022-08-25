@@ -37,6 +37,74 @@ const TextbookContentView = ({
 
     const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
+    const step_item_descriptions = data.components?.map((components_item, index) => {
+        let type = components_item.type;
+
+        return (
+            <div onMouseEnter={() => setHoverItemIndex(index)} onMouseLeave={() => setHoverItemIndex(null)} className={'body-desc'}>
+                {
+                    type === "desc" ?
+                        <DescContent
+                            key={index}
+                            index={index}
+                            components_item={components_item}
+                        /> :
+                        type === "code" ?
+                            <CodeContent
+                                key={index}
+                                index={index}
+                                components_item={components_item}
+                            />
+                            :
+                            type === "image" ?
+                                <ImageContent
+                                    key={index}
+                                    components_item={components_item}
+                                />
+                                :
+                                type === "link" ?
+                                    <LinkContent
+                                        key={index}
+                                        components_item={components_item}
+                                    />  :
+                                    type === "single_card" ?
+                                        <div className={"body-card"} key={index} >
+                                            <CardContent
+                                                JSONLoading={false}
+                                                text={text}
+                                                code={code}
+                                                link={link}
+                                                codeLanguage={codeLanguage}
+                                                data={components_item}
+                                                index={index}
+                                                videoUrl={videoUrl}
+
+                                            />
+                                        </div>
+                                        :
+                                        type === "video" ?
+                                            <VideoContent
+                                                key={index}
+                                                components_item={components_item}
+                                            />
+                                            : null
+                }
+                {
+                    hoverItemIndex === index &&
+                    <ButtonGroup
+                        index={index+1}
+                        text={text}
+                        codeLanguage={codeLanguage}
+                        code={code}
+                        link={link}
+                        videoUrl={videoUrl}
+
+                    />
+                }
+            </div>
+        )
+    })
+
     if (JSONLoading){
         return null;
     }
@@ -59,91 +127,25 @@ const TextbookContentView = ({
 
 
                     <div className="textbook-body">
-                        <ButtonGroup
-                            index={0}
-                            text={text}
-                            codeLanguage={codeLanguage}
-                            code={code}
-                            link={link}
-                            videoUrl={videoUrl}
 
-                        />
-                        { data.title[0] === "#" ? (
+                        { console.log(data.title)}{
+                            data.title[0] === "#" ? (
                             <ProblemContent number={data.title.slice(1)} count_for_key={0}/>
                         ) : (
                             <>
+                                <ButtonGroup
+                                    index={0}
+                                    text={text}
+                                    codeLanguage={codeLanguage}
+                                    code={code}
+                                    link={link}
+                                    videoUrl={videoUrl}
+
+                                />
                                 {reactHtmlParser(data.description_title)}
+                                {step_item_descriptions}
                             </>
                         )}
-                        {
-                            data.components?.map((components_item, index) => {
-                                let type = components_item.type;
-
-                                return (
-                                    <div onMouseEnter={() => setHoverItemIndex(index)} onMouseLeave={() => setHoverItemIndex(null)} className={'body-desc'}>
-                                        {
-                                            type === "desc" ?
-                                                <DescContent
-                                                    key={index}
-                                                    index={index}
-                                                    components_item={components_item}
-                                                /> :
-                                            type === "code" ?
-                                                <CodeContent
-                                                    key={index}
-                                                    index={index}
-                                                    components_item={components_item}
-                                                />
-                                                :
-                                            type === "image" ?
-                                                <ImageContent
-                                                    key={index}
-                                                    components_item={components_item}
-                                                />
-                                                :
-                                            type === "link" ?
-                                            <LinkContent
-                                                key={index}
-                                                components_item={components_item}
-                                            />  :
-                                            type === "single_card" ?
-                                                <div className={"body-card"} key={index} >
-                                                    <CardContent
-                                                        JSONLoading={false}
-                                                        text={text}
-                                                        code={code}
-                                                        link={link}
-                                                        codeLanguage={codeLanguage}
-                                                        data={components_item}
-                                                        index={index}
-                                                        videoUrl={videoUrl}
-                                    
-                                                    />
-                                                </div>
-                                                :
-                                            type === "video" ?
-                                                <VideoContent
-                                                    key={index}
-                                                    components_item={components_item}
-                                                />
-                                                : null
-                                        }
-                                        {
-                                            hoverItemIndex === index &&
-                                                <ButtonGroup
-                                                    index={index+1}
-                                                    text={text}
-                                                    codeLanguage={codeLanguage}
-                                                    code={code}
-                                                    link={link}
-                                                    videoUrl={videoUrl}
-                   
-                                                />
-                                        }
-                                    </div>
-                                )
-                            })
-                        }
                     </div>
                 </div>
             </div>
