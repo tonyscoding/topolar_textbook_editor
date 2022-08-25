@@ -29,6 +29,8 @@ const TextbookContentView = ({
          deleteJSONBookItem
      }) => {
 
+    const {title} = data;
+
     const text = useRef("");
     const code = useRef("");
     const codeLanguage = useRef("");
@@ -105,6 +107,12 @@ const TextbookContentView = ({
         )
     })
 
+    const Step_item_problem = () => {
+        return (
+            <ProblemContent number={title.slice(1)} count_for_key={title}/>
+        )
+    }
+
     if (JSONLoading){
         return null;
     }
@@ -128,9 +136,9 @@ const TextbookContentView = ({
 
                     <div className="textbook-body">
 
-                        { console.log(data.title)}{
-                            data.title[0] === "#" ? (
-                            <ProblemContent number={data.title.slice(1)} count_for_key={0}/>
+                        {
+                            title[0] === "#" ? (
+                                <Step_item_problem/>
                         ) : (
                             <>
                                 <ButtonGroup
