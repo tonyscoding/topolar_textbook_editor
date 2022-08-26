@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, Input} from "@nextui-org/react";
+import useApi from "@/apis/useApi";
+import {getProblemList} from "@/apis/apiServices";
+import Loader from "@/components/guideComponents/Loader";
+import {ProblemViewer} from "./ProblemViewer";
 
-const ProblemViewer = () => {
 
-}
 
 const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 	const handleConfirm = (e) => {
@@ -38,7 +40,9 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 				type === 'stepChange' || type === 'itemChange' ?
 					<h1>바꿀 제목을 입력해주세요.</h1> :
 				type === 'problem' ?
-					<h1>추가할 문제 번호를 입력해주세요. </h1>
+					<div>
+						<ProblemViewer/>
+					</div>
 					:null
 			}
 			<Input

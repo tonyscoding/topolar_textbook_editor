@@ -4,11 +4,13 @@ import CodeContent from "./CodeContent";
 import { Card } from "@/components/guideComponents/Card";
 import Loader from "@/components/guideComponents/Loader";
 import { useGetProblemCallback } from "@/apis/apiCallbackes"
+import {getProblem} from "@/apis/apiServices";
+import useApi from "@/apis/useApi";
 
 
 const ProblemContent = ({number, count_for_key}) => {
     // const [loading, resolved, rejected, problem] = useApi(getProblem)
-    const [loading, resolved, callback] = useGetProblemCallback();
+    const [loading, resolved, callback] = useApi(getProblem, true);
     const [inoutput, setInoutput] = useState([]);
 
     useEffect(() => {

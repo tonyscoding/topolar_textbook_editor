@@ -144,3 +144,20 @@ export const useGetProblemCallback = () => {
     );
     return [loading, resolved, callback];
 }
+
+export const useGetProblemListCallback = () => {
+    const [loading, setLoading] = useState(true);
+    const [resolved, setResolved] = useState();
+    const callback = useRecoilCallback(({snapshot, set}) =>
+            async () => {
+                const user = snapshot.getPromise(userState);
+                const {data} = await getProblemList(getAuthHeader(user?.token));
+
+                setLoading(false);
+                setResolved(data);
+                return data
+            },
+        [user],
+    );
+    return [loading, resolved, callback];
+}
