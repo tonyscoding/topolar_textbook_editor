@@ -17,6 +17,10 @@ const TextbookUploadAlert = ({ onClose, data, upload, orderRef, titleRef }) => {
 
     return (
         <div style={styles.container}>
+            <div
+                onClick={onClose}
+                style={{display: 'flex', justifyContent: 'end'}}
+            >x</div>
             <div style={styles.inputContainer}>
                 <div style={styles.inputItem}>
                     <div>과목</div>

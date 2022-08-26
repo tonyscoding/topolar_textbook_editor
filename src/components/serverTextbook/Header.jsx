@@ -58,12 +58,13 @@ const styles = {
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '40%',
-        paddingBottom: '10px',
         marginLeft: '5%',
         cursor: 'pointer',
     },
     selected: {
         fontWeight: 'bold',
+        borderBottom: '2px solid #03c1d4',
+        paddingBottom: '10px',
     },
 }
 
