@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useRecoilValue } from "recoil";
 import { curriculumState } from "@/utils/States";
+import { FaChevronRight } from "react-icons/all";
 
 const Course = ({
     selectedCourse,
@@ -47,7 +48,7 @@ const Course = ({
                                                     </div>
 
                                                     <div>
-                                                        >
+                                                        <FaChevronRight />
                                                     </div>
                                                 </div>
                                             )

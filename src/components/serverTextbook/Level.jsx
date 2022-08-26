@@ -4,6 +4,7 @@ import TextbookUploadAlert from "@/components/serverTextbook/TextbookUploadAlert
 import { useRecoilValue } from "recoil";
 import { courseListState, levelItemState } from "@/utils/States";
 import {useUploadTextbookCallback} from "@/apis/apiCallbackes";
+import { FiPlus } from "react-icons/all";
 
 const Level = ({
     selectedCourse,
@@ -50,9 +51,7 @@ const Level = ({
 
     useEffect(() => {
         for (const item in courseList) {
-            console.log(courseList[item].id, selectedLanguage);
             if (courseList[item].id == selectedLanguage) {
-                console.log("!", courseList[item].language_code)
                 setNowLanguage(courseList[item].language_code);
                 break;
             }
@@ -96,7 +95,8 @@ const Level = ({
                 style={styles.textbookList}
                 onClick={() => alert()}
             >
-                교재 리스트 +
+                교재 리스트
+                <FiPlus size={20} style={{marginLeft: 10}} />
             </div>
             <div>
                 {
@@ -126,7 +126,7 @@ const Level = ({
                                                                 alert(item);
                                                             }}
                                                         >
-                                                            +
+                                                            <FiPlus size={20} />
                                                         </div>
                                                     </div>
                                                 )
@@ -160,6 +160,7 @@ const styles = {
         flexDirection: 'column',
         marginLeft: '5%',
         marginRight: '5%',
+        marginTop: 20,
     },
     header: {
         fontSize: 18,

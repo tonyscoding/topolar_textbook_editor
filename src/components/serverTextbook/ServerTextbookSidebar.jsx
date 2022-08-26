@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useRecoilState} from "recoil";
 import {serverTextbookOpenState} from "@/utils/States";
 import ServerTextbookBrowser from "@/components/serverTextbook/ServerTextbookBrowser";
+import {FiX} from "react-icons/all";
 
 const ServerTextbookSidebar = () => {
     const [serverTextbookOpen, setServerTextbookOpen] = useRecoilState(serverTextbookOpenState);
@@ -12,7 +13,7 @@ const ServerTextbookSidebar = () => {
     return (
         <div className={"server-textbook-sidebar" + (serverTextbookOpen? "" : " closed")}>
             <span className="material-icons-outlined textbook-sidebar-toggle" onClick={()=>{setServerTextbookOpen(false)}}>
-            close
+            <FiX size={25} />
             </span>
 
             <ServerTextbookBrowser />

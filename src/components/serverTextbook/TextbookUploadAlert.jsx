@@ -1,5 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Button, Input} from "@nextui-org/react";
+import React, {useEffect, useState} from 'react';
+import { Button, Input } from "@nextui-org/react";
+import { FiX } from "react-icons/all";
 
 const TextbookUploadAlert = ({ onClose, data, upload, orderRef, titleRef }) => {
     const [language, setLanguage] = useState("");
@@ -19,8 +20,10 @@ const TextbookUploadAlert = ({ onClose, data, upload, orderRef, titleRef }) => {
         <div style={styles.container}>
             <div
                 onClick={onClose}
-                style={{display: 'flex', justifyContent: 'end'}}
-            >x</div>
+                style={{display: 'flex', justifyContent: 'end', cursor: 'pointer'}}
+            >
+                <FiX size={30} />
+            </div>
             <div style={styles.inputContainer}>
                 <div style={styles.inputItem}>
                     <div>과목</div>
