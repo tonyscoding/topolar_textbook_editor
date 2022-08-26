@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import 'assets/sass/Guide/Loader.scss';
+import '../../assets/sass/Guide/Loader.scss';
 
 const Loader = ({style, className, type, color}) => {
 

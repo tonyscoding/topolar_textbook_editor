@@ -1,6 +1,10 @@
 import React from 'react';
 import {Button, Input} from "@nextui-org/react";
 
+const ProblemViewer = () => {
+
+}
+
 const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 	const handleConfirm = (e) => {
 		if (!e || e.key === 'Enter') {
@@ -8,7 +12,7 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 				handleOnclick(data.stepIndex, inputRef.current);
 				inputRef.current = '';
 				onClose();
-			} else if (type === 'item') {
+			} else if (type === 'item' || type === 'problem') {
 				handleOnclick(data.stepIndex, data.itemIndex, inputRef.current);
 				inputRef.current = '';
 				onClose();
@@ -32,7 +36,10 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 				type === 'item' ?
 					<h1>아이템 제목을 입력해주세요.</h1> :
 				type === 'stepChange' || type === 'itemChange' ?
-					<h1>바꿀 제목을 입력해주세요.</h1> : null
+					<h1>바꿀 제목을 입력해주세요.</h1> :
+				type === 'problem' ?
+					<h1>추가할 문제 번호를 입력해주세요. </h1>
+					:null
 			}
 			<Input
 				autoFocus={true}

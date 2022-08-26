@@ -16,7 +16,8 @@ const TextbookOutline = ({
      changeStepTitle,
      addItem,
      deleteItem,
-     changeItemTitle
+     changeItemTitle,
+	addProblem
  }) => {
 	const stepIndex = useRecoilValue(stepIndexState);
 	const itemIndex = useRecoilValue(itemIndexState);
@@ -99,6 +100,22 @@ const TextbookOutline = ({
 		})
 	}
 
+	const problemAddClick = (stepIdx, itemIdx) => {
+		confirmAlert({
+			customUI: ({ onClose }) => {
+				return (
+					<CustomConfirmAlert
+						inputRef={inputRef}
+						onClose={onClose}
+						handleOnclick={addProblem}
+						type={"problem"}
+						data={{"stepIndex": stepIdx, "itemIndex": itemIdx}}
+					/>
+				);
+			}
+		})
+	}
+
 	const parseTextbook = (textbook) =>{
 		let index = -1
 		const textbookContents = textbook.textbook_contents.map((step_dict, nowStepIndex)=>{
@@ -138,6 +155,11 @@ const TextbookOutline = ({
 									onClick={() => {itemChangeClick(nowStepIndex, nowItemIndex)}}
 								>
 									아이템 이름 변경
+								</Button>
+								<Button
+									onClick={() => {problemAddClick(nowStepIndex, nowItemIndex)}}
+								>
+									문제 추가
 								</Button>
 							</Button.Group>
 						}

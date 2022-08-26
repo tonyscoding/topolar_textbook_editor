@@ -13,10 +13,12 @@ import ImageContent from '@/components/textbooks/contents/ImageContent';
 import CardContent from '@/components/textbooks/contents/CardContent';
 import LinkContent from '@/components/textbooks/contents/LinkContent';
 import VideoContent from '@/components/textbooks/contents/VideoContent';
+import ProblemContent from "@/components/textbooks/contents/ProblemContent";
 
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
 
 import {Card} from "@/components/Card";
+
 
 const TextbookContentView = ({
          data,
@@ -27,6 +29,8 @@ const TextbookContentView = ({
          deleteJSONBookItem
      }) => {
 
+    const {title} = data;
+
     const text = useRef("");
     const code = useRef("");
     const codeLanguage = useRef("");
@@ -34,6 +38,80 @@ const TextbookContentView = ({
     const videoUrl = useRef("");
 
     const [hoverItemIndex, setHoverItemIndex] = useState(null);
+
+    const step_item_descriptions = data.components?.map((components_item, index) => {
+        let type = components_item.type;
+
+        return (
+            <div onMouseEnter={() => setHoverItemIndex(index)} onMouseLeave={() => setHoverItemIndex(null)} className={'body-desc'}>
+                {
+                    type === "desc" ?
+                        <DescContent
+                            key={index}
+                            index={index}
+                            components_item={components_item}
+                        /> :
+                        type === "code" ?
+                            <CodeContent
+                                key={index}
+                                index={index}
+                                components_item={components_item}
+                            />
+                            :
+                            type === "image" ?
+                                <ImageContent
+                                    key={index}
+                                    components_item={components_item}
+                                />
+                                :
+                                type === "link" ?
+                                    <LinkContent
+                                        key={index}
+                                        components_item={components_item}
+                                    />  :
+                                    type === "single_card" ?
+                                        <div className={"body-card"} key={index} >
+                                            <CardContent
+                                                JSONLoading={false}
+                                                text={text}
+                                                code={code}
+                                                link={link}
+                                                codeLanguage={codeLanguage}
+                                                data={components_item}
+                                                index={index}
+                                                videoUrl={videoUrl}
+
+                                            />
+                                        </div>
+                                        :
+                                        type === "video" ?
+                                            <VideoContent
+                                                key={index}
+                                                components_item={components_item}
+                                            />
+                                            : null
+                }
+                {
+                    hoverItemIndex === index &&
+                    <ButtonGroup
+                        index={index+1}
+                        text={text}
+                        codeLanguage={codeLanguage}
+                        code={code}
+                        link={link}
+                        videoUrl={videoUrl}
+
+                    />
+                }
+            </div>
+        )
+    })
+
+    const Step_item_problem = () => {
+        return (
+            <ProblemContent number={title.slice(1)} count_for_key={title}/>
+        )
+    }
 
     if (JSONLoading){
         return null;
@@ -57,90 +135,25 @@ const TextbookContentView = ({
 
 
                     <div className="textbook-body">
-                        <ButtonGroup
-                            index={0}
-                            text={text}
-                            codeLanguage={codeLanguage}
-                            code={code}
-                            link={link}
-                            videoUrl={videoUrl}
 
-                        />
-                        {reactHtmlParser(data.description_title)}
                         {
-                            data.components?.map((components_item, index) => {
-                                let type = components_item.type;
+                            title[0] === "#" ? (
+                                <Step_item_problem/>
+                        ) : (
+                            <>
+                                <ButtonGroup
+                                    index={0}
+                                    text={text}
+                                    codeLanguage={codeLanguage}
+                                    code={code}
+                                    link={link}
+                                    videoUrl={videoUrl}
 
-                                return (
-                                    <div onMouseEnter={() => setHoverItemIndex(index)} onMouseLeave={() => setHoverItemIndex(null)} className={'body-desc'}>
-                                        {
-                                            type === "desc" ?
-                                                <DescContent
-                                                    key={index}
-                                                    index={index}
-                                                    components_item={components_item}
-                                                /> :
-                                            type === "code" ?
-                                                <CodeContent
-                                                    key={index}
-                                                    index={index}
-                                                    components_item={components_item}
-                                                />
-                                                :
-                                            type === "image" ?
-                                                <ImageContent
-                                                    key={index}
-                                                    components_item={components_item}
-                                                />
-                                                :
-                                            type === "link" ?
-                                            <LinkContent
-                                                key={index}
-                                                components_item={components_item}
-                                            />  :
-                                            type === "single_card" ?
-                                                <div className={"body-card"} key={index} >
-                                                    <CardContent
-                                                        JSONLoading={false}
-                                                        text={text}
-                                                        code={code}
-                                                        link={link}
-                                                        codeLanguage={codeLanguage}
-                                                        data={components_item}
-                                                        index={index}
-                                                        videoUrl={videoUrl}
-                                    
-                                                    />
-                                                </div>
-                                                :
-                                            type === "double_card" ?
-                                                <div className={"body-doublecard"} key={index} >
-                                                    <DoubleCardContent JSONLoading={false} text={text} code={code} codeLanguage={codeLanguage} data={components_item} index={index} addDesc={addDesc} addCode={addCode} deleteJSONBookItem={deleteJSONBookItem}/>
-                                                </div>
-                                                :
-                                            type === "video" ?
-                                                <VideoContent
-                                                    key={index}
-                                                    components_item={components_item}
-                                                />
-                                                : null
-                                        }
-                                        {
-                                            hoverItemIndex === index &&
-                                                <ButtonGroup
-                                                    index={index+1}
-                                                    text={text}
-                                                    codeLanguage={codeLanguage}
-                                                    code={code}
-                                                    link={link}
-                                                    videoUrl={videoUrl}
-                   
-                                                />
-                                        }
-                                    </div>
-                                )
-                            })
-                        }
+                                />
+                                {reactHtmlParser(data.description_title)}
+                                {step_item_descriptions}
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

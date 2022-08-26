@@ -241,6 +241,28 @@
                 max-width:100%;
             }
 
+            >.problem-container {
+                >.problem-inoutput {
+                    & {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+                >.guide-card {
+                    margin-bottom: 20px;
+                    width: auto;
+                    .card-header {
+                        font-weight: bold;
+                        font-size: 20px;
+                    }
+                }
+                >.problem-title {
+                    margin-bottom: 20px;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+            }
+
         }
     }
 
