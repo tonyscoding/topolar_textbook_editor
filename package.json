@@ -29,6 +29,7 @@
     "electron-updater": "^5.0.1",
     "events": "^3.3.0",
     "jquery": "^3.6.0",
+    "jszip": "^3.10.1",
     "patch-package": "^6.4.7",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",

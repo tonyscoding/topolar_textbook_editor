@@ -1,38 +1,66 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import { confirmAlert } from "react-confirm-alert";
 import TextbookUploadAlert from "@/components/serverTextbook/TextbookUploadAlert";
 import { useRecoilValue } from "recoil";
 import { courseListState, levelItemState } from "@/utils/States";
+import {useUploadTextbookCallback} from "@/apis/apiCallbackes";
 
 const Level = ({
+    selectedCourse,
     selectedLanguage,
     selectedLevel,
     setSelectedJSONBookId,
 }) => {
+    const uploadTextbook =  useUploadTextbookCallback();
+
     const levelItem = useRecoilValue(levelItemState);
     const courseList = useRecoilValue(courseListState);
+
+    const orderRef = useRef();
+    const titleRef = useRef();
+
+    useEffect(() => {
+        console.log(selectedCourse);
+        console.log(selectedLanguage);
+        console.log(selectedLevel);
+    }, [selectedCourse, selectedLanguage, selectedLevel]);
+
+    const alert = (order) => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <TextbookUploadAlert
+                        onClose={onClose}
+                        data={{
+                            "language": selectedLanguage,
+                            "level": selectedLevel,
+                            "order": order,
+                            "courseList": courseList
+                        }}
+                        upload={() => {
+                            uploadTextbook({
+                                name: titleRef.current.value,
+                                level: selectedLevel,
+                                course: selectedLanguage,
+                                language_code: selectedCourse,
+                                language: 2,
+                                order_num: orderRef.current.value,
+                            });
+                        }}
+                        orderRef={orderRef}
+                        titleRef={titleRef}
+                    />
+                );
+            }
+        })
+    }
 
     return (
         <div>
             <div>{levelItem.description}</div>
             <div
                 style={{marginBottom: 20}}
-                onClick={() => {
-                    confirmAlert({
-                        customUI: ({ onClose }) => {
-                            return (
-                                <TextbookUploadAlert
-                                    onClose={onClose}
-                                    data={{
-                                        "language": selectedLanguage,
-                                        "level": selectedLevel,
-                                        "courseList": courseList
-                                    }}
-                                />
-                            );
-                        }
-                    })
-                }}
+                onClick={() => alert()}
             >
                 교재 리스트 +
             </div>
@@ -56,7 +84,7 @@ const Level = ({
                                                         </div>
                                                         <div
                                                             onClick={() => {
-
+                                                                alert(item);
                                                             }}
                                                         >
                                                             +

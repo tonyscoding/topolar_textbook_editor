@@ -30,7 +30,7 @@ export const getTextbookListByLevel = (authHeader, curriculum, textbookLevel) =>
     return axios.get(`${URL}/api/textbook/index/${curriculum}/${textbookLevel}/`, authHeader)
 }
 
-export const createTextbook = ({authHeader, textbook}) => {
+export const createTextbook = (authHeader, textbook) => {
     return axios.post(`${URL}/api/textbook/`, textbook, authHeader);
 }
 
@@ -38,7 +38,7 @@ export const deleteTextbook = ({authHeader, textbookId}) => {
     return axios.delete(`${URL}/api/textbook/${textbookId}/`, authHeader);
 }
 
-export const uploadFile = ({authHeader, file}) => {
+export const uploadFile = (authHeader, file) => {
     return axios.put(`${URL}/api/textbook/upload/`, file, authHeader);
 }
 

@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Button, Input} from "@nextui-org/react";
 
-const TextbookUploadAlert = ({ onClose, data }) => {
+const TextbookUploadAlert = ({ onClose, data, upload, orderRef, titleRef }) => {
     const [language, setLanguage] = useState("");
 
     useEffect(() => {
+        if (data.order) orderRef.current.value = data.order;
+
         for (let item in data.courseList) {
             if (data.courseList[item].id == data.language) {
                 setLanguage(data.courseList[item].name)
@@ -29,6 +31,8 @@ const TextbookUploadAlert = ({ onClose, data }) => {
                     <Input
                         type="number"
                         style={{width: '20vw'}}
+                        ref={orderRef}
+                        onChange={(e) => orderRef.current.value = e.target.value}
                     />
                 </div>
                 <div style={styles.inputItem}>
@@ -36,6 +40,7 @@ const TextbookUploadAlert = ({ onClose, data }) => {
                     <Input
                         type="text"
                         style={{width: '20vw'}}
+                        ref={titleRef}
                     />
                 </div>
             </div>
@@ -44,7 +49,10 @@ const TextbookUploadAlert = ({ onClose, data }) => {
                 <Button
                     style={{marginRight: "10px", width: "100%"}}
                     auto
-                    onClick={onClose}
+                    onClick={() => {
+                        upload();
+                        onClose();
+                    }}
                 >
                     확인
                 </Button>

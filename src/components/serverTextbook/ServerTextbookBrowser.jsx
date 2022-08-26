@@ -43,6 +43,7 @@ const ServerTextbookBrowser = () => {
                 selectedCourse && selectedLanguage && levelItem ? (
                     // 코스, 언어, 레벨이 선택되었을 때 레벨에 해당하는 교재 리스트를 보여준다.
                     <Level
+                        selectedCourse={selectedCourse}
                         selectedLanguage={selectedLanguage}
                         selectedLevel={selectedLevel}
                         setSelectedJSONBookId={setSelectedJSONBookId}
