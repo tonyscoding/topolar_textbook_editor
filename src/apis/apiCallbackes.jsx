@@ -15,7 +15,7 @@ import {
     getCurriculum,
     getJSONTextbook,
     getTextbook,
-    getCourseList, uploadFile, createTextbook, getProblem, deleteTextbook
+    getCourseList, uploadFile, createTextbook, getProblem, deleteTextbook, getProblemList
 } from "@/apis/apiServices";
 import getAuthHeader from "@/apis/authHeader";
 import JSZip from "jszip";
@@ -146,6 +146,23 @@ export const useGetProblemCallback = () => {
             async (number) => {
                 console.log("problem callback", number);
                 const {data} = await getProblem(getAuthHeader(user?.token), number);
+
+                setLoading(false);
+                setResolved(data);
+                return data
+            },
+        [user],
+    );
+    return [loading, resolved, callback];
+}
+
+export const useGetProblemListCallback = () => {
+    const [loading, setLoading] = useState(true);
+    const [resolved, setResolved] = useState();
+    const callback = useRecoilCallback(({snapshot, set}) =>
+            async () => {
+                const user = snapshot.getPromise(userState);
+                const {data} = await getProblemList(getAuthHeader(user?.token));
 
                 setLoading(false);
                 setResolved(data);

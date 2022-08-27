@@ -7,6 +7,8 @@ import CustomConfirmAlert from "./CustomConfirmAlert";
 
 import { useRecoilValue } from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
+import useApi from "../../apis/useApi";
+import {getProblem, getProblemList} from "../../apis/apiServices";
 
 const TextbookOutline = ({
      JSONBook,
@@ -28,7 +30,11 @@ const TextbookOutline = ({
 	const [parsedJSONBook, setParsedJSONBook] = useState(null);
 	const inputRef = useRef('');
 
+	const getProblemListApi = useApi(getProblemList, true);
+	const getProblemApi = useApi(getProblem, true);
+
 	useEffect(() => {
+
 		setParsedJSONBook(parseTextbook(JSONBook));
 	}, [JSON.stringify(JSONBook)]);
 
@@ -109,7 +115,7 @@ const TextbookOutline = ({
 						onClose={onClose}
 						handleOnclick={addProblem}
 						type={"problem"}
-						data={{"stepIndex": stepIdx, "itemIndex": itemIdx}}
+						data={{"stepIndex": stepIdx, "itemIndex": itemIdx, "getProblemApi": getProblemApi, "getProblemListApi": getProblemListApi}}
 					/>
 				);
 			}
