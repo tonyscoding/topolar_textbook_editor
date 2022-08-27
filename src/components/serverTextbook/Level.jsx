@@ -10,6 +10,16 @@ import {
 } from "@/apis/apiCallbackes";
 import {FiMinus, FiPlus, FiRefreshCw} from "react-icons/all";
 import CustomAlert from "@/components/textbooks/CustomAlert";
+import {Tooltip} from "@nextui-org/react";
+
+const TextbookToolTip = ({textbook}) => {
+    return (
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: 80}}>
+            <div>아이디</div>
+            <div>{textbook.id}</div>
+        </div>
+    )
+}
 
 const Level = ({
     selectedCourse,
@@ -172,9 +182,15 @@ const Level = ({
                                                             <div style={{...styles.textbookListItemIndex, backgroundColor: languageColor[nowLanguage]?.indexColor ? languageColor[nowLanguage].indexColor : "#252525"}}>
                                                                 {item.padStart(2, '0')}
                                                             </div>
-                                                            <div>
-                                                                {levelItem.data[item][index].name}
-                                                            </div>
+                                                            <Tooltip
+                                                                content={<TextbookToolTip textbook={itemIndex} />}
+                                                                placement={"right"}
+                                                                shadow={false}
+                                                            >
+                                                                <div style={{cursor: 'pointer'}}>
+                                                                    {levelItem.data[item][index].name}
+                                                                </div>
+                                                            </Tooltip>
                                                         </div>
                                                         <div style={{display: 'flex', flexDirection: 'row'}}>
                                                             <div
@@ -204,7 +220,15 @@ const Level = ({
                                                         key={itemIndex.id}
                                                         onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}
                                                     >
-                                                        {levelItem.data[item][index].name}
+                                                        <Tooltip
+                                                            content={<TextbookToolTip textbook={itemIndex} />}
+                                                            placement={"right"}
+                                                            shadow={false}
+                                                        >
+                                                            <div style={{cursor: 'pointer'}}>
+                                                            {levelItem.data[item][index].name}
+                                                            </div>
+                                                        </Tooltip>
                                                         <div
                                                             onClick={() => {
                                                                 deleteAlert(levelItem.data[item][index].id);
