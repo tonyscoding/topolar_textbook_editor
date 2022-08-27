@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import classNames from 'classnames';
-import "assets/sass/Guide/Dropdown.scss";
+import "@/assets/sass/Guide/Dropdown.scss";
 import * as $ from 'jquery';
-import { shallowEqual, useSelector } from 'react-redux';
 
 export const Option = ({children, value}) => {
     return (
@@ -17,7 +16,6 @@ export const Dropdown = ({value, children ,onChange, className, style, placehold
     const arrowRef = useRef(null);
     const selectedRef = useRef(null);
     const [open, setOpen] = useState(false);
-    const screenSize = useSelector(state => state.auth.screen_size, shallowEqual);
 
     const clickSurrounding = (e) => {
         if (e.target !== dropdownRef.current&&e.target !== arrowRef.current&&e.target !== containerRef.current&&e.target.tagName !== 'OPTION'&&e.target !== listRef.current) {
@@ -31,7 +29,7 @@ export const Dropdown = ({value, children ,onChange, className, style, placehold
         let selectedDiv = selectedRef.current;
         selectedDiv.style.width = (dropdownDiv.offsetWidth - 50) + "px";
         selectedDiv.style.height = Math.floor(parseInt(window.getComputedStyle(dropdownDiv).getPropertyValue("font-size")) * 1.3) + "px";
-    },[screenSize])
+    },[])
 
     useEffect(() => {
         if (open) {

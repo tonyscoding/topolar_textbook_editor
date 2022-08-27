@@ -15,7 +15,7 @@ import {
     getCurriculum,
     getJSONTextbook,
     getTextbook,
-    getCourseList, uploadFile, createTextbook, getProblem
+    getCourseList, uploadFile, createTextbook, getProblem, getProblemList
 } from "@/apis/apiServices";
 import getAuthHeader from "@/apis/authHeader";
 import JSZip from "jszip";

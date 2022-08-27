@@ -9,7 +9,6 @@ import useApi from "@/apis/useApi";
 
 
 const ProblemContent = ({number, count_for_key}) => {
-    // const [loading, resolved, rejected, problem] = useApi(getProblem)
     const [loading, resolved, callback] = useApi(getProblem, true);
     const [inoutput, setInoutput] = useState([]);
 

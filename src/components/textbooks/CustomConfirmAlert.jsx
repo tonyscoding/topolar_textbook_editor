@@ -4,7 +4,7 @@ import useApi from "@/apis/useApi";
 import {getProblemList} from "@/apis/apiServices";
 import Loader from "@/components/guideComponents/Loader";
 import {ProblemViewer} from "./ProblemViewer";
-
+import "@/assets/sass/Components/CustomConfirmAlert.scss";
 
 
 const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
@@ -40,20 +40,24 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 				type === 'stepChange' || type === 'itemChange' ?
 					<h1>바꿀 제목을 입력해주세요.</h1> :
 				type === 'problem' ?
-					<div>
-						<ProblemViewer/>
+					<div className={"problem-dropdown-container"}>
+						<ProblemViewer getProblemApi={data.getProblemApi} getProblemListApi={data.getProblemListApi} inputRef={inputRef}/>
 					</div>
 					:null
 			}
-			<Input
-				autoFocus={true}
-				css={{width: "100%"}}
-				bordered
-				value={inputRef.current.value}
-				onChange={(e) => {
-					inputRef.current = e.target.value;
-				}}
-			/>
+			{
+				type !== 'problem' ?
+				<Input
+					autoFocus={true}
+					css={{width: "100%"}}
+					bordered
+					value={inputRef.current.value}
+					onChange={(e) => {
+						inputRef.current = e.target.value;
+						}}
+				/> : null
+			}
+
 			<div style={{display: "flex", flexDirection: "row", marginTop: "15px", justifyContent: "end"}}>
 				<Button
 					style={{marginRight: "10px"}}
