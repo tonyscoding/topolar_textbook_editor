@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from "@nextui-org/react";
 
-const CustomAlert = ({ onClose, message }) => {
+const CustomAlert = ({ onClose, message, onConfirm=null }) => {
 	return (
 		<div style={styles.container}>
 			<div>{ message }</div>
@@ -10,7 +10,10 @@ const CustomAlert = ({ onClose, message }) => {
 					size={'sm'}
 					style={{marginRight: "10px"}}
 					auto
-					onClick={onClose}
+					onClick={() => {
+						onConfirm();
+						onClose();
+					}}
 				>
 					확인
 				</Button>

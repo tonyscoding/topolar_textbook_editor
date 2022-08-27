@@ -3,8 +3,13 @@ import { confirmAlert } from "react-confirm-alert";
 import TextbookUploadAlert from "@/components/serverTextbook/TextbookUploadAlert";
 import { useRecoilValue } from "recoil";
 import { courseListState, levelItemState } from "@/utils/States";
-import { useUploadTextbookCallback } from "@/apis/apiCallbackes";
-import { FiMinus, FiPlus } from "react-icons/all";
+import {
+    useDeleteTextbookCallback,
+    useGetTextbookListByLevelCallback,
+    useUploadTextbookCallback
+} from "@/apis/apiCallbackes";
+import {FiMinus, FiPlus, FiRefreshCw} from "react-icons/all";
+import CustomAlert from "@/components/textbooks/CustomAlert";
 
 const Level = ({
     selectedCourse,
@@ -13,6 +18,9 @@ const Level = ({
     setSelectedJSONBookId,
 }) => {
     const uploadTextbook =  useUploadTextbookCallback();
+    const deleteTextbook = useDeleteTextbookCallback();
+    const getTextbookListByLevel = useGetTextbookListByLevelCallback();
+
 
     const levelItem = useRecoilValue(levelItemState);
     const courseList = useRecoilValue(courseListState);
@@ -58,10 +66,6 @@ const Level = ({
         }
     }, []);
 
-    const handleTextbookClick = () => {
-
-    }
-
     /**
      * @description 교재 업로드 함수
      * @param {string, number} order
@@ -86,7 +90,12 @@ const Level = ({
                                 language_code: selectedCourse,
                                 language: 2,
                                 order_num: orderRef.current.value,
-                            });
+                            })
+                                .then(() => {
+                                    setTimeout(() => {
+                                        getTextbookListByLevel(selectedLanguage, selectedLevel);
+                                    }, 7000);
+                                })
                         }}
                         orderRef={orderRef}
                         titleRef={titleRef}
@@ -97,7 +106,22 @@ const Level = ({
     }
 
     const deleteAlert = (id) => {
-
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <CustomAlert
+                        message={"정말로 삭제하시겠습니까?"}
+                        onClose={onClose}
+                        onConfirm={() => {
+                            deleteTextbook(id)
+                                .then(() => {
+                                    getTextbookListByLevel(selectedLanguage, selectedLevel);
+                                });
+                        }}
+                    />
+                );
+            }
+        })
     }
 
     return (
@@ -105,10 +129,23 @@ const Level = ({
             <div style={styles.header}>{levelItem.description}</div>
             <div
                 style={styles.textbookList}
-                onClick={() => uploadAlert()}
             >
-                교재 리스트
-                <FiPlus size={20} style={{marginLeft: 10}} />
+                <div
+                    style={{cursor: 'pointer'}}
+                    onClick={() => uploadAlert()}
+                >
+                    교재 리스트
+                    <FiPlus size={20} style={{marginLeft: 10}} />
+                </div>
+
+                <div
+                    style={{cursor: 'pointer'}}
+                    onClick={() => {
+                        getTextbookListByLevel(selectedLanguage, selectedLevel);
+                    }}
+                >
+                    <FiRefreshCw size={20} />
+                </div>
             </div>
             <div>
                 {
@@ -126,10 +163,12 @@ const Level = ({
                                                 return (
                                                     <div
                                                         key={itemIndex.id}
-                                                        onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}
                                                         style={styles.textbookListItem}
                                                     >
-                                                        <div style={styles.textbookListItemInfo}>
+                                                        <div
+                                                            style={styles.textbookListItemInfo}
+                                                            onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}
+                                                        >
                                                             <div style={{...styles.textbookListItemIndex, backgroundColor: languageColor[nowLanguage]?.indexColor ? languageColor[nowLanguage].indexColor : "#252525"}}>
                                                                 {item.padStart(2, '0')}
                                                             </div>
@@ -140,7 +179,7 @@ const Level = ({
                                                         <div style={{display: 'flex', flexDirection: 'row'}}>
                                                             <div
                                                                 onClick={() => {
-                                                                    deleteAlert(item);
+                                                                    deleteAlert(levelItem.data[item][index].id);
                                                                 }}
                                                             >
                                                                 <FiMinus size={20} color={"red"} style={{marginRight: 10}} />
@@ -161,10 +200,18 @@ const Level = ({
                                             else {
                                                 return (
                                                     <div
+                                                        style={{...styles.textbookListItem, width: '80%', marginLeft: '8%'}}
                                                         key={itemIndex.id}
                                                         onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}
                                                     >
                                                         {levelItem.data[item][index].name}
+                                                        <div
+                                                            onClick={() => {
+                                                                deleteAlert(levelItem.data[item][index].id);
+                                                            }}
+                                                        >
+                                                            <FiMinus size={20} color={"red"} style={{marginRight: 18}} />
+                                                        </div>
                                                     </div>
                                                 )
                                             }
@@ -196,7 +243,9 @@ const styles = {
         marginTop: 40,
         fontSize: 16,
         fontWeight: 'bold',
-        cursor: 'pointer',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     textbookListContainer: {
         display: 'flex',
