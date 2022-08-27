@@ -15,7 +15,7 @@ import {
     getCurriculum,
     getJSONTextbook,
     getTextbook,
-    getCourseList, uploadFile, createTextbook, getProblem
+    getCourseList, uploadFile, createTextbook, getProblem, deleteTextbook
 } from "@/apis/apiServices";
 import getAuthHeader from "@/apis/authHeader";
 import JSZip from "jszip";
@@ -124,6 +124,17 @@ export const useUploadTextbookCallback = path => {
                 });
             },
         [user, jsonBook],
+    );
+}
+
+export const useDeleteTextbookCallback = () => {
+    const user = useRecoilValue(userState);
+    return useRecoilCallback(({snapshot, set}) =>
+            async (id) => {
+                const {data} = await deleteTextbook(getAuthHeader(user?.token), id);
+                console.log(data);
+            },
+        [user],
     );
 }
 

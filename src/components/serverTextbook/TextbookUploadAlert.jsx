@@ -36,7 +36,7 @@ const TextbookUploadAlert = ({ onClose, data, upload, orderRef, titleRef }) => {
                 <div style={styles.inputItem}>
                     <div>순서</div>
                     <Input
-                        type="number"
+                        type={"number"}
                         style={{width: '20vw'}}
                         ref={orderRef}
                         onChange={(e) => orderRef.current.value = e.target.value}
@@ -75,7 +75,7 @@ const styles = {
         padding: "2vw 4vw 2vw 4vw",
         borderRadius: "3vmin",
         width: "40vw",
-        fontSize: 20
+        fontSize: 20,
     },
     buttonContainer: {
         display: "flex",

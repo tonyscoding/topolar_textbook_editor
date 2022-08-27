@@ -5,11 +5,6 @@ import axios, {AxiosResponse} from "axios";
 // export const API_URL = '127.0.0.1:8000';
 export const API_PROTOCOL = "https://";
 // export const API_PROTOCOL = "http://";
-export const API_URL = 'www.topolar.co.kr';
-//export const SOC_PROTOCOL = "ws://";
-export const SOC_PROTOCOL = "wss://";
-export const MEDIA_SERVER_URL = 'www.topolar.co.kr';
-// export const MEDIA_SERVER_URL = 'www.tocol.info'
 
 const URL = API_PROTOCOL + API_URL;
 
@@ -37,7 +32,7 @@ export const createTextbook = (authHeader, textbook) => {
     return axios.post(`${URL}/api/textbook/`, textbook, authHeader);
 }
 
-export const deleteTextbook = ({authHeader, textbookId}) => {
+export const deleteTextbook = (authHeader, textbookId) => {
     return axios.delete(`${URL}/api/textbook/${textbookId}/`, authHeader);
 }
 

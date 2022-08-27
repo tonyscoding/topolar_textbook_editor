@@ -3,8 +3,8 @@ import { confirmAlert } from "react-confirm-alert";
 import TextbookUploadAlert from "@/components/serverTextbook/TextbookUploadAlert";
 import { useRecoilValue } from "recoil";
 import { courseListState, levelItemState } from "@/utils/States";
-import {useUploadTextbookCallback} from "@/apis/apiCallbackes";
-import { FiPlus } from "react-icons/all";
+import { useUploadTextbookCallback } from "@/apis/apiCallbackes";
+import { FiMinus, FiPlus } from "react-icons/all";
 
 const Level = ({
     selectedCourse,
@@ -58,7 +58,15 @@ const Level = ({
         }
     }, []);
 
-    const alert = (order) => {
+    const handleTextbookClick = () => {
+
+    }
+
+    /**
+     * @description 교재 업로드 함수
+     * @param {string, number} order
+     */
+    const uploadAlert = (order) => {
         confirmAlert({
             customUI: ({ onClose }) => {
                 return (
@@ -88,12 +96,16 @@ const Level = ({
         })
     }
 
+    const deleteAlert = (id) => {
+
+    }
+
     return (
         <div style={styles.container}>
             <div style={styles.header}>{levelItem.description}</div>
             <div
                 style={styles.textbookList}
-                onClick={() => alert()}
+                onClick={() => uploadAlert()}
             >
                 교재 리스트
                 <FiPlus size={20} style={{marginLeft: 10}} />
@@ -103,30 +115,43 @@ const Level = ({
                     levelItem.data ? (
                         Object.keys(levelItem.data).map((item, index) => {
                             return (
-                                <div style={{...styles.textbookListContainer, backgroundColor: languageColor[nowLanguage]?.backgroundColor ? languageColor[nowLanguage].backgroundColor : "#d3d3d3"}}>
+                                <div
+                                    key={item.id}
+                                    style={{...styles.textbookListContainer, backgroundColor: languageColor[nowLanguage]?.backgroundColor ? languageColor[nowLanguage].backgroundColor : "#d3d3d3"}}
+                                >
                                     {
                                         levelItem.data[item].map((itemIndex, index) => {
                                             // 첫 아이템만 들여쓰기 없이 표시
                                             if (index === 0) {
                                                 return (
                                                     <div
+                                                        key={itemIndex.id}
                                                         onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}
                                                         style={styles.textbookListItem}
                                                     >
                                                         <div style={styles.textbookListItemInfo}>
                                                             <div style={{...styles.textbookListItemIndex, backgroundColor: languageColor[nowLanguage]?.indexColor ? languageColor[nowLanguage].indexColor : "#252525"}}>
-                                                                {item.padStart(2,'0')}
+                                                                {item.padStart(2, '0')}
                                                             </div>
                                                             <div>
                                                                 {levelItem.data[item][index].name}
                                                             </div>
                                                         </div>
-                                                        <div
-                                                            onClick={() => {
-                                                                alert(item);
-                                                            }}
-                                                        >
-                                                            <FiPlus size={20} />
+                                                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                                                            <div
+                                                                onClick={() => {
+                                                                    deleteAlert(item);
+                                                                }}
+                                                            >
+                                                                <FiMinus size={20} color={"red"} style={{marginRight: 10}} />
+                                                            </div>
+                                                            <div
+                                                                onClick={() => {
+                                                                    uploadAlert(item);
+                                                                }}
+                                                            >
+                                                                <FiPlus size={20} />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 )
@@ -136,6 +161,7 @@ const Level = ({
                                             else {
                                                 return (
                                                     <div
+                                                        key={itemIndex.id}
                                                         onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}
                                                     >
                                                         {levelItem.data[item][index].name}
