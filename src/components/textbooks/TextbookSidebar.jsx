@@ -188,7 +188,7 @@ const TextbookSidebar = ({
             </Button.Group>
             <hr />
 
-            v0.0.7
+            v0.0.8
         </div>
     )
 
