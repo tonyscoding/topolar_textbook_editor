@@ -32,7 +32,7 @@
         }
     }
     >.textbook-contents{
-
+        font-weight: 500;
         .textbook-step-title{
             background-color: $grey10;
             padding:20px;
@@ -50,7 +50,7 @@
                 cursor:pointer;
                 &.current{
                     color:$tb;
-                    font-weight: bold;
+                    font-weight: 949;
                 }
             }
         }

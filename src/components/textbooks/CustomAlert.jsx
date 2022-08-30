@@ -8,6 +8,17 @@ const CustomAlert = ({ onClose, message, onConfirm=null }) => {
 			<div style={styles.buttonContainer}>
 				<Button
 					size={'sm'}
+					color={'error'}
+					style={{marginRight: "10px"}}
+					auto
+					onClick={() => {
+						onClose();
+					}}
+				>
+					취소
+				</Button>
+				<Button
+					size={'sm'}
 					style={{marginRight: "10px"}}
 					auto
 					onClick={() => {
@@ -28,7 +39,7 @@ const styles = {
 		boxShadow: "0px 10px 50px -3px rgba(0, 0, 0, 0.1)",
 		padding: "2vw 4vw 2vw 4vw",
 		borderRadius: "3vmin",
-		width: 340,
+		width: 'auto',
 		fontSize: "3vmin",
 	},
 	buttonContainer: {

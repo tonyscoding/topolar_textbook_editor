@@ -216,7 +216,7 @@ const TextbookOutline = ({
 		})
 
 		return (
-			<div className = "textbook-outline">
+			<div className="textbook-outline">
 				<div className="textbook-contents">
 					{textbookContents}
 				</div>

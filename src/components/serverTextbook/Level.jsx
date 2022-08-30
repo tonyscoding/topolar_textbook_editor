@@ -76,6 +76,22 @@ const Level = ({
         }
     }, []);
 
+    const changeTextbook = (id) => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <CustomAlert
+                        message={"교재를 변경하시겠습니까?(이전 데이터들은 삭제됩니다.)"}
+                        onClose={onClose}
+                        onConfirm={() => {
+                            setSelectedJSONBookId(id);
+                        }}
+                    />
+                );
+            }
+        })
+    }
+
     /**
      * @description 교재 업로드 함수
      * @param {string, number} order
@@ -115,6 +131,10 @@ const Level = ({
         })
     }
 
+    /**
+     * @description 교재 삭제 함수
+     * @param {string, number} id
+     */
     const deleteAlert = (id) => {
         confirmAlert({
             customUI: ({ onClose }) => {
@@ -177,7 +197,7 @@ const Level = ({
                                                     >
                                                         <div
                                                             style={styles.textbookListItemInfo}
-                                                            onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}
+                                                            onClick={() => changeTextbook(itemIndex.id)}
                                                         >
                                                             <div style={{...styles.textbookListItemIndex, backgroundColor: languageColor[nowLanguage]?.indexColor ? languageColor[nowLanguage].indexColor : "#252525"}}>
                                                                 {item.padStart(2, '0')}
@@ -218,7 +238,7 @@ const Level = ({
                                                     <div
                                                         style={{...styles.textbookListItem, width: '80%', marginLeft: '8%'}}
                                                         key={itemIndex.id}
-                                                        onClick={() => setSelectedJSONBookId(levelItem.data[item][index].id)}
+                                                        onClick={() => changeTextbook(itemIndex.id)}
                                                     >
                                                         <Tooltip
                                                             content={<TextbookToolTip textbook={itemIndex} />}

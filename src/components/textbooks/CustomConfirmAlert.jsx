@@ -58,17 +58,17 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 			<div style={{display: "flex", flexDirection: "row", marginTop: "15px", justifyContent: "end"}}>
 				<Button
 					style={{marginRight: "10px"}}
-					auto
-					onClick={() => handleConfirm()}
-				>
-					확인
-				</Button>
-				<Button
 					onClick={onClose}
 					color={"error"}
 					auto
 				>
 					취소
+				</Button>
+				<Button
+					auto
+					onClick={() => handleConfirm()}
+				>
+					확인
 				</Button>
 			</div>
 		</div>
