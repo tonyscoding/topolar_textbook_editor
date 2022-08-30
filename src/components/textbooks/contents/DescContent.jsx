@@ -7,6 +7,8 @@ import {DescEditor} from "@/components/textbooks/editors/DescEditor";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
 import { JSONbookState } from '@/utils/States';
+import {saveTextbook} from "@/helpers/electronFileSystem";
+import {quickLoadState} from "@/utils/States";
 
 export const DescContent = ({
     components_item,
@@ -17,6 +19,7 @@ export const DescContent = ({
 	const stepIndex = useRecoilValue(stepIndexState);
 	const itemIndex = useRecoilValue(itemIndexState);
 	const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
+	const quickLoad = useRecoilValue(quickLoadState);
 
 	const item = useRef('');
 	const [wantToEdit, setWantToEdit] = useState(false);
@@ -40,6 +43,8 @@ export const DescContent = ({
 			newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components[cardIndex].description = newDesc;
 		}
 
+		if(quickLoad)
+			saveTextbook(newJSONBook);
 		setJSONBook(newJSONBook);
 	}
 

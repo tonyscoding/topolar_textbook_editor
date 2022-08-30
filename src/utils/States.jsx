@@ -45,3 +45,8 @@ export const courseListState = atom({
 	key: "courseListState",
 	default: []
 })
+
+export const quickLoadState = atom({
+	key: "quickLoadState",
+	default: true
+})

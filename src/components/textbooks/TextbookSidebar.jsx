@@ -4,8 +4,10 @@ import TextbookOutline from "@/components/textbooks/TextbookOutline";
 import { loadTextbook } from "@/helpers/electronFileSystem";
 
 import '@/assets/sass/Curriculum/TextbookSidebar.scss'
-import {Button} from "@nextui-org/react";
+import {Button, Spacer, Switch} from "@nextui-org/react";
 import { FiUpload, FiDownload, FiRefreshCcw } from "react-icons/fi";
+import {useRecoilState} from "recoil";
+import {quickLoadState} from "@/utils/States";
 
 
 const TextbookSidebar = ({
@@ -23,6 +25,7 @@ const TextbookSidebar = ({
      changeItemTitle,
     addProblem
 }) => {
+    const [quickLoad, setQuickLoad] = useRecoilState(quickLoadState);
 
     const downloadJson = () => {
         const saveText = JSON.stringify(JSONBook, null, "\t");
@@ -176,7 +179,11 @@ const TextbookSidebar = ({
                 {/*    /!*<input type="file" name="json" onChange={convertToNewJsonBook} id={"convert-file"} style={{display: 'none'}}/>*!/*/}
                 {/*    <input type="file" name="convertFile" id="convert-file" onChange={convertToNewJsonBook} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />*/}
                 {/*</Button>*/}
+                <Switch style={{marginLeft: 10}} checked={quickLoad} icon={<FiRefreshCcw />} onChange={(e) => {
+                    setQuickLoad(e.target.checked);
+                }}/>
             </Button.Group>
+
             <hr />
             <Button.Group color={'gradient'}>
                 <Button ghost>

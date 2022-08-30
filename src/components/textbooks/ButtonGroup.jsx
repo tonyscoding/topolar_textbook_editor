@@ -7,7 +7,8 @@ import {confirmAlert} from "react-confirm-alert";
 import CustomAlert from "@/components/textbooks/CustomAlert";
 
 import { Button } from "@nextui-org/react";
-import { JSONbookState } from "../../utils/States";
+import {JSONbookState, quickLoadState} from "@/utils/States";
+import {saveTextbook} from "@/helpers/electronFileSystem";
 
 export const ButtonGroup = ({
     index,
@@ -22,7 +23,13 @@ export const ButtonGroup = ({
 	const stepIndex = useRecoilValue(stepIndexState);
 	const itemIndex = useRecoilValue(itemIndexState);
 	const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
+	const quickLoad = useRecoilValue(quickLoadState);
 
+	const handleSaveTextbook = (newJSONBook) => {
+		if(quickLoad) {
+			saveTextbook(newJSONBook);
+		}
+	}
 	    // desc 추가
 		const addDesc = (nowStepIndex, nowItemIndex, index, newDesc, cardIndex=null) => {
 			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
@@ -36,7 +43,8 @@ export const ButtonGroup = ({
 			} else {
 				newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
 			}
-	
+
+			handleSaveTextbook(newJSONBook);
 			setJSONBook(newJSONBook);
 		}
 
@@ -54,7 +62,8 @@ export const ButtonGroup = ({
 			} else {
 				newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
 			}
-	
+
+			handleSaveTextbook(newJSONBook);
 			setJSONBook(newJSONBook);
 		}
 
@@ -92,6 +101,7 @@ export const ButtonGroup = ({
 					}
 				]
 			})
+			handleSaveTextbook(newJSONBook);
 			setJSONBook(newJSONBook);
 		}
 	
@@ -114,6 +124,7 @@ export const ButtonGroup = ({
 					}
 				]
 			})
+			handleSaveTextbook(newJSONBook);
 			setJSONBook(newJSONBook);
 		}
 
@@ -132,7 +143,8 @@ export const ButtonGroup = ({
 			} else {
 				newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components[index].components.splice(cardIndex, 0, content);
 			}
-	
+
+			handleSaveTextbook(newJSONBook);
 			setJSONBook(newJSONBook);
 		}
 
@@ -143,7 +155,8 @@ export const ButtonGroup = ({
 				"type": "video",
 				"url": videoUrl
 			})
-	
+
+			handleSaveTextbook(newJSONBook);
 			setJSONBook(newJSONBook);
 		}
 
