@@ -76,6 +76,10 @@ const Level = ({
         }
     }, []);
 
+    /**
+     * @description 교재 변경 함수
+     * @param {string, number} id
+     */
     const changeTextbook = (id) => {
         confirmAlert({
             customUI: ({ onClose }) => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import TextbookOutline from "@/components/textbooks/TextbookOutline";
 
-import { loadTextbook } from "@/helpers/electronFileSystem";
+import {loadTextbook} from "@/helpers/electronFileSystem";
 
 import '@/assets/sass/Curriculum/TextbookSidebar.scss'
-import {Button, Spacer, Switch} from "@nextui-org/react";
-import { FiUpload, FiDownload, FiRefreshCcw } from "react-icons/fi";
+import {Button, Switch} from "@nextui-org/react";
+import {FiDownload, FiRefreshCcw, FiUpload} from "react-icons/fi";
 import {useRecoilState} from "recoil";
 import {quickLoadState} from "@/utils/States";
 
@@ -28,10 +28,8 @@ const TextbookSidebar = ({
     const [quickLoad, setQuickLoad] = useRecoilState(quickLoadState);
 
     const downloadJson = () => {
-        const saveText = JSON.stringify(JSONBook, null, "\t");
-
         // file setting
-        const text = saveText;
+        const text = JSON.stringify(JSONBook, null, "\t");
         const name = "textbook.json";
         const type = "text/plain";
 
@@ -96,26 +94,6 @@ const TextbookSidebar = ({
         reader.onerror = error => reject(error);
     });
 
-    const onFolderChange = async (event) => {
-        const os = window.require('os');
-        let files = event.target.files;
-        for(const file of files) {
-            let folders, name;
-            console.log("platform: ",os.platform())
-            if (os.platform() === "win32") {
-                folders = file.path.split('\\');
-                name = folders[folders.length-2] + "/" + folders[folders.length-1];
-            } else {
-                folders = file.path.split('/');
-                name = folders[folders.length-2] + "/" + folders[folders.length-1];
-            }
-            //saveImage(name, await toBase64(file));
-            const binary = await toBase64(file);
-            console.log(file);
-            addImageLib(name, binary);
-        }
-    }
-
     // const onJsonChange = (event) => {
     //     var reader = new FileReader();
     //     let json = event.target.files[0];
@@ -128,8 +106,6 @@ const TextbookSidebar = ({
     //     reader.onload = function ( event ) { success( event.target.result ) };
     //     reader.readAsText( json );
     // }
-
-    console.log("isopen" , isOpen)
 
     return (
         <div className={"textbook-sidebar" + (isOpen? "" : " closed") + (textbookCompleteCallback? " fixed" : "")}>
@@ -154,48 +130,47 @@ const TextbookSidebar = ({
                 addProblem={addProblem}
             />
             <hr />
-            <Button.Group color={"gradient"} ghost size={"sm"}>
-                <Button>
-                    <FiDownload style={{marginRight: 10}}/>
-                    <label htmlFor={"convert-file"} style={{marginTop: 10}}>
-                        파일 로드
-                    </label>
-                    {/*<input type="file" name="json" onChange={convertToNewJsonBook} id={"convert-file"} style={{display: 'none'}}/>*/}
-                    <input type="file" name="convertFile" id="convert-file" onChange={convertToNewJsonBook} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />
-                </Button>
-                <Button onClick={downloadJson}>
-                    <FiUpload style={{marginRight: 10}}/>
-                    <div>json 변환</div>
-                </Button>
-                <Button onClick={() => {setJSONBook(loadTextbook())}}>
-                    <FiRefreshCcw style={{marginRight: 10}}/>
-                    <div>퀵로드</div>
-                </Button>
-                {/*<Button>*/}
-                {/*    <FiDownload style={{marginRight: 10}}/>*/}
-                {/*    <label htmlFor={"convert-file"} style={{marginTop: 10}}>*/}
-                {/*        컨버터*/}
-                {/*    </label>*/}
-                {/*    /!*<input type="file" name="json" onChange={convertToNewJsonBook} id={"convert-file"} style={{display: 'none'}}/>*!/*/}
-                {/*    <input type="file" name="convertFile" id="convert-file" onChange={convertToNewJsonBook} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />*/}
-                {/*</Button>*/}
-                <Switch style={{marginLeft: 10}} checked={quickLoad} icon={<FiRefreshCcw />} onChange={(e) => {
-                    setQuickLoad(e.target.checked);
-                }}/>
-            </Button.Group>
+
+            <div style={{display: 'flex', alignItems: 'center'}}>
+                <Button.Group color={"gradient"} ghost size={"sm"}>
+                    <Button>
+                        <FiDownload style={{marginRight: 10}}/>
+                        <label htmlFor={"convert-file"} style={{marginTop: 10}}>
+                            파일 로드
+                        </label>
+                        {/*<input type="file" name="json" onChange={convertToNewJsonBook} id={"convert-file"} style={{display: 'none'}}/>*/}
+                        <input type="file" name="convertFile" id="convert-file" onChange={convertToNewJsonBook} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />
+                    </Button>
+                    <Button onClick={downloadJson}>
+                        <FiUpload style={{marginRight: 10}}/>
+                        <div>json 변환</div>
+                    </Button>
+                    <Button onClick={() => {setJSONBook(loadTextbook())}}>
+                        <FiRefreshCcw style={{marginRight: 10}}/>
+                        <div>퀵로드</div>
+                    </Button>
+                    {/*<Button>*/}
+                    {/*    <FiDownload style={{marginRight: 10}}/>*/}
+                    {/*    <label htmlFor={"convert-file"} style={{marginTop: 10}}>*/}
+                    {/*        컨버터*/}
+                    {/*    </label>*/}
+                    {/*    /!*<input type="file" name="json" onChange={convertToNewJsonBook} id={"convert-file"} style={{display: 'none'}}/>*!/*/}
+                    {/*    <input type="file" name="convertFile" id="convert-file" onChange={convertToNewJsonBook} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />*/}
+                    {/*</Button>*/}
+                </Button.Group>
+                <Switch
+                    style={{marginLeft: 10}}
+                    checked={quickLoad}
+                    icon={<FiRefreshCcw />}
+                    onChange={(e) => {
+                        setQuickLoad(e.target.checked);
+                    }}
+                />
+            </div>
 
             <hr />
-            <Button.Group color={'gradient'}>
-                <Button ghost>
-                    <label htmlFor={"get-images"} style={{marginTop: 10}}>
-                        이미지파일 한번에 업로드
-                    </label>
-                    <input type="file" name="myImage" id="get-images" onChange={onFolderChange} directory="" webkitdirectory="" multiple="" style={{display: 'none'}} />
-                </Button>
-            </Button.Group>
-            <hr />
 
-            v0.0.9
+            <div style={{fontSize: 20, marginLeft: 10}}>v 0.10.0</div>
         </div>
     )
 
