@@ -29,7 +29,7 @@ const TextbookContentView = ({
          deleteJSONBookItem
      }) => {
 
-    const {title} = data;
+    const title = data?.title;
 
     const text = useRef("");
     const code = useRef("");
@@ -39,7 +39,7 @@ const TextbookContentView = ({
 
     const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
-    const step_item_descriptions = data.components?.map((components_item, index) => {
+    const step_item_descriptions = data?.components?.map((components_item, index) => {
         let type = components_item.type;
 
         return (
@@ -107,7 +107,7 @@ const TextbookContentView = ({
         )
     })
 
-    const Step_item_problem = () => {
+    const StepItemProblem = () => {
         return (
             <ProblemContent number={title.slice(1)} count_for_key={title}/>
         )
@@ -138,7 +138,7 @@ const TextbookContentView = ({
 
                         {
                             title[0] === "#" ? (
-                                <Step_item_problem/>
+                                <StepItemProblem/>
                         ) : (
                             <>
                                 <ButtonGroup
