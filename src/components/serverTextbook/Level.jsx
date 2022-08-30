@@ -212,7 +212,7 @@ const Level = ({
                                                 )
                                             }
 
-                                            // 나머지는 서브 교재 -> 들여쓰기 적용
+                                            // 나머지는 서브 교재
                                             else {
                                                 return (
                                                     <div
@@ -258,6 +258,7 @@ const styles = {
         marginLeft: '5%',
         marginRight: '5%',
         marginTop: 20,
+        marginBottom: 30,
     },
     header: {
         fontSize: 18,
