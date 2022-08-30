@@ -33,7 +33,7 @@ jobs:
           node-version: '16'
           
       - name: Install dependencies
-        run: yarn install
+        run: npm install
         
       - name: Pack
         run: GH_TOKEN=${{ secrets.GH_TOKEN }} yarn electron:pack
