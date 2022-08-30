@@ -34,6 +34,7 @@ jobs:
         
       - name: Pack
         run: GH_TOKEN=${{ secrets.GH_TOKEN }} yarn electron:pack
+        shell: cmd
         
       - name: Copy build files
         run: |
@@ -42,7 +43,8 @@ jobs:
           cp dist/index.html build
           
       - name: Deploy
-        run: yarn deploy
+        run: GH_TOKEN=${{ secrets.GH_TOKEN }} yarn deploy
+        shell: cmd
         
       - uses: bbonkr/get-version-action@v1.0.4
         id: get_version
