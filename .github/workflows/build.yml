@@ -10,9 +10,6 @@ on:
       - "!*"
 
 jobs:
-
-
-
   build-windows:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -34,7 +31,7 @@ jobs:
         
       - name: Pack
         run: GH_TOKEN=${{ secrets.GH_TOKEN }} yarn electron:pack
-        shell: cmd
+        shell: bash
         
       - name: Copy build files
         run: |
@@ -44,7 +41,7 @@ jobs:
           
       - name: Deploy
         run: GH_TOKEN=${{ secrets.GH_TOKEN }} yarn deploy
-        shell: cmd
+        shell: bash
         
       - uses: bbonkr/get-version-action@v1.0.4
         id: get_version
