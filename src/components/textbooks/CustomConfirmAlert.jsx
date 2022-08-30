@@ -1,8 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Button, Input} from "@nextui-org/react";
-import useApi from "@/apis/useApi";
-import {getProblemList} from "@/apis/apiServices";
-import Loader from "@/components/guideComponents/Loader";
 import {ProblemViewer} from "./ProblemViewer";
 import "@/assets/sass/Components/CustomConfirmAlert.scss";
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState, useMemo, useReducer } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import '@/assets/sass/Curriculum/TextbookSidebar.scss';
 import '@/assets/sass/Classroom/NewClassroom.scss';
@@ -99,13 +99,13 @@ const NewClassroom = () =>{
 
         setJSONBook(newJSONBook);
     }
+
     // 6. item 이름 변경
     const changeItemTitle = (nowStepIndex, changeItemIndex, newItemTitle) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
         newJSONBook.textbook_contents[nowStepIndex].step_items[changeItemIndex].title = newItemTitle;
         setJSONBook(newJSONBook);
     }
-
 
     const addProblem = (nowStepIndex, lastItemIndex, number) => {
         let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
@@ -120,48 +120,43 @@ const NewClassroom = () =>{
         movePage(nowStepIndex, lastItemIndex + 1);
     }
 
-
     return (
-        <>
-            <div className="new-classroom fit-app">
-                <TextbookSidebar
-                    toggleSidebar={setSidebarOpen}
-                    textbookOnClickCallback={null}
-                    isOpen={sidebarOpen}
-                    JSONBook={JSONBook}
-                    setJSONBook={setJSONBook}
-                    movePage={movePage}
-                    addStep={addStep}
-                    deleteStep={deleteStep}
-                    changeStepTitle={changeStepTitle}
-                    addItem={addItem}
-                    deleteItem={deleteItem}
-                    changeItemTitle={changeItemTitle}
-                    addProblem={addProblem}
-                />
+        <div className="new-classroom fit-app">
+            <TextbookSidebar
+                toggleSidebar={setSidebarOpen}
+                textbookOnClickCallback={null}
+                isOpen={sidebarOpen}
+                JSONBook={JSONBook}
+                setJSONBook={setJSONBook}
+                movePage={movePage}
+                addStep={addStep}
+                deleteStep={deleteStep}
+                changeStepTitle={changeStepTitle}
+                addItem={addItem}
+                deleteItem={deleteItem}
+                changeItemTitle={changeItemTitle}
+                addProblem={addProblem}
+            />
 
-                <ServerTextbookSidebar />
+            <ServerTextbookSidebar />
 
-                <div className="classroom-textbook-header">
-                    <span onClick={()=>{setSidebarOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open</span>
-                    <span onClick={()=>{setServerTextbookOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open server</span>
-                </div>
+            <div className="classroom-textbook-header">
+                <span onClick={()=>{setSidebarOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open</span>
+                <span onClick={()=>{setServerTextbookOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open server</span>
+            </div>
 
-                {
-                    JSONBook.textbook_contents ? (
-                        <div>
+            {
+                JSONBook.textbook_contents ? (
+                    <div>
                         <ClassroomFooter JSONBook={JSONBook} />
                         <TextbookContentView
-                        JSONLoading={false}
-                        data={JSONBook.textbook_contents[stepIndex]?.step_items[itemIndex] ? JSONBook.textbook_contents[stepIndex].step_items[itemIndex] : null}
-
+                            JSONLoading={false}
+                            data={JSONBook.textbook_contents[stepIndex]?.step_items[itemIndex] ? JSONBook.textbook_contents[stepIndex].step_items[itemIndex] : null}
                         />
-                        </div>
-                    ) : null
-                }
-
-            </div>
-        </>
+                    </div>
+                ) : null
+            }
+        </div>
     )
 }
 

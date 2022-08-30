@@ -22,11 +22,7 @@ import {Card} from "@/components/Card";
 
 const TextbookContentView = ({
          data,
-         JSONLoading,
-         addDesc,
-         changeDesc,
-         addCode,
-         deleteJSONBookItem
+         JSONLoading
      }) => {
 
     const title = data?.title;
@@ -138,7 +134,7 @@ const TextbookContentView = ({
 
                         {
                             title[0] === "#" ? (
-                                <StepItemProblem/>
+                                <StepItemProblem />
                         ) : (
                             <>
                                 <ButtonGroup
