@@ -10,7 +10,7 @@ on:
       - "!*"
 
 jobs:
-  build:
+  build-mac:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -98,6 +98,92 @@ jobs:
           mv dist/topolar_textbook_editor-${{ steps.get_version.outputs.version }}.dmg dist/release
           mv dist/topolar_textbook_editor-${{ steps.get_version.outputs.version }}-mac.zip dist/release
 
+      - name: Upload Assets
+        uses: csexton/release-asset-action@v2
+        with:
+          pattern: "dist/release/*"
+          github-token: ${{ secrets.GH_TOKEN }}
+          release-url: ${{ steps.release_drafter.outputs.upload_url }}
+
+
+  build-windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest] #[macos-latest, ubuntu-latest, windows-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          
+      - name: Install Node.js, Npm
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      - name: Install dependencies
+        run: yarn install
+        
+      - name: Pack
+        run: GH_TOKEN=${{ secrets.GH_TOKEN }} yarn electron:pack
+        
+      - name: Copy build files
+        run: |
+          mkdir build
+          cp -r dist/assets build
+          cp dist/index.html build
+          
+      - name: Deploy
+        run: |
+          GH_TOKEN=${{ secrets.GH_TOKEN }} yarn deploy       
+      - uses: bbonkr/get-version-action@v1.0.4
+        id: get_version
+        with:
+          project: "./package.json"
+
+      - name: check git tag
+        uses: bbonkr/git-tag-check-action@v1.0.9
+        id: gitTagCheck 
+        with:
+          tag: "v${{ steps.get_version.outputs.version }}"
+          github_token: ${{ secrets.GH_TOKEN }}
+
+      - name: package-version-to-git-tag
+        uses: pkgdeps/git-tag-action@v2
+        if: ${{ steps.gitTagCheck.outputs.tag == '' }}
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          github_repo: ${{ github.repository }}
+          version: ${{ steps.get_version.outputs.version }}
+          git_commit_sha: ${{ github.sha }}
+          git_tag_prefix: "v"
+
+      - name: Release Drafter
+        id: release_drafter
+        if: ${{ steps.gitTagCheck.outputs.tag == '' }}
+        uses: release-drafter/release-drafter@v5
+        with:
+          config-name: release-drafter.yml
+          version: "v${{ steps.get_version.outputs.version }}"
+          publish: true
+          # prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Check Upload Url
+        if: ${{ steps.gitTagCheck.outputs.tag == '' }}
+        run: echo ${{ steps.release_drafter.outputs.upload_url }}
+        
+      - name: Change exe name
+        run: mv "dist/topolar_textbook_editor Setup ${{ steps.get_version.outputs.version }}.exe" "dist/topolar_textbook_editor-Setup-${{ steps.get_version.outputs.version }}.exe"
+        
+      - name: Change assets files dir
+        run: |
+          mkdir dist/release
+          mv dist/latest.yml dist/release
+          mv dist/topolar_textbook_editor-Setup-${{ steps.get_version.outputs.version }}.exe dist/release
+          
       - name: Upload Assets
         uses: csexton/release-asset-action@v2
         with:
