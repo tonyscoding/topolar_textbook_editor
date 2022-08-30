@@ -46,7 +46,6 @@ jobs:
           
       - name: Deploy
         run: |
-          GH_TOKEN=${{ secrets.GH_TOKEN }} yarn deploy
           GH_TOKEN=${{ secrets.GH_TOKEN }} yarn deploy:mac        
 
       - uses: bbonkr/get-version-action@v1.0.4
@@ -92,15 +91,10 @@ jobs:
         if: ${{ steps.gitTagCheck.outputs.tag == '' }}
         run: echo ${{ steps.release_drafter.outputs.upload_url }}
         
-      - name: Change exe name
-        run: mv "dist/topolar_textbook_editor Setup ${{ steps.get_version.outputs.version }}.exe" "dist/topolar_textbook_editor-Setup-${{ steps.get_version.outputs.version }}.exe"
-        
       - name: Change assets files dir
         run: |
           mkdir dist/release
-          mv dist/latest.yml dist/release
           mv dist/latest-mac.yml dist/release
-          mv dist/topolar_textbook_editor-Setup-${{ steps.get_version.outputs.version }}.exe dist/release
           mv dist/topolar_textbook_editor-${{ steps.get_version.outputs.version }}.dmg dist/release
           mv dist/topolar_textbook_editor-${{ steps.get_version.outputs.version }}-mac.zip dist/release
 
