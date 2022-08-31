@@ -1,18 +1,10 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import '@/assets/sass/Curriculum/TextbookBrowser.scss'
-import reactHtmlParser from 'react-html-parser';
-
-import {loadImage} from '@/helpers/electronFileSystem'
-
-import Button from '@/components/Button';
 
 import DescContent from '@/components/textbooks/contents/DescContent';
 import CodeContent from '@/components/textbooks/contents/CodeContent';
 import LinkContent from '@/components/textbooks/contents/LinkContent';
 import VideoContent from '@/components/textbooks/contents/VideoContent';
-import ImageContent from '@/components/textbooks/contents/ImageContent';
-import Markdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
 
 import ButtonGroup from "@/components/textbooks/ButtonGroup";
 

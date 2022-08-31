@@ -30,135 +30,136 @@ export const ButtonGroup = ({
 			saveTextbook(newJSONBook);
 		}
 	}
-	    // desc 추가
-		const addDesc = (nowStepIndex, nowItemIndex, index, newDesc, cardIndex=null) => {
-			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-			const content = {
-				"type": "desc",
-				"description": newDesc
-			}
 
-			if(cardIndex == null) {
-				newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
-			} else {
-				newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
-			}
-
-			handleSaveTextbook(newJSONBook);
-			setJSONBook(newJSONBook);
+	// desc 추가
+	const addDesc = (nowStepIndex, nowItemIndex, index, newDesc, cardIndex=null) => {
+		let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+		const content = {
+			"type": "desc",
+			"description": newDesc
 		}
 
-		// code 추가
-		const addCode = (nowStepIndex, nowItemIndex, index, newCode, language, cardIndex=null) => {
-			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-	
-			const content = {
-				"type": "code",
-				"code": "~~~" + language + " \n" + newCode + "\n ~~~"
-			}
-
-			if(cardIndex == null) {
-				newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
-			} else {
-				newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
-			}
-
-			handleSaveTextbook(newJSONBook);
-			setJSONBook(newJSONBook);
+		if(cardIndex == null) {
+			newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
+		} else {
+			newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
 		}
 
-		// code 수정(미완성)
-		const changeCode = (nowStepIndex, nowItemIndex, changeCodeIndex, newCode) => {
-			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-			newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex][changeCodeIndex] = newCode;
-			setJSONBook(newJSONBook);
+		handleSaveTextbook(newJSONBook);
+		setJSONBook(newJSONBook);
+	}
+
+	// code 추가
+	const addCode = (nowStepIndex, nowItemIndex, index, newCode, language, cardIndex=null) => {
+		let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+
+		const content = {
+			"type": "code",
+			"code": "~~~" + language + " \n" + newCode + "\n ~~~"
 		}
 
-		// content 삭제
-		const deleteJSONBookItem = (nowStepIndex, nowItemIndex, deleteIndex, cardIndex=null) => {
-			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-
-			if(cardIndex === null) {
-				newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(deleteIndex, 1);
-			} else {
-				newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components[deleteIndex].components.splice(cardIndex, 1);
-			}
-	
-			setJSONBook(newJSONBook);
+		if(cardIndex == null) {
+			newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, content);
+		} else {
+			newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
 		}
 
-		// single_card 추가
-		const addSingleCard = (nowStepIndex, nowItemIndex, index) => {
-			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-	
-			newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
-				"type": "single_card",
-				"title" : "제목",
-				"components": [
-					{
-						"type": "desc",
-						"description": "수정하세요"
-					}
-				]
-			})
-			handleSaveTextbook(newJSONBook);
-			setJSONBook(newJSONBook);
-		}
-	
-		// double_card 추가
-		const addDoubleCard = (nowStepIndex, nowItemIndex, index) => {
-			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-	
-			newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
-				"type": "double_card",
-				"first_components": [
-					{
-						"type": "desc",
-						"description": "수정하세요"
-					}
-				],
-				"second_components": [
-					{
-						"type": "desc",
-						"description": "수정하세요"
-					}
-				]
-			})
-			handleSaveTextbook(newJSONBook);
-			setJSONBook(newJSONBook);
+		handleSaveTextbook(newJSONBook);
+		setJSONBook(newJSONBook);
+	}
+
+	// code 수정(미완성)
+	const changeCode = (nowStepIndex, nowItemIndex, changeCodeIndex, newCode) => {
+		let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+		newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex][changeCodeIndex] = newCode;
+		setJSONBook(newJSONBook);
+	}
+
+	// content 삭제
+	const deleteJSONBookItem = (nowStepIndex, nowItemIndex, deleteIndex, cardIndex=null) => {
+		let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+
+		if(cardIndex === null) {
+			newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(deleteIndex, 1);
+		} else {
+			newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components[deleteIndex].components.splice(cardIndex, 1);
 		}
 
-		// link 추가
-		const addLink = (nowStepIndex, nowItemIndex, index, textbook_id, indicator, cardIndex=null) => {
-			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-	
-			const content = {
-				"type": "link",
-				"textbook_id": textbook_id,
-				"indicator": indicator
-			}
-	
-			if(cardIndex === null) {
-				newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, content);
-			} else {
-				newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components[index].components.splice(cardIndex, 0, content);
-			}
+		setJSONBook(newJSONBook);
+	}
 
-			handleSaveTextbook(newJSONBook);
-			setJSONBook(newJSONBook);
+	// single_card 추가
+	const addSingleCard = (nowStepIndex, nowItemIndex, index) => {
+		let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+
+		newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
+			"type": "single_card",
+			"title" : "제목",
+			"components": [
+				{
+					"type": "desc",
+					"description": "수정하세요"
+				}
+			]
+		})
+		handleSaveTextbook(newJSONBook);
+		setJSONBook(newJSONBook);
+	}
+
+	// double_card 추가
+	const addDoubleCard = (nowStepIndex, nowItemIndex, index) => {
+		let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+
+		newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
+			"type": "double_card",
+			"first_components": [
+				{
+					"type": "desc",
+					"description": "수정하세요"
+				}
+			],
+			"second_components": [
+				{
+					"type": "desc",
+					"description": "수정하세요"
+				}
+			]
+		})
+		handleSaveTextbook(newJSONBook);
+		setJSONBook(newJSONBook);
+	}
+
+	// link 추가
+	const addLink = (nowStepIndex, nowItemIndex, index, textbook_id, indicator, cardIndex=null) => {
+		let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+
+		const content = {
+			"type": "link",
+			"textbook_id": textbook_id,
+			"indicator": indicator
 		}
 
-		// video 추가
-		const addVideo = (nowStepIndex, nowItemIndex, index, videoUrl) => {
-			let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-			newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
-				"type": "video",
-				"url": videoUrl
-			})
-
-			handleSaveTextbook(newJSONBook);
-			setJSONBook(newJSONBook);
+		if(cardIndex === null) {
+			newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, content);
+		} else {
+			newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components[index].components.splice(cardIndex, 0, content);
 		}
+
+		handleSaveTextbook(newJSONBook);
+		setJSONBook(newJSONBook);
+	}
+
+	// video 추가
+	const addVideo = (nowStepIndex, nowItemIndex, index, videoUrl) => {
+		let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+		newJSONBook.textbook_contents[nowStepIndex].step_items[nowItemIndex].components.splice(index, 0, {
+			"type": "video",
+			"url": videoUrl
+		})
+
+		handleSaveTextbook(newJSONBook);
+		setJSONBook(newJSONBook);
+	}
 
 	const alert = (index) => {
 		confirmAlert({
@@ -258,69 +259,6 @@ export const ButtonGroup = ({
 						제거
 					</Button> : null
 			}
-
-
-			{/*<Button*/}
-			{/*	size="small"*/}
-			{/*	type="fill"*/}
-			{/*	color="black"*/}
-			{/*	onClick={() => {*/}
-			{/*		addDesc(stepIndex, itemIndex, index + 1, text.current ? text.current : "<p><br /></p>");*/}
-			{/*	}}*/}
-			{/*>*/}
-			{/*	desc 추가*/}
-			{/*</Button>*/}
-
-			{/*<Button*/}
-			{/*	size="small"*/}
-			{/*	type="fill"*/}
-			{/*	color="black"*/}
-			{/*	onClick={() => {*/}
-			{/*		addCode(stepIndex, itemIndex, index + 1, code.current, codeLanguage.current.saveName);*/}
-			{/*	}}*/}
-			{/*>*/}
-			{/*	code 추가*/}
-			{/*</Button>*/}
-
-			{/*<Button*/}
-			{/*	size="small"*/}
-			{/*	type="fill"*/}
-			{/*	color="black"*/}
-			{/*	onClick={() => {*/}
-			{/*		if (link.current?.textbook_id && link.current?.indicator) {*/}
-			{/*			addLink(stepIndex, itemIndex, index + 1, link.current.textbook_id, link.current.indicator);*/}
-			{/*		} else {*/}
-			{/*			alert("교재 아이디와 페이지를 입력해주세요.");*/}
-			{/*		}*/}
-			{/*	}}*/}
-			{/*>*/}
-			{/*	link 추가*/}
-			{/*</Button>*/}
-
-			{/*<Button*/}
-			{/*	size="small"*/}
-			{/*	type="fill"*/}
-			{/*	color="black"*/}
-			{/*	onClick={() => {*/}
-			{/*		addVideo(stepIndex, itemIndex, index + 1, videoUrl.current);*/}
-			{/*	}}*/}
-			{/*>*/}
-			{/*	video 추가*/}
-			{/*</Button>*/}
-
-			{/*{*/}
-			{/*	index > -1 ?*/}
-			{/*		<Button*/}
-			{/*			size="small"*/}
-			{/*			type="fill"*/}
-			{/*			color="red"*/}
-			{/*			onClick={() => {*/}
-			{/*				deleteJSONBookItem(stepIndex, itemIndex, index);*/}
-			{/*			}}*/}
-			{/*		>*/}
-			{/*			제거*/}
-			{/*		</Button> : null*/}
-			{/*}*/}
 		</div>
 	);
 }
