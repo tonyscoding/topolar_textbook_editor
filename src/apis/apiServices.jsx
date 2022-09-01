@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // URL
-export const API_URL = process.env.REACT_API_URL;
-export const API_PROTOCOL = process.env.REACT_API_PROTOCOL;
+export const API_URL = import.meta.env.VITE_API_URL;
+export const API_PROTOCOL = import.meta.env.VITE_API_PROTOCOL;
 
 const URL = API_PROTOCOL + API_URL;
 
