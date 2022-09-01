@@ -1,11 +1,8 @@
 import axios from "axios";
 
 // URL
-export const API_URL = 'www.topolar.co.kr';
-// export const API_URL = 'tocol.info';
-// export const API_URL = '127.0.0.1:8000';
-export const API_PROTOCOL = "https://";
-// export const API_PROTOCOL = "http://";
+export const API_URL = process.env.REACT_API_URL;
+export const API_PROTOCOL = process.env.REACT_API_PROTOCOL;
 
 const URL = API_PROTOCOL + API_URL;
 

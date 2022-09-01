@@ -9,12 +9,12 @@
     "preview": "vite preview",
     "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
     "electron:pack": "yarn build && electron-builder build -c.extraMetadata.main=electron/electron.js",
-    "electron:dev": "concurrently -k \"cross-env BROWSER=none yarn dev\" \"electron .\"",
+    "electron:dev": "env-cmd -f .env.development concurrently -k \"cross-env BROWSER=none yarn dev\" \"electron .\"",
     "electron:builder": "electron-builder",
-    "build:for:electron": "cross-env ELECTRON=true vite build",
-    "app:build": "yarn build:for:electron && yarn electron:builder",
-    "deploy": "electron-builder --windows --x64",
-    "deploy:mac": "electron-builder --mac"
+    "build:for:electron": "env-cmd -f .env.production cross-env ELECTRON=true vite build",
+    "app:build": "env-cmd -f .env.production yarn build:for:electron && yarn electron:builder",
+    "deploy": "env-cmd -f .env.production electron-builder --win --x64",
+    "deploy:mac": "env-cmd -f .env.production electron-builder --mac"
   },
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.1",
@@ -28,6 +28,7 @@
     "electron-log": "^4.4.7",
     "electron-store": "^8.0.1",
     "electron-updater": "^5.0.1",
+    "env-cmd": "^10.1.0",
     "events": "^3.3.0",
     "jquery": "^3.6.1",
     "jszip": "^3.10.1",

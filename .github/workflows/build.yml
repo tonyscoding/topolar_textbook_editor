@@ -48,7 +48,7 @@ jobs:
         run: yarn install
         
       - name: Pack
-        run: GH_TOKEN=${{ secrets.GH_TOKEN }} yarn electron:pack
+        run: yarn build:for:electron
         
       - name: Copy build files
         run: |
@@ -148,7 +148,7 @@ jobs:
         run: yarn install
         
       - name: Pack
-        run: GH_TOKEN=${{ secrets.GH_TOKEN }} yarn electron:pack
+        run: yarn build:for:electron
         shell: bash
         
       - name: Copy build files
