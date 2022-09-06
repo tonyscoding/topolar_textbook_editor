@@ -23,7 +23,7 @@ const Course = ({
         <div style={styles.courseContainer}>
             {
                 curriculum[selectedCourse] ?
-                    Object.keys(curriculum[selectedCourse]).sort().map((course, index) => {
+                    Object.keys(curriculum[selectedCourse]).sort((a, b) => curriculum[selectedCourse][a].order - curriculum[selectedCourse][b].order).map((course, index) => {
                         return (
                             <div key={course.id} style={styles.courseItem}>
                                 <div style={styles.courseText}>
