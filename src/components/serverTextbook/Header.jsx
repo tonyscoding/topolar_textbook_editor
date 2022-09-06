@@ -46,7 +46,7 @@ const Header = ({
         <div style={styles.header}>
             <div style={styles.headerItems}>
                 {
-                    curriculumKeys !== [] ?
+                    curriculumKeys ?
                     curriculumKeys.map((item, index) => {
                         return (
                             <div
