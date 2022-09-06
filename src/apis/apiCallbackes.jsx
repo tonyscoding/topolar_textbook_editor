@@ -15,10 +15,12 @@ import {
     getCurriculum,
     getJSONTextbook,
     getTextbook,
-    getCourseList, uploadFile, createTextbook, getProblem, deleteTextbook, getProblemList
+    getCourseList, uploadFile, createTextbook, getProblem, deleteTextbook, getProblemList, updateTextbook
 } from "@/apis/apiServices";
 import getAuthHeader from "@/apis/authHeader";
 import JSZip from "jszip";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const useLoginCallback = () => {
     return useRecoilCallback(({snapshot, set}) =>
@@ -36,8 +38,25 @@ export const useCurriculumCallback = () => {
     const user = useRecoilValue(userState);
     return useRecoilCallback(({snapshot, set}) =>
         async () => {
-            const {data} = await getCurriculum(getAuthHeader(user?.token));
-            console.log(data)
+            let {data} = await getCurriculum(getAuthHeader(user?.token));
+            console.log('Curriculum', data)
+
+            for (let courseLevel in data) {
+                for (let course in data[courseLevel]) {
+                    data[courseLevel][course].order = parseInt(course);
+                }
+            }
+
+            // 특강 처리
+            data['002-ls'] = {};
+            data["002-ls"]['6'] = data["002"]['6'];
+            data["002-ls"]['7'] = data["002"]['7'];
+            data["002-ls"]['8'] = data["002"]['8'];
+
+            delete data["002"]['6'];
+            delete data["002"]['7'];
+            delete data["002"]['8'];
+
             set(curriculumState, data);
         },
         [user],
@@ -86,41 +105,27 @@ export const useGetCourseListCallback = () => {
     );
 }
 
-export const useUploadTextbookCallback = path => {
+export const useUploadTextbookCallback = () => {
     const user = useRecoilValue(userState);
     const jsonBook = useRecoilValue(JSONbookState);
 
     return useRecoilCallback(({snapshot, set}) =>
-            async (textbook) => {
+            async (id) => {
                 const json = JSON.stringify(jsonBook, null, "\t");
 
                 const zip = new JSZip();
                 zip.file('textbook.json', json);
                 zip.generateAsync({type:"blob"})
                     .then(async function(file) {
-
                         console.log(file)
                         let formData = new FormData();
 
                         formData.append("file", file);
                         formData.append("textbook_type", "2");
 
-                        const {data} = await uploadFile(getAuthHeader(user?.token), formData);
+                        const {data} = await updateTextbook(getAuthHeader(user?.token), formData, id);
+
                         console.log(data);
-
-                        let textbookFormData = new FormData();
-                        textbookFormData.append("name", textbook.name);
-                        textbookFormData.append("level", textbook.level);
-                        textbookFormData.append("course", textbook.course);
-                        textbookFormData.append("stage", "1");
-                        textbookFormData.append("language_code", textbook.language_code);
-                        textbookFormData.append("language", textbook.language);
-                        textbookFormData.append("order_num", textbook.order_num);
-                        textbookFormData.append("is_essential", "false");
-                        textbookFormData.append("file", data.id);
-
-                        const {res} = await createTextbook(getAuthHeader(user?.token), textbookFormData);
-                        console.log(res);
                 });
             },
         [user, jsonBook],
@@ -135,6 +140,50 @@ export const useDeleteTextbookCallback = () => {
                 console.log(data);
             },
         [user],
+    );
+}
+
+export const useUpdateTextbookCallback = () => {
+    const user = useRecoilValue(userState);
+    const jsonBook = useRecoilValue(JSONbookState);
+
+    return useRecoilCallback(({snapshot, set}) =>
+            async (textbook) => {
+                const json = JSON.stringify(jsonBook, null, "\t");
+
+                const zip = new JSZip();
+                zip.file('textbook.json', json);
+                zip.generateAsync({type:"blob"})
+                    .then(async function(file) {
+                        console.log(file)
+                        let formData = new FormData();
+
+                        formData.append("file", file);
+                        formData.append("textbook_type", "2");
+
+                        const {data} = await uploadFile(getAuthHeader(user?.token), formData);
+                        console.log(data);
+
+                        if (textbook?.language_code === '002-ls') {
+                            textbook.language_code = '002';
+                        }
+
+                        let textbookFormData = new FormData();
+                        textbookFormData.append("name", textbook.name);
+                        textbookFormData.append("level", textbook.level);
+                        textbookFormData.append("course", textbook.course);
+                        textbookFormData.append("stage", "1");
+                        textbookFormData.append("language_code", textbook.language_code);
+                        textbookFormData.append("language", textbook.language);
+                        textbookFormData.append("order_num", textbook.order_num);
+                        textbookFormData.append("is_essential", "false");
+                        textbookFormData.append("file", data.id);
+
+                        const {res} = await updateTextbook(getAuthHeader(user?.token), textbookFormData);
+                        console.log(res);
+                    });
+            },
+        [user, jsonBook],
     );
 }
 

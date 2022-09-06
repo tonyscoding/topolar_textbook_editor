@@ -1,12 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { curriculumState, levelItemState } from "@/utils/States";
 
 
 const headerItem = {
-    "001": "모험가",
-    "002": "개척가",
-    "003": "숙련가",
+    "001": {
+        name: "모험가",
+        order: 1
+    },
+    "002": {
+        name: "개척가",
+        order: 2
+    },
+    "003": {
+        name: "숙련가",
+        order: 3
+    },
+    '002-ls': {
+        name: "특강",
+        order: 4
+    },
 }
 
 const Header = ({
@@ -18,11 +31,23 @@ const Header = ({
     const curriculum = useRecoilValue(curriculumState);
     const setLevelItem = useSetRecoilState(levelItemState);
 
+    const [curriculumKeys, setCurriculumKeys] = useState([]);
+
+    useEffect(() => {
+        if (curriculum) {
+            setCurriculumKeys(Object.keys(curriculum).sort((a, b) => {
+                return headerItem[a].order - headerItem[b].order;
+            }));
+        }
+    }, [curriculum]);
+
+
     return (
         <div style={styles.header}>
             <div style={styles.headerItems}>
                 {
-                    Object.keys(curriculum).sort().map((item, index) => {
+                    curriculumKeys ?
+                    curriculumKeys.map((item, index) => {
                         return (
                             <div
                                 key={item.id}
@@ -34,10 +59,10 @@ const Header = ({
                                     setLevelItem({});
                                 }}
                             >
-                                {headerItem[item]}
+                                {headerItem[item].name}
                             </div>
                         )
-                    })
+                    }) : null
                 }
             </div>
         </div>
@@ -57,7 +82,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '40%',
+        width: '50%',
         marginLeft: '5%',
         cursor: 'pointer',
     },
