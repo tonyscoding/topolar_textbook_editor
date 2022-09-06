@@ -29,6 +29,7 @@ const Level = ({
 }) => {
     const uploadTextbook =  useUploadTextbookCallback();
     const deleteTextbook = useDeleteTextbookCallback();
+    const updateTextbook = useUploadTextbookCallback();
     const getTextbookListByLevel = useGetTextbookListByLevelCallback();
 
 
@@ -158,6 +159,29 @@ const Level = ({
         })
     }
 
+    /**
+     * @description 교재 수정 함수
+     * @param {string, number} id
+     */
+    const updateAlert = (id) => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <CustomAlert
+                        message={"정말로 수정하시겠습니까?"}
+                        onClose={onClose}
+                        onConfirm={() => {
+                            updateTextbook(id)
+                                .then(() => {
+                                    getTextbookListByLevel(selectedLanguage, selectedLevel);
+                                });
+                        }}
+                    />
+                );
+            }
+        })
+    }
+
     return (
         <div style={styles.container}>
             <div style={styles.header}>{levelItem.description}</div>
@@ -201,7 +225,6 @@ const Level = ({
                                                     >
                                                         <div
                                                             style={styles.textbookListItemInfo}
-                                                            onClick={() => changeTextbook(itemIndex.id)}
                                                         >
                                                             <div style={{...styles.textbookListItemIndex, backgroundColor: languageColor[nowLanguage]?.indexColor ? languageColor[nowLanguage].indexColor : "#252525"}}>
                                                                 {item.padStart(2, '0')}
@@ -211,7 +234,10 @@ const Level = ({
                                                                 placement={"right"}
                                                                 shadow={false}
                                                             >
-                                                                <div style={{cursor: 'pointer'}}>
+                                                                <div
+                                                                    style={{cursor: 'pointer'}}
+                                                                    onClick={() => changeTextbook(itemIndex.id)}
+                                                                >
                                                                     {levelItem.data[item][index].name}
                                                                 </div>
                                                             </Tooltip>
@@ -219,7 +245,7 @@ const Level = ({
                                                         <div style={{display: 'flex', flexDirection: 'row'}}>
                                                             <div
                                                                 onClick={() => {
-                                                                    deleteAlert(levelItem.data[item][index].id);
+                                                                    updateAlert(levelItem.data[item][index].id);
                                                                 }}
                                                             >
                                                                 <BiPencil size={20} style={{marginRight: 10}} />
@@ -249,21 +275,23 @@ const Level = ({
                                                     <div
                                                         style={{...styles.textbookListItem, width: '80%', marginLeft: '8%'}}
                                                         key={itemIndex.id}
-                                                        onClick={() => changeTextbook(itemIndex.id)}
                                                     >
                                                         <Tooltip
                                                             content={<TextbookToolTip textbook={itemIndex} />}
                                                             placement={"right"}
                                                             shadow={false}
                                                         >
-                                                            <div style={{cursor: 'pointer'}}>
+                                                            <div
+                                                                style={{cursor: 'pointer'}}
+                                                                onClick={() => changeTextbook(itemIndex.id)}
+                                                            >
                                                             {levelItem.data[item][index].name}
                                                             </div>
                                                         </Tooltip>
                                                         <div style={{display: 'flex', flexDirection: 'row'}}>
                                                             <div
                                                                 onClick={() => {
-                                                                    deleteAlert(levelItem.data[item][index].id);
+                                                                    updateAlert(levelItem.data[item][index].id);
                                                                 }}
                                                             >
                                                                 <BiPencil size={20} style={{marginRight: 10}} />

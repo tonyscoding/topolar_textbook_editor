@@ -34,6 +34,10 @@ export const deleteTextbook = (authHeader, textbookId) => {
     return axios.delete(`${URL}/api/textbook/${textbookId}/`, authHeader);
 }
 
+export const updateTextbook = (authHeader, file, id) => {
+    return axios.patch(`${URL}/api/textbook/${id}/`, file, authHeader);
+}
+
 export const uploadFile = (authHeader, file) => {
     return axios.put(`${URL}/api/textbook/upload/`, file, authHeader);
 }

@@ -15,7 +15,7 @@ import {
     getCurriculum,
     getJSONTextbook,
     getTextbook,
-    getCourseList, uploadFile, createTextbook, getProblem, deleteTextbook, getProblemList
+    getCourseList, uploadFile, createTextbook, getProblem, deleteTextbook, getProblemList, updateTextbook
 } from "@/apis/apiServices";
 import getAuthHeader from "@/apis/authHeader";
 import JSZip from "jszip";
@@ -105,7 +105,45 @@ export const useGetCourseListCallback = () => {
     );
 }
 
-export const useUploadTextbookCallback = path => {
+export const useUploadTextbookCallback = () => {
+    const user = useRecoilValue(userState);
+    const jsonBook = useRecoilValue(JSONbookState);
+
+    return useRecoilCallback(({snapshot, set}) =>
+            async (id) => {
+                const json = JSON.stringify(jsonBook, null, "\t");
+
+                const zip = new JSZip();
+                zip.file('textbook.json', json);
+                zip.generateAsync({type:"blob"})
+                    .then(async function(file) {
+                        console.log(file)
+                        let formData = new FormData();
+
+                        formData.append("file", file);
+                        formData.append("textbook_type", "2");
+
+                        const {data} = await updateTextbook(getAuthHeader(user?.token), formData, id);
+
+                        console.log(data);
+                });
+            },
+        [user, jsonBook],
+    );
+}
+
+export const useDeleteTextbookCallback = () => {
+    const user = useRecoilValue(userState);
+    return useRecoilCallback(({snapshot, set}) =>
+            async (id) => {
+                const {data} = await deleteTextbook(getAuthHeader(user?.token), id);
+                console.log(data);
+            },
+        [user],
+    );
+}
+
+export const useUpdateTextbookCallback = () => {
     const user = useRecoilValue(userState);
     const jsonBook = useRecoilValue(JSONbookState);
 
@@ -117,7 +155,6 @@ export const useUploadTextbookCallback = path => {
                 zip.file('textbook.json', json);
                 zip.generateAsync({type:"blob"})
                     .then(async function(file) {
-
                         console.log(file)
                         let formData = new FormData();
 
@@ -142,22 +179,11 @@ export const useUploadTextbookCallback = path => {
                         textbookFormData.append("is_essential", "false");
                         textbookFormData.append("file", data.id);
 
-                        const {res} = await createTextbook(getAuthHeader(user?.token), textbookFormData);
+                        const {res} = await updateTextbook(getAuthHeader(user?.token), textbookFormData);
                         console.log(res);
-                });
+                    });
             },
         [user, jsonBook],
-    );
-}
-
-export const useDeleteTextbookCallback = () => {
-    const user = useRecoilValue(userState);
-    return useRecoilCallback(({snapshot, set}) =>
-            async (id) => {
-                const {data} = await deleteTextbook(getAuthHeader(user?.token), id);
-                console.log(data);
-            },
-        [user],
     );
 }
 
