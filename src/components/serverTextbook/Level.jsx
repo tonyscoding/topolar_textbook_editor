@@ -163,12 +163,12 @@ const Level = ({
      * @description 교재 수정 함수
      * @param {string, number} id
      */
-    const updateAlert = (id) => {
+    const updateAlert = (id, name) => {
         confirmAlert({
             customUI: ({ onClose }) => {
                 return (
                     <CustomAlert
-                        message={"정말로 수정하시겠습니까?"}
+                        message={`[ ${name} ] 교재를 정말로 수정하시겠습니까?`}
                         onClose={onClose}
                         onConfirm={() => {
                             updateTextbook(id)
@@ -245,7 +245,7 @@ const Level = ({
                                                         <div style={{display: 'flex', flexDirection: 'row'}}>
                                                             <div
                                                                 onClick={() => {
-                                                                    updateAlert(levelItem.data[item][index].id);
+                                                                    updateAlert(levelItem.data[item][index].id, levelItem.data[item][index].name);
                                                                 }}
                                                             >
                                                                 <BiPencil size={20} style={{marginRight: 10}} />
@@ -291,7 +291,7 @@ const Level = ({
                                                         <div style={{display: 'flex', flexDirection: 'row'}}>
                                                             <div
                                                                 onClick={() => {
-                                                                    updateAlert(levelItem.data[item][index].id);
+                                                                    updateAlert(levelItem.data[item][index].id, levelItem.data[item][index].name);
                                                                 }}
                                                             >
                                                                 <BiPencil size={20} style={{marginRight: 10}} />
