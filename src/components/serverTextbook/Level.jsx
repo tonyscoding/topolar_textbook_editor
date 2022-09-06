@@ -8,7 +8,7 @@ import {
     useGetTextbookListByLevelCallback,
     useUploadTextbookCallback
 } from "@/apis/apiCallbackes";
-import {FiMinus, FiPlus, FiRefreshCw} from "react-icons/all";
+import {FiMinus, FiPlus, FiRefreshCw, BiPencil} from "react-icons/all";
 import CustomAlert from "@/components/textbooks/CustomAlert";
 import {Tooltip} from "@nextui-org/react";
 
@@ -222,6 +222,13 @@ const Level = ({
                                                                     deleteAlert(levelItem.data[item][index].id);
                                                                 }}
                                                             >
+                                                                <BiPencil size={20} style={{marginRight: 10}} />
+                                                            </div>
+                                                            <div
+                                                                onClick={() => {
+                                                                    deleteAlert(levelItem.data[item][index].id);
+                                                                }}
+                                                            >
                                                                 <FiMinus size={20} color={"red"} style={{marginRight: 10}} />
                                                             </div>
                                                             <div
@@ -253,12 +260,21 @@ const Level = ({
                                                             {levelItem.data[item][index].name}
                                                             </div>
                                                         </Tooltip>
-                                                        <div
-                                                            onClick={() => {
-                                                                deleteAlert(levelItem.data[item][index].id);
-                                                            }}
-                                                        >
-                                                            <FiMinus size={20} color={"red"} style={{marginRight: 18}} />
+                                                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                                                            <div
+                                                                onClick={() => {
+                                                                    deleteAlert(levelItem.data[item][index].id);
+                                                                }}
+                                                            >
+                                                                <BiPencil size={20} style={{marginRight: 10}} />
+                                                            </div>
+                                                            <div
+                                                                onClick={() => {
+                                                                    deleteAlert(levelItem.data[item][index].id);
+                                                                }}
+                                                            >
+                                                                <FiMinus size={20} color={"red"} style={{marginRight: 18}} />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 )

@@ -20,6 +20,8 @@ import {
 import getAuthHeader from "@/apis/authHeader";
 import JSZip from "jszip";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const useLoginCallback = () => {
     return useRecoilCallback(({snapshot, set}) =>
         async (body) => {
@@ -36,8 +38,25 @@ export const useCurriculumCallback = () => {
     const user = useRecoilValue(userState);
     return useRecoilCallback(({snapshot, set}) =>
         async () => {
-            const {data} = await getCurriculum(getAuthHeader(user?.token));
-            console.log(data)
+            let {data} = await getCurriculum(getAuthHeader(user?.token));
+            console.log('Curriculum', data)
+
+            for (let courseLevel in data) {
+                for (let course in data[courseLevel]) {
+                    data[courseLevel][course].order = parseInt(course);
+                }
+            }
+
+            // 특강 처리
+            data['002-ls'] = {};
+            data["002-ls"]['6'] = data["002"]['6'];
+            data["002-ls"]['7'] = data["002"]['7'];
+            data["002-ls"]['8'] = data["002"]['8'];
+
+            delete data["002"]['6'];
+            delete data["002"]['7'];
+            delete data["002"]['8'];
+
             set(curriculumState, data);
         },
         [user],
@@ -107,6 +126,10 @@ export const useUploadTextbookCallback = path => {
 
                         const {data} = await uploadFile(getAuthHeader(user?.token), formData);
                         console.log(data);
+
+                        if (textbook?.language_code === '002-ls') {
+                            textbook.language_code = '002';
+                        }
 
                         let textbookFormData = new FormData();
                         textbookFormData.append("name", textbook.name);
