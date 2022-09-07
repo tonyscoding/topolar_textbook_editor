@@ -44,7 +44,6 @@ jobs:
             ${{ runner.os }}-node-modules-
           
       - name: Install dependencies
-        if: steps.node-cache.outputs.cache-hit != 'true'
         run: yarn install
         
       - name: Pack
