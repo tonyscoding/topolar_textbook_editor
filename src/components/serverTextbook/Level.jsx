@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 import { courseListState, levelItemState } from "@/utils/States";
 import {
     useDeleteTextbookCallback,
-    useGetTextbookListByLevelCallback,
+    useGetTextbookListByLevelCallback, useUpdateTextbookCallback,
     useUploadTextbookCallback
 } from "@/apis/apiCallbackes";
 import {FiMinus, FiPlus, FiRefreshCw, BiPencil} from "react-icons/all";
@@ -29,7 +29,7 @@ const Level = ({
 }) => {
     const uploadTextbook =  useUploadTextbookCallback();
     const deleteTextbook = useDeleteTextbookCallback();
-    const updateTextbook = useUploadTextbookCallback();
+    const updateTextbook = useUpdateTextbookCallback();
     const getTextbookListByLevel = useGetTextbookListByLevelCallback();
 
 

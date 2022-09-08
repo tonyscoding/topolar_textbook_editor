@@ -105,7 +105,7 @@ export const useGetCourseListCallback = () => {
     );
 }
 
-export const useUploadTextbookCallback = () => {
+export const useUpdateTextbookCallback = () => {
     const user = useRecoilValue(userState);
     const jsonBook = useRecoilValue(JSONbookState);
 
@@ -143,7 +143,7 @@ export const useDeleteTextbookCallback = () => {
     );
 }
 
-export const useUpdateTextbookCallback = () => {
+export const useUploadTextbookCallback = () => {
     const user = useRecoilValue(userState);
     const jsonBook = useRecoilValue(JSONbookState);
 
@@ -179,7 +179,7 @@ export const useUpdateTextbookCallback = () => {
                         textbookFormData.append("is_essential", "false");
                         textbookFormData.append("file", data.id);
 
-                        const {res} = await updateTextbook(getAuthHeader(user?.token), textbookFormData);
+                        const {res} = await createTextbook(getAuthHeader(user?.token), textbookFormData);
                         console.log(res);
                     });
             },
