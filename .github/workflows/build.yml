@@ -20,50 +20,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      
-      - name: Add MacOS certs
-        run: chmod +x add-osx-cert.sh && ./add-osx-cert.sh
-        env:
-          MAC_CERT: ${{ secrets.MAC_CERT }}
-          MAC_CERT_PASSWORD: ${{ secrets.MAC_CERT_PASSWORD }}
-            
-      - name: Install Node.js, Npm
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-                
-      - name: Cache node modules
-        id: node-cache
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
           
-      - name: Install dependencies
-        if: steps.node-cache.outputs.cache-hit != 'true'
-        run: yarn install
-        
-      - name: Pack
-        run: yarn build:for:electron
-        
-      - name: Copy build files
-        run: |
-          mkdir build
-          cp -r dist/assets build
-          cp dist/index.html build
-          
-      - name: Deploy
-        run: |
-          GH_TOKEN=${{ secrets.GH_TOKEN }} yarn deploy:mac        
-      - uses: bbonkr/get-version-action@v1.0.4
-        id: get_version
-        with:
-          project: "./package.json"
-
       - name: check git tag
         uses: bbonkr/git-tag-check-action@v1.0.9
         id: gitTagCheck 
@@ -85,6 +42,37 @@ jobs:
           version: ${{ steps.get_version.outputs.version }}
           git_commit_sha: ${{ github.sha }}
           git_tag_prefix: "v"
+      
+      - name: Add MacOS certs
+        run: chmod +x add-osx-cert.sh && ./add-osx-cert.sh
+        env:
+          MAC_CERT: ${{ secrets.MAC_CERT }}
+          MAC_CERT_PASSWORD: ${{ secrets.MAC_CERT_PASSWORD }}
+            
+      - name: Install Node.js, Npm
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      - name: Install dependencies
+        run: yarn install
+        
+      - name: Pack
+        run: yarn build:for:electron
+        
+      - name: Copy build files
+        run: |
+          mkdir build
+          cp -r dist/assets build
+          cp dist/index.html build
+          
+      - name: Deploy
+        run: |
+          GH_TOKEN=${{ secrets.GH_TOKEN }} yarn deploy:mac        
+      - uses: bbonkr/get-version-action@v1.0.4
+        id: get_version
+        with:
+          project: "./package.json"
 
       - name: Release Drafter
         id: release_drafter
@@ -132,19 +120,7 @@ jobs:
         with:
           node-version: '16'
           
-      - name: Cache node modules
-        id: node-cache
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
-          
       - name: Install dependencies
-        if: steps.node-cache.outputs.cache-hit != 'true'
         run: yarn install
         
       - name: Pack
