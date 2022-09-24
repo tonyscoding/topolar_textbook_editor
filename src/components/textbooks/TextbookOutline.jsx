@@ -2,16 +2,16 @@ import React, { useCallback, useEffect, useRef, useState, useContext } from 'rea
 import '@/assets/sass/Curriculum/TextbookOutline.scss'
 
 import { confirmAlert } from "react-confirm-alert";
-import { Button, Input } from "@nextui-org/react";
+import {Button, Input, Spacer} from "@nextui-org/react";
 import CustomConfirmAlert from "./CustomConfirmAlert";
 
-import { useRecoilValue } from "recoil";
+import {useRecoilState, useRecoilValue} from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
 import useApi from "../../apis/useApi";
 import {getProblem, getProblemList} from "../../apis/apiServices";
+import {JSONbookState} from "@/utils/States";
 
 const TextbookOutline = ({
-     JSONBook,
      movePage,
      addStep,
      deleteStep,
@@ -28,19 +28,32 @@ const TextbookOutline = ({
 	const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
 	const [parsedJSONBook, setParsedJSONBook] = useState(null);
+	const textbookTitle = useRef(null);
 	const inputRef = useRef('');
 
 	const getProblemListApi = useApi(getProblemList, true);
 	const getProblemApi = useApi(getProblem, true);
 
-	useEffect(() => {
+	const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
 
+	useEffect(() => {
 		setParsedJSONBook(parseTextbook(JSONBook));
 	}, [JSON.stringify(JSONBook)]);
 
 	useEffect(() => {
 		setParsedJSONBook(parseTextbook(JSONBook));
 	}, [hoverStepIndex, hoverItemIndex, stepIndex, itemIndex]);
+
+	const setTextbookTitle = (e) => {
+		textbookTitle.current = e.target.value;
+		console.log(e.target.value)
+	}
+
+	const changeTextbookTitle = () => {
+		let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+		newJSONBook.textbook_title = textbookTitle.current
+		setJSONBook(newJSONBook);
+	}
 
 	const stepAddClick = (index) => {
 		confirmAlert({
@@ -218,6 +231,12 @@ const TextbookOutline = ({
 		return (
 			<div className="textbook-outline">
 				<div className="textbook-contents">
+					<Spacer y={1}/>
+					<div className="textbook-title-container">
+						<Input className="textbook-title-input" width="250px" size="sm" clearable bordered label="교재 제목" placeholder="제목을 설정해주세요" initialValue={JSONBook.textbook_title} onChange={(value) => {setTextbookTitle(value)}}/>
+						<Button className="textbook-title-button" size="sm" onClick={changeTextbookTitle}>수정</Button>
+					</div>
+
 					{textbookContents}
 				</div>
 			</div>

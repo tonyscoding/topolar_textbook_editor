@@ -54,5 +54,13 @@
                 }
             }
         }
+        >.textbook-title-container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            >.textbook-title-button{
+                align-self: flex-end;
+            }
+        }
     }
 }
