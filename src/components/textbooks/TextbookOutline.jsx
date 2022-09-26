@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState, useContext } from 'rea
 import '@/assets/sass/Curriculum/TextbookOutline.scss'
 
 import { confirmAlert } from "react-confirm-alert";
-import {Button, Input, Spacer} from "@nextui-org/react";
+import {Button, Dropdown, Input, Spacer} from "@nextui-org/react";
 import CustomConfirmAlert from "./CustomConfirmAlert";
 
 import {useRecoilState, useRecoilValue} from "recoil";
@@ -28,6 +28,11 @@ const TextbookOutline = ({
 	const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
 	const [parsedJSONBook, setParsedJSONBook] = useState(null);
+
+	const [stage, setStage] = useState("Adventaurer");
+	const [language, setLanguage] = useState("Python");
+	const [level, setLevel] = useState(1);
+
 	const textbookTitle = useRef(null);
 	const inputRef = useRef('');
 
@@ -236,7 +241,24 @@ const TextbookOutline = ({
 						<Input className="textbook-title-input" width="250px" size="sm" clearable bordered label="교재 제목" placeholder="제목을 설정해주세요" initialValue={JSONBook.textbook_title} onChange={(value) => {setTextbookTitle(value)}}/>
 						<Button className="textbook-title-button" size="sm" onClick={changeTextbookTitle}>수정</Button>
 					</div>
-
+					<Dropdown>
+						<Dropdown.Button flat color="secondary" css={{ tt: "capitalize" }}>
+							{stage}
+						</Dropdown.Button>
+						<Dropdown.Menu
+							aria-label="Single selection actions"
+							color="secondary"
+							disallowEmptySelection
+							selectionMode="single"
+							selectedKeys={stage}
+							onSelectionChange={(value) => {setStage(value)}}
+						>
+							<Dropdown.Item key={"default"}>stage선택</Dropdown.Item>
+							<Dropdown.Item key={"Adventaurer"}>모험가</Dropdown.Item>
+							<Dropdown.Item key={"Pioneer"}>개척가</Dropdown.Item>
+							<Dropdown.Item key={"Master"}>숙련가</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
 					{textbookContents}
 				</div>
 			</div>
