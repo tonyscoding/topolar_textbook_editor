@@ -149,7 +149,6 @@ export const useUploadTextbookCallback = () => {
 
     return useRecoilCallback(({snapshot, set}) =>
             async (textbook) => {
-                console.log("textbook",textbook)
                 const parseJsonBook = JSON.parse(JSON.stringify(jsonBook));
                 parseJsonBook.textbook_title = textbook.name;
                 parseJsonBook.textbook_subtitle = {

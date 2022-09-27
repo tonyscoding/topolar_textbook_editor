@@ -102,22 +102,6 @@ const Level = ({
         })
     }
 
-
-    const changeTextbookTitle = (title, stage, level, order) => {
-        console.log("title", title, "stage", stage, "language", language, "level", level, "order", order)
-        return new Promise((resolve, reject) => {
-            let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-            newJSONBook.textbook_title = title;
-            newJSONBook.textbook_subtitle = {
-                stage: stage,
-                language: language,
-                level: level
-            }
-            setJSONBook(newJSONBook);
-            resolve({title: title, order: order});
-        })
-    }
-
     /**
      * @description 교재 업로드 함수
      * @param {string, number} order
