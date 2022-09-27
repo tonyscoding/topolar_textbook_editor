@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { confirmAlert } from "react-confirm-alert";
 import TextbookUploadAlert from "@/components/serverTextbook/TextbookUploadAlert";
-import { useRecoilValue } from "recoil";
+import {useRecoilState, useRecoilValue} from "recoil";
 import { courseListState, levelItemState } from "@/utils/States";
 import {
     useDeleteTextbookCallback,
@@ -11,6 +11,8 @@ import {
 import {FiMinus, FiPlus, FiRefreshCw, BiPencil} from "react-icons/all";
 import CustomAlert from "@/components/textbooks/CustomAlert";
 import {Tooltip} from "@nextui-org/react";
+import {JSONbookState} from "@/utils/States";
+import {headerItem} from "@/components/serverTextbook/Header";
 
 const TextbookToolTip = ({textbook}) => {
     return (
@@ -35,11 +37,13 @@ const Level = ({
 
     const levelItem = useRecoilValue(levelItemState);
     const courseList = useRecoilValue(courseListState);
+    const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
 
     const orderRef = useRef();
     const titleRef = useRef();
 
     const [nowLanguage, setNowLanguage] = useState('001');
+    const [language, setLanguage] = useState("");
 
     const languageColor = {
         "001": {
@@ -72,6 +76,7 @@ const Level = ({
         for (const item in courseList) {
             if (courseList[item].id == selectedLanguage) {
                 setNowLanguage(courseList[item].language_code);
+                setLanguage(courseList[item].name);
                 break;
             }
         }
@@ -97,6 +102,22 @@ const Level = ({
         })
     }
 
+
+    const changeTextbookTitle = (title, stage, level, order) => {
+        console.log("title", title, "stage", stage, "language", language, "level", level, "order", order)
+        return new Promise((resolve, reject) => {
+            let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
+            newJSONBook.textbook_title = title;
+            newJSONBook.textbook_subtitle = {
+                stage: stage,
+                language: language,
+                level: level
+            }
+            setJSONBook(newJSONBook);
+            resolve({title: title, order: order});
+        })
+    }
+
     /**
      * @description 교재 업로드 함수
      * @param {string, number} order
@@ -116,20 +137,24 @@ const Level = ({
                         upload={() => {
                             uploadTextbook({
                                 name: titleRef.current.value,
+                                stage: headerItem[selectedCourse].name,
                                 level: selectedLevel,
                                 course: selectedLanguage,
                                 language_code: selectedCourse,
-                                language: 2,
-                                order_num: orderRef.current.value,
+                                language: language,
+                                order_num: orderRef.current.value
                             })
                                 .then(() => {
                                     setTimeout(() => {
                                         getTextbookListByLevel(selectedLanguage, selectedLevel);
                                     }, 7000);
                                 })
+
                         }}
                         orderRef={orderRef}
                         titleRef={titleRef}
+                        language={language}
+                        setLanguage={setLanguage}
                     />
                 );
             }

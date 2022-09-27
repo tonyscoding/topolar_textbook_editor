@@ -149,8 +149,16 @@ export const useUploadTextbookCallback = () => {
 
     return useRecoilCallback(({snapshot, set}) =>
             async (textbook) => {
-                const json = JSON.stringify(jsonBook, null, "\t");
-
+                console.log("textbook",textbook)
+                const parseJsonBook = JSON.parse(JSON.stringify(jsonBook));
+                parseJsonBook.textbook_title = textbook.name;
+                parseJsonBook.textbook_subtitle = {
+                    stage: textbook.stage,
+                    language: textbook.language,
+                    level: textbook.level
+                }
+                const json = JSON.stringify(parseJsonBook, null, "\t");
+                console.log("final jsonBook",parseJsonBook);
                 const zip = new JSZip();
                 zip.file('textbook.json', json);
                 zip.generateAsync({type:"blob"})
@@ -174,7 +182,7 @@ export const useUploadTextbookCallback = () => {
                         textbookFormData.append("course", textbook.course);
                         textbookFormData.append("stage", "1");
                         textbookFormData.append("language_code", textbook.language_code);
-                        textbookFormData.append("language", textbook.language);
+                        textbookFormData.append("language", 2); // TODO: 수정필요
                         textbookFormData.append("order_num", textbook.order_num);
                         textbookFormData.append("is_essential", "false");
                         textbookFormData.append("file", data.id);

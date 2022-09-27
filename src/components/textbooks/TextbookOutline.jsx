@@ -8,7 +8,7 @@ import CustomConfirmAlert from "./CustomConfirmAlert";
 import {useRecoilState, useRecoilValue} from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
 import useApi from "../../apis/useApi";
-import {getProblem, getProblemList} from "../../apis/apiServices";
+import {getLangauge, getProblem, getProblemList} from "../../apis/apiServices";
 import {JSONbookState} from "@/utils/States";
 
 const TextbookOutline = ({
@@ -41,6 +41,8 @@ const TextbookOutline = ({
 
 	const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
 
+	const [languageLoading, languageResolved, getLanguage] = useApi(getLangauge, true);
+
 	useEffect(() => {
 		setParsedJSONBook(parseTextbook(JSONBook));
 	}, [JSON.stringify(JSONBook)]);
@@ -49,16 +51,17 @@ const TextbookOutline = ({
 		setParsedJSONBook(parseTextbook(JSONBook));
 	}, [hoverStepIndex, hoverItemIndex, stepIndex, itemIndex]);
 
+	useEffect(() => {
+		getLanguage()
+			.then((data) => console.log("langauge",data));
+	},[])
+
 	const setTextbookTitle = (e) => {
 		textbookTitle.current = e.target.value;
 		console.log(e.target.value)
 	}
 
-	const changeTextbookTitle = () => {
-		let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-		newJSONBook.textbook_title = textbookTitle.current
-		setJSONBook(newJSONBook);
-	}
+
 
 	const stepAddClick = (index) => {
 		confirmAlert({
@@ -236,29 +239,6 @@ const TextbookOutline = ({
 		return (
 			<div className="textbook-outline">
 				<div className="textbook-contents">
-					<Spacer y={1}/>
-					<div className="textbook-title-container">
-						<Input className="textbook-title-input" width="250px" size="sm" clearable bordered label="교재 제목" placeholder="제목을 설정해주세요" initialValue={JSONBook.textbook_title} onChange={(value) => {setTextbookTitle(value)}}/>
-						<Button className="textbook-title-button" size="sm" onClick={changeTextbookTitle}>수정</Button>
-					</div>
-					<Dropdown>
-						<Dropdown.Button flat color="secondary" css={{ tt: "capitalize" }}>
-							{stage}
-						</Dropdown.Button>
-						<Dropdown.Menu
-							aria-label="Single selection actions"
-							color="secondary"
-							disallowEmptySelection
-							selectionMode="single"
-							selectedKeys={stage}
-							onSelectionChange={(value) => {setStage(value)}}
-						>
-							<Dropdown.Item key={"default"}>stage선택</Dropdown.Item>
-							<Dropdown.Item key={"Adventaurer"}>모험가</Dropdown.Item>
-							<Dropdown.Item key={"Pioneer"}>개척가</Dropdown.Item>
-							<Dropdown.Item key={"Master"}>숙련가</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
 					{textbookContents}
 				</div>
 			</div>

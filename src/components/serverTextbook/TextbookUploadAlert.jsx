@@ -2,18 +2,19 @@ import React, {useEffect, useState} from 'react';
 import { Button, Input } from "@nextui-org/react";
 import { FiX } from "react-icons/all";
 
-const TextbookUploadAlert = ({ onClose, data, upload, orderRef, titleRef }) => {
-    const [language, setLanguage] = useState("");
+const TextbookUploadAlert = ({ onClose, data, upload, orderRef, titleRef, language, setLanguage }) => {
+
+
 
     useEffect(() => {
         if (data.order) orderRef.current.value = data.order;
 
-        for (let item in data.courseList) {
-            if (data.courseList[item].id == data.language) {
-                setLanguage(data.courseList[item].name)
-                break;
-            }
-        }
+        // for (let item in data.courseList) {
+        //     if (data.courseList[item].id == data.language) {
+        //         setLanguage(data.courseList[item].name)
+        //         break;
+        //     }
+        // }
     }, []);
 
     return (
