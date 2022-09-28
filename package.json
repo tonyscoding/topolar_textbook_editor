@@ -1,6 +1,6 @@
 {
     "name": "topolar_textbook_editor",
-    "version": "0.11.2",
+    "version": "0.13.0",
     "main": "electron/electron.js",
     "homepage": "./",
     "scripts": {
