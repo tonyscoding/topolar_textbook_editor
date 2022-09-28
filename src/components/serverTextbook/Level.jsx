@@ -149,12 +149,13 @@ const Level = ({
      * @description 교재 삭제 함수
      * @param {string, number} id
      */
-    const deleteAlert = (id) => {
+    const deleteAlert = (id, name) => {
         confirmAlert({
             customUI: ({ onClose }) => {
                 return (
                     <CustomAlert
-                        message={"정말로 삭제하시겠습니까?"}
+                        textbookName={name}
+                        message={`교재를 정말로 삭제하시겠습니까?`}
                         onClose={onClose}
                         onConfirm={() => {
                             deleteTextbook(id)
@@ -177,7 +178,8 @@ const Level = ({
             customUI: ({ onClose }) => {
                 return (
                     <CustomAlert
-                        message={`[ ${name} ] 교재를 정말로 수정하시겠습니까?`}
+                        textbookName={name}
+                        message={`교재를 정말로 수정하시겠습니까?`}
                         onClose={onClose}
                         onConfirm={() => {
                             updateTextbook(id)
@@ -261,7 +263,7 @@ const Level = ({
                                                             </div>
                                                             <div
                                                                 onClick={() => {
-                                                                    deleteAlert(levelItem.data[item][index].id);
+                                                                    deleteAlert(levelItem.data[item][index].id, levelItem.data[item][index].name);
                                                                 }}
                                                             >
                                                                 <FiMinus size={20} color={"red"} style={{marginRight: 10}} />
@@ -307,7 +309,7 @@ const Level = ({
                                                             </div>
                                                             <div
                                                                 onClick={() => {
-                                                                    deleteAlert(levelItem.data[item][index].id);
+                                                                    deleteAlert(levelItem.data[item][index].id, levelItem.data[item][index].name);
                                                                 }}
                                                             >
                                                                 <FiMinus size={20} color={"red"} style={{marginRight: 18}} />
