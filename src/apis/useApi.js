@@ -17,8 +17,8 @@ const useApi = (api, authHeader=false) => {
                     access_token = (await snapshot.getPromise(userState)).token;
                 }
                 const {data} = await api(authHeader ? getAuthHeader(access_token) : null, ...args);
-                setLoading(false);
                 setResolved(data);
+                setLoading(false);
                 return data
             },
         [],
