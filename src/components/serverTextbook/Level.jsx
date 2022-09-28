@@ -124,7 +124,7 @@ const Level = ({
                                 stage: headerItem[selectedCourse].name,
                                 level: selectedLevel,
                                 course: selectedLanguage,
-                                language_code: selectedCourse,
+                                language_code: nowLanguage,
                                 language: language,
                                 order_num: orderRef.current.value
                             })

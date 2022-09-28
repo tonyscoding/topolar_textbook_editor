@@ -3,9 +3,6 @@ import { Button, Input } from "@nextui-org/react";
 import { FiX } from "react-icons/all";
 
 const TextbookUploadAlert = ({ onClose, data, upload, orderRef, titleRef, language, setLanguage }) => {
-
-
-
     useEffect(() => {
         if (data.order) orderRef.current.value = data.order;
 
