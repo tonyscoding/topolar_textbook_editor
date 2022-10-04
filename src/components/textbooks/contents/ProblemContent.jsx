@@ -86,6 +86,14 @@ const ProblemContent = ({number, count_for_key}) => {
                                 </div>
                             ))
                         }
+                        <Card
+                            width={ "guide-col8" }
+                            hideLine={0}
+                        >
+                            <div>힌트</div>
+                            <div>{resolved.hint}</div>
+
+                        </Card>
                     </div>
                 )
             }
