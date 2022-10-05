@@ -4,6 +4,8 @@ import { Dropdown } from "@nextui-org/react";
 import useApi from "../../apis/useApi";
 import {getProblemList} from "../../apis/apiServices";
 import ProblemContent from "./contents/ProblemContent";
+import rehypeRaw from "rehype-raw";
+import Markdown from "react-markdown";
 
 export const ProblemViewer = ({getProblemApi, getProblemListApi, inputRef}) => {
     const [select, setSelect] = useState(new Set(["default"]));
@@ -92,7 +94,11 @@ export const ProblemViewer = ({getProblemApi, getProblemListApi, inputRef}) => {
                             ) : (
                                 <>
                                     <div>
-                                        {problemResolved.description}
+                                        {JSON.parse(problemResolved.description).map((item) => {
+                                            if(item.type === "desc") {
+                                                return <Markdown children={item.description} rehypePlugins={[rehypeRaw]} />
+                                            }
+                                        })}
                                     </div>
                                     <hr/>
                                     <div>

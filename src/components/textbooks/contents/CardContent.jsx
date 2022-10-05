@@ -22,6 +22,7 @@ const CardContent = ({
         text,
         code,
         codeLanguage,
+        edit=true
      }) => {
     console.log("data", data);
 
@@ -46,7 +47,8 @@ const CardContent = ({
             hideLine={0}
             style={{marginBottom: "20px"}}
         >
-                <ButtonGroup
+            {
+                edit && <ButtonGroup
                     index={index}
                     text={text}
                     code={code}
@@ -58,6 +60,7 @@ const CardContent = ({
                     isCard={true}
                     cardIndex={-1}
                 />
+            }
                 {
                     data.components.map((components_item, cardIndex) => {
                         let type = components_item.type;
@@ -95,7 +98,7 @@ const CardContent = ({
                             }
 
                             {
-                                hoverItemCardIndex === cardIndex &&
+                                edit && hoverItemCardIndex === cardIndex &&
                                 <ButtonGroup
                                     index={index}
                                     text={text}

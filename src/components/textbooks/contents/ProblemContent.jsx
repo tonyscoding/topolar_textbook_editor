@@ -6,6 +6,7 @@ import Loader from "@/components/guideComponents/Loader";
 import { useGetProblemCallback } from "@/apis/apiCallbackes"
 import {getProblem} from "@/apis/apiServices";
 import useApi from "@/apis/useApi";
+import CardContent from "./CardContent";
 
 
 const ProblemContent = ({number, count_for_key}) => {
@@ -45,13 +46,7 @@ const ProblemContent = ({number, count_for_key}) => {
                 ) : (
                     <div className={"problem-container"}>
                         <div className={"problem-title"}>{resolved.title}</div>
-                        <Card
-                            width={ "guide-col8" }
-                            hideLine={0}
-                        >
-                            <div>{resolved.description}</div>
-
-                        </Card>
+                        <CardContent data={{components: JSON.parse(resolved.description)}} edit={false}/>
                         <Card
                             width={ "guide-col8" }
                             hideLine={0}
@@ -91,6 +86,14 @@ const ProblemContent = ({number, count_for_key}) => {
                                 </div>
                             ))
                         }
+                        <Card
+                            width={ "guide-col8" }
+                            hideLine={0}
+                        >
+                            <div>힌트</div>
+                            <div>{resolved.hint}</div>
+
+                        </Card>
                     </div>
                 )
             }
