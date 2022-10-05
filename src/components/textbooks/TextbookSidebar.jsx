@@ -170,7 +170,7 @@ const TextbookSidebar = ({
 
             <hr />
 
-            <div style={{fontSize: 20, marginLeft: 10}}>v 0.13.0</div>
+            <div style={{fontSize: 20, marginLeft: 10}}>v 0.13.1</div>
         </div>
     )
 
