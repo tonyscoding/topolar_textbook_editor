@@ -3,7 +3,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { curriculumState, levelItemState } from "@/utils/States";
 
 
-const headerItem = {
+export const headerItem = {
     "001": {
         name: "모험가",
         order: 1

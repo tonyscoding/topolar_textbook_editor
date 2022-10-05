@@ -2,16 +2,16 @@ import React, { useCallback, useEffect, useRef, useState, useContext } from 'rea
 import '@/assets/sass/Curriculum/TextbookOutline.scss'
 
 import { confirmAlert } from "react-confirm-alert";
-import { Button, Input } from "@nextui-org/react";
+import {Button, Dropdown, Input, Spacer} from "@nextui-org/react";
 import CustomConfirmAlert from "./CustomConfirmAlert";
 
-import { useRecoilValue } from "recoil";
+import {useRecoilState, useRecoilValue} from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
 import useApi from "../../apis/useApi";
-import {getProblem, getProblemList} from "../../apis/apiServices";
+import {getLangauge, getProblem, getProblemList} from "../../apis/apiServices";
+import {JSONbookState} from "@/utils/States";
 
 const TextbookOutline = ({
-     JSONBook,
      movePage,
      addStep,
      deleteStep,
@@ -28,19 +28,40 @@ const TextbookOutline = ({
 	const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
 	const [parsedJSONBook, setParsedJSONBook] = useState(null);
+
+	const [stage, setStage] = useState("Adventaurer");
+	const [language, setLanguage] = useState("Python");
+	const [level, setLevel] = useState(1);
+
+	const textbookTitle = useRef(null);
 	const inputRef = useRef('');
 
 	const getProblemListApi = useApi(getProblemList, true);
 	const getProblemApi = useApi(getProblem, true);
 
-	useEffect(() => {
+	const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
 
+	const [languageLoading, languageResolved, getLanguage] = useApi(getLangauge, true);
+
+	useEffect(() => {
 		setParsedJSONBook(parseTextbook(JSONBook));
 	}, [JSON.stringify(JSONBook)]);
 
 	useEffect(() => {
 		setParsedJSONBook(parseTextbook(JSONBook));
 	}, [hoverStepIndex, hoverItemIndex, stepIndex, itemIndex]);
+
+	useEffect(() => {
+		getLanguage()
+			.then((data) => console.log("langauge",data));
+	},[])
+
+	const setTextbookTitle = (e) => {
+		textbookTitle.current = e.target.value;
+		console.log(e.target.value)
+	}
+
+
 
 	const stepAddClick = (index) => {
 		confirmAlert({

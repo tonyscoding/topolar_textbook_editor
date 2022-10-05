@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { confirmAlert } from "react-confirm-alert";
 import TextbookUploadAlert from "@/components/serverTextbook/TextbookUploadAlert";
-import { useRecoilValue } from "recoil";
+import {useRecoilState, useRecoilValue} from "recoil";
 import { courseListState, levelItemState } from "@/utils/States";
 import {
     useDeleteTextbookCallback,
@@ -11,6 +11,8 @@ import {
 import {FiMinus, FiPlus, FiRefreshCw, BiPencil} from "react-icons/all";
 import CustomAlert from "@/components/textbooks/CustomAlert";
 import {Tooltip} from "@nextui-org/react";
+import {JSONbookState} from "@/utils/States";
+import {headerItem} from "@/components/serverTextbook/Header";
 
 const TextbookToolTip = ({textbook}) => {
     return (
@@ -35,11 +37,13 @@ const Level = ({
 
     const levelItem = useRecoilValue(levelItemState);
     const courseList = useRecoilValue(courseListState);
+    const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
 
     const orderRef = useRef();
     const titleRef = useRef();
 
     const [nowLanguage, setNowLanguage] = useState('001');
+    const [language, setLanguage] = useState("");
 
     const languageColor = {
         "001": {
@@ -72,6 +76,7 @@ const Level = ({
         for (const item in courseList) {
             if (courseList[item].id == selectedLanguage) {
                 setNowLanguage(courseList[item].language_code);
+                setLanguage(courseList[item].name);
                 break;
             }
         }
@@ -116,20 +121,24 @@ const Level = ({
                         upload={() => {
                             uploadTextbook({
                                 name: titleRef.current.value,
+                                stage: headerItem[selectedCourse].name,
                                 level: selectedLevel,
                                 course: selectedLanguage,
-                                language_code: selectedCourse,
-                                language: 2,
-                                order_num: orderRef.current.value,
+                                language_code: nowLanguage,
+                                language: language,
+                                order_num: orderRef.current.value
                             })
                                 .then(() => {
                                     setTimeout(() => {
                                         getTextbookListByLevel(selectedLanguage, selectedLevel);
                                     }, 7000);
                                 })
+
                         }}
                         orderRef={orderRef}
                         titleRef={titleRef}
+                        language={language}
+                        setLanguage={setLanguage}
                     />
                 );
             }
@@ -140,12 +149,13 @@ const Level = ({
      * @description 교재 삭제 함수
      * @param {string, number} id
      */
-    const deleteAlert = (id) => {
+    const deleteAlert = (id, name) => {
         confirmAlert({
             customUI: ({ onClose }) => {
                 return (
                     <CustomAlert
-                        message={"정말로 삭제하시겠습니까?"}
+                        textbookName={name}
+                        message={`교재를 정말로 삭제하시겠습니까?`}
                         onClose={onClose}
                         onConfirm={() => {
                             deleteTextbook(id)
@@ -168,7 +178,8 @@ const Level = ({
             customUI: ({ onClose }) => {
                 return (
                     <CustomAlert
-                        message={`[ ${name} ] 교재를 정말로 수정하시겠습니까?`}
+                        textbookName={name}
+                        message={`교재를 정말로 수정하시겠습니까?`}
                         onClose={onClose}
                         onConfirm={() => {
                             updateTextbook(id)
@@ -252,7 +263,7 @@ const Level = ({
                                                             </div>
                                                             <div
                                                                 onClick={() => {
-                                                                    deleteAlert(levelItem.data[item][index].id);
+                                                                    deleteAlert(levelItem.data[item][index].id, levelItem.data[item][index].name);
                                                                 }}
                                                             >
                                                                 <FiMinus size={20} color={"red"} style={{marginRight: 10}} />
@@ -298,7 +309,7 @@ const Level = ({
                                                             </div>
                                                             <div
                                                                 onClick={() => {
-                                                                    deleteAlert(levelItem.data[item][index].id);
+                                                                    deleteAlert(levelItem.data[item][index].id, levelItem.data[item][index].name);
                                                                 }}
                                                             >
                                                                 <FiMinus size={20} color={"red"} style={{marginRight: 18}} />
