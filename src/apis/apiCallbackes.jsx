@@ -112,8 +112,10 @@ export const useUpdateTextbookCallback = () => {
 
     return useRecoilCallback(({snapshot, set}) =>
             async (id) => {
-                const json = JSON.stringify(jsonBook, null, "\t");
+                const textbookInfo = await getTextbook(getAuthHeader(user?.token), id);
+                console.log(textbookInfo)
 
+                const json = JSON.stringify(jsonBook, null, "\t");
                 const zip = new JSZip();
                 zip.file('textbook.json', json);
                 zip.generateAsync({type:"blob"})
@@ -121,7 +123,7 @@ export const useUpdateTextbookCallback = () => {
                         console.log(file)
                         let formData = new FormData();
 
-                        formData.append("file", file);
+                        formData.append("file", file, `${textbookInfo.data.language.name}_${textbookInfo.data.level}_${textbookInfo.data.order_num}_${textbookInfo.data.name}.zip`);
                         formData.append("textbook_type", "2");
 
                         const {data} = await updateTextbook(getAuthHeader(user?.token), formData, id);
@@ -166,7 +168,7 @@ export const useUploadTextbookCallback = () => {
                         console.log(file)
                         let formData = new FormData();
 
-                        formData.append("file", file);
+                        formData.append("file", file, `${textbook.language}_${textbook.level}_${textbook.order_num}_${textbook.name}.zip`);
                         formData.append("textbook_type", "2");
 
                         const {data} = await uploadFile(getAuthHeader(user?.token), formData);
