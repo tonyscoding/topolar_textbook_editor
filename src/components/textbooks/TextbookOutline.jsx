@@ -143,6 +143,21 @@ const TextbookOutline = ({
 		})
 	}
 
+	const problemCreateClick = () => {
+		confirmAlert({
+			customUI: ({ onClose }) => {
+				return (
+					<CustomConfirmAlert
+						inputRef={inputRef}
+						onClose={onClose}
+						handleOnclick={addProblem}
+						type={"problemCreate"}
+					/>
+				);
+			}
+		})
+	}
+
 	const parseTextbook = (textbook) =>{
 		let index = -1
 		const textbookContents = textbook.textbook_contents.map((step_dict, nowStepIndex)=>{
@@ -187,6 +202,11 @@ const TextbookOutline = ({
 									onClick={() => {problemAddClick(nowStepIndex, nowItemIndex)}}
 								>
 									문제 추가
+								</Button>
+								<Button
+									onClick={() => {problemCreateClick(nowStepIndex, nowItemIndex)}}
+								>
+									문제 생성
 								</Button>
 							</Button.Group>
 						}

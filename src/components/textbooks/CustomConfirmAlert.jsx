@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Input} from "@nextui-org/react";
 import {ProblemViewer} from "./ProblemViewer";
 import "@/assets/sass/Components/CustomConfirmAlert.scss";
+import ProblemCreateContent from "./contents/ProblemCreateContent";
 
 
 const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
@@ -39,7 +40,9 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 				type === 'problem' ?
 					<div className={"problem-dropdown-container"}>
 						<ProblemViewer getProblemApi={data.getProblemApi} getProblemListApi={data.getProblemListApi} inputRef={inputRef}/>
-					</div>
+					</div> :
+				type === 'problemCreate' ?
+					<ProblemCreateContent/>
 					:null
 			}
 			{
