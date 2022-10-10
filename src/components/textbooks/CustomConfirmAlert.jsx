@@ -46,7 +46,7 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 					:null
 			}
 			{
-				type !== 'problem' ?
+				type === 'step' || type === 'item' || type === 'stepChange' || type === 'itemChange' ?
 				<Input
 					autoFocus={true}
 					css={{width: "100%"}}
