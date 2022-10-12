@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Input} from "@nextui-org/react";
 import {ProblemViewer} from "./ProblemViewer";
 import "@/assets/sass/Components/CustomConfirmAlert.scss";
@@ -6,6 +6,14 @@ import ProblemCreateContent from "./contents/ProblemCreateContent";
 
 
 const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
+	const [desc, setDesc] = useState([]);
+	const [title, setTitle] = useState();
+	const [input, setInput] = useState();
+	const [output, setOutput] = useState();
+	const [inoutput, setInoutput] = useState([]);
+	const [hint, setHint] = useState();
+	const [tag, setTag] = useState();
+	const [number, setNumber] = useState();
 	const handleConfirm = (e) => {
 		if (!e || e.key === 'Enter') {
 			if (type === 'step') {
@@ -24,6 +32,10 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 				handleOnclick(data.stepIndex, data.itemIndex, inputRef.current);
 				inputRef.current = '';
 				onClose();
+			} else if (type === 'createProblem') {
+				handleOnclick(title, desc, input, output, inoutput, hint, number, tag);
+				inputRef.current = '';
+				// onClose();
 			}
 		}
 	}
@@ -41,8 +53,8 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 					<div className={"problem-dropdown-container"}>
 						<ProblemViewer getProblemApi={data.getProblemApi} getProblemListApi={data.getProblemListApi} inputRef={inputRef}/>
 					</div> :
-				type === 'problemCreate' ?
-					<ProblemCreateContent/>
+				type === 'createProblem' ?
+					<ProblemCreateContent desc={desc} setDesc={setDesc} title={title} setTitle={setTitle} input={input} setInput={setInput} output={output} setOutput={setOutput} inoutput={inoutput} setInoutput={setInoutput} hint={hint} setHint={setHint} tag={tag} setTag={setTag} number={number} setNumber={setNumber}/>
 					:null
 			}
 			{

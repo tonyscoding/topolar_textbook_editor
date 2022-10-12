@@ -44,11 +44,6 @@ export const ButtonGroup = ({
 		} else {
 			newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
 		}
-		let str = JSON.stringify(newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components);
-		str = str.replaceAll("\\\"", "'");
-		str = str.replaceAll("\"", "\\\"");
-		str = str.replaceAll("'", "\\\"");
-		console.log(str)
 
 		handleSaveTextbook(newJSONBook);
 		setJSONBook(newJSONBook);
@@ -69,7 +64,7 @@ export const ButtonGroup = ({
 			newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
 		}
 
-		console.log(JSON.stringify(newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components))
+		console.log((newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components))
 
 		handleSaveTextbook(newJSONBook);
 		setJSONBook(newJSONBook);

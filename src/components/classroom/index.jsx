@@ -12,6 +12,8 @@ import { stepIndexState, itemIndexState, serverTextbookOpenState } from "@/utils
 import { JSONbookState, userState } from '@/utils/States';
 import {useCurriculumCallback, useGetCourseListCallback, useLoginCallback} from "@/apis/apiCallbackes";
 import ServerTextbookSidebar from "@/components/serverTextbook/ServerTextbookSidebar";
+import useApi from "@/apis/useApi";
+import {postProblem} from "@/apis/apiServices";
 
 const NewClassroom = () =>{
     const [sidebarOpen, setSidebarOpen] = useState(false);

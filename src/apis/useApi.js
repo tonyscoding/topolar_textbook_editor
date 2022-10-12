@@ -16,7 +16,8 @@ const useApi = (api, authHeader=false) => {
                 if(authHeader) {
                     access_token = (await snapshot.getPromise(userState)).token;
                 }
-                const {data} = await api(authHeader ? getAuthHeader(access_token) : null, ...args);
+                const {data} = await api(authHeader ? getAuthHeader(access_token) : null, ...args)
+                    .catch(err => console.log(err.response.data?.error?.detail));
                 setResolved(data);
                 setLoading(false);
                 return data

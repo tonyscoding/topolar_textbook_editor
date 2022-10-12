@@ -8,7 +8,7 @@ import CustomConfirmAlert from "./CustomConfirmAlert";
 import {useRecoilState, useRecoilValue} from "recoil";
 import { stepIndexState, itemIndexState } from "@/utils/States";
 import useApi from "../../apis/useApi";
-import {getLangauge, getProblem, getProblemList} from "../../apis/apiServices";
+import {getLangauge, getProblem, getProblemList, postProblem} from "../../apis/apiServices";
 import {JSONbookState} from "@/utils/States";
 
 const TextbookOutline = ({
@@ -28,6 +28,8 @@ const TextbookOutline = ({
 	const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
 	const [parsedJSONBook, setParsedJSONBook] = useState(null);
+
+	const [postProblemLoading, postProblemResolved, postProblemCallback] = useApi(postProblem, true);
 
 	const [stage, setStage] = useState("Adventaurer");
 	const [language, setLanguage] = useState("Python");
@@ -61,7 +63,19 @@ const TextbookOutline = ({
 		console.log(e.target.value)
 	}
 
-
+	const createProblem = (title, desc, input, output, inoutput, hint, number, tag) => {
+		postProblemCallback({
+			title: "30002",
+			description: JSON.stringify(desc),
+			input: input,
+			output: output,
+			inoutput_ex: JSON.stringify(inoutput),
+			hint: hint,
+			number: 30002,
+			tag: tag
+		});
+		console.log(title,desc,input,output,inoutput,hint,number,tag);
+	}
 
 	const stepAddClick = (index) => {
 		confirmAlert({
@@ -150,8 +164,8 @@ const TextbookOutline = ({
 					<CustomConfirmAlert
 						inputRef={inputRef}
 						onClose={onClose}
-						handleOnclick={addProblem}
-						type={"problemCreate"}
+						handleOnclick={createProblem}
+						type={"createProblem"}
 					/>
 				);
 			}
