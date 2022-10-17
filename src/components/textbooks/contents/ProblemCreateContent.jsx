@@ -186,6 +186,7 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
                         }}
                     />
                     <Textarea
+                        width={300}
                         label="출력예시"
                         value={output1.current}
                         onChange={e => {
@@ -226,7 +227,7 @@ const styles = {
         margin: "20px"
     },
     inoutput: {
-        width: "200px",
+        width: "300px",
         margin: "100px"
     },
     textarea: {
