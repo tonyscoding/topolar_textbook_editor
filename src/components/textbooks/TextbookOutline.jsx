@@ -65,13 +65,13 @@ const TextbookOutline = ({
 
 	const createProblem = (title, desc, input, output, inoutput, hint, number, tag) => {
 		postProblemCallback({
-			title: "30002",
+			title: title,
 			description: JSON.stringify(desc),
 			input: input,
 			output: output,
 			inoutput_ex: JSON.stringify(inoutput),
 			hint: hint,
-			number: 30002,
+			number: number,
 			tag: tag
 		});
 		console.log(title,desc,input,output,inoutput,hint,number,tag);
