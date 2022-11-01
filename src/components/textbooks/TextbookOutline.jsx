@@ -6,10 +6,12 @@ import {Button, Dropdown, Input, Spacer} from "@nextui-org/react";
 import CustomConfirmAlert from "./CustomConfirmAlert";
 
 import {useRecoilState, useRecoilValue} from "recoil";
-import { stepIndexState, itemIndexState } from "@/utils/States";
+import {stepIndexState, itemIndexState, languageListState} from "@/utils/States";
 import useApi from "../../apis/useApi";
-import {getLangauge, getProblem, getProblemList} from "../../apis/apiServices";
+import { getProblem, getProblemList } from "@/apis/apiServices";
 import {JSONbookState} from "@/utils/States";
+import {ENG_LEVEL_TO_KR, KR_LANGUAGE_TO_ENG} from "@/utils/Utils";
+import {FiChevronDown} from "react-icons/all";
 
 const TextbookOutline = ({
      movePage,
@@ -20,28 +22,22 @@ const TextbookOutline = ({
      deleteItem,
      changeItemTitle,
 	addProblem
- }) => {
+}) => {
 	const stepIndex = useRecoilValue(stepIndexState);
 	const itemIndex = useRecoilValue(itemIndexState);
+	const languageList = useRecoilValue(languageListState);
 
 	const [hoverStepIndex, setHoverStepIndex] = useState(null);
 	const [hoverItemIndex, setHoverItemIndex] = useState(null);
 
 	const [parsedJSONBook, setParsedJSONBook] = useState(null);
 
-	const [stage, setStage] = useState("Adventaurer");
-	const [language, setLanguage] = useState("Python");
-	const [level, setLevel] = useState(1);
-
-	const textbookTitle = useRef(null);
 	const inputRef = useRef('');
 
 	const getProblemListApi = useApi(getProblemList, true);
 	const getProblemApi = useApi(getProblem, true);
 
 	const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
-
-	const [languageLoading, languageResolved, getLanguage] = useApi(getLangauge, true);
 
 	useEffect(() => {
 		setParsedJSONBook(parseTextbook(JSONBook));
@@ -50,11 +46,6 @@ const TextbookOutline = ({
 	useEffect(() => {
 		setParsedJSONBook(parseTextbook(JSONBook));
 	}, [hoverStepIndex, hoverItemIndex, stepIndex, itemIndex]);
-
-	useEffect(() => {
-		getLanguage()
-			.then((data) => console.log("langauge",data));
-	},[])
 
 	const setTextbookTitle = (e) => {
 		textbookTitle.current = e.target.value;
@@ -143,7 +134,7 @@ const TextbookOutline = ({
 		})
 	}
 
-	const parseTextbook = (textbook) =>{
+	const parseTextbook = (textbook) => {
 		let index = -1
 		const textbookContents = textbook.textbook_contents.map((step_dict, nowStepIndex)=>{
 			const textbookSteps = step_dict.step_items.map((step, nowItemIndex)=>{
@@ -247,7 +238,48 @@ const TextbookOutline = ({
 
 	return (
 		<>
-			<div>
+			<div style={{ marginLeft: "10px" }}>
+				<div style={{ fontSize: 24, fontWeight: 700, marginBottom: "10px" }}>{JSONBook.textbook_title}</div>
+				<div style={{ display: 'flex', flexDirection: 'row' }}>
+					<div
+						style={{
+							fontSize: 14,
+							border: "1px solid #252525",
+							borderRadius: 5,
+							padding: "2px 10px 2px 10px",
+							marginRight: "4px"
+						}}
+					>
+						{ENG_LEVEL_TO_KR[JSONBook.textbook_subtitle.stage]}
+					</div>
+
+					<div
+						style={{
+							fontSize: 14,
+							border: "1px solid #252525",
+							borderRadius: 5,
+							padding: "2px 10px 2px 10px",
+							marginRight: "4px"
+						}}
+					>
+						{JSONBook.textbook_subtitle.language}
+					</div>
+
+					<div
+						style={{
+							fontSize: 14,
+							border: "1px solid #252525",
+							borderRadius: 5,
+							padding: "2px 10px 2px 10px",
+							marginRight: "4px"
+						}}
+					>
+						LV.{JSONBook.textbook_subtitle.level}
+					</div>
+				</div>
+			</div>
+
+			<div style={{ marginTop: "20px" }}>
 				<Button
 					onClick={() => {
 						stepAddClick(-1)

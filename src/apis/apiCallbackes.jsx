@@ -19,7 +19,7 @@ import {
 } from "@/apis/apiServices";
 import getAuthHeader from "@/apis/authHeader";
 import JSZip from "jszip";
-import {languageCodeToId} from "@/utils/Utils";
+import {LANGUAGE_CODE_TO_ID} from "@/utils/Utils";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -184,7 +184,7 @@ export const useUploadTextbookCallback = () => {
                         textbookFormData.append("course", textbook.course);
                         textbookFormData.append("stage", "1");
                         textbookFormData.append("language_code", textbook.language_code);
-                        textbookFormData.append("language", languageCodeToId(textbook.language_code));
+                        textbookFormData.append("language", LANGUAGE_CODE_TO_ID[textbook.language_code]);
                         textbookFormData.append("order_num", textbook.order_num);
                         textbookFormData.append("is_essential", "false");
                         textbookFormData.append("file", data.id);

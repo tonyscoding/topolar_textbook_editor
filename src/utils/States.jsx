@@ -50,3 +50,8 @@ export const quickLoadState = atom({
 	key: "quickLoadState",
 	default: true
 })
+
+export const languageListState = atom({
+	key: "languageListState",
+	default: []
+})
