@@ -8,10 +8,13 @@ import TextbookSidebar from '@/components/textbooks/TextbookSidebar';
 import TextbookContentView from '@/components/textbooks/TextbookContentView';
 
 import {useRecoilState, useRecoilValue} from "recoil";
-import { stepIndexState, itemIndexState, serverTextbookOpenState } from "@/utils/States";
+import {stepIndexState, itemIndexState, serverTextbookOpenState, languageListState} from "@/utils/States";
 import { JSONbookState, userState } from '@/utils/States';
 import {useCurriculumCallback, useGetCourseListCallback, useLoginCallback} from "@/apis/apiCallbackes";
 import ServerTextbookSidebar from "@/components/serverTextbook/ServerTextbookSidebar";
+import useApi from "@/apis/useApi";
+import {getLanguage} from "@/apis/apiServices";
+import {KR_LANGUAGE_TO_ENG} from "@/utils/Utils";
 
 const NewClassroom = () =>{
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,12 +23,15 @@ const NewClassroom = () =>{
     const [JSONBook, setJSONBook] = useRecoilState(JSONbookState);
     const [stepIndex, setStepIndex] = useRecoilState(stepIndexState);
     const [itemIndex, setItemIndex] = useRecoilState(itemIndexState);
+    const [languageList, setLanguageList] = useRecoilState(languageListState);
 
     const user = useRecoilValue(userState);
 
     const login = useLoginCallback();
     const getCurriculum = useCurriculumCallback();
     const getCourseList = useGetCourseListCallback();
+    const [languageLoading, languageResolved, getLanguageApi] = useApi(getLanguage, true);
+
 
     useEffect(() => {
         login({username: "admin1", password: "xhsltmzheld"})
@@ -34,6 +40,14 @@ const NewClassroom = () =>{
     useEffect(() => {
         getCurriculum();
         getCourseList();
+        getLanguageApi()
+            .then((res) => {
+                let languageList = res;
+                for (let i = 0; i < languageList.length; i++) {
+                    languageList[i].name = KR_LANGUAGE_TO_ENG[languageList[i].name] ? KR_LANGUAGE_TO_ENG[languageList[i].name] : languageList[i].name;
+                }
+                setLanguageList(res);
+            })
     }, [user?.token]);
 
     // 새로운 stepIndex와 itemIndex가 들어오면 화면 업데이트
