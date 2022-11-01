@@ -28,20 +28,22 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 	}
 
 	return (
-		<div onKeyDown={e => handleConfirm(e)} style={{backgroundColor: "white", boxShadow: "0px 10px 50px -3px rgba(0, 0, 0, 0.1)", padding: "2vw 5vw 4vw 5vw", borderRadius: "3vmin"}}>
-			{
-				type === 'step' ?
-					<h1>스탭 제목을 입력해주세요.</h1> :
-				type === 'item' ?
-					<h1>아이템 제목을 입력해주세요.</h1> :
-				type === 'stepChange' || type === 'itemChange' ?
-					<h1>바꿀 제목을 입력해주세요.</h1> :
-				type === 'problem' ?
-					<div className={"problem-dropdown-container"}>
-						<ProblemViewer getProblemApi={data.getProblemApi} getProblemListApi={data.getProblemListApi} inputRef={inputRef}/>
-					</div>
-					:null
-			}
+		<div onKeyDown={e => handleConfirm(e)} style={{backgroundColor: "white", boxShadow: "0px 10px 50px -3px rgba(0, 0, 0, 0.1)", padding: "4vh 4vw 4vh 4vw", borderRadius: "3vmin"}}>
+			<div style={{ marginBottom: '4vh' }}>
+				{
+					type === 'step' ?
+						<h1>스탭 제목을 입력해주세요.</h1> :
+					type === 'item' ?
+						<h1>아이템 제목을 입력해주세요.</h1> :
+					type === 'stepChange' || type === 'itemChange' ?
+						<h1>바꿀 제목을 입력해주세요.</h1> :
+					type === 'problem' ?
+						<div className={"problem-dropdown-container"}>
+							<ProblemViewer getProblemApi={data.getProblemApi} getProblemListApi={data.getProblemListApi} inputRef={inputRef}/>
+						</div>
+						:null
+				}
+			</div>
 			{
 				type !== 'problem' ?
 				<Input
