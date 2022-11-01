@@ -241,117 +241,42 @@ const TextbookOutline = ({
 			<div style={{ marginLeft: "10px" }}>
 				<div style={{ fontSize: 24, fontWeight: 700, marginBottom: "10px" }}>{JSONBook.textbook_title}</div>
 				<div style={{ display: 'flex', flexDirection: 'row' }}>
-					<Dropdown>
-						<Dropdown.Trigger>
-							<div
-								style={{
-									fontSize: 14,
-									border: "1px solid #252525",
-									borderRadius: 5,
-									padding: "2px 10px 2px 10px",
-									marginRight: "4px"
-								}}
-							>
-								{ENG_LEVEL_TO_KR[JSONBook.textbook_subtitle.stage]}
-								<FiChevronDown size={16} style={{ marginLeft: 4 }} />
-							</div>
-						</Dropdown.Trigger>
-						<Dropdown.Menu
-							aria-label="단계"
-							color="secondary"
-							disallowEmptySelection
-							selectionMode="single"
-							selectedKeys={[JSONBook.textbook_subtitle.stage]}
-							onSelectionChange={(key) => {
-								let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-								newJSONBook.textbook_subtitle.stage = key.currentKey;
-								setJSONBook(newJSONBook);
-							}}
-						>
-							<Dropdown.Item key="Adventurer">모험가</Dropdown.Item>
-							<Dropdown.Item key="Pioneer">개척가</Dropdown.Item>
-							<Dropdown.Item key="Master">숙련가</Dropdown.Item>
-							<Dropdown.Item key="Special">특강</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
+					<div
+						style={{
+							fontSize: 14,
+							border: "1px solid #252525",
+							borderRadius: 5,
+							padding: "2px 10px 2px 10px",
+							marginRight: "4px"
+						}}
+					>
+						{ENG_LEVEL_TO_KR[JSONBook.textbook_subtitle.stage]}
+					</div>
 
-					<Dropdown>
-						<Dropdown.Trigger>
-							<div
-								style={{
-									fontSize: 14,
-									border: "1px solid #252525",
-									borderRadius: 5,
-									padding: "2px 10px 2px 10px",
-									marginRight: "4px"
-								}}
-							>
-								{JSONBook.textbook_subtitle.language}
-								<FiChevronDown size={16} style={{ marginLeft: 4 }} />
-							</div>
+					<div
+						style={{
+							fontSize: 14,
+							border: "1px solid #252525",
+							borderRadius: 5,
+							padding: "2px 10px 2px 10px",
+							marginRight: "4px"
+						}}
+					>
+						{JSONBook.textbook_subtitle.language}
+					</div>
 
-						</Dropdown.Trigger>
-						<Dropdown.Menu
-							aria-label="코스"
-							color="secondary"
-							disallowEmptySelection
-							selectionMode="single"
-							selectedKeys={[KR_LANGUAGE_TO_ENG[JSONBook.textbook_subtitle.language] ? KR_LANGUAGE_TO_ENG[JSONBook.textbook_subtitle.language] : JSONBook.textbook_subtitle.language]}
-							onSelectionChange={(key) => {
-								console.log(key.currentKey, JSONBook.textbook_subtitle.language)
-								let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-								newJSONBook.textbook_subtitle.language = KR_LANGUAGE_TO_ENG[key.currentKey] ? KR_LANGUAGE_TO_ENG[key.currentKey] : key.currentKey;
-								setJSONBook(newJSONBook);
-							}}
-						>
-							{
-								languageList.map((language) => {
-									return (
-										<Dropdown.Item key={language.name}>{language.name}</Dropdown.Item>
-									)
-								})
-							}
-						</Dropdown.Menu>
-					</Dropdown>
-
-					<Dropdown>
-						<Dropdown.Trigger>
-							<div
-								style={{
-									fontSize: 14,
-									border: "1px solid #252525",
-									borderRadius: 5,
-									padding: "2px 10px 2px 10px",
-									marginRight: "4px"
-								}}
-							>
-								LV.{JSONBook.textbook_subtitle.level}
-								<FiChevronDown size={16} style={{ marginLeft: 4 }} />
-							</div>
-						</Dropdown.Trigger>
-						<Dropdown.Menu
-							aria-label="레벨"
-							color="secondary"
-							disallowEmptySelection
-							selectionMode="single"
-							selectedKeys={[JSONBook.textbook_subtitle.level]}
-							onSelectionChange={(key) => {
-								let newJSONBook = JSON.parse(JSON.stringify(JSONBook));
-								newJSONBook.textbook_subtitle.level = key.currentKey;
-								setJSONBook(newJSONBook);
-							}}
-						>
-							{
-								[1, 2, 3, 4, 5].map((index) => {
-									return (
-										<Dropdown.Item key={index}>{index}</Dropdown.Item>
-									)
-								})
-							}
-						</Dropdown.Menu>
-					</Dropdown>
+					<div
+						style={{
+							fontSize: 14,
+							border: "1px solid #252525",
+							borderRadius: 5,
+							padding: "2px 10px 2px 10px",
+							marginRight: "4px"
+						}}
+					>
+						LV.{JSONBook.textbook_subtitle.level}
+					</div>
 				</div>
-
 			</div>
 
 			<div style={{ marginTop: "20px" }}>
