@@ -54,7 +54,7 @@ export const getCourseList = (authHeader) => {
     return axios.get(`${URL}/api/course/`, authHeader);
 }
 
-export const getLangauge = (authHeader) => {
+export const getLanguage = (authHeader) => {
     return axios.get(`${URL}/api/language/`, authHeader);
 }
 

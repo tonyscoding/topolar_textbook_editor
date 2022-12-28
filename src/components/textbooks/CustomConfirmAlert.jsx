@@ -42,6 +42,7 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 
 	return (
 		<div onKeyDown={e => handleConfirm(e)} style={{backgroundColor: "white", boxShadow: "0px 10px 50px -3px rgba(0, 0, 0, 0.1)", padding: "2vw 5vw 4vw 5vw", borderRadius: "3vmin"}}>
+			<div style={{ marginBottom: '4vh' }}>
 			{
 				type === 'step' ?
 					<h1>스탭 제목을 입력해주세요.</h1> :
@@ -57,8 +58,9 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 					<ProblemCreateContent desc={desc} setDesc={setDesc} title={title} setTitle={setTitle} input={input} setInput={setInput} output={output} setOutput={setOutput} inoutput={inoutput} setInoutput={setInoutput} hint={hint} setHint={setHint} tag={tag} setTag={setTag} number={number} setNumber={setNumber}/>
 					:null
 			}
+			</div>
 			{
-				type === 'step' || type === 'item' || type === 'stepChange' || type === 'itemChange' ?
+				type !== 'problem' ?
 				<Input
 					autoFocus={true}
 					css={{width: "100%"}}
