@@ -12,8 +12,7 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 	const [output, setOutput] = useState();
 	const [inoutput, setInoutput] = useState([]);
 	const [hint, setHint] = useState();
-	const [tag, setTag] = useState();
-	const [number, setNumber] = useState();
+	const [tag, setTag] = useState(new Set(["태그 선택"]));
 	const handleConfirm = (e) => {
 		if (!e || e.key === 'Enter') {
 			if (type === 'step') {
@@ -33,7 +32,7 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 				inputRef.current = '';
 				onClose();
 			} else if (type === 'createProblem') {
-				handleOnclick(title, desc, input, output, inoutput, hint, number, tag);
+				handleOnclick(title, desc, input, output, inoutput, hint, tag);
 				inputRef.current = '';
 				// onClose();
 			}
@@ -55,12 +54,12 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 						<ProblemViewer getProblemApi={data.getProblemApi} getProblemListApi={data.getProblemListApi} inputRef={inputRef}/>
 					</div> :
 				type === 'createProblem' ?
-					<ProblemCreateContent desc={desc} setDesc={setDesc} title={title} setTitle={setTitle} input={input} setInput={setInput} output={output} setOutput={setOutput} inoutput={inoutput} setInoutput={setInoutput} hint={hint} setHint={setHint} tag={tag} setTag={setTag} number={number} setNumber={setNumber}/>
+					<ProblemCreateContent desc={desc} setDesc={setDesc} title={title} setTitle={setTitle} input={input} setInput={setInput} output={output} setOutput={setOutput} inoutput={inoutput} setInoutput={setInoutput} hint={hint} setHint={setHint} tag={tag} setTag={setTag}/>
 					:null
 			}
 			</div>
 			{
-				type !== 'problem' ?
+				type !== 'problem' && type !== 'createProblem' ?
 				<Input
 					autoFocus={true}
 					css={{width: "100%"}}

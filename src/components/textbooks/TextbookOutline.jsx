@@ -3,12 +3,12 @@ import '@/assets/sass/Curriculum/TextbookOutline.scss'
 
 import { confirmAlert } from "react-confirm-alert";
 import {Button, Dropdown, Input, Spacer} from "@nextui-org/react";
-import CustomConfirmAlert from "./CustomConfirmAlert";
+import CustomConfirmAlert from "@/components/textbooks/CustomConfirmAlert ";
 
 import {useRecoilState, useRecoilValue} from "recoil";
 import {stepIndexState, itemIndexState, languageListState} from "@/utils/States";
 import useApi from "../../apis/useApi";
-import {getLangauge, getProblem, getProblemList, postProblem} from "../../apis/apiServices";
+import {getLanguage, getProblem, getProblemList, postProblem} from "../../apis/apiServices";
 import {JSONbookState} from "@/utils/States";
 import {ENG_LEVEL_TO_KR, KR_LANGUAGE_TO_ENG} from "@/utils/Utils";
 import {FiChevronDown} from "react-icons/all";
@@ -59,7 +59,9 @@ const TextbookOutline = ({
 		console.log(e.target.value)
 	}
 
-	const createProblem = (title, desc, input, output, inoutput, hint, number, tag) => {
+	const createProblem = (title, desc, input, output, inoutput, hint, tag) => {
+		console.log("tag",tag)
+		tag = Array.from(tag).join(", ").replaceAll("_", " ");
 		postProblemCallback({
 			title: title,
 			description: JSON.stringify(desc),
@@ -67,10 +69,9 @@ const TextbookOutline = ({
 			output: output,
 			inoutput_ex: JSON.stringify(inoutput),
 			hint: hint,
-			number: number,
 			tag: tag
 		});
-		console.log(title,desc,input,output,inoutput,hint,number,tag);
+		console.log(title,desc,input,output,inoutput,hint,tag);
 	}
 
 	const stepAddClick = (index) => {

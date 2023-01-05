@@ -1,6 +1,6 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useRef, useState} from "react";
 
-import {Button, Input, Textarea} from "@nextui-org/react";
+import {Button, Dropdown, Input, Textarea} from "@nextui-org/react";
 import CodeContent from "./CodeContent";
 import rehypeRaw from "rehype-raw";
 import Markdown from "react-markdown";
@@ -85,14 +85,14 @@ const InoutputContent = ({inoutput, setInoutput, input1, output1}) => {
                     setInoutput(newInoutput);
                 }}
             >
-                추가
+                입출력 예시 추가
             </Button>
         </>
     )
 }
 
 
-const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, output, setOutput, inoutput, setInoutput, hint, setHint, tag, setTag, number, setNumber}) => {
+const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, output, setOutput, inoutput, setInoutput, hint, setHint, tag, setTag}) => {
     const text = useRef("");
     const code = useRef("");
     const codeLanguage = useRef("");
@@ -100,6 +100,19 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
     const videoUrl = useRef("");
     const input1 = useRef("");
     const output1 = useRef("");
+
+    const selectedValue = useMemo(
+        () => Array.from(tag).join(", ").replaceAll("_", " "),
+        [tag]
+    );
+
+    const tagItems = [
+        { key: "C", name: "C" },
+        { key: "C++", name: "C++" },
+        { key: "JavaScript", name: "JavaScript" },
+        { key: "Python", name: "Python" },
+        { key: "Java", name: "Java" }
+    ];
 
     useEffect(() => {
         console.log(desc);
@@ -135,18 +148,15 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
 
             <div style={styles.container}>
                 <div style={styles.input} >
-                    <Input label="Title" value={title} onChange={(e) => setTitle(e.target.value)}/>
-                </div>
-                <div style={styles.input} >
-                    <Input label="Number" value={number} onChange={(e) => setNumber(e.target.value)}/>
+                    <Input label="제목 (필수)" value={title} onChange={(e) => setTitle(e.target.value)}/>
                 </div>
                 <ButtonGroup index={0} desc={desc} setDesc={setDesc} text={text} code={code} codeLanguage={codeLanguage}/>
                 {parseData()}
                 <div style={styles.input} >
-                    <Textarea style={styles.textarea} label="input" value={input} onChange={(e) => setInput(e.target.value)}/>
+                    <Textarea style={styles.textarea} label="입력 설명 (필수 x)" value={input} onChange={(e) => setInput(e.target.value)}/>
                 </div>
                 <div style={styles.input} >
-                    <Textarea style={styles.textarea} label="output" value={output} onChange={(e) => setOutput(e.target.value)}/>
+                    <Textarea style={styles.textarea} label="출력 설명 (필수 x)" value={output} onChange={(e) => setOutput(e.target.value)}/>
                 </div>
 
                 <div>
@@ -154,13 +164,30 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
                 </div>
 
                 <div style={styles.input} >
-                    <Textarea style={styles.textarea} label="hint" value={hint} onChange={(e) => setHint(e.target.value)}/>
-                </div>
-                <div style={styles.input} >
-                    <Textarea style={styles.textarea} label="tag" value={tag} onChange={(e) => setTag(e.target.value)}/>
+                    <Textarea style={styles.textarea} label="힌트 (필수 x)" value={hint} onChange={(e) => setHint(e.target.value)}/>
                 </div>
                 <div>
-
+                    <Dropdown>
+                        <Dropdown.Button flat>{selectedValue}</Dropdown.Button>
+                        <Dropdown.Menu aria-label="Single selection actions"
+                                       color="secondary"
+                                       disallowEmptySelection
+                                       selectionMode="single"
+                                       selectedKeys={tag}
+                                       onSelectionChange={setTag}
+                                       items={tagItems}
+                        >
+                            {(item) => (
+                                <Dropdown.Item
+                                    key={item.key}
+                                    color={"default"}
+                                >
+                                    {item.name}
+                                </Dropdown.Item>
+                            )}
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    <div>(해당되는 태그가 없다면 개발담당자분께 알려주세요)</div>
                 <div>
                     <div style={styles.divider}>
                         <ReactQuill

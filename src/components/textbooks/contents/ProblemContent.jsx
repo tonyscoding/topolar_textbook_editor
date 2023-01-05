@@ -47,20 +47,35 @@ const ProblemContent = ({number, count_for_key}) => {
                     <div className={"problem-container"}>
                         <div className={"problem-title"}>{resolved.title}</div>
                         <CardContent data={{components: JSON.parse(resolved.description)}} edit={false}/>
-                        <Card
-                            width={ "guide-col8" }
-                            hideLine={0}
-                        >
-                            <div>{resolved.input}</div>
+                        {
+                            resolved.input && (
+                                <>
+                                    <div className={"problem-label"}>입력 설명</div>
+                                    <Card
+                                        width={ "guide-col8" }
+                                        hideLine={0}
+                                    >
+                                        <div>{resolved.input}</div>
 
-                        </Card>
-                        <Card
-                            width={ "guide-col8" }
-                            hideLine={0}
-                        >
-                            <div>{resolved.output}</div>
+                                    </Card>
+                                </>
 
-                        </Card>
+                            )
+                        }
+                        {
+                            resolved.output && (
+                                <>
+                                    <div className={"problem-label"}>출력 설명</div>
+                                    <Card
+                                        width={ "guide-col8" }
+                                        hideLine={0}
+                                    >
+                                        <div>{resolved.output}</div>
+
+                                    </Card>
+                                </>
+                            )
+                        }
 
                         {
                             inoutput.map((content, idx) => (
@@ -86,14 +101,23 @@ const ProblemContent = ({number, count_for_key}) => {
                                 </div>
                             ))
                         }
-                        <Card
-                            width={ "guide-col8" }
-                            hideLine={0}
-                        >
-                            <div>힌트</div>
-                            <div>{resolved.hint}</div>
+                        {
+                            resolved.hint && (
+                                <>
+                                    <div className={"problem-label"}>힌트</div>
+                                    <Card
+                                        width={ "guide-col8" }
+                                        hideLine={0}
+                                    >
 
-                        </Card>
+                                        <div>{resolved.hint}</div>
+
+                                    </Card>
+                                </>
+                            )
+                        }
+
+
                     </div>
                 )
             }

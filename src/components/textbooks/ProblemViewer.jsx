@@ -83,7 +83,7 @@ export const ProblemViewer = ({getProblemApi, getProblemListApi, inputRef}) => {
                                 {
                                     listResolved.map((problem, idx) => (
 
-                                        <Dropdown.Item key={problem.number}>{problem.number} {problem.title}</Dropdown.Item>
+                                        <Dropdown.Item key={problem.id}>{problem.id}-{problem.title}</Dropdown.Item>
                                     ))
                                 }
                             </Dropdown.Menu>
@@ -92,7 +92,7 @@ export const ProblemViewer = ({getProblemApi, getProblemListApi, inputRef}) => {
                             problemLoading ? (
                                 <Loader/>
                             ) : (
-                                <>
+                                <div style={{overflow: 'scroll', height: '500px'}}>
                                     <div>
                                         {JSON.parse(problemResolved.description).map((item) => {
                                             if(item.type === "desc") {
@@ -108,7 +108,7 @@ export const ProblemViewer = ({getProblemApi, getProblemListApi, inputRef}) => {
                                     <div>
                                         {problemResolved.output}
                                     </div>
-                                </>
+                                </div>
                             )
                         }
                         </>
