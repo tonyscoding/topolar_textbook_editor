@@ -1,25 +1,23 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from "react";
 
 import {Button, Dropdown, Input, Textarea} from "@nextui-org/react";
-import CodeContent from "./CodeContent";
+import CodeContent from "@/components/textbooks/contents/CodeContent";
 import rehypeRaw from "rehype-raw";
 import Markdown from "react-markdown";
 import ReactQuill from "react-quill";
-import CodeEditor from "../editors/CodeEditor";
+import CodeEditor from "@/components/textbooks/editors/CodeEditor";
 
 const ButtonGroup = ({index, desc, setDesc, text, codeLanguage, code}) => {
 
     const addDesc = () => {
-            let newDesc = JSON.parse(JSON.stringify(desc));
-            const content = {
-                "type": "desc",
-                "description": text.current
-            }
+        let newDesc = JSON.parse(JSON.stringify(desc));
+        const content = {
+            "type": "desc",
+            "description": text.current
+        }
 
-            newDesc.splice(index+1, 0, content);
-            console.log("prev",newDesc);
-            setDesc(newDesc);
-
+        newDesc.splice(index, 0, content);
+        setDesc(newDesc);
     }
 
     const addCode = () => {
@@ -29,37 +27,49 @@ const ButtonGroup = ({index, desc, setDesc, text, codeLanguage, code}) => {
             "code": "~~~" + codeLanguage.current.saveName + " \n" + code.current + "\n ~~~"
         }
 
-        newDesc.splice(index+1, 0, content);
-        console.log("prev",code, codeLanguage);
+        newDesc.splice(index, 0, content);
+        setDesc(newDesc);
+    }
+
+    const deleteItem = (deleteIndex) => {
+        let newDesc = JSON.parse(JSON.stringify(desc));
+        newDesc.splice(deleteIndex - 1, 1);
         setDesc(newDesc);
     }
 
     return (
-        <Button.Group
-            size={"sm"}
-            color={"default"}
-            flat
-            ghost
-            borderWeight={'light'}
-        >
-            <Button
-                auto
-                onClick={() => {
-                    addDesc()
-                }}
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <Button.Group
+                size={"sm"}
+                color={"default"}
+                flat
+                ghost
+                borderWeight={'light'}
             >
-                desc 추가
-            </Button>
-            <Button
-                auto
-                onClick={() => {
-                    console.log("code", code);
-                    addCode()
-                }}
-            >
-                code 추가
-            </Button>
-        </Button.Group>
+                <Button auto onClick={addDesc}>
+                    desc 추가
+                </Button>
+                <Button auto onClick={addCode}>
+                    code 추가
+                </Button>
+            </Button.Group>
+
+            {
+                index >= 1 ?
+                    <Button
+                        size={"sm"}
+                        color={"error"}
+                        borderWeight={"light"}
+                        auto
+                        ghost
+                        onClick={() => {
+                            deleteItem(index);
+                        }}
+                    >
+                        제거
+                    </Button> : null
+            }
+        </div>
     )
 }
 
@@ -121,20 +131,18 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
     const parseData = () => {
         return (
             desc.map((content, index) => {
-
                 if(content.type === "desc") {
                     return (
-                        <div>
+                        <div style={{ border: "1px dashed #c9c9c9" }}>
                             <Markdown children={content.description} rehypePlugins={[rehypeRaw]} />
-                            <ButtonGroup index={index} desc={desc} setDesc={setDesc} text={text} code={code} codeLanguage={codeLanguage}/>
+                            <ButtonGroup index={index + 1} desc={desc} setDesc={setDesc} text={text} code={code} codeLanguage={codeLanguage}/>
                         </div>
                     )
                 } else if(content.type === "code") {
-                    console.log("here")
                     return (
-                        <div>
+                        <div className={'body-desc'}>
                             <CodeContent key={`code-${index}`} components_item={content}/>
-                            <ButtonGroup index={index} desc={desc} setDesc={setDesc} text={text} code={code} codeLanguage={codeLanguage}/>
+                            <ButtonGroup index={index + 1} desc={desc} setDesc={setDesc} text={text} code={code} codeLanguage={codeLanguage}/>
                         </div>
                     )
                 }
@@ -145,26 +153,25 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
 
     return (
         <>
-
             <div style={styles.container}>
                 <div style={styles.input} >
-                    <Input label="제목 (필수)" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                    <Input label="제목 (필수)" value={title} onChange={(e) => setTitle(e.target.value)} />
                 </div>
-                <ButtonGroup index={0} desc={desc} setDesc={setDesc} text={text} code={code} codeLanguage={codeLanguage}/>
+                <ButtonGroup index={0} desc={desc} setDesc={setDesc} text={text} code={code} codeLanguage={codeLanguage} />
                 {parseData()}
                 <div style={styles.input} >
-                    <Textarea style={styles.textarea} label="입력 설명 (필수 x)" value={input} onChange={(e) => setInput(e.target.value)}/>
+                    <Textarea style={styles.textarea} label="입력 설명 (필수 x)" value={input} onChange={(e) => setInput(e.target.value)} />
                 </div>
                 <div style={styles.input} >
-                    <Textarea style={styles.textarea} label="출력 설명 (필수 x)" value={output} onChange={(e) => setOutput(e.target.value)}/>
+                    <Textarea style={styles.textarea} label="출력 설명 (필수 x)" value={output} onChange={(e) => setOutput(e.target.value)} />
                 </div>
 
                 <div>
-                    <InoutputContent inoutput={inoutput} setInoutput={setInoutput} input1={input1} output1={output1}/>
+                    <InoutputContent inoutput={inoutput} setInoutput={setInoutput} input1={input1} output1={output1} />
                 </div>
 
                 <div style={styles.input} >
-                    <Textarea style={styles.textarea} label="힌트 (필수 x)" value={hint} onChange={(e) => setHint(e.target.value)}/>
+                    <Textarea style={styles.textarea} label="힌트 (필수 x)" value={hint} onChange={(e) => setHint(e.target.value)} />
                 </div>
                 <div>
                     <Dropdown>
@@ -188,67 +195,67 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
                         </Dropdown.Menu>
                     </Dropdown>
                     <div>(해당되는 태그가 없다면 개발담당자분께 알려주세요)</div>
-                <div>
-                    <div style={styles.divider}>
-                        <ReactQuill
-                            value={text.current}
-                            onChange={(newText) => {
-                                text.current = newText;
-                            }}
-                            placeholder={""}
-                            theme="snow"
-                            style={{height:"250px"}}
-                        />
+                    <div>
+                        <div style={styles.divider}>
+                            <ReactQuill
+                                value={text.current}
+                                onChange={(newText) => {
+                                    text.current = newText;
+                                }}
+                                placeholder={""}
+                                theme="snow"
+                                style={{height:"250px"}}
+                            />
+                        </div>
+
+                        <div style={styles.divider}>
+                            <CodeEditor codeLanguage={codeLanguage} code={code} />
+                        </div>
+
+                        <div style={styles.exampleInput}>
+                            <Textarea
+                                label="입력예시"
+                                value={input1.current}
+                                onChange={e => {
+                                    input1.current = e.target.value;
+                                }}
+                            />
+                            <Textarea
+                                width={300}
+                                label="출력예시"
+                                value={output1.current}
+                                onChange={e => {
+                                    output1.current = e.target.value;
+                                }}
+                            />
+                        </div>
+
+                        {/*<div style={styles.divider}>*/}
+                        {/*    <LinkEditor link={link} />*/}
+                        {/*</div>*/}
+
+                        {/*<div style={styles.divider}>*/}
+                        {/*    <VideoEditor videoUrl={videoUrl} />*/}
+                        {/*</div>*/}
                     </div>
-
-                    <div style={styles.divider}>
-                        <CodeEditor codeLanguage={codeLanguage} code={code} />
-                    </div>
-
-                    <Textarea
-                        label="입력예시"
-                        value={input1.current}
-                        onChange={e => {
-                            input1.current = e.target.value;
-                        }}
-                    />
-                    <Textarea
-                        width={300}
-                        label="출력예시"
-                        value={output1.current}
-                        onChange={e => {
-                            output1.current = e.target.value;
-                        }}
-                    />
-
-                    {/*<div style={styles.divider}>*/}
-                    {/*    <LinkEditor link={link} />*/}
-                    {/*</div>*/}
-
-                    {/*<div style={styles.divider}>*/}
-                    {/*    <VideoEditor videoUrl={videoUrl} />*/}
-                    {/*</div>*/}
                 </div>
             </div>
-            </div>
-
-
         </>
     );
 }
 
 const styles = {
-    divider: {
-        marginTop: "20px",
-        marginBottom: "20px",
-        paddingTop: 20,
-        borderTop: "1px solid #dfdfdf"
-    },
     container: {
         overflow: "auto",
         height: "90vh",
         width: "100vw",
         padding: "100px"
+    },
+    divider: {
+        marginTop: "20px",
+        marginBottom: "20px",
+        paddingTop: 20,
+        borderTop: "1px solid #dfdfdf"
     },
     input: {
         margin: "20px"
@@ -259,6 +266,12 @@ const styles = {
     },
     textarea: {
         width: "500px"
+    },
+    exampleInput: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '500px',
+        justifyContent: 'space-between'
     }
 }
 

@@ -34,7 +34,7 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 			} else if (type === 'createProblem') {
 				handleOnclick(title, desc, input, output, inoutput, hint, tag);
 				inputRef.current = '';
-				// onClose();
+				onClose();
 			}
 		}
 	}
