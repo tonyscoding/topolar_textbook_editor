@@ -3,11 +3,12 @@ import {Button, Input} from "@nextui-org/react";
 import {ProblemViewer} from "./ProblemViewer";
 import "@/assets/sass/Components/CustomConfirmAlert.scss";
 import ProblemCreateContent from "./contents/ProblemCreateContent";
+import { toast } from "react-toastify";
 
 
 const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 	const [desc, setDesc] = useState([]);
-	const [title, setTitle] = useState();
+	const [title, setTitle] = useState("");
 	const [input, setInput] = useState();
 	const [output, setOutput] = useState();
 	const [inoutput, setInoutput] = useState([]);
@@ -32,9 +33,14 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 				inputRef.current = '';
 				onClose();
 			} else if (type === 'createProblem') {
+				if (title.replace(/\s/g,'') === '') {
+					toast.error("제목은 필수 항목입니다.");
+					console.log("제목은 필수 항목입니다.");
+					return;
+				}
+
 				handleOnclick(title, desc, input, output, inoutput, hint, tag);
 				inputRef.current = '';
-				onClose();
 			}
 		}
 	}

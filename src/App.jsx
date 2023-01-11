@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import NewClassroom from "./components/classroom";
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -9,14 +8,25 @@ import './assets/sass/CommonUsed.scss';
 import './assets/sass/BackgroundImages.scss';
 import './assets/sass/Guide/Font.scss';
 import './assets/sass/Guide/ColWidth.scss';
-import {DragDropContext} from "react-beautiful-dnd";
+import { Slide, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import React from "react";
 
 function App() {
 	return (
-
-
-				<NewClassroom />
-
+		<>
+			<NewClassroom />
+			<ToastContainer
+				position="top-center"
+				autoClose={3000}
+				pauseOnHover={false}
+				pauseOnFocusLoss={false}
+				hideProgressBar={true}
+				transition={Slide}
+				style={{ width: "60vw" }}
+				theme={'colored'}
+			/>
+		</>
 	)
 }
 

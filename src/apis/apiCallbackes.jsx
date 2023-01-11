@@ -28,10 +28,8 @@ export const useLoginCallback = () => {
         async (body) => {
             const {data} = await login(body);
             document.cookie=`accountId=${data.user.id}`;
-            console.log(data)
             set(userState, data);
-        },
-        [],
+        }, [],
     );
 }
 
@@ -40,7 +38,6 @@ export const useCurriculumCallback = () => {
     return useRecoilCallback(({snapshot, set}) =>
         async () => {
             let {data} = await getCurriculum(getAuthHeader(user?.token));
-            console.log('Curriculum', data)
 
             for (let courseLevel in data) {
                 for (let course in data[courseLevel]) {
@@ -59,50 +56,42 @@ export const useCurriculumCallback = () => {
             delete data["002"]['8'];
 
             set(curriculumState, data);
-        },
-        [user],
+        }, [user],
     );
 }
 
 export const useGetTextbookListByLevelCallback = () => {
     const user = useRecoilValue(userState);
     return useRecoilCallback(({snapshot, set}) =>
-            async (curriculum, textbookLevel) => {
-                const {data} = await getTextbookListByLevel(getAuthHeader(user?.token), curriculum, textbookLevel);
-                console.log(data)
-                set(levelItemState, data);
-            },
-        [user],
+        async (curriculum, textbookLevel) => {
+            const {data} = await getTextbookListByLevel(getAuthHeader(user?.token), curriculum, textbookLevel);
+            set(levelItemState, data);
+        }, [user],
     );
 }
 
 export const useGetJSONTextbookCallback = () => {
     const user = useRecoilValue(userState);
     return useRecoilCallback(({snapshot, set}) =>
-            async (id) => {
-                const {data} = await getTextbook(getAuthHeader(user?.token), id);
-                console.log(data)
-                if (data) {
-                    const jsonBook = await getJSONTextbook(getAuthHeader(user?.token), data.file.id);
-                    console.log(jsonBook)
-                    set(stepIndexState, 0);
-                    set(itemIndexState, 0);
-                    set(JSONbookState, jsonBook.data.data.textbook_content);
-                }
-            },
-        [user],
+        async (id) => {
+            const {data} = await getTextbook(getAuthHeader(user?.token), id);
+            if (data) {
+                const jsonBook = await getJSONTextbook(getAuthHeader(user?.token), data.file.id);
+                set(stepIndexState, 0);
+                set(itemIndexState, 0);
+                set(JSONbookState, jsonBook.data.data.textbook_content);
+            }
+        }, [user],
     );
 }
 
 export const useGetCourseListCallback = () => {
     const user = useRecoilValue(userState);
     return useRecoilCallback(({snapshot, set}) =>
-            async () => {
-                const {data} = await getCourseList(getAuthHeader(user?.token));
-                console.log(data);
-                set(courseListState, data.response[0])
-            },
-        [user],
+        async () => {
+            const {data} = await getCourseList(getAuthHeader(user?.token));
+            set(courseListState, data.response[0])
+        }, [user],
     );
 }
 
@@ -111,38 +100,31 @@ export const useUpdateTextbookCallback = () => {
     const jsonBook = useRecoilValue(JSONbookState);
 
     return useRecoilCallback(({snapshot, set}) =>
-            async (id) => {
-                const textbookInfo = await getTextbook(getAuthHeader(user?.token), id);
-                console.log(textbookInfo)
+        async (id) => {
+            const textbookInfo = await getTextbook(getAuthHeader(user?.token), id);
 
-                const json = JSON.stringify(jsonBook, null, "\t");
-                const zip = new JSZip();
-                zip.file('textbook.json', json);
-                zip.generateAsync({type:"blob"})
-                    .then(async function(file) {
-                        console.log(file)
-                        let formData = new FormData();
+            const json = JSON.stringify(jsonBook, null, "\t");
+            const zip = new JSZip();
+            zip.file('textbook.json', json);
+            zip.generateAsync({type:"blob"})
+                .then(async function(file) {
+                    let formData = new FormData();
 
-                        formData.append("file", file, `${textbookInfo.data.language.name}_${textbookInfo.data.level}_${textbookInfo.data.order_num}_${textbookInfo.data.name}.zip`);
-                        formData.append("textbook_type", "2");
+                    formData.append("file", file, `${textbookInfo.data.language.name}_${textbookInfo.data.level}_${textbookInfo.data.order_num}_${textbookInfo.data.name}.zip`);
+                    formData.append("textbook_type", "2");
 
-                        const {data} = await updateTextbook(getAuthHeader(user?.token), formData, id);
-
-                        console.log(data);
-                });
-            },
-        [user, jsonBook],
+                    const {data} = await updateTextbook(getAuthHeader(user?.token), formData, id);
+            });
+        }, [user, jsonBook],
     );
 }
 
 export const useDeleteTextbookCallback = () => {
     const user = useRecoilValue(userState);
     return useRecoilCallback(({snapshot, set}) =>
-            async (id) => {
-                const {data} = await deleteTextbook(getAuthHeader(user?.token), id);
-                console.log(data);
-            },
-        [user],
+        async (id) => {
+            const {data} = await deleteTextbook(getAuthHeader(user?.token), id);
+        }, [user],
     );
 }
 
@@ -151,49 +133,45 @@ export const useUploadTextbookCallback = () => {
     const jsonBook = useRecoilValue(JSONbookState);
 
     return useRecoilCallback(({snapshot, set}) =>
-            async (textbook) => {
-                const parseJsonBook = JSON.parse(JSON.stringify(jsonBook));
-                parseJsonBook.textbook_title = textbook.name;
-                parseJsonBook.textbook_subtitle = {
-                    stage: textbook.stage,
-                    language: textbook.language,
-                    level: textbook.level
-                }
-                const json = JSON.stringify(parseJsonBook, null, "\t");
-                console.log("final jsonBook",parseJsonBook);
-                const zip = new JSZip();
-                zip.file('textbook.json', json);
-                zip.generateAsync({type:"blob"})
-                    .then(async function(file) {
-                        console.log(file)
-                        let formData = new FormData();
+        async (textbook) => {
+            const parseJsonBook = JSON.parse(JSON.stringify(jsonBook));
+            parseJsonBook.textbook_title = textbook.name;
+            parseJsonBook.textbook_subtitle = {
+                stage: textbook.stage,
+                language: textbook.language,
+                level: textbook.level
+            }
+            const json = JSON.stringify(parseJsonBook, null, "\t");
+            const zip = new JSZip();
+            zip.file('textbook.json', json);
+            zip.generateAsync({type:"blob"})
+                .then(async function(file) {
+                    let formData = new FormData();
 
-                        formData.append("file", file, `${textbook.language}_${textbook.level}_${textbook.order_num}_${textbook.name}.zip`);
-                        formData.append("textbook_type", "2");
+                    formData.append("file", file, `${textbook.language}_${textbook.level}_${textbook.order_num}_${textbook.name}.zip`);
+                    formData.append("textbook_type", "2");
 
-                        const {data} = await uploadFile(getAuthHeader(user?.token), formData);
-                        console.log(data);
+                    const {data} = await uploadFile(getAuthHeader(user?.token), formData);
 
-                        if (textbook?.language_code === '002-ls') {
-                            textbook.language_code = '002';
-                        }
+                    if (textbook?.language_code === '002-ls') {
+                        textbook.language_code = '002';
+                    }
 
-                        let textbookFormData = new FormData();
-                        textbookFormData.append("name", textbook.name);
-                        textbookFormData.append("level", textbook.level);
-                        textbookFormData.append("course", textbook.course);
-                        textbookFormData.append("stage", "1");
-                        textbookFormData.append("language_code", textbook.language_code);
-                        textbookFormData.append("language", LANGUAGE_CODE_TO_ID[textbook.language_code]);
-                        textbookFormData.append("order_num", textbook.order_num);
-                        textbookFormData.append("is_essential", "false");
-                        textbookFormData.append("file", data.id);
+                    let textbookFormData = new FormData();
+                    textbookFormData.append("name", textbook.name);
+                    textbookFormData.append("level", textbook.level);
+                    textbookFormData.append("course", textbook.course);
+                    textbookFormData.append("stage", "1");
+                    textbookFormData.append("language_code", textbook.language_code);
+                    textbookFormData.append("language", LANGUAGE_CODE_TO_ID[textbook.language_code]);
+                    textbookFormData.append("order_num", textbook.order_num);
+                    textbookFormData.append("is_essential", "false");
+                    textbookFormData.append("file", data.id);
 
 
-                        const {res} = await createTextbook(getAuthHeader(user?.token), textbookFormData);
-                    });
-            },
-        [user, jsonBook],
+                    const {res} = await createTextbook(getAuthHeader(user?.token), textbookFormData);
+                });
+        }, [user, jsonBook],
     );
 }
 
@@ -202,15 +180,13 @@ export const useGetProblemCallback = () => {
     const [loading, setLoading] = useState(true);
     const [resolved, setResolved] = useState();
     const callback = useRecoilCallback(({snapshot, set}) =>
-            async (number) => {
-                console.log("problem callback", number);
-                const {data} = await getProblem(getAuthHeader(user?.token), number);
+        async (number) => {
+            const {data} = await getProblem(getAuthHeader(user?.token), number);
 
-                setLoading(false);
-                setResolved(data);
-                return data
-            },
-        [user],
+            setLoading(false);
+            setResolved(data);
+            return data
+        }, [user],
     );
     return [loading, resolved, callback];
 }
@@ -226,8 +202,7 @@ export const useGetProblemListCallback = () => {
                 setLoading(false);
                 setResolved(data);
                 return data
-            },
-        [user],
+            }, [user],
     );
     return [loading, resolved, callback];
 }
