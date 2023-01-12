@@ -11,6 +11,7 @@ import useApi from "../../apis/useApi";
 import {getLanguage, getProblem, getProblemList, postProblem} from "@/apis/apiServices";
 import {JSONbookState} from "@/utils/States";
 import {ENG_LEVEL_TO_KR, KR_LANGUAGE_TO_ENG} from "@/utils/Utils";
+import { toast } from "react-toastify";
 
 const TextbookOutline = ({
      movePage,
@@ -58,9 +59,9 @@ const TextbookOutline = ({
 		console.log(e.target.value)
 	}
 
-	const createProblem = (title, desc, input, output, inoutput, hint, tag) => {
+	const createProblem = async (title, desc, input, output, inoutput, hint, tag) => {
 		tag = Array.from(tag).join(", ").replaceAll("_", " ");
-		postProblemCallback({
+		const res = await postProblemCallback({
 			title: title,
 			description: JSON.stringify(desc),
 			input: input,
@@ -68,8 +69,16 @@ const TextbookOutline = ({
 			inoutput_ex: JSON.stringify(inoutput),
 			hint: hint,
 			tag: tag
-		});
-		console.log(title,desc,input,output,inoutput,hint,tag);
+		})
+			.then((res) => {
+				toast.success(`[${res?.title}] 문제가 정상적으로 업로드되었습니다.`);
+				return true;
+			})
+			.catch((e) => {
+				return false;
+			})
+
+		return res;
 	}
 
 	const stepAddClick = (index) => {
@@ -167,7 +176,7 @@ const TextbookOutline = ({
 		})
 	}
 
-	const parseTextbook = (textbook) =>{
+	const parseTextbook = (textbook) => {
 		let index = -1
 		const textbookContents = textbook.textbook_contents.map((step_dict, nowStepIndex)=>{
 			const textbookSteps = step_dict.step_items.map((step, nowItemIndex)=>{

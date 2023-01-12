@@ -21,7 +21,7 @@ function App() {
 				autoClose={3000}
 				pauseOnHover={false}
 				pauseOnFocusLoss={false}
-				hideProgressBar={true}
+				hideProgressBar={false}
 				transition={Slide}
 				style={{ width: "60vw" }}
 				theme={'colored'}

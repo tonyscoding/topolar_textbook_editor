@@ -38,8 +38,13 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 					return;
 				}
 
-				handleOnclick(title, desc, input, output, inoutput, hint, tag);
-				inputRef.current = '';
+				handleOnclick(title, desc, input, output, inoutput, hint, tag)
+					.then((res) => {
+						if (res === true) {
+							inputRef.current = '';
+							onClose();
+						}
+					})
 			}
 		}
 	}

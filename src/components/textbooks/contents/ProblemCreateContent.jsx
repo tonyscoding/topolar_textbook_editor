@@ -122,7 +122,9 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
         { key: "C#", name: "C#" },
         { key: "JavaScript", name: "JavaScript" },
         { key: "Python", name: "Python" },
-        { key: "Java", name: "Java" }
+        { key: "Java", name: "Java" },
+        { key: "Html", name: "Html" },
+        { key: "css", name: "css" }
     ];
 
     const parseData = () => {
