@@ -1,34 +1,94 @@
-import React from 'react';
-import { Button } from "@nextui-org/react";
+import React, { useRef } from 'react';
+import {Button, Input} from "@nextui-org/react";
 
-const CustomAlert = ({ onClose, message, onConfirm=null }) => {
+const CustomAlert = ({ onClose, message, onConfirm=null, textbookName='' }) => {
+	const inputRef = useRef('');
+
 	return (
 		<div style={styles.container}>
-			<div>{ message }</div>
-			<div style={styles.buttonContainer}>
-				<Button
-					size={'sm'}
-					color={'error'}
-					style={{marginRight: "10px"}}
-					auto
-					onClick={() => {
-						onClose();
-					}}
-				>
-					취소
-				</Button>
-				<Button
-					size={'sm'}
-					style={{marginRight: "10px"}}
-					auto
-					onClick={() => {
-						onConfirm();
-						onClose();
-					}}
-				>
-					확인
-				</Button>
-			</div>
+			{
+				textbookName !== '' ? (
+					<>
+						<div>
+							[ { textbookName } ] { message }
+						</div>
+
+						<Input
+							css={{width: "100%", marginTop: "3vh"}}
+							placeholder={textbookName}
+							value={inputRef.current.value}
+							onChange={(e) => {
+								inputRef.current = e.target.value;
+							}}
+						/>
+
+						<div style={styles.buttonContainer}>
+							<div style={{fontSize: 15, color: 'red', fontWeight: 600}}>
+								* 교재 이름을 위의 입력창에 입력해주세요.
+							</div>
+
+							<div style={{display: 'flex', flexDirection: 'row'}}>
+								<Button
+									size={'sm'}
+									color={'error'}
+									style={{marginRight: "10px"}}
+									auto
+									onClick={() => {
+										onClose();
+									}}
+								>
+									취소
+								</Button>
+								<Button
+									size={'sm'}
+									style={{marginRight: "10px"}}
+									auto
+									onClick={() => {
+										if (inputRef.current === textbookName) {
+											onConfirm();
+											onClose();
+										}
+									}}
+								>
+									확인
+								</Button>
+							</div>
+						</div>
+					</>
+				) : (
+					<>
+						<div>{ message }</div>
+
+						<div style={{...styles.buttonContainer, justifyContent: 'flex-end'}}>
+							<div style={{display: 'flex', flexDirection: 'row'}}>
+								<Button
+									size={'sm'}
+									color={'error'}
+									style={{marginRight: "10px"}}
+									auto
+									onClick={() => {
+										onClose();
+									}}
+								>
+									취소
+								</Button>
+								<Button
+									size={'sm'}
+									style={{marginRight: "10px"}}
+									auto
+									onClick={() => {
+										onConfirm();
+										onClose();
+									}}
+								>
+									확인
+								</Button>
+							</div>
+						</div>
+					</>
+				)
+			}
+
 		</div>
 	);
 };
@@ -46,7 +106,8 @@ const styles = {
 		display: "flex",
 		flexDirection: "row",
 		marginTop: "15px",
-		justifyContent: "end"
+		justifyContent: "space-between",
+		alignItems: "center"
 	}
 }
 

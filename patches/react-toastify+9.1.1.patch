@@ -1,0 +1,22 @@
+diff --git a/node_modules/react-toastify/dist/ReactToastify.css b/node_modules/react-toastify/dist/ReactToastify.css
+index c2ca8eb..ec0086e 100644
+--- a/node_modules/react-toastify/dist/ReactToastify.css
++++ b/node_modules/react-toastify/dist/ReactToastify.css
+@@ -15,7 +15,7 @@
+   --toastify-toast-min-height: 64px;
+   --toastify-toast-max-height: 800px;
+   --toastify-font-family: sans-serif;
+-  --toastify-z-index: 9999;
++  --toastify-z-index: 99999;
+   --toastify-text-color-light: #757575;
+   --toastify-text-color-dark: #fff;
+   --toastify-text-color-info: #fff;
+@@ -114,7 +114,7 @@
+   cursor: default;
+   direction: ltr;
+   /* webkit only issue #791 */
+-  z-index: 0;
++  z-index: 99999;
+ }
+ .Toastify__toast--rtl {
+   direction: rtl;

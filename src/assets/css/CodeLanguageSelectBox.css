@@ -20,7 +20,7 @@ code {
 
 .dropdown {
     width: 200px;
-    height: 200px;
+    height: 230px;
     background-color: var(--bg);
     border: var(--border);
     border-radius: var(--border-radius);

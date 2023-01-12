@@ -5,7 +5,7 @@ import {loadTextbook} from "@/helpers/electronFileSystem";
 
 import '@/assets/sass/Curriculum/TextbookSidebar.scss'
 import {Button, Switch} from "@nextui-org/react";
-import {FiDownload, FiRefreshCcw, FiUpload} from "react-icons/fi";
+import {FiDownload, FiRefreshCcw, FiUpload, FiX} from "react-icons/fi";
 import {useRecoilState} from "recoil";
 import {quickLoadState} from "@/utils/States";
 
@@ -109,14 +109,20 @@ const TextbookSidebar = ({
 
     return (
         <div className={"textbook-sidebar" + (isOpen? "" : " closed") + (textbookCompleteCallback? " fixed" : "")}>
-            <Button
-                style={{"position": "absolute", "top": "0", "right": "0"}}
+            <div
+                style={{
+                    alignSelf: "flex-end",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    alignItems: "center",
+                    padding: "1rem",
+                    cursor: "pointer"
+                }}
                 onClick={()=>{toggleSidebar(false)}}
-                size={"sm"}
-                color={"error"}
             >
-                close
-            </Button>
+                <FiX size={25} />
+            </div>
 
             <TextbookOutline
                 JSONBook={JSONBook}
@@ -170,7 +176,7 @@ const TextbookSidebar = ({
 
             <hr />
 
-            <div style={{fontSize: 20, marginLeft: 10}}>v 0.11.1</div>
+            <div style={{fontSize: 20, marginLeft: 10}}>v 0.13.4</div>
         </div>
     )
 

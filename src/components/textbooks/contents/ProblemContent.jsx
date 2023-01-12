@@ -2,10 +2,10 @@ import React, {useEffect, useState} from "react";
 
 import CodeContent from "./CodeContent";
 import { Card } from "@/components/guideComponents/Card";
-import Loader from "@/components/guideComponents/Loader";
-import { useGetProblemCallback } from "@/apis/apiCallbackes"
 import {getProblem} from "@/apis/apiServices";
 import useApi from "@/apis/useApi";
+import CardContent from "./CardContent";
+import { ColorRing } from "react-loader-spinner";
 
 
 const ProblemContent = ({number, count_for_key}) => {
@@ -39,33 +39,49 @@ const ProblemContent = ({number, count_for_key}) => {
         <>
             {
                 loading ? (
-                    <div>
-                        <Loader/>
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", alignSelf: "center" }}>
+                        <ColorRing
+                            visible={true}
+                            height="80"
+                            width="80"
+                            ariaLabel="blocks-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="blocks-wrapper"
+                            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                        />
                     </div>
                 ) : (
                     <div className={"problem-container"}>
                         <div className={"problem-title"}>{resolved.title}</div>
-                        <Card
-                            width={ "guide-col8" }
-                            hideLine={0}
-                        >
-                            <div>{resolved.description}</div>
+                        <CardContent data={{components: JSON.parse(resolved.description)}} edit={false}/>
+                        {
+                            resolved.input && (
+                                <>
+                                    <div className={"problem-label"}>입력 설명</div>
+                                    <Card
+                                        width={ "guide-col8" }
+                                        hideLine={0}
+                                    >
+                                        <div>{resolved.input}</div>
+                                    </Card>
+                                </>
 
-                        </Card>
-                        <Card
-                            width={ "guide-col8" }
-                            hideLine={0}
-                        >
-                            <div>{resolved.input}</div>
+                            )
+                        }
+                        {
+                            resolved.output && (
+                                <>
+                                    <div className={"problem-label"}>출력 설명</div>
+                                    <Card
+                                        width={ "guide-col8" }
+                                        hideLine={0}
+                                    >
+                                        <div>{resolved.output}</div>
 
-                        </Card>
-                        <Card
-                            width={ "guide-col8" }
-                            hideLine={0}
-                        >
-                            <div>{resolved.output}</div>
-
-                        </Card>
+                                    </Card>
+                                </>
+                            )
+                        }
 
                         {
                             inoutput.map((content, idx) => (
@@ -91,6 +107,23 @@ const ProblemContent = ({number, count_for_key}) => {
                                 </div>
                             ))
                         }
+                        {
+                            resolved.hint && (
+                                <>
+                                    <div className={"problem-label"}>힌트</div>
+                                    <Card
+                                        width={ "guide-col8" }
+                                        hideLine={0}
+                                    >
+
+                                        <div>{resolved.hint}</div>
+
+                                    </Card>
+                                </>
+                            )
+                        }
+
+
                     </div>
                 )
             }
