@@ -4,6 +4,7 @@ import {
     userState
 } from "@/utils/States";
 import getAuthHeader from "@/apis/authHeader";
+import { toast } from "react-toastify";
 
 const useApi = (api, authHeader=false) => {
     const [loading, setLoading] = useState(true);
@@ -17,7 +18,12 @@ const useApi = (api, authHeader=false) => {
                     access_token = (await snapshot.getPromise(userState)).token;
                 }
                 const {data} = await api(authHeader ? getAuthHeader(access_token) : null, ...args)
-                    .catch(err => console.log(err.response.data?.error?.detail));
+                    .catch((err) => {
+                        toast.error(
+                    `[${err.response.status}] ${err.response.data?.error?.detail}`,
+                            { autoClose: 5000 }
+                        );
+                    });
                 setResolved(data);
                 setLoading(false);
                 return data
