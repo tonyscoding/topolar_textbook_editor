@@ -155,15 +155,15 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
         <>
             <div style={styles.container}>
                 <div style={styles.input} >
-                    <Input label="제목 (필수)" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <Input label="제목 (필수)" onChange={(e) => setTitle(e.target.value)} />
                 </div>
                 <ButtonGroup index={0} desc={desc} setDesc={setDesc} text={text} code={code} codeLanguage={codeLanguage} />
                 {parseData()}
                 <div style={styles.input} >
-                    <Textarea style={styles.textarea} label="입력 설명 (필수 x)" value={input} onChange={(e) => setInput(e.target.value)} />
+                    <Textarea style={styles.textarea} label="입력 설명 (필수 x)" onChange={(e) => setInput(e.target.value)} />
                 </div>
                 <div style={styles.input} >
-                    <Textarea style={styles.textarea} label="출력 설명 (필수 x)" value={output} onChange={(e) => setOutput(e.target.value)} />
+                    <Textarea style={styles.textarea} label="출력 설명 (필수 x)" onChange={(e) => setOutput(e.target.value)} />
                 </div>
 
                 <div>
@@ -171,7 +171,7 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
                 </div>
 
                 <div style={styles.input} >
-                    <Textarea style={styles.textarea} label="힌트 (필수 x)" value={hint} onChange={(e) => setHint(e.target.value)} />
+                    <Textarea style={styles.textarea} label="힌트 (필수 x)" onChange={(e) => setHint(e.target.value)} />
                 </div>
                 <div>
                     <Dropdown>
@@ -215,7 +215,7 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
                         <div style={styles.exampleInput}>
                             <Textarea
                                 label="입력예시"
-                                value={input1.current}
+                                value={input1.current.value}
                                 onChange={e => {
                                     input1.current = e.target.value;
                                 }}
@@ -223,7 +223,7 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
                             <Textarea
                                 width={300}
                                 label="출력예시"
-                                value={output1.current}
+                                value={output1.current.value}
                                 onChange={e => {
                                     output1.current = e.target.value;
                                 }}
