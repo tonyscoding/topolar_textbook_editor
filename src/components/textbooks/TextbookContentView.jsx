@@ -105,7 +105,7 @@ const TextbookContentView = ({
 
     const StepItemProblem = () => {
         return (
-            <ProblemContent number={title.slice(1)} count_for_key={title}/>
+            <ProblemContent number={title.slice(1)} count_for_key={title} />
         )
     }
 

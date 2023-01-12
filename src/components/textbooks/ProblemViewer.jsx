@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import Loader from "@/components/guideComponents/Loader";
 import { Dropdown } from "@nextui-org/react";
-import useApi from "../../apis/useApi";
-import {getProblemList} from "../../apis/apiServices";
-import ProblemContent from "./contents/ProblemContent";
 import rehypeRaw from "rehype-raw";
 import Markdown from "react-markdown";
+import { ColorRing } from "react-loader-spinner";
 
 export const ProblemViewer = ({getProblemApi, getProblemListApi, inputRef}) => {
     const [select, setSelect] = useState(new Set(["default"]));
@@ -17,17 +14,14 @@ export const ProblemViewer = ({getProblemApi, getProblemListApi, inputRef}) => {
     const [_, __, listCallback] = getProblemListApi;
     const [___, ____, problemCallback] = getProblemApi;
 
-
     const selectedValue = React.useMemo(
         () => Array.from(select).join(", ").replaceAll("_", " "),
         [select]
     );
 
     useEffect(() => {
-        console.log("useeffect", selectedValue)
         listCallback()
             .then(r => {
-                console.log(r);
                 setListLoading(false);
                 setListResolved(r);
             })
@@ -35,11 +29,9 @@ export const ProblemViewer = ({getProblemApi, getProblemListApi, inputRef}) => {
     },[])
 
     useEffect(() => {
-        if(selectedValue!=="default") {
-            console.log("problemViewer", inputRef);
+        if (selectedValue !== "default") {
             problemCallback(selectedValue)
                 .then(r => {
-                    console.log("problem", r);
                     setProblemLoading(false);
                     setProblemResolved(r);
                 })
@@ -47,17 +39,20 @@ export const ProblemViewer = ({getProblemApi, getProblemListApi, inputRef}) => {
 
     },[JSON.stringify(select)]);
 
-    useEffect(() => {
-        console.log("listLoading", listLoading);
-        // problemCallback()
-    },[listLoading]);
-
     return(
         <>
             {
                 listLoading ? (
-                    <div>
-                        <Loader/>
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", alignSelf: "center" }}>
+                        <ColorRing
+                            visible={true}
+                            height="80"
+                            width="80"
+                            ariaLabel="blocks-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="blocks-wrapper"
+                            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                        />
                     </div>
                 ) : (
                     <>
@@ -90,7 +85,17 @@ export const ProblemViewer = ({getProblemApi, getProblemListApi, inputRef}) => {
                         </Dropdown>
                         {
                             problemLoading ? (
-                                <Loader/>
+                                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", alignSelf: "center" }}>
+                                    <ColorRing
+                                        visible={true}
+                                        height="80"
+                                        width="80"
+                                        ariaLabel="blocks-loading"
+                                        wrapperStyle={{}}
+                                        wrapperClass="blocks-wrapper"
+                                        colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                                    />
+                                </div>
                             ) : (
                                 <div style={{overflow: 'scroll', height: '500px'}}>
                                     <div>

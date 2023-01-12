@@ -32,10 +32,9 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 				handleOnclick(data.stepIndex, data.itemIndex, inputRef.current);
 				inputRef.current = '';
 				onClose();
-			} else if (type === 'createProblem') {
+			} else if (type === 'createProblem' && !e) {
 				if (title.replace(/\s/g,'') === '') {
 					toast.error("제목은 필수 항목입니다.");
-					console.log("제목은 필수 항목입니다.");
 					return;
 				}
 
