@@ -8,10 +8,9 @@ import CustomConfirmAlert from "@/components/textbooks/CustomConfirmAlert ";
 import {useRecoilState, useRecoilValue} from "recoil";
 import {stepIndexState, itemIndexState, languageListState} from "@/utils/States";
 import useApi from "../../apis/useApi";
-import {getLanguage, getProblem, getProblemList, postProblem} from "../../apis/apiServices";
+import {getLanguage, getProblem, getProblemList, postProblem} from "@/apis/apiServices";
 import {JSONbookState} from "@/utils/States";
 import {ENG_LEVEL_TO_KR, KR_LANGUAGE_TO_ENG} from "@/utils/Utils";
-import {FiChevronDown} from "react-icons/all";
 
 const TextbookOutline = ({
      movePage,
@@ -60,7 +59,6 @@ const TextbookOutline = ({
 	}
 
 	const createProblem = (title, desc, input, output, inoutput, hint, tag) => {
-		console.log("tag",tag)
 		tag = Array.from(tag).join(", ").replaceAll("_", " ");
 		postProblemCallback({
 			title: title,
@@ -214,11 +212,6 @@ const TextbookOutline = ({
 								>
 									문제 추가
 								</Button>
-								<Button
-									onClick={() => {problemCreateClick(nowStepIndex, nowItemIndex)}}
-								>
-									문제 생성
-								</Button>
 							</Button.Group>
 						}
 					</div>
@@ -319,7 +312,7 @@ const TextbookOutline = ({
 				</div>
 			</div>
 
-			<div style={{ marginTop: "20px" }}>
+			<div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%", marginTop: "20px" }}>
 				<Button
 					onClick={() => {
 						stepAddClick(-1)
@@ -329,6 +322,14 @@ const TextbookOutline = ({
 					ghost
 				>
 					스탭 추가
+				</Button>
+
+				<Button
+					onClick={() => {problemCreateClick()}}
+					size={"sm"}
+					color={"primary"}
+				>
+					문제 생성
 				</Button>
 			</div>
 			{parsedJSONBook}

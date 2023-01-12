@@ -119,14 +119,11 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
     const tagItems = [
         { key: "C", name: "C" },
         { key: "C++", name: "C++" },
+        { key: "C#", name: "C#" },
         { key: "JavaScript", name: "JavaScript" },
         { key: "Python", name: "Python" },
         { key: "Java", name: "Java" }
     ];
-
-    useEffect(() => {
-        console.log(desc);
-    }, [JSON.stringify(desc)])
 
     const parseData = () => {
         return (
@@ -177,12 +174,12 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
                     <Dropdown>
                         <Dropdown.Button flat>{selectedValue}</Dropdown.Button>
                         <Dropdown.Menu aria-label="Single selection actions"
-                                       color="secondary"
-                                       disallowEmptySelection
-                                       selectionMode="single"
-                                       selectedKeys={tag}
-                                       onSelectionChange={setTag}
-                                       items={tagItems}
+                           color="secondary"
+                           disallowEmptySelection
+                           selectionMode="single"
+                           selectedKeys={tag}
+                           onSelectionChange={setTag}
+                           items={tagItems}
                         >
                             {(item) => (
                                 <Dropdown.Item
