@@ -193,7 +193,7 @@ const ProblemCreateContent = ({desc, setDesc, title, setTitle, input, setInput, 
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
-                    <div>(해당되는 태그가 없다면 개발담당자분께 알려주세요)</div>
+                    <div>딱히 정할 언어가 없다면 Python으로 설정합니다. (해당되는 태그가 없다면 개발담당자분께 알려주세요)</div>
                     <div>
                         <div style={styles.divider}>
                             <ReactQuill
