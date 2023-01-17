@@ -14,7 +14,8 @@ import {useCurriculumCallback, useGetCourseListCallback, useLoginCallback} from 
 import ServerTextbookSidebar from "@/components/serverTextbook/ServerTextbookSidebar";
 import useApi from "@/apis/useApi";
 import {getLanguage} from "@/apis/apiServices";
-import {KR_LANGUAGE_TO_ENG} from "@/utils/Utils";
+import {PARSE_LANGUAGE_TO_ENG} from "@/utils/Utils";
+import {postProblem} from "@/apis/apiServices";
 
 const NewClassroom = () =>{
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -44,7 +45,7 @@ const NewClassroom = () =>{
             .then((res) => {
                 let languageList = res;
                 for (let i = 0; i < languageList.length; i++) {
-                    languageList[i].name = KR_LANGUAGE_TO_ENG[languageList[i].name] ? KR_LANGUAGE_TO_ENG[languageList[i].name] : languageList[i].name;
+                    languageList[i].name = PARSE_LANGUAGE_TO_ENG[languageList[i].name] ? PARSE_LANGUAGE_TO_ENG[languageList[i].name] : languageList[i].name;
                 }
                 setLanguageList(res);
             })

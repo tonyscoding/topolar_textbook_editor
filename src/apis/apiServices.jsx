@@ -57,3 +57,8 @@ export const getCourseList = (authHeader) => {
 export const getLanguage = (authHeader) => {
     return axios.get(`${URL}/api/language/`, authHeader);
 }
+
+export const postProblem = (authHeader, body) => {
+    console.log("body", body);
+    return axios.post(`${URL}/api/problem/`, body, authHeader);
+}

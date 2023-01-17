@@ -64,6 +64,8 @@ export const ButtonGroup = ({
 			newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].components.splice(cardIndex, 0, content);
 		}
 
+		console.log((newJSONBook.textbook_contents[stepIndex].step_items[itemIndex].components))
+
 		handleSaveTextbook(newJSONBook);
 		setJSONBook(newJSONBook);
 	}

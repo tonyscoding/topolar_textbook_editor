@@ -16,14 +16,18 @@ export const LANGUAGE_CODE_TO_ID = {
     '015': '15',
 }
 
-export const ENG_LEVEL_TO_KR = {
+export const PARSE_LEVEL_TO_KR = {
     "Adventurer":"모험가",
     "Pioneer": "개척자",
     "Master": "숙련가",
     "Special": "특강",
+    "모험가": "모험가",
+    "개척자": "개척자",
+    "숙련가": "숙련가",
+    "특강": "특강"
 }
 
-export const KR_LANGUAGE_TO_ENG = {
+export const PARSE_LANGUAGE_TO_ENG = {
     "스크래치": "Scratch",
     "파이썬": "Python",
     "자바": "Java",

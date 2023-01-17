@@ -3,15 +3,15 @@ import '@/assets/sass/Curriculum/TextbookOutline.scss'
 
 import { confirmAlert } from "react-confirm-alert";
 import {Button, Dropdown, Input, Spacer} from "@nextui-org/react";
-import CustomConfirmAlert from "./CustomConfirmAlert";
+import CustomConfirmAlert from "@/components/textbooks/CustomConfirmAlert ";
 
 import {useRecoilState, useRecoilValue} from "recoil";
 import {stepIndexState, itemIndexState, languageListState} from "@/utils/States";
 import useApi from "../../apis/useApi";
-import { getProblem, getProblemList } from "@/apis/apiServices";
+import {getLanguage, getProblem, getProblemList, postProblem} from "@/apis/apiServices";
 import {JSONbookState} from "@/utils/States";
-import {ENG_LEVEL_TO_KR, KR_LANGUAGE_TO_ENG} from "@/utils/Utils";
-import {FiChevronDown} from "react-icons/all";
+import {PARSE_LEVEL_TO_KR} from "@/utils/Utils";
+import { toast } from "react-toastify";
 
 const TextbookOutline = ({
      movePage,
@@ -22,7 +22,7 @@ const TextbookOutline = ({
      deleteItem,
      changeItemTitle,
 	addProblem
-}) => {
+ }) => {
 	const stepIndex = useRecoilValue(stepIndexState);
 	const itemIndex = useRecoilValue(itemIndexState);
 	const languageList = useRecoilValue(languageListState);
@@ -32,6 +32,13 @@ const TextbookOutline = ({
 
 	const [parsedJSONBook, setParsedJSONBook] = useState(null);
 
+	const [postProblemLoading, postProblemResolved, postProblemCallback] = useApi(postProblem, true);
+
+	const [stage, setStage] = useState("Adventaurer");
+	const [language, setLanguage] = useState("Python");
+	const [level, setLevel] = useState(1);
+
+	const textbookTitle = useRef(null);
 	const inputRef = useRef('');
 
 	const getProblemListApi = useApi(getProblemList, true);
@@ -52,7 +59,27 @@ const TextbookOutline = ({
 		console.log(e.target.value)
 	}
 
+	const createProblem = async (title, desc, input, output, inoutput, hint, tag) => {
+		tag = Array.from(tag).join(", ").replaceAll("_", " ");
+		const res = await postProblemCallback({
+			title: title,
+			description: JSON.stringify(desc),
+			input: input,
+			output: output,
+			inoutput_ex: JSON.stringify(inoutput),
+			hint: hint,
+			tag: tag
+		})
+			.then((res) => {
+				toast.success(`[${res?.title}] 문제가 정상적으로 업로드되었습니다.`);
+				return true;
+			})
+			.catch((e) => {
+				return false;
+			})
 
+		return res;
+	}
 
 	const stepAddClick = (index) => {
 		confirmAlert({
@@ -128,6 +155,21 @@ const TextbookOutline = ({
 						handleOnclick={addProblem}
 						type={"problem"}
 						data={{"stepIndex": stepIdx, "itemIndex": itemIdx, "getProblemApi": getProblemApi, "getProblemListApi": getProblemListApi}}
+					/>
+				);
+			}
+		})
+	}
+
+	const problemCreateClick = () => {
+		confirmAlert({
+			customUI: ({ onClose }) => {
+				return (
+					<CustomConfirmAlert
+						inputRef={inputRef}
+						onClose={onClose}
+						handleOnclick={createProblem}
+						type={"createProblem"}
 					/>
 				);
 			}
@@ -250,7 +292,7 @@ const TextbookOutline = ({
 							marginRight: "4px"
 						}}
 					>
-						{ENG_LEVEL_TO_KR[JSONBook.textbook_subtitle.stage]}
+						{PARSE_LEVEL_TO_KR[JSONBook.textbook_subtitle.stage]}
 					</div>
 
 					<div
@@ -279,7 +321,7 @@ const TextbookOutline = ({
 				</div>
 			</div>
 
-			<div style={{ marginTop: "20px" }}>
+			<div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%", marginTop: "20px" }}>
 				<Button
 					onClick={() => {
 						stepAddClick(-1)
@@ -289,6 +331,14 @@ const TextbookOutline = ({
 					ghost
 				>
 					스탭 추가
+				</Button>
+
+				<Button
+					onClick={() => {problemCreateClick()}}
+					size={"sm"}
+					color={"primary"}
+				>
+					문제 생성
 				</Button>
 			</div>
 			{parsedJSONBook}
