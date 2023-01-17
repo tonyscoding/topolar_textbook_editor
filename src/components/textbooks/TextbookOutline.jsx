@@ -10,7 +10,7 @@ import {stepIndexState, itemIndexState, languageListState} from "@/utils/States"
 import useApi from "../../apis/useApi";
 import {getLanguage, getProblem, getProblemList, postProblem} from "@/apis/apiServices";
 import {JSONbookState} from "@/utils/States";
-import {ENG_LEVEL_TO_KR, KR_LANGUAGE_TO_ENG} from "@/utils/Utils";
+import {PARSE_LEVEL_TO_KR} from "@/utils/Utils";
 import { toast } from "react-toastify";
 
 const TextbookOutline = ({
@@ -292,7 +292,7 @@ const TextbookOutline = ({
 							marginRight: "4px"
 						}}
 					>
-						{ENG_LEVEL_TO_KR[JSONBook.textbook_subtitle.stage]}
+						{PARSE_LEVEL_TO_KR[JSONBook.textbook_subtitle.stage]}
 					</div>
 
 					<div
