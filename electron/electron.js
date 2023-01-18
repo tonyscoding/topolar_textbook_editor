@@ -53,11 +53,11 @@ function createWindow() {
 /* Updater ======================================================*/
 
 autoUpdater.on('checking-for-update', (event) => {
-  log.info("Checking for update")
+    log.info("Checking for update")
 })
 
 autoUpdater.on('update-available', (event) => {
-  log.info("Update Available : " + event.version)
+    log.info("Update Available : " + event.version)
 })
 
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
@@ -77,7 +77,7 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
 })
 
 autoUpdater.on('download-progress', (progressObj) => {
-  log.info("Progress:" + progressObj.percent + '%')
+    log.info("Progress:" + progressObj.percent + '%')
 })
 
 autoUpdater.on('error', (message,error) => {
@@ -89,21 +89,21 @@ autoUpdater.on('error', (message,error) => {
 
 
 app.on('ready', () => {
-  // protocol.registerFileProtocol('atom', (request, callback) => {
-  //   const pathname = decodeURIComponent(request.url.replace('file://', ''));
-  //   callback({ path: path.normalize(pathname) })
-  // });
-  createWindow()
+    // protocol.registerFileProtocol('atom', (request, callback) => {
+    //   const pathname = decodeURIComponent(request.url.replace('file://', ''));
+    //   callback({ path: path.normalize(pathname) })
+    // });
+    createWindow()
 
-  // 자동 업데이트 등록
-  if (!isDev) {
-    autoUpdater.checkForUpdatesAndNotify();
-  }
+    // 자동 업데이트 등록
+    if (!isDev) {
+        autoUpdater.checkForUpdatesAndNotify();
+    }
 });
 
 /** [생명주기] 모든 창이 닫히면 자동으로 앱 종료 */
 app.on('window-all-closed', () => {
-  app.quit();
+    app.quit();
 });
 
 app.commandLine.appendSwitch('ignore-certificate-errors');

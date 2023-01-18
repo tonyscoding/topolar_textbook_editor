@@ -68,9 +68,10 @@ export const modules = {
         userOnly: true
     },
     imageCompress: {
-        quality: 0.7, // default
-        imageType: "image/jpeg", // default
-        debug: false // default
+        quality: 0.7,
+        imageType: "image/jpeg",
+        ignoreImageTypes: ["image/gif"],
+        debug: false
     }
 };
 
