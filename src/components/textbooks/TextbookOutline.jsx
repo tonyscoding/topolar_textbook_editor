@@ -3,7 +3,7 @@ import '@/assets/sass/Curriculum/TextbookOutline.scss'
 
 import { confirmAlert } from "react-confirm-alert";
 import {Button, Dropdown, Input, Spacer} from "@nextui-org/react";
-import CustomConfirmAlert from "@/components/textbooks/CustomConfirmAlert ";
+import CustomConfirmAlert from "@/components/textbooks/CustomConfirmAlert";
 
 import {useRecoilState, useRecoilValue} from "recoil";
 import {stepIndexState, itemIndexState, languageListState} from "@/utils/States";
