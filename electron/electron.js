@@ -23,7 +23,6 @@ function createWindow() {
     * 만일 URL을 따로 지정하지 않을경우 (프로덕션빌드) React 앱이
     * 빌드되는 build 폴더의 index.html 파일을 로드합니다.
     * */
-
     const startUrl = isDev ? 'http://localhost:5173' : url.format({
         pathname: path.join(__dirname, '/../build/index.html'),
         protocol: 'file:',
@@ -33,14 +32,9 @@ function createWindow() {
     /*
     * startUrl에 배정되는 url을 맨 위에서 생성한 BrowserWindow에서 실행시킵니다.
     * */
-    setTimeout(function() {
-        console.log('waiting ....');
-        win.loadURL(startUrl);
+    win.loadURL(startUrl);
 
-        if (isDev) {
-            win.webContents.openDevTools();
-        }
-    },1000);
+    if (isDev) win.webContents.openDevTools();
 }
 
 // app.whenReady().then(() => {
