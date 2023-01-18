@@ -23,6 +23,7 @@ function createWindow() {
     * 만일 URL을 따로 지정하지 않을경우 (프로덕션빌드) React 앱이
     * 빌드되는 build 폴더의 index.html 파일을 로드합니다.
     * */
+
     const startUrl = isDev ? 'http://localhost:5173' : url.format({
         pathname: path.join(__dirname, '/../build/index.html'),
         protocol: 'file:',
@@ -32,9 +33,14 @@ function createWindow() {
     /*
     * startUrl에 배정되는 url을 맨 위에서 생성한 BrowserWindow에서 실행시킵니다.
     * */
-    win.loadURL(startUrl);
+    setTimeout(function() {
+        console.log('waiting ....');
+        win.loadURL(startUrl);
 
-    if (isDev) win.webContents.openDevTools();
+        if (isDev) {
+            win.webContents.openDevTools();
+        }
+    },1000);
 }
 
 // app.whenReady().then(() => {
@@ -47,11 +53,11 @@ function createWindow() {
 /* Updater ======================================================*/
 
 autoUpdater.on('checking-for-update', (event) => {
-  log.info("Checking for update")
+    log.info("Checking for update")
 })
 
 autoUpdater.on('update-available', (event) => {
-  log.info("Update Available : " + event.version)
+    log.info("Update Available : " + event.version)
 })
 
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
@@ -71,7 +77,7 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
 })
 
 autoUpdater.on('download-progress', (progressObj) => {
-  log.info("Progress:" + progressObj.percent + '%')
+    log.info("Progress:" + progressObj.percent + '%')
 })
 
 autoUpdater.on('error', (message,error) => {
@@ -83,21 +89,21 @@ autoUpdater.on('error', (message,error) => {
 
 
 app.on('ready', () => {
-  // protocol.registerFileProtocol('atom', (request, callback) => {
-  //   const pathname = decodeURIComponent(request.url.replace('file://', ''));
-  //   callback({ path: path.normalize(pathname) })
-  // });
-  createWindow()
+    // protocol.registerFileProtocol('atom', (request, callback) => {
+    //   const pathname = decodeURIComponent(request.url.replace('file://', ''));
+    //   callback({ path: path.normalize(pathname) })
+    // });
+    createWindow()
 
-  // 자동 업데이트 등록
-  if (!isDev) {
-    autoUpdater.checkForUpdatesAndNotify();
-  }
+    // 자동 업데이트 등록
+    if (!isDev) {
+        autoUpdater.checkForUpdatesAndNotify();
+    }
 });
 
 /** [생명주기] 모든 창이 닫히면 자동으로 앱 종료 */
 app.on('window-all-closed', () => {
-  app.quit();
+    app.quit();
 });
 
 app.commandLine.appendSwitch('ignore-certificate-errors');

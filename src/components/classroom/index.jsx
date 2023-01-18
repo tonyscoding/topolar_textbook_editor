@@ -15,7 +15,6 @@ import ServerTextbookSidebar from "@/components/serverTextbook/ServerTextbookSid
 import useApi from "@/apis/useApi";
 import {getLanguage} from "@/apis/apiServices";
 import {PARSE_LANGUAGE_TO_ENG} from "@/utils/Utils";
-import {postProblem} from "@/apis/apiServices";
 
 const NewClassroom = () =>{
     const [sidebarOpen, setSidebarOpen] = useState(false);
