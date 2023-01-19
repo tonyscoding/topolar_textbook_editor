@@ -3,8 +3,11 @@ import axios from "axios";
 // URL
 export const API_URL = import.meta.env.VITE_API_URL;
 export const API_PROTOCOL = import.meta.env.VITE_API_PROTOCOL;
+export const API_MEDIA_URL = import.meta.env.VITE_API_MEDIA_URL;
 
-const URL = API_PROTOCOL + API_URL;
+export const URL = API_PROTOCOL + API_URL;
+export const MEDIA_URL = API_PROTOCOL + API_URL + API_MEDIA_URL;
+
 
 export const login = (body) => {
     return axios.post(`${URL}/api/login/`, body)

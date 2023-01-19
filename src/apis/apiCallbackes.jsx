@@ -20,8 +20,7 @@ import {
 import getAuthHeader from "@/apis/authHeader";
 import JSZip from "jszip";
 import {LANGUAGE_CODE_TO_ID} from "@/utils/Utils";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import {MEDIA_URL} from "@/apis/apiServices";
 
 export const useLoginCallback = () => {
     return useRecoilCallback(({snapshot, set}) =>
@@ -72,11 +71,44 @@ export const useGetTextbookListByLevelCallback = () => {
 
 export const useGetJSONTextbookCallback = () => {
     const user = useRecoilValue(userState);
+
+    const getBase64FromUrl = async (url) => {
+        const data = await fetch(url);
+        const blob = await data.blob();
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = () => {
+                const base64data = reader.result;
+                resolve(base64data);
+            }
+        });
+    }
+
     return useRecoilCallback(({snapshot, set}) =>
         async (id) => {
             const {data} = await getTextbook(getAuthHeader(user?.token), id);
             if (data) {
                 const jsonBook = await getJSONTextbook(getAuthHeader(user?.token), data.file.id);
+
+                let newJsonBook = jsonBook.data.data.textbook_content;
+                for (let i = 0; i < newJsonBook.textbook_contents.length; i++) {
+                    for (let j = 0; j < newJsonBook.textbook_contents[i].step_items.length; j++) {
+                        for (let k = 0; k < newJsonBook.textbook_contents[i].step_items[j].components.length; k++) {
+                            if (newJsonBook.textbook_contents[i].step_items[j].components[k].type === "image") {
+                                const binary = await getBase64FromUrl(`${MEDIA_URL}/textbooks/${newJsonBook.textbook_contents[i].step_items[j].components[k].src}`);
+
+                                newJsonBook.textbook_contents[i].step_items[j].components[k] = {
+                                    "type": "desc",
+                                    "description": "<p><img src=\"" + binary + "\" /></p>"
+                                };
+                            }
+                        }
+                    }
+                }
+
+                // URL+'/uploads/textbooks/'+components_item.src
+
                 set(stepIndexState, 0);
                 set(itemIndexState, 0);
                 set(JSONbookState, jsonBook.data.data.textbook_content);
