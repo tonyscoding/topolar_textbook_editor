@@ -13,7 +13,7 @@ const CustomConfirmAlert = ({inputRef, type, handleOnclick, onClose, data}) => {
 	const [output, setOutput] = useState();
 	const [inoutput, setInoutput] = useState([]);
 	const [hint, setHint] = useState();
-	const [tag, setTag] = useState(new Set(["태그 선택"]));
+	const [tag, setTag] = useState(new Set(["Python"]));
 	const handleConfirm = (e) => {
 		if (!e || e.key === 'Enter') {
 			if (type === 'step') {
