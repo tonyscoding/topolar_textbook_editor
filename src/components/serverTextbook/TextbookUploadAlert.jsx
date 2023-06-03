@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Input } from "@nextui-org/react";
-import { FiX } from "react-icons/all";
+import { FiX } from "react-icons/fi";
 
 const TextbookUploadAlert = ({ onClose, data, upload, orderRef, titleRef, language, setLanguage }) => {
     useEffect(() => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from "recoil";
 import { curriculumState } from "@/utils/States";
-import { FaChevronRight } from "react-icons/all";
+import { FaChevronRight } from "react-icons/fa";
 
 const Course = ({
     selectedCourse,

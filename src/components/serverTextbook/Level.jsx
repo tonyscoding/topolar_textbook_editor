@@ -8,7 +8,7 @@ import {
     useGetTextbookListByLevelCallback, useUpdateTextbookCallback,
     useUploadTextbookCallback
 } from "@/apis/apiCallbackes";
-import {FiMinus, FiPlus, FiRefreshCw, BiPencil} from "react-icons/all";
+import {FiMinus, FiPlus, FiRefreshCw, BiPencil} from "react-icons/fi";
 import CustomAlert from "@/components/textbooks/CustomAlert";
 import {Tooltip} from "@nextui-org/react";
 import {JSONbookState} from "@/utils/States";
