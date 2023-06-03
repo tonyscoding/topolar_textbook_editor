@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useRecoilState} from "recoil";
 import {serverTextbookOpenState} from "@/utils/States";
 import ServerTextbookBrowser from "@/components/serverTextbook/ServerTextbookBrowser";
-import {FiX} from "react-icons/all";
+import {FiX} from "react-icons/fi";
 
 const ServerTextbookSidebar = () => {
     const [serverTextbookOpen, setServerTextbookOpen] = useRecoilState(serverTextbookOpenState);
